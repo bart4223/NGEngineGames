@@ -12,6 +12,14 @@
 		299C2B82294F532E00F53CAA /* keywords.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = keywords.txt; sourceTree = "<group>"; };
 		299C2B83294F536000F53CAA /* library.properties */ = {isa = PBXFileReference; lastKnownFileType = text; path = library.properties; sourceTree = "<group>"; };
 		299C2B84294F53A200F53CAA /* LICENSE */ = {isa = PBXFileReference; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
+		299C2B85294F552800F53CAA /* NGCustomGame.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = NGCustomGame.cpp; sourceTree = "<group>"; };
+		299C2B86294F552800F53CAA /* NGCustomGame.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NGCustomGame.h; sourceTree = "<group>"; };
+		299C2B87294F5EAD00F53CAA /* NGCustom8x8RGBMatrixGame.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = NGCustom8x8RGBMatrixGame.cpp; sourceTree = "<group>"; };
+		299C2B88294F5EAD00F53CAA /* NGCustom8x8RGBMatrixGame.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NGCustom8x8RGBMatrixGame.h; sourceTree = "<group>"; };
+		299C2B8A294F5FF100F53CAA /* NG8x8RGBMatrixGameDot.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = NG8x8RGBMatrixGameDot.cpp; sourceTree = "<group>"; };
+		299C2B8B294F5FF100F53CAA /* NG8x8RGBMatrixGameDot.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NG8x8RGBMatrixGameDot.h; sourceTree = "<group>"; };
+		299C2B8D294F619900F53CAA /* dot.ino */ = {isa = PBXFileReference; lastKnownFileType = text; path = dot.ino; sourceTree = "<group>"; };
+		299C2B8F29508B6D00F53CAA /* NGGameExceptions.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NGGameExceptions.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXGroup section */
@@ -23,7 +31,7 @@
 				299C2B84294F53A200F53CAA /* LICENSE */,
 				299C2B7D294F512A00F53CAA /* README.md */,
 				299C2B82294F532E00F53CAA /* keywords.txt */,
-				299C2B80294F52D900F53CAA /* examples */,
+				299C2B80294F52D900F53CAA /* games */,
 				299C2B81294F52F800F53CAA /* src */,
 			);
 			sourceTree = "<group>";
@@ -36,18 +44,50 @@
 			path = docs;
 			sourceTree = "<group>";
 		};
-		299C2B80294F52D900F53CAA /* examples */ = {
+		299C2B80294F52D900F53CAA /* games */ = {
 			isa = PBXGroup;
 			children = (
+				299C2B8C294F617900F53CAA /* dot */,
 			);
-			path = examples;
+			path = games;
 			sourceTree = "<group>";
 		};
 		299C2B81294F52F800F53CAA /* src */ = {
 			isa = PBXGroup;
 			children = (
+				299C2B8E29508B1B00F53CAA /* common */,
+				299C2B89294F5F9F00F53CAA /* specs */,
+				299C2B86294F552800F53CAA /* NGCustomGame.h */,
+				299C2B85294F552800F53CAA /* NGCustomGame.cpp */,
 			);
 			path = src;
+			sourceTree = "<group>";
+		};
+		299C2B89294F5F9F00F53CAA /* specs */ = {
+			isa = PBXGroup;
+			children = (
+				299C2B88294F5EAD00F53CAA /* NGCustom8x8RGBMatrixGame.h */,
+				299C2B87294F5EAD00F53CAA /* NGCustom8x8RGBMatrixGame.cpp */,
+				299C2B8B294F5FF100F53CAA /* NG8x8RGBMatrixGameDot.h */,
+				299C2B8A294F5FF100F53CAA /* NG8x8RGBMatrixGameDot.cpp */,
+			);
+			name = specs;
+			sourceTree = "<group>";
+		};
+		299C2B8C294F617900F53CAA /* dot */ = {
+			isa = PBXGroup;
+			children = (
+				299C2B8D294F619900F53CAA /* dot.ino */,
+			);
+			path = dot;
+			sourceTree = "<group>";
+		};
+		299C2B8E29508B1B00F53CAA /* common */ = {
+			isa = PBXGroup;
+			children = (
+				299C2B8F29508B6D00F53CAA /* NGGameExceptions.h */,
+			);
+			name = common;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
