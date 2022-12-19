@@ -1,4 +1,2 @@
--Common
-  -NGCustomGame
-    -Joystick
--8x8MatrixGame
+-CustomGame
+-Custom8x8RGBMatrixGame
