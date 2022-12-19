@@ -20,6 +20,9 @@ void NG8x8RGBMatrixGameDot::_doInitialize() {
 void NG8x8RGBMatrixGameDot::_doStartGame() {
     _posX = random(0, 8);
     _posY = random(0, 8);
+    _color.red = random(0, 256);
+    _color.green = random(0, 256);
+    _color.blue = random(0, 256);
     _ownRender();
     if (_logging) {
         writeInfo("Dot.StartGame");
@@ -27,6 +30,7 @@ void NG8x8RGBMatrixGameDot::_doStartGame() {
 }
 
 void NG8x8RGBMatrixGameDot::_doFinishGame() {
+    _cdm->clear();
     if (_logging) {
         writeInfo("Dot.FinishGame");
     }
@@ -44,7 +48,7 @@ void NG8x8RGBMatrixGameDot::_doProcessingLoop() {
 void NG8x8RGBMatrixGameDot::_ownRender() {
     _cdm->beginUpdate();
     _cdm->clear();
-    _cdm->drawPoint(_posX, _posY, COLOR_GREEN);
+    _cdm->drawPoint(_posX, _posY, _color);
     _cdm->endUpdate();
 }
 

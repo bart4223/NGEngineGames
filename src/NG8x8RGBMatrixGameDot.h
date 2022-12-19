@@ -22,6 +22,7 @@ private:
     byte _posX;
     byte _posY;
     bool _posChanged = false;
+    colorRGB _color;
 
 protected:
     void _doInitialize();
