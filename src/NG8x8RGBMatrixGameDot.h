@@ -21,7 +21,7 @@ class NG8x8RGBMatrixGameDot : public NGCustom8x8RGBMatrixGame {
 private:
     byte _posX;
     byte _posY;
-    bool _posChanged = false;
+    bool _doRender = false;
     colorRGB _color;
 
 protected:

@@ -45,7 +45,7 @@ void NG8x8RGBMatrixGameDot::_doFinishGame() {
 void NG8x8RGBMatrixGameDot::_doProcessingLoop() {
     if (_gameStarted) {
         _ownJoystickLoop();
-        if (_posChanged) {
+        if (_doRender) {
             _ownRender();
         }
     }
@@ -59,39 +59,39 @@ void NG8x8RGBMatrixGameDot::_ownRender() {
 }
 
 void NG8x8RGBMatrixGameDot::_ownJoystickLoop() {
-    _posChanged = false;
+    _doRender = false;
     for (int i = 0; i < _joystickCount; i++) {
         if (_joysticks[i].joystick->hasLastMovement()) {
             switch(_joysticks[i].joystick->getLastMovement()) {
                 case jmUp:
                     if (_posY > 0) {
                         _posY--;
-                        _posChanged = true;
+                        _doRender = true;
                     }
                     break;
                 case jmDown:
                     if (_posY < 7) {
                         _posY++;
-                        _posChanged = true;
+                        _doRender = true;
                     }
                     break;
                 case jmLeft:
                     if (_posX > 0) {
                         _posX--;
-                        _posChanged = true;
+                        _doRender = true;
                     }
                     break;
                 case jmRight:
                     if (_posX < 7) {
                         _posX++;
-                        _posChanged = true;
+                        _doRender = true;
                     }
                     break;
                 case jmFire:
                     _color.red = random(0, 256);
                     _color.green = random(0, 256);
                     _color.blue = random(0, 256);
-                    _posChanged = true;
+                    _doRender = true;
                     break;
             }
         }
