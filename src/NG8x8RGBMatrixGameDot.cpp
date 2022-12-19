@@ -13,7 +13,9 @@ NG8x8RGBMatrixGameDot::NG8x8RGBMatrixGameDot() {
 
 void NG8x8RGBMatrixGameDot::_doInitialize() {
     if (_logging) {
-        writeInfo("Dot.Initialize");
+        char log[100];
+        sprintf(log, "%s.Initialize", _name);
+        writeInfo(log);
     }
 }
 
@@ -25,14 +27,18 @@ void NG8x8RGBMatrixGameDot::_doStartGame() {
     _color.blue = random(0, 256);
     _ownRender();
     if (_logging) {
-        writeInfo("Dot.StartGame");
+        char log[100];
+        sprintf(log, "%s.StartGame", _name);
+        writeInfo(log);
     }
 }
 
 void NG8x8RGBMatrixGameDot::_doFinishGame() {
     _cdm->clear();
     if (_logging) {
-        writeInfo("Dot.FinishGame");
+        char log[100];
+        sprintf(log, "%s.FinishGame", _name);
+        writeInfo(log);
     }
 }
 
@@ -80,6 +86,12 @@ void NG8x8RGBMatrixGameDot::_ownJoystickLoop() {
                         _posX++;
                         _posChanged = true;
                     }
+                    break;
+                case jmFire:
+                    _color.red = random(0, 256);
+                    _color.green = random(0, 256);
+                    _color.blue = random(0, 256);
+                    _posChanged = true;
                     break;
             }
         }
