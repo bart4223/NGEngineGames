@@ -108,6 +108,15 @@ void NGCustomGame::processingLoop() {
         _joysticks[i].joystick->processingLoop();
     }
     _doProcessingLoop();
+    if (_gameFinished) {
+        if (_gameFinishedDelay > 0) {
+            delay(_gameFinishedDelay);
+        }
+        finishGame();
+        if (_autoRestartGame) {
+            startGame();
+        }
+    }
 }
 
 void NGCustomGame::handleKeyEvent(byte id) {
@@ -147,6 +156,7 @@ void NGCustomGame::startGame() {
     if (!_gameStarted) {
         _scoreCounter = 0;
         _doStartGame();
+        _gameFinished = false;
         _gameStarted = true;
         if (_logging) {
             char log[100];

@@ -46,12 +46,15 @@ protected:
     bool _initialized = false;
     int _exceptionCount = 0;
     bool _gameStarted = false;
+    bool _gameFinished = false;
+    int _gameFinishedDelay = 0;
     gameKey _keys[MAXGAMEKEYCOUNT];
     int _keyCount = 0;
     gameJoystick _joysticks[MAXGAMEJOYSTICKCOUNT];
     int _joystickCount = 0;
     int _scoreCounter = 0;
     bool _doRender = false;
+    bool _autoRestartGame = false;
     
     void _create(char* name);
     

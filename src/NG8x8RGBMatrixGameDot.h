@@ -55,6 +55,7 @@ protected:
     void _ownJoystickLoop();
     
     void _ownRender();
+    
 public:
     NG8x8RGBMatrixGameDot();
 };
