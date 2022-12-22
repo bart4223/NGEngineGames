@@ -1,2 +1,4 @@
 -CustomGame
+  -SoundMachine
 -Custom8x8RGBMatrixGame
+  -Tetris
