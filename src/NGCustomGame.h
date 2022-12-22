@@ -50,10 +50,14 @@ protected:
     int _keyCount = 0;
     gameJoystick _joysticks[MAXGAMEJOYSTICKCOUNT];
     int _joystickCount = 0;
+    int _scoreCounter = 0;
+    bool _doRender = false;
     
     void _create(char* name);
     
     void _raiseException(int id);
+    
+    bool _getYesOrNo();
     
     void _initializeJoysticks();
     

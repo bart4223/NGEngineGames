@@ -5,12 +5,14 @@
 //  Created by Nils Grimmer on 18.12.22.
 //
 
+#include "NGCommon.h"
 #include <NGExceptionDefinitions.h>
 #include <NGGameExceptions.h>
 #include "NGCustomGame.h"
 
 void NGCustomGame::_create(char* name) {
     _name = name;
+    randomSeed(analogRead(0));
 }
 
 void NGCustomGame::_raiseException(int id) {
@@ -19,6 +21,10 @@ void NGCustomGame::_raiseException(int id) {
     _exceptionCount++;
     sprintf(info, "Ex %d(%d)", id, _exceptionCount);
     writeInfo(info);
+}
+
+bool NGCustomGame::_getYesOrNo() {
+    return getYesOrNo();
 }
 
 void NGCustomGame::_initializeJoysticks() {
@@ -139,6 +145,7 @@ void NGCustomGame::writeInfo(char* info) {
 
 void NGCustomGame::startGame() {
     if (!_gameStarted) {
+        _scoreCounter = 0;
         _doStartGame();
         _gameStarted = true;
         if (_logging) {

@@ -6,7 +6,7 @@
 #include <NG8x8RGBMatrixGameDot.h>
 
 #define KEYDELAY      500
-#define JOYSTICKDELAY 200
+#define JOYSTICKDELAY 100
 
 #define JOYSTICKID       0
 #define JOYSTICKPINX    A8

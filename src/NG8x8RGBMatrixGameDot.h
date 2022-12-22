@@ -16,14 +16,33 @@
 
 #include <NGCustom8x8RGBMatrixGame.h>
 
+#define MAXGAMEDOTX     6
+#define MAXGAMEDOTY     7
+#define MINGAMEDOTDIFF  1
+#define MAXGAMEDOTDIFF  4
+
+#define DOTMAXCATCHTIME 1000
+#define DOTCATCHDELAY    200
+
+#define GAMDEDOTCOLORSCOREOFF { .red = 5, .green = 5, .blue = 5 }
+#define GAMDEDOTCOLORSCOREON COLOR_BLUE
+
+#define GAMEDOTSCOREDIGITS 8
+
 class NG8x8RGBMatrixGameDot : public NGCustom8x8RGBMatrixGame {
     
 private:
-    byte _posX;
-    byte _posY;
-    bool _doRender = false;
-    colorRGB _color;
+    byte _posXDot;
+    byte _posYDot;
+    long _dotSpawned;
+    byte _posXPlayer;
+    byte _posYPlayer;
+    colorRGB _colorPlayer;
+    
+    void _rollPlayerColor();
 
+    void _calculateNewDotPosition();
+    
 protected:
     void _doInitialize();
     
