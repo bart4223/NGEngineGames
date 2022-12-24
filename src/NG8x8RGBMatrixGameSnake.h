@@ -48,7 +48,7 @@ private:
     
     void _computeMaze();
     
-    void _moveSnake();
+    bool _moveSnake();
     
 protected:
     void _doInitialize();

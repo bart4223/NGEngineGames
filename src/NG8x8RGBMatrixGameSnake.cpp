@@ -51,27 +51,31 @@ void NG8x8RGBMatrixGameSnake::_computeMaze() {
     for (int y = 0; y < GAMESNAKEMAZESIZEY; y++) {
         for (int x = 0; x < GAMESNAKEMAZESIZEX; x++) {
             if (_maze[y][x] > 0) {
-                if ((x != _posXSnake) || (y != _posYSnake)) {
-                    _maze[y][x]--;
-                }
+                _maze[y][x]--;
             }
         }
     }
 }
 
-void NG8x8RGBMatrixGameSnake::_moveSnake() {
+bool NG8x8RGBMatrixGameSnake::_moveSnake() {
+    bool res = false;
     _posXSnake = _posXSnake + _directionXSnake;
     _posYSnake = _posYSnake + _directionYSnake;
     _gameFinished = (_posXSnake < 0 || _posXSnake > (GAMESNAKEMAZESIZEX - 1) || _posYSnake < 0 || _posYSnake > (GAMESNAKEMAZESIZEY - 1) || _maze[_posYSnake][_posXSnake] > 0);
     if (!_gameFinished) {
-        if ((_posXSnake == _posXDiamond) && (_posYSnake == _posYDiamond)) {
+        res = (_posXSnake == _posXDiamond) && (_posYSnake == _posYDiamond);
+        if (res) {
             _snakeThreshold++;
             _calculateNewDiamondPosition();
             _scoreCounter++;
         }
         _maze[_posYSnake][_posXSnake] = _snakeThreshold;
+        if (!res) {
+            _maze[_posYSnake][_posXSnake]++;
+        }
         _lastSnakeMove = millis();
     }
+    return res;
 }
 
 void NG8x8RGBMatrixGameSnake::_doInitialize() {
@@ -116,8 +120,9 @@ void NG8x8RGBMatrixGameSnake::_doProcessingLoop() {
     if (_gameStarted) {
         _ownJoystickLoop();
         if ((millis() - _lastSnakeMove) > GAMESNAKEMOVEDELAY) {
-            _moveSnake();
-            _computeMaze();
+            if (!_moveSnake()) {
+                _computeMaze();
+            }
             if (!_gameFinished) {
                 _ownRender();
             }

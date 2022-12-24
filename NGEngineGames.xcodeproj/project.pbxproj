@@ -35,6 +35,7 @@
 				299C2B7D294F512A00F53CAA /* README.md */,
 				299C2B82294F532E00F53CAA /* keywords.txt */,
 				299C2B80294F52D900F53CAA /* games */,
+				29FCF0B22955D68E0065BD20 /* projects */,
 				299C2B81294F52F800F53CAA /* src */,
 			);
 			sourceTree = "<group>";
@@ -102,6 +103,37 @@
 				299C2B91295496F200F53CAA /* snake.ino */,
 			);
 			path = snake;
+			sourceTree = "<group>";
+		};
+		29FCF0B22955D68E0065BD20 /* projects */ = {
+			isa = PBXGroup;
+			children = (
+				29FCF0B32955D6C50065BD20 /* gamepad */,
+			);
+			path = projects;
+			sourceTree = "<group>";
+		};
+		29FCF0B32955D6C50065BD20 /* gamepad */ = {
+			isa = PBXGroup;
+			children = (
+				29FCF0B52955D7000065BD20 /* images */,
+				29FCF0B42955D6F30065BD20 /* gamepad */,
+			);
+			path = gamepad;
+			sourceTree = "<group>";
+		};
+		29FCF0B42955D6F30065BD20 /* gamepad */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = gamepad;
+			sourceTree = "<group>";
+		};
+		29FCF0B52955D7000065BD20 /* images */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = images;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
