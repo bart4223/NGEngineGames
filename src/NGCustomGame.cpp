@@ -47,6 +47,24 @@ void NGCustomGame::_doInitialized() {
     }
 }
 
+void NGCustomGame::_playSound(int index) {
+    if (_soundMachine != nullptr) {
+        _soundMachine->play(index);
+    }
+}
+
+void NGCustomGame::registerSoundMachine(NGSoundMachine *soundmachine) {
+    _soundMachine = soundmachine;
+}
+
+void NGCustomGame::registerSoundStart(int sound) {
+    _soundStart = sound;
+}
+                            
+void NGCustomGame::registerSoundFinish(int sound) {
+    _soundFinish = sound;
+}
+
 void NGCustomGame::registerNotification(NGCustomNotification *notification) {
     if (_notificationCount < GAMENOTIFICATIONCOUNT) {
         char log[100];
@@ -104,17 +122,19 @@ void NGCustomGame::initialize() {
 }
 
 void NGCustomGame::processingLoop() {
-    for (int i = 0; i < _joystickCount; i++) {
-        _joysticks[i].joystick->processingLoop();
-    }
-    _doProcessingLoop();
-    if (_gameFinished) {
-        if (_gameFinishedDelay > 0) {
-            delay(_gameFinishedDelay);
+    if (!_gameBreaked) {
+        for (int i = 0; i < _joystickCount; i++) {
+            _joysticks[i].joystick->processingLoop();
         }
-        finishGame();
-        if (_autoRestartGame) {
-            startGame();
+        _doProcessingLoop();
+        if (_gameFinished) {
+            if (_gameFinishedDelay > 0) {
+                delay(_gameFinishedDelay);
+            }
+            finishGame();
+            if (_autoRestartGame) {
+                startGame();
+            }
         }
     }
 }
@@ -127,13 +147,31 @@ void NGCustomGame::handleKeyEvent(byte id) {
                     if (!_gameStarted) {
                         startGame();
                     } else {
-                        finishGame();
+                        switch (_gameToggleMode) {
+                            case gtmStartFinish:
+                                finishGame();
+                                break;
+                            case gtmBreakContinue:
+                                if (!_gameBreaked) {
+                                    breakGame();
+                                } else {
+                                    continueGame();
+                                }
+                                break;
+                        }
+                        //Start Or Finish?
+                        
                     }
                     break;
-            }
-            switch (_keys[i].function) {
                 case gfFinishGame:
                     finishGame();
+                    break;
+                case gfBreakGame:
+                    if (!_gameBreaked) {
+                        breakGame();
+                    } else {
+                        continueGame();
+                    }
                     break;
             }
         }
@@ -157,10 +195,38 @@ void NGCustomGame::startGame() {
         _scoreCounter = 0;
         _doStartGame();
         _gameFinished = false;
+        _gameBreaked = false;
         _gameStarted = true;
         if (_logging) {
             char log[100];
             sprintf(log, "...Game \"%s\" started", _name);
+            writeInfo(log);
+        }
+        if (_soundStart != GAMENOSOUND) {
+            _playSound(_soundStart);
+        }
+    }
+}
+
+void NGCustomGame::breakGame() {
+    if (_gameStarted) {
+        _gameBreaked = true;
+        _doBreakGame();
+        if (_logging) {
+            char log[100];
+            sprintf(log, "...Game \"%s\" breaked", _name);
+            writeInfo(log);
+        }
+    }
+}
+
+void NGCustomGame::continueGame() {
+    if (_gameStarted && _gameBreaked) {
+        _gameBreaked = false;
+        _doContinueGame();
+        if (_logging) {
+            char log[100];
+            sprintf(log, "...Game \"%s\" continued", _name);
             writeInfo(log);
         }
     }
@@ -170,6 +236,9 @@ void NGCustomGame::finishGame() {
     if (_gameStarted) {
         _doFinishGame();
         _gameStarted = false;
+        if (_soundFinish != GAMENOSOUND) {
+            _playSound(_soundFinish);
+        }
         if (_logging) {
             char log[100];
             sprintf(log, "...Game \"%s\" finished", _name);

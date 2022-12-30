@@ -1,8 +1,9 @@
-#define PROD false //false, true
+#define PROD true //false, true
 
 #include <NGMemoryObserver.h>
 #include <NGSimpleKeypad.h>
 #include <NGSerialNotification.h>
+#include <NGJingleHelloDude.h>
 #include <NG8x8RGBMatrixGameSnake.h>
 
 #define KEYDELAY      500
@@ -22,16 +23,13 @@
 #define STARTGAMEID  42
 
 NGSimpleKeypad keypad = NGSimpleKeypad();
+NGSoundMachine soundMachine = NGSoundMachine();
 NGJoystickControl joystick = NGJoystickControl(JOYSTICKID, JOYSTICKPINX, JOYSTICKPINY, JOYSTICKPINFIRE);
 NGColorDotMatrix cdm = NGColorDotMatrix();
 NG8x8RGBMatrixGameSnake game = NG8x8RGBMatrixGameSnake();
 
 void setup() {
   observeMemory(0);
-  #if (PROD == false)
-  game.setLogging(true);
-  game.registerNotification(new NGSerialNotification());
-  #endif
   // Keypad
   keypad.registerCallback(&SimpleKeypadCallback);
   keypad.registerKey(STARTGAMEPIN, STARTGAMEID, KEYDELAY);
@@ -45,8 +43,14 @@ void setup() {
   // ColorDotMatrix
   cdm.initialize();
   // Game
+  #if (PROD == false)
+  game.setLogging(true);
+  game.registerNotification(new NGSerialNotification());
+  #endif
   game.registerGameKey(gfStartGame, STARTGAMEID);
   game.registerGameJoystick(&joystick);
+  game.registerSoundMachine(&soundMachine);
+  game.registerSoundStart(soundMachine.registerJingle(new NGJingleHelloDude()));
   game.registerColorDotMatrix(&cdm);
   game.initialize();
   observeMemory(0);

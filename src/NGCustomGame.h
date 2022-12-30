@@ -15,13 +15,17 @@
 #endif
 
 #include <NGCustomNotification.h>
+#include <NGSoundMachine.h>
 #include <NGJoystickControl.h>
 
 #define GAMENOTIFICATIONCOUNT   3
 #define MAXGAMEKEYCOUNT         5
 #define MAXGAMEJOYSTICKCOUNT    3
 
-enum gameFunction { gfStartGame, gfFinishGame };
+#define GAMENOSOUND -1
+
+enum gameFunction { gfStartGame, gfFinishGame, gfBreakGame };
+enum gameToggleMode { gtmStartFinish, gtmBreakContinue };
 
 struct gameKeyStruct
 {
@@ -39,6 +43,7 @@ typedef struct gameJoystickStruct gameJoystick;
 class NGCustomGame {
     
 protected:
+    NGSoundMachine *_soundMachine = nullptr;
     NGCustomNotification *_notification[GAMENOTIFICATIONCOUNT];
     int _notificationCount = 0;
     char* _name;
@@ -46,8 +51,10 @@ protected:
     bool _initialized = false;
     int _exceptionCount = 0;
     bool _gameStarted = false;
+    bool _gameBreaked = false;
     bool _gameFinished = false;
     int _gameFinishedDelay = 0;
+    gameToggleMode _gameToggleMode = gtmStartFinish;
     gameKey _keys[MAXGAMEKEYCOUNT];
     int _keyCount = 0;
     gameJoystick _joysticks[MAXGAMEJOYSTICKCOUNT];
@@ -55,7 +62,9 @@ protected:
     int _scoreCounter = 0;
     bool _doRender = false;
     bool _autoRestartGame = false;
-    
+    int _soundStart = GAMENOSOUND;
+    int _soundFinish = GAMENOSOUND;
+
     void _create(char* name);
     
     void _raiseException(int id);
@@ -68,13 +77,25 @@ protected:
     
     void _doInitialized();
     
+    void _playSound(int index);
+    
     virtual void _doStartGame();
+    
+    virtual void _doBreakGame();
+    
+    virtual void _doContinueGame();
     
     virtual void _doFinishGame();
     
     virtual void _doProcessingLoop();
     
 public:
+    void registerSoundMachine(NGSoundMachine *soundmachine);
+    
+    void registerSoundStart(int sound);
+    
+    void registerSoundFinish(int sound);
+    
     void registerNotification(NGCustomNotification *notification);
     
     void registerGameKey(gameFunction function, byte id);
@@ -94,6 +115,10 @@ public:
     void writeInfo(char* info);
     
     void startGame();
+    
+    void breakGame();
+    
+    void continueGame();
     
     void finishGame();
     

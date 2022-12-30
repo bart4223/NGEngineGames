@@ -55,6 +55,10 @@ protected:
     
     void _doStartGame();
     
+    void _doBreakGame();
+    
+    void _doContinueGame();
+    
     void _doFinishGame();
     
     void _doProcessingLoop();

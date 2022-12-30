@@ -10,6 +10,7 @@
 NG8x8RGBMatrixGameSnake::NG8x8RGBMatrixGameSnake() {
     _create("Snake");
     _scoreDigits = GAMESNAKESCOREDIGITS;
+    _gameToggleMode = gtmBreakContinue;
     _autoRestartGame = true;
     _gameFinishedDelay = GAMESNAKEFINISHDELAY;
 }
@@ -107,6 +108,22 @@ void NG8x8RGBMatrixGameSnake::_doStartGame() {
     }
 }
 
+void NG8x8RGBMatrixGameSnake::_doBreakGame() {
+    if (_logging) {
+        char log[100];
+        sprintf(log, "%s.BreakGame", _name);
+        writeInfo(log);
+    }
+}
+
+void NG8x8RGBMatrixGameSnake::_doContinueGame() {
+    if (_logging) {
+        char log[100];
+        sprintf(log, "%s.ContinueGame", _name);
+        writeInfo(log);
+    }
+}
+
 void NG8x8RGBMatrixGameSnake::_doFinishGame() {
     _cdm->clear();
     if (_logging) {
@@ -168,6 +185,7 @@ void NG8x8RGBMatrixGameSnake::_ownJoystickLoop() {
                     break;
                 case jmFire:
                     _rollSnakeColor();
+                    _ownRender();
                     break;
             }
         }
