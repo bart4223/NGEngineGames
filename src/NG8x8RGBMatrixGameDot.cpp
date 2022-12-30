@@ -66,6 +66,22 @@ void NG8x8RGBMatrixGameDot::_doStartGame() {
     }
 }
 
+void NG8x8RGBMatrixGameDot::_doBreakGame() {
+    if (_logging) {
+        char log[100];
+        sprintf(log, "%s.BreakGame", _name);
+        writeInfo(log);
+    }
+}
+
+void NG8x8RGBMatrixGameDot::_doContinueGame() {
+    if (_logging) {
+        char log[100];
+        sprintf(log, "%s.ContinueGame", _name);
+        writeInfo(log);
+    }
+}
+
 void NG8x8RGBMatrixGameDot::_doFinishGame() {
     _cdm->clear();
     if (_logging) {
