@@ -173,6 +173,14 @@ void NGCustomGame::handleKeyEvent(byte id) {
                         continueGame();
                     }
                     break;
+                case gfFasterGame:
+                    if ((_gameNextStepDelay - _gameNextStepDelayStepSize) > 0) {
+                        _gameNextStepDelay = _gameNextStepDelay - _gameNextStepDelayStepSize;
+                    }
+                    break;
+                case gfSlowerGame:
+                    _gameNextStepDelay = _gameNextStepDelay + _gameNextStepDelayStepSize;
+                    break;
             }
         }
     }

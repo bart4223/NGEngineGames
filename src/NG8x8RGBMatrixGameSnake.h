@@ -16,8 +16,8 @@
 
 #include <NGCustom8x8RGBMatrixGame.h>
 
-#define GAMDESNAKECOLORSCOREOFF { .red = 5, .green = 5, .blue = 5 }
-#define GAMDESNAKECOLORSCOREON COLOR_BLUE
+#define GAMESNAKECOLORSCOREOFF { .red = 5, .green = 5, .blue = 5 }
+#define GAMESNAKECOLORSCOREON COLOR_BLUE
 
 #define GAMESNAKEMAZESIZEX   7
 #define GAMESNAKEMAZESIZEY   8

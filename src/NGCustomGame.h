@@ -24,7 +24,9 @@
 
 #define GAMENOSOUND -1
 
-enum gameFunction { gfStartGame, gfFinishGame, gfBreakGame };
+#define DEFGAMENEXTSTEPDELAYSTEPSIZE 50
+
+enum gameFunction { gfStartGame, gfFinishGame, gfBreakGame, gfFasterGame, gfSlowerGame };
 enum gameToggleMode { gtmStartFinish, gtmBreakContinue };
 
 struct gameKeyStruct
@@ -54,6 +56,8 @@ protected:
     bool _gameBreaked = false;
     bool _gameFinished = false;
     int _gameFinishedDelay = 0;
+    int _gameNextStepDelay = 0;
+    int _gameNextStepDelayStepSize = DEFGAMENEXTSTEPDELAYSTEPSIZE;
     gameToggleMode _gameToggleMode = gtmStartFinish;
     gameKey _keys[MAXGAMEKEYCOUNT];
     int _keyCount = 0;

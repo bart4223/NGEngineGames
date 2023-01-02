@@ -19,8 +19,12 @@
 #define JOYSTICKTHRESHOLDLEFT     100
 #define JOYSTICKTHRESHOLDRIGHT    923
 
-#define STARTGAMEPIN 15
-#define STARTGAMEID  42
+#define STARTGAMEPIN    15
+#define STARTGAMEID     42
+#define FASTERGAMEPIN   16
+#define FASTERGAMEID    43
+#define SLOWERGAMEPIN   17
+#define SLOWERGAMEID    44
 
 NGSimpleKeypad keypad = NGSimpleKeypad();
 NGSoundMachine soundMachine = NGSoundMachine();
@@ -33,6 +37,8 @@ void setup() {
   // Keypad
   keypad.registerCallback(&SimpleKeypadCallback);
   keypad.registerKey(STARTGAMEPIN, STARTGAMEID, KEYDELAY);
+  keypad.registerKey(FASTERGAMEPIN, FASTERGAMEID, KEYDELAY);
+  keypad.registerKey(SLOWERGAMEPIN, SLOWERGAMEID, KEYDELAY);
   keypad.initialize();
   // Joystick
   joystick.registerAction(jaX, jtkLess, JOYSTICKTHRESHOLDLEFT, JOYSTICKDELAY, jmLeft);
@@ -48,6 +54,8 @@ void setup() {
   game.registerNotification(new NGSerialNotification());
   #endif
   game.registerGameKey(gfStartGame, STARTGAMEID);
+  game.registerGameKey(gfFasterGame, FASTERGAMEID);
+  game.registerGameKey(gfSlowerGame, SLOWERGAMEID);
   game.registerGameJoystick(&joystick);
   game.registerSoundMachine(&soundMachine);
   game.registerSoundStart(soundMachine.registerJingle(new NGJingleHelloDude()));

@@ -13,6 +13,7 @@ NG8x8RGBMatrixGameSnake::NG8x8RGBMatrixGameSnake() {
     _gameToggleMode = gtmBreakContinue;
     _autoRestartGame = true;
     _gameFinishedDelay = GAMESNAKEFINISHDELAY;
+    _gameNextStepDelay = GAMESNAKEMOVEDELAY;
 }
 
 void NG8x8RGBMatrixGameSnake::_rollSnakeColor() {
@@ -80,8 +81,8 @@ bool NG8x8RGBMatrixGameSnake::_moveSnake() {
 }
 
 void NG8x8RGBMatrixGameSnake::_doInitialize() {
-    _score->setColorOff(GAMDESNAKECOLORSCOREOFF);
-    _score->setColorOn(GAMDESNAKECOLORSCOREON);
+    _score->setColorOff(GAMESNAKECOLORSCOREOFF);
+    _score->setColorOn(GAMESNAKECOLORSCOREON);
     if (_logging) {
         char log[100];
         sprintf(log, "%s.Initialize", _name);
@@ -136,7 +137,7 @@ void NG8x8RGBMatrixGameSnake::_doFinishGame() {
 void NG8x8RGBMatrixGameSnake::_doProcessingLoop() {
     if (_gameStarted) {
         _ownJoystickLoop();
-        if ((millis() - _lastSnakeMove) > GAMESNAKEMOVEDELAY) {
+        if ((millis() - _lastSnakeMove) > _gameNextStepDelay) {
             if (!_moveSnake()) {
                 _computeMaze();
             }
