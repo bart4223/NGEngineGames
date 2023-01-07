@@ -1,4 +1,4 @@
-#define PROD false //false, true
+#define PROD true //false, true
 
 #include <NGMemoryObserver.h>
 #include <NGSimpleKeypad.h>
