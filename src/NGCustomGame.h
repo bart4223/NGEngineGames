@@ -66,8 +66,10 @@ protected:
     int _scoreCounter = 0;
     bool _doRender = false;
     bool _autoRestartGame = false;
+    int _soundStartUp = GAMENOSOUND;
     int _soundStart = GAMENOSOUND;
     int _soundFinish = GAMENOSOUND;
+    int _startUpDoneDelay = 0;
 
     void _create(char* name);
     
@@ -78,6 +80,10 @@ protected:
     void _initializeJoysticks();
     
     virtual void _doInitialize();
+    
+    virtual void _doStartUp();
+    
+    virtual void _doStartUpDone();
     
     void _doInitialized();
     
@@ -96,6 +102,8 @@ protected:
 public:
     void registerSoundMachine(NGSoundMachine *soundmachine);
     
+    void registerSoundStartUp(int sound);
+    
     void registerSoundStart(int sound);
     
     void registerSoundFinish(int sound);
@@ -111,6 +119,8 @@ public:
     bool getLogging();
     
     void initialize();
+    
+    void startUp();
         
     void processingLoop();
     

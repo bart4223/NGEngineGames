@@ -42,6 +42,9 @@ void setup() {
   joystick.registerAction(JOYSTICKDELAY, jmFire);
   // ColorDotMatrix
   cdm.initialize();
+  // Sound
+  int soundHelloDude = soundMachine.registerJingle(new NGJingleHelloDude());
+  soundMachine.initialize();
   // Game
   #if (PROD == false)
   game.setLogging(true);
@@ -50,10 +53,12 @@ void setup() {
   game.registerGameKey(gfStartGame, STARTGAMEID);
   game.registerGameJoystick(&joystick);
   game.registerSoundMachine(&soundMachine);
-  game.registerSoundStart(soundMachine.registerJingle(new NGJingleHelloDude()));
+  game.registerSoundStartUp(soundHelloDude);
+  game.registerSoundStart(soundHelloDude);
   game.registerColorDotMatrix(&cdm);
   game.initialize();
   observeMemory(0);
+  game.startUp();
 }
 
 void loop() {

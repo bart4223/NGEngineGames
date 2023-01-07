@@ -26,6 +26,9 @@
 #define GAMETETRISMOVEDELAY    500
 #define GAMETETRISFINISHDELAY 1000
 
+#define GAMETETRISSPLASHTIMES  10
+#define GAMETETRISSPLASHDELAY 200
+
 static byte globalTetrominoColors[7][3] = {
   {255, 0, 0},
   {255, 102, 0},
@@ -69,6 +72,10 @@ private:
     
 protected:
     void _doInitialize();
+    
+    void _doStartUp();
+    
+    void _doStartUpDone();
     
     void _doStartGame();
     

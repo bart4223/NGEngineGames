@@ -57,6 +57,10 @@ void NGCustomGame::registerSoundMachine(NGSoundMachine *soundmachine) {
     _soundMachine = soundmachine;
 }
 
+void NGCustomGame::registerSoundStartUp(int sound) {
+    _soundStartUp = sound;
+}
+
 void NGCustomGame::registerSoundStart(int sound) {
     _soundStart = sound;
 }
@@ -119,6 +123,17 @@ void NGCustomGame::initialize() {
     _initializeJoysticks();
     _doInitialize();
     _doInitialized();
+}
+
+void NGCustomGame::startUp() {
+    _doStartUp();
+    if (_soundStartUp != GAMENOSOUND) {
+        _playSound(_soundStartUp);
+    }
+    if (_startUpDoneDelay > 0) {
+        delay(_startUpDoneDelay);
+    }
+    _doStartUpDone();
 }
 
 void NGCustomGame::processingLoop() {

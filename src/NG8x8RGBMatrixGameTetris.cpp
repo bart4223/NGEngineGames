@@ -267,6 +267,81 @@ void NG8x8RGBMatrixGameTetris::_doInitialize() {
     }
 }
 
+void NG8x8RGBMatrixGameTetris::_doStartUp() {
+    if (_logging) {
+        char log[100];
+        sprintf(log, "%s.StartUp", _name);
+        writeInfo(log);
+    }
+    colorRGB c;
+    c.red = globalTetrominoColors[0][0];
+    c.green = globalTetrominoColors[0][1];
+    c.blue = globalTetrominoColors[0][2];
+    _cdm->drawPoint(0, 6, c);
+    _cdm->drawPoint(0, 7, c);
+    _cdm->drawPoint(1, 7, c);
+    c.red = globalTetrominoColors[3][0];
+    c.green = globalTetrominoColors[3][1];
+    c.blue = globalTetrominoColors[3][2];
+    _cdm->drawPoint(2, 6, c);
+    _cdm->drawPoint(2, 7, c);
+    c.red = globalTetrominoColors[5][0];
+    c.green = globalTetrominoColors[5][1];
+    c.blue = globalTetrominoColors[5][2];
+    _cdm->drawPoint(4, 7, c);
+    _cdm->drawPoint(5, 6, c);
+    _cdm->drawPoint(5, 7, c);
+    c.red = globalTetrominoColors[2][0];
+    c.green = globalTetrominoColors[2][1];
+    c.blue = globalTetrominoColors[2][2];
+    _cdm->drawPoint(6, 7, c);
+    _cdm->drawPoint(7, 7, c);
+    for (int i = 0; i < GAMETETRISSPLASHTIMES; i++) {
+        _cdm->beginUpdate();
+        c.red = globalTetrominoColors[i%4][0];
+        c.green = globalTetrominoColors[i%4][1];
+        c.blue = globalTetrominoColors[i%4][2];
+        switch(i%4) {
+            case 0:
+                _cdm->drawPoint(3, 2, c);
+                _cdm->drawPoint(4, 2, COLOR_BLACK);
+                _cdm->drawPoint(3, 3, c);
+                _cdm->drawPoint(4, 3, c);
+               break;
+            case 1:
+                _cdm->drawPoint(3, 2, c);
+                _cdm->drawPoint(4, 2, c);
+                _cdm->drawPoint(3, 3, c);
+                _cdm->drawPoint(4, 3, COLOR_BLACK);
+                break;
+            case 2:
+                _cdm->drawPoint(3, 2, c);
+                _cdm->drawPoint(4, 2, c);
+                _cdm->drawPoint(3, 3, COLOR_BLACK);
+                _cdm->drawPoint(4, 3, c);
+                break;
+            case 3:
+                _cdm->drawPoint(3, 2, COLOR_BLACK);
+                _cdm->drawPoint(4, 2, c);
+                _cdm->drawPoint(3, 3, c);
+                _cdm->drawPoint(4, 3, c);
+                break;
+        }
+        _cdm->endUpdate();
+        delay(GAMETETRISSPLASHDELAY);
+    }
+}
+
+void NG8x8RGBMatrixGameTetris::_doStartUpDone() {
+    _cdm->clear();
+    _score->setValue(_scoreCounter);
+    if (_logging) {
+        char log[100];
+        sprintf(log, "%s.StartUp done", _name);
+        writeInfo(log);
+    }
+}
+
 void NG8x8RGBMatrixGameTetris::_doStartGame() {
     _resetMaze();
     _spawnTetromino();
