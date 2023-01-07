@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXFileReference section */
+		295A7E48295F2E87003779A3 /* tetris.ino */ = {isa = PBXFileReference; lastKnownFileType = text; path = tetris.ino; sourceTree = "<group>"; };
+		295A7E49295F2EB2003779A3 /* NG8x8RGBMatrixGameTetris.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = NG8x8RGBMatrixGameTetris.cpp; sourceTree = "<group>"; };
+		295A7E4A295F2EB2003779A3 /* NG8x8RGBMatrixGameTetris.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NG8x8RGBMatrixGameTetris.h; sourceTree = "<group>"; };
 		299C2B7D294F512A00F53CAA /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		299C2B7F294F52B200F53CAA /* ToDo.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = ToDo.txt; sourceTree = "<group>"; };
 		299C2B82294F532E00F53CAA /* keywords.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = keywords.txt; sourceTree = "<group>"; };
@@ -26,6 +29,14 @@
 /* End PBXFileReference section */
 
 /* Begin PBXGroup section */
+		295A7E47295F2E67003779A3 /* tetris */ = {
+			isa = PBXGroup;
+			children = (
+				295A7E48295F2E87003779A3 /* tetris.ino */,
+			);
+			path = tetris;
+			sourceTree = "<group>";
+		};
 		299C2B76294F50E200F53CAA = {
 			isa = PBXGroup;
 			children = (
@@ -52,6 +63,7 @@
 			isa = PBXGroup;
 			children = (
 				299C2B8C294F617900F53CAA /* dot */,
+				295A7E47295F2E67003779A3 /* tetris */,
 				299C2B90295496D400F53CAA /* snake */,
 			);
 			path = games;
@@ -77,6 +89,8 @@
 				299C2B8A294F5FF100F53CAA /* NG8x8RGBMatrixGameDot.cpp */,
 				299C2B932954A08B00F53CAA /* NG8x8RGBMatrixGameSnake.h */,
 				299C2B922954A08B00F53CAA /* NG8x8RGBMatrixGameSnake.cpp */,
+				295A7E4A295F2EB2003779A3 /* NG8x8RGBMatrixGameTetris.h */,
+				295A7E49295F2EB2003779A3 /* NG8x8RGBMatrixGameTetris.cpp */,
 			);
 			name = specs;
 			sourceTree = "<group>";

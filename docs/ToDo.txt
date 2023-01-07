@@ -1,4 +1,6 @@
 -CustomGame
+  -Startup
+    -Splash
 -Custom8x8RGBMatrixGame
   -Tetris
   -Asteroids
