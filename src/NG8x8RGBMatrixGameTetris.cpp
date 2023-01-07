@@ -144,6 +144,12 @@ void NG8x8RGBMatrixGameTetris::_computeMaze() {
                 }
                 if (complete == GAMETETRISMAZESIZEX) {
                     _scoreCounter++;
+                    if (_scoreCounter % 10 == 0) {
+                        _gameNextStepDelay = _gameNextStepDelay - (GAMETETRISMOVEDELAY / 10);
+                        if (_gameNextStepDelay < 0) {
+                            _gameNextStepDelay = 0;
+                        }
+                    }
                 } else {
                     complete = 0;
                 }
