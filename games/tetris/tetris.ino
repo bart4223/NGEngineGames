@@ -1,4 +1,4 @@
-#define PROD false //false, true
+#define PROD true //false, true
 
 #include <NGMemoryObserver.h>
 #include <NGSimpleKeypad.h>
@@ -43,7 +43,7 @@ void setup() {
   // ColorDotMatrix
   cdm.initialize();
   // Sound
-  int soundHelloDude = soundMachine.registerJingle(new NGJingleHelloDude());
+  int jingleHelloDude = soundMachine.registerJingle(new NGJingleHelloDude());
   soundMachine.initialize();
   // Game
   #if (PROD == false)
@@ -53,8 +53,8 @@ void setup() {
   game.registerGameKey(gfStartGame, STARTGAMEID);
   game.registerGameJoystick(&joystick);
   game.registerSoundMachine(&soundMachine);
-  game.registerSoundStartUp(soundHelloDude);
-  game.registerSoundStart(soundHelloDude);
+  game.registerSoundStartUp(jingleHelloDude);
+  game.registerSoundStart(jingleHelloDude);
   game.registerColorDotMatrix(&cdm);
   game.initialize();
   observeMemory(0);

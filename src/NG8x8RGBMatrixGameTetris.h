@@ -26,8 +26,9 @@
 #define GAMETETRISMOVEDELAY    500
 #define GAMETETRISFINISHDELAY 1000
 
-#define GAMETETRISSPLASHTIMES  10
-#define GAMETETRISSPLASHDELAY 200
+#define GAMETETRISSPLASHTIMES   10
+#define GAMETETRISSPLASHDELAY  200
+#define GAMETETRISOUTRODELAY   100
 
 static byte globalTetrominoColors[7][3] = {
   {255, 0, 0},
@@ -68,7 +69,9 @@ private:
     
     void _ownJoystickLoop();
     
-    void _ownRender();  
+    void _ownRender();
+    
+    void _ownOutro();
     
 protected:
     void _doInitialize();

@@ -46,6 +46,10 @@ private:
 protected:
     void _doInitialize();
     
+    void _doStartUp();
+    
+    void _doStartUpDone();
+    
     void _doStartGame();
     
     void _doBreakGame();

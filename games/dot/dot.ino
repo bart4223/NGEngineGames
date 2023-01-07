@@ -50,6 +50,7 @@ void setup() {
   game.registerColorDotMatrix(&cdm);
   game.initialize();
   observeMemory(0);
+  game.startUp();
 }
 
 void loop() {

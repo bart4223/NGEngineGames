@@ -1,6 +1,4 @@
 -CustomGame
 -Custom8x8RGBMatrixGame
-  -Tetris
-    -Outro
   -Asteroids
 -GamePad

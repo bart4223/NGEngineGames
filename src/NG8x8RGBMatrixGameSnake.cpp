@@ -90,6 +90,22 @@ void NG8x8RGBMatrixGameSnake::_doInitialize() {
     }
 }
 
+void NG8x8RGBMatrixGameSnake::_doStartUp() {
+    if (_logging) {
+        char log[100];
+        sprintf(log, "%s.StartUp", _name);
+        writeInfo(log);
+    }
+}
+
+void NG8x8RGBMatrixGameSnake::_doStartUpDone() {
+    if (_logging) {
+        char log[100];
+        sprintf(log, "%s.StartUpDone", _name);
+        writeInfo(log);
+    }
+}
+
 void NG8x8RGBMatrixGameSnake::_doStartGame() {
     _posXSnake = 3;
     _posYSnake = 3;

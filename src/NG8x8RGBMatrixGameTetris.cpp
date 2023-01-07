@@ -423,6 +423,27 @@ void NG8x8RGBMatrixGameTetris::_doProcessingLoop() {
             }
             _ownRender();
         }
+        if (_gameFinished) {
+            _ownOutro();
+        }
+    }
+}
+
+void NG8x8RGBMatrixGameTetris::_ownOutro() {
+    colorRGB c;
+    for (int y = GAMETETRISMAZESIZEY - 1; y >= 0; y--) {
+        _cdm->beginUpdate();
+        for (int x = 0; x < GAMETETRISMAZESIZEX; x++) {
+            if (_maze[y][x] == 0) {
+                byte value = random(0, sizeof(globalTetrominoColors) / sizeof(globalTetrominoColors[0]));
+                c.red = globalTetrominoColors[value][0];
+                c.green = globalTetrominoColors[value][1];
+                c.blue = globalTetrominoColors[value][2];
+                _cdm->drawPoint(x, y, c);
+            }
+        }
+        _cdm->endUpdate();
+        delay(GAMETETRISOUTRODELAY);
     }
 }
 

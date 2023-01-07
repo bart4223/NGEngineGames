@@ -53,6 +53,22 @@ void NG8x8RGBMatrixGameDot::_doInitialize() {
     }
 }
 
+void NG8x8RGBMatrixGameDot::_doStartUp() {
+    if (_logging) {
+        char log[100];
+        sprintf(log, "%s.StartUp", _name);
+        writeInfo(log);
+    }
+}
+
+void NG8x8RGBMatrixGameDot::_doStartUpDone() {
+    if (_logging) {
+        char log[100];
+        sprintf(log, "%s.StartUpDone", _name);
+        writeInfo(log);
+    }
+}
+
 void NG8x8RGBMatrixGameDot::_doStartGame() {
     _posXPlayer = 3;
     _posYPlayer = 4;
