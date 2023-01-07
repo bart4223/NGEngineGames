@@ -9,5 +9,5 @@
 
 void NGCustom8x8RGBMatrixGame::registerColorDotMatrix(NGColorDotMatrix *cdm) {
     _cdm = cdm;
-    _score = new NGColorDotMatrixBinaryDigit(_cdm, _scoreDigits, _scoreDigitPosX, _scoreDigitPosY);
+    _score = new NGColorDotMatrixBinaryDigit(_cdm, _scoreDigits, _scoreDirection, _scoreDigitPosX, _scoreDigitPosY);
 }

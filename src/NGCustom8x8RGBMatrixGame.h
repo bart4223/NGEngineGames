@@ -18,9 +18,10 @@
 #include <NGColorDotMatrix.h>
 #include <NGColorDotMatrixBinaryDigit.h>
 
-#define DEFSCOREDIGITS      4
-#define DEFSCOREDIGITPOSX   7
-#define DEFSCOREDIGITPOSY   7
+#define DEFSCOREDIGITS        4
+#define DEFSCOREDIGITPOSX     7
+#define DEFSCOREDIGITPOSY     7
+#define DEFSCOREDIRECTION bddUp
 
 class NGCustom8x8RGBMatrixGame : public NGCustomGame {
        
@@ -30,6 +31,7 @@ protected:
     byte _scoreDigits = DEFSCOREDIGITS;
     byte _scoreDigitPosX = DEFSCOREDIGITPOSX;
     byte _scoreDigitPosY = DEFSCOREDIGITPOSY;
+    BinaryDigitDirection _scoreDirection = DEFSCOREDIRECTION;
 
 public:
     void registerColorDotMatrix(NGColorDotMatrix *cdm);
