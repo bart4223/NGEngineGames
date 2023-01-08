@@ -71,6 +71,8 @@ private:
     
     void _ownRender();
     
+    void _ownIntro();
+    
     void _ownOutro();
     
 protected:

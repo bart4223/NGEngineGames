@@ -121,12 +121,12 @@ void NG8x8RGBMatrixGameAsteroids::_doInitialize() {
 }
 
 void NG8x8RGBMatrixGameAsteroids::_doStartUp() {
-    _ownIntro();
     if (_logging) {
         char log[100];
         sprintf(log, "%s.StartUp", _name);
         writeInfo(log);
     }
+    _ownIntro();
 }
 
 void NG8x8RGBMatrixGameAsteroids::_doStartUpDone() {

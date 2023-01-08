@@ -4,5 +4,6 @@
     -faster
     -Pulse Laserbeam
     -for-/backward
+    -substract
   -Boulderdash
 -GamePad
