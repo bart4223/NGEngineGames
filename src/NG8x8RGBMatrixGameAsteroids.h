@@ -38,9 +38,9 @@
 #define GAMEASTEROIDSOUTRODELAY   100
 
 static byte globalAsteroidsColors[3][3] = {
-  {0, 0, 255}, // Spacecraft
-  {255, 0, 0}, // Laser
-  {30, 30, 30} // Asteroid
+  {0, 0, 255},  // Spacecraft
+  {255, 0, 0},  // Laser
+  {255, 255, 0} // Asteroid
 };
 
 class NG8x8RGBMatrixGameAsteroids : public NGCustom8x8RGBMatrixGame {
@@ -70,6 +70,8 @@ private:
     void _ownJoystickLoop();
     
     void _ownRender();
+    
+    void _ownIntro();
     
     void _ownOutro();
     

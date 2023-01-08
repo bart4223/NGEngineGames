@@ -121,6 +121,7 @@ void NG8x8RGBMatrixGameAsteroids::_doInitialize() {
 }
 
 void NG8x8RGBMatrixGameAsteroids::_doStartUp() {
+    _ownIntro();
     if (_logging) {
         char log[100];
         sprintf(log, "%s.StartUp", _name);
@@ -213,6 +214,10 @@ void NG8x8RGBMatrixGameAsteroids::_ownRender() {
     }
     _score->setValue(_scoreCounter);
     _cdm->endUpdate();
+}
+
+void NG8x8RGBMatrixGameAsteroids::_ownIntro() {
+    
 }
 
 void NG8x8RGBMatrixGameAsteroids::_ownOutro() {
