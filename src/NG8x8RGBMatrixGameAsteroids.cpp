@@ -217,7 +217,34 @@ void NG8x8RGBMatrixGameAsteroids::_ownRender() {
 }
 
 void NG8x8RGBMatrixGameAsteroids::_ownIntro() {
-    
+    colorRGB c;
+    _cdm->beginUpdate();
+    c.red = globalAsteroidsColors[GAMEASTEROIDSCOLORINDEXSPACECRAFT - 1][0];
+    c.green = globalAsteroidsColors[GAMEASTEROIDSCOLORINDEXSPACECRAFT - 1][1];
+    c.blue = globalAsteroidsColors[GAMEASTEROIDSCOLORINDEXSPACECRAFT - 1][2];
+    _cdm->drawPoint(1, 2, c);
+    _cdm->drawPoint(0, 3, c);
+    _cdm->drawPoint(1, 3, c);
+    _cdm->drawPoint(2, 3, c);
+    c.red = globalAsteroidsColors[GAMEASTEROIDSCOLORINDEXASTEROID - 1][0];
+    c.green = globalAsteroidsColors[GAMEASTEROIDSCOLORINDEXASTEROID - 1][1];
+    c.blue = globalAsteroidsColors[GAMEASTEROIDSCOLORINDEXASTEROID - 1][2];
+    _cdm->drawPoint(2, 0, c);
+    _cdm->drawPoint(6, 2, c);
+    _cdm->drawPoint(4, 4, c);
+    _cdm->drawPoint(7, 6, c);
+    _cdm->drawPoint(3, 7, c);
+    _cdm->endUpdate();
+    c.red = globalAsteroidsColors[GAMEASTEROIDSCOLORINDEXLASERBEAM - 1][0];
+    c.green = globalAsteroidsColors[GAMEASTEROIDSCOLORINDEXLASERBEAM - 1][1];
+    c.blue = globalAsteroidsColors[GAMEASTEROIDSCOLORINDEXLASERBEAM - 1][2];
+    for (int i = 0; i < GAMEASTEROIDSINTROLASERBEAMTIMES; i++) {
+        for (int x = 3; x < GAMEASTEROIDSMAZESIZEX; x++) {
+            _cdm->drawPoint(x, 3, c);
+            _cdm->drawPoint(x, 3, COLOR_BLACK);
+        }
+        delay(GAMEASTEROIDSINTRODELAY);
+    }
 }
 
 void NG8x8RGBMatrixGameAsteroids::_ownOutro() {
