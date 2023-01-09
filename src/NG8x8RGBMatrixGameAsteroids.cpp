@@ -208,7 +208,7 @@ void NG8x8RGBMatrixGameAsteroids::_ownRender() {
                 c.blue = globalAsteroidsColors[value - 1][2];
                 _cdm->drawPoint(x, y, c);
             } else {
-                _cdm->drawPoint(x, y, COLOR_BLACK);
+                _cdm->clearPoint(x, y);
             }
         }
     }
@@ -241,7 +241,7 @@ void NG8x8RGBMatrixGameAsteroids::_ownIntro() {
     for (int i = 0; i < GAMEASTEROIDSINTROLASERBEAMTIMES; i++) {
         for (int x = 3; x < GAMEASTEROIDSMAZESIZEX; x++) {
             _cdm->drawPoint(x, 3, c);
-            _cdm->drawPoint(x, 3, COLOR_BLACK);
+            _cdm->clearPoint(x, 3);
         }
         delay(GAMEASTEROIDSINTRODELAY);
     }
@@ -250,7 +250,7 @@ void NG8x8RGBMatrixGameAsteroids::_ownIntro() {
 void NG8x8RGBMatrixGameAsteroids::_ownOutro() {
     for (int i = 1; i < GAMEASTEROIDSMAZESIZEX + 2; i++) {
         _cdm->beginUpdate();
-        _cdm->drawCircle(_posXSpacecraft + 1, _posYSpacecraft + 1, i - 1, COLOR_BLACK);
+        _cdm->clearCircle(_posXSpacecraft + 1, _posYSpacecraft + 1, i - 1);
         _cdm->drawCircle(_posXSpacecraft + 1, _posYSpacecraft + 1, i, COLOR_RED);
         _score->setValue(_scoreCounter);
         _cdm->endUpdate();
