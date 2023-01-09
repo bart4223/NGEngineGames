@@ -38,6 +38,14 @@ void NG8x8RGBMatrixGameAsteroids::_computeAsteroids() {
                     } else {
                         return;
                     }
+                } else {
+                    _asteroidsLost++;
+                    if (_asteroidsLost > GAMEASTEROIDSAXLOST) {
+                        _asteroidsLost = 0;
+                        if (_scoreCounter > 0) {
+                            _scoreCounter--;
+                        }
+                    }
                 }
             }
         }
@@ -53,8 +61,17 @@ bool NG8x8RGBMatrixGameAsteroids::_computeLaserbeam() {
                 if ((x + 1) < GAMEASTEROIDSMAZESIZEX) {
                     if (_maze[y][x + 1] == GAMEASTEROIDSCOLORINDEXASTEROID) {
                         _scoreCounter++;
+                        _asteroidsLost = 0;
+                        if (_scoreCounter % 10 == 0) {
+                            _gameNextStepDelay = _gameNextStepDelay - (GAMEASTEROIDSMOVEDELAY / 10);
+                            if (_gameNextStepDelay < 0) {
+                                _gameNextStepDelay = 0;
+                            }
+                        }
+                        _maze[y][x + 1] = 0;
+                    } else {
+                        _maze[y][x + 1] = -GAMEASTEROIDSCOLORINDEXLASERBEAM;
                     }
-                    _maze[y][x + 1] = -GAMEASTEROIDSCOLORINDEXLASERBEAM;
                 }
                 res = true;
             }
@@ -73,7 +90,10 @@ bool NG8x8RGBMatrixGameAsteroids::_computeLaserbeam() {
 }
 
 void NG8x8RGBMatrixGameAsteroids::_spawnLaserbeam() {
-    _maze[_posYSpacecraft + 1][_posXSpacecraft + 3] = GAMEASTEROIDSCOLORINDEXLASERBEAM;
+    if (millis() - _lastSpawnLaserbeam > GAMEASTEROIDSLASERBEAMSPAWNDELAY) {
+        _maze[_posYSpacecraft + 1][_posXSpacecraft + 3] = GAMEASTEROIDSCOLORINDEXLASERBEAM;
+        _lastSpawnLaserbeam = millis();
+    }
 }
 
 void NG8x8RGBMatrixGameAsteroids::_spawnAsteroid() {
@@ -285,8 +305,26 @@ void NG8x8RGBMatrixGameAsteroids::_ownJoystickLoop() {
                     }
                     break;
                 case jmLeft:
+                    if (_posXSpacecraft > 0) {
+                        _gameFinished = !_checkSpacecraft(_posXSpacecraft - 1, _posYSpacecraft);
+                        if (!_gameFinished) {
+                            _clearSpacecraft();
+                            _posXSpacecraft--;
+                            _computeSpacecraft();
+                            _ownRender();
+                        }
+                    }
                     break;
                 case jmRight:
+                    if (_posXSpacecraft < GAMEASTEROIDSMAZESIZEX - 2) {
+                        _gameFinished = !_checkSpacecraft(_posXSpacecraft + 1, _posYSpacecraft);
+                        if (!_gameFinished) {
+                            _clearSpacecraft();
+                            _posXSpacecraft++;
+                            _computeSpacecraft();
+                            _ownRender();
+                        }
+                    }
                     break;
                 case jmFire:
                     _spawnLaserbeam();

@@ -1,9 +1,4 @@
 -CustomGame
 -Custom8x8RGBMatrixGame
-  -Asteroids
-    -faster
-    -Pulse Laserbeam
-    -for-/backward
-    -substract
   -Boulderdash
 -GamePad

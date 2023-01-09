@@ -25,8 +25,9 @@
 #define GAMEASTEROIDSSCOREDIGITXPOS       0
 #define GAMEASTEROIDSSCOREDIRECTION bddLeft
 
-#define GAMEASTEROIDSMOVEDELAY    500
-#define GAMEASTEROIDSFINISHDELAY 1000
+#define GAMEASTEROIDSMOVEDELAY             500
+#define GAMEASTEROIDSFINISHDELAY          1000
+#define GAMEASTEROIDSLASERBEAMSPAWNDELAY   200
 
 #define GAMEASTEROIDSSTARTPOSX 0
 #define GAMEASTEROIDSSTARTPOSY 3
@@ -38,6 +39,8 @@
 #define GAMEASTEROIDSINTROLASERBEAMTIMES     5
 #define GAMEASTEROIDSINTRODELAY            100
 #define GAMEASTEROIDSOUTRODELAY            100
+
+#define GAMEASTEROIDSAXLOST 3
 
 static byte globalAsteroidsColors[3][3] = {
   {0, 0, 255},  // Spacecraft
@@ -52,6 +55,8 @@ private:
     byte _posYSpacecraft = GAMEASTEROIDSSTARTPOSY;
     int _maze[GAMEASTEROIDSMAZESIZEY][GAMEASTEROIDSMAZESIZEX];
     long _lastAsteroidsMove = 0;
+    long _lastSpawnLaserbeam = 0;
+    byte _asteroidsLost = 0;
     
     void _resetMaze();
     
