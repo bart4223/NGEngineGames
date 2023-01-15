@@ -40,7 +40,7 @@ void NG8x8RGBMatrixGameAsteroids::_computeAsteroids() {
                     }
                 } else {
                     _asteroidsLost++;
-                    if (_asteroidsLost > GAMEASTEROIDSAXLOST) {
+                    if (_asteroidsLost > GAMEASTEROIDSMAXLOST) {
                         _asteroidsLost = 0;
                         if (_scoreCounter > 0) {
                             _scoreCounter--;

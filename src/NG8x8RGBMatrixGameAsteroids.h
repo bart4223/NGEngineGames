@@ -40,7 +40,7 @@
 #define GAMEASTEROIDSINTRODELAY            100
 #define GAMEASTEROIDSOUTRODELAY            100
 
-#define GAMEASTEROIDSAXLOST 3
+#define GAMEASTEROIDSMAXLOST 3
 
 static byte globalAsteroidsColors[3][3] = {
   {0, 0, 255},  // Spacecraft
