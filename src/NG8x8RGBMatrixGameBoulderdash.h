@@ -48,18 +48,18 @@
 
 #define GAMEBOULDERDASHCOLORINDEXDIRT    1
 #define GAMEBOULDERDASHCOLORINDEXROCKY   2
-#define GAMEBOULDERDASHCOLORINDEXSTONE   3
+#define GAMEBOULDERDASHCOLORINDEXBOULDER 3
 #define GAMEBOULDERDASHCOLORINDEXDIAMOND 4
 
 #define GAMEBOULDERDASHSTARTLEVEL   1
 #define GAMEBOULDERDASHMAXLEVEL     1
 
-#define GAMEBOULDERDASHLEVELONEFUSESTEPDELAY    1000
+#define GAMEBOULDERDASHLEVELONEFUSESTEPDELAY    5000
 
 static colorRGB globalBoulderdashColors[4] = {
   COLOR_BROWN,  // Dirt
   COLOR_BLUE,   // Rocky
-  { .red = 0xCC, .green = 0xCC, .blue = 0xCC },  // Stone
+  COLOR_WHITE,  // Boulder
   COLOR_TEAL    // Diamond
 };
 
@@ -80,16 +80,27 @@ private:
     byte _viewPosY = 0;
     byte _level = GAMEBOULDERDASHSTARTLEVEL;
     byte _levelDiamonds = 0;
+    bool _levelFinished = false;
     byte _posXRocky = 0;
     byte _posYRocky = 0;
     
     void _resetMaze();
     
+    void _computeMaze();
+    
     void _initLevel();
     
     void _initLevelOneMaze();
     
+    void _clearRocky();
+    
+    void _computeRocky();
+    
+    bool _checkRocky(byte posX, byte posY);
+    
     void _renderRocky();
+    
+    void _calculateViewPos();
     
     void _ownJoystickLoop();
     
