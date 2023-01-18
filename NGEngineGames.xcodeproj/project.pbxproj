@@ -29,6 +29,9 @@
 		299C2B91295496F200F53CAA /* snake.ino */ = {isa = PBXFileReference; lastKnownFileType = text; path = snake.ino; sourceTree = "<group>"; };
 		299C2B922954A08B00F53CAA /* NG8x8RGBMatrixGameSnake.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = NG8x8RGBMatrixGameSnake.cpp; sourceTree = "<group>"; };
 		299C2B932954A08B00F53CAA /* NG8x8RGBMatrixGameSnake.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NG8x8RGBMatrixGameSnake.h; sourceTree = "<group>"; };
+		29E872FF296C07EE00F7BF90 /* boulderdash.ino */ = {isa = PBXFileReference; lastKnownFileType = text; path = boulderdash.ino; sourceTree = "<group>"; };
+		29E87300296C081200F7BF90 /* NG8x8RGBMatrixGameBoulderdash.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = NG8x8RGBMatrixGameBoulderdash.cpp; sourceTree = "<group>"; };
+		29E87301296C081200F7BF90 /* NG8x8RGBMatrixGameBoulderdash.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NG8x8RGBMatrixGameBoulderdash.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXGroup section */
@@ -74,6 +77,7 @@
 			isa = PBXGroup;
 			children = (
 				295A7E4B2969DB41003779A3 /* asteroids */,
+				29E872FE296C07C900F7BF90 /* boulderdash */,
 				299C2B8C294F617900F53CAA /* dot */,
 				295A7E47295F2E67003779A3 /* tetris */,
 				299C2B90295496D400F53CAA /* snake */,
@@ -99,6 +103,8 @@
 				299C2B87294F5EAD00F53CAA /* NGCustom8x8RGBMatrixGame.cpp */,
 				295A7E4E2969DB99003779A3 /* NG8x8RGBMatrixGameAsteroids.h */,
 				295A7E4D2969DB99003779A3 /* NG8x8RGBMatrixGameAsteroids.cpp */,
+				29E87301296C081200F7BF90 /* NG8x8RGBMatrixGameBoulderdash.h */,
+				29E87300296C081200F7BF90 /* NG8x8RGBMatrixGameBoulderdash.cpp */,
 				299C2B8B294F5FF100F53CAA /* NG8x8RGBMatrixGameDot.h */,
 				299C2B8A294F5FF100F53CAA /* NG8x8RGBMatrixGameDot.cpp */,
 				299C2B932954A08B00F53CAA /* NG8x8RGBMatrixGameSnake.h */,
@@ -131,6 +137,14 @@
 				299C2B91295496F200F53CAA /* snake.ino */,
 			);
 			path = snake;
+			sourceTree = "<group>";
+		};
+		29E872FE296C07C900F7BF90 /* boulderdash */ = {
+			isa = PBXGroup;
+			children = (
+				29E872FF296C07EE00F7BF90 /* boulderdash.ino */,
+			);
+			path = boulderdash;
 			sourceTree = "<group>";
 		};
 		29FCF0B22955D68E0065BD20 /* projects */ = {
