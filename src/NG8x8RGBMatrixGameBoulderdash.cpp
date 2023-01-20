@@ -151,7 +151,23 @@ void NG8x8RGBMatrixGameBoulderdash::_computeRocky() {
     _maze[_posYRocky][_posXRocky] = GAMEBOULDERDASHCOLORINDEXROCKY;
 }
 
-bool NG8x8RGBMatrixGameBoulderdash::_checkRocky(byte posX, byte posY) {
+bool NG8x8RGBMatrixGameBoulderdash::_checkRocky(rockyMoveDirection direction) {
+    byte posX = _posXRocky;
+    byte posY = _posYRocky;
+    switch(direction) {
+        case rmdUp:
+            posY--;
+            break;
+        case rmdDown:
+            posY++;
+            break;
+        case rmdLeft:
+            posX--;
+            break;
+        case rmdRight:
+            posX++;
+            break;
+    }
     bool res = _maze[posY][posX] == 0 || _maze[posY][posX] == GAMEBOULDERDASHCOLORINDEXDIRT;
     if (!res) {
         res = _maze[posY][posX] == GAMEBOULDERDASHCOLORINDEXDIAMOND;
@@ -159,6 +175,25 @@ bool NG8x8RGBMatrixGameBoulderdash::_checkRocky(byte posX, byte posY) {
             _levelDiamonds--;
             _scoreCounter++;
             _levelFinished = _levelDiamonds == 0;
+        } else {
+            switch(direction) {
+                case rmdLeft:
+                    if (posX - 1 >= 0) {
+                        res = (_maze[posY][posX] == GAMEBOULDERDASHCOLORINDEXBOULDER && _maze[posY][posX - 1] == 0);
+                        if (res) {
+                            _maze[posY][posX - 1] = GAMEBOULDERDASHCOLORINDEXBOULDER;
+                        }
+                    }
+                    break;
+                case rmdRight:
+                    if (posX + 1 < GAMEBOULDERDASHMAZESIZEX) {
+                        res = (_maze[posY][posX] == GAMEBOULDERDASHCOLORINDEXBOULDER && _maze[posY][posX + 1] == 0);
+                        if (res) {
+                            _maze[posY][posX + 1] = GAMEBOULDERDASHCOLORINDEXBOULDER;
+                        }
+                    }
+                    break;
+            }
         }
     }
     return res;
@@ -253,7 +288,7 @@ void NG8x8RGBMatrixGameBoulderdash::_ownJoystickLoop() {
             switch(_joysticks[i].joystick->getLastMovement()) {
                 case jmUp:
                     if (_posYRocky > 0) {
-                        move = _checkRocky(_posXRocky, _posYRocky - 1);
+                        move = _checkRocky(rmdUp);
                         if (move) {
                             _clearRocky();
                             _posYRocky--;
@@ -263,7 +298,7 @@ void NG8x8RGBMatrixGameBoulderdash::_ownJoystickLoop() {
                     break;
                 case jmDown:
                     if (_posYRocky < GAMEBOULDERDASHMAZESIZEY - 1) {
-                        move = _checkRocky(_posXRocky, _posYRocky + 1);
+                        move = _checkRocky(rmdDown);
                         if (move) {
                             _clearRocky();
                             _posYRocky++;
@@ -273,7 +308,7 @@ void NG8x8RGBMatrixGameBoulderdash::_ownJoystickLoop() {
                     break;
                 case jmLeft:
                     if (_posXRocky > 0) {
-                        move = _checkRocky(_posXRocky - 1, _posYRocky);
+                        move = _checkRocky(rmdLeft);
                         if (move) {
                             _clearRocky();
                             _posXRocky--;
@@ -283,7 +318,7 @@ void NG8x8RGBMatrixGameBoulderdash::_ownJoystickLoop() {
                     break;
                 case jmRight:
                     if (_posXRocky < GAMEBOULDERDASHMAZESIZEX - 1) {
-                        move = _checkRocky(_posXRocky + 1, _posYRocky);
+                        move = _checkRocky(rmdRight);
                         if (move) {
                             _clearRocky();
                             _posXRocky++;

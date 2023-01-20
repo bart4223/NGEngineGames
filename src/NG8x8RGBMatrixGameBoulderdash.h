@@ -58,6 +58,8 @@
 #define GAMEBOULDERDASHSOUTROANIMATIONDELAY      100
 #define GAMEBOULDERDASHSOUTRODELAY              3000
 
+enum rockyMoveDirection { rmdUp, rmdDown, rmdLeft, rmdRight };
+
 static colorRGB globalBoulderdashColors[4] = {
   COLOR_BROWN,  // Dirt
   COLOR_BLUE,   // Rocky
@@ -99,7 +101,7 @@ private:
     
     void _computeRocky();
     
-    bool _checkRocky(byte posX, byte posY);
+    bool _checkRocky(rockyMoveDirection direction);
     
     void _renderRocky();
     
