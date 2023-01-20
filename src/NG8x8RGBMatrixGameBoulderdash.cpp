@@ -105,6 +105,7 @@ void NG8x8RGBMatrixGameBoulderdash::_initLevel() {
             _levelDiamonds = random(5, 10);
             _fuseStepDelay = GAMEBOULDERDASHLEVELONEFUSESTEPDELAY;
             _initLevelOneMaze();
+            //_initLevelTestMaze();
             break;
     }
     _renderRocky();
