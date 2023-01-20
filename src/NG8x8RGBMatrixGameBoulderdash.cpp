@@ -110,6 +110,39 @@ void NG8x8RGBMatrixGameBoulderdash::_initLevel() {
     _renderRocky();
 }
 
+void NG8x8RGBMatrixGameBoulderdash::_initLevelTestMaze() {
+    int x, y;
+    // Dirt
+    for (y = 0; y < GAMEBOULDERDASHMAZESIZEY; y++) {
+        for (x = 0; x < GAMEBOULDERDASHMAZESIZEX; x++) {
+            _maze[y][x] = GAMEBOULDERDASHCOLORINDEXDIRT;
+        }
+    }
+    // Diamonds
+    for (int i = 0; i < _levelDiamonds; i++) {
+        bool ok;
+        do {
+            x = random(2, 7);
+            y = random(2, 7);
+            ok = _maze[y][x] == GAMEBOULDERDASHCOLORINDEXDIRT;
+        } while (!ok);
+        _maze[y][x] = GAMEBOULDERDASHCOLORINDEXDIAMOND;
+    }
+    // Boulders
+    int boulders = random(1, 4);
+    for (int i = 0; i < boulders; i++) {
+        bool ok;
+        do {
+            x = random(2, 7);
+            y = random(2, 7);
+            ok = _maze[y][x] == GAMEBOULDERDASHCOLORINDEXDIRT;
+        } while (!ok);
+        _maze[y][x] = GAMEBOULDERDASHCOLORINDEXBOULDER;
+    }
+    // Rocky
+    _computeRocky();
+}
+
 void NG8x8RGBMatrixGameBoulderdash::_initLevelOneMaze() {
     int x, y;
     // Dirt
@@ -122,8 +155,8 @@ void NG8x8RGBMatrixGameBoulderdash::_initLevelOneMaze() {
     for (int i = 0; i < _levelDiamonds; i++) {
         bool ok;
         do {
-            x = random(2, 7); // ToDo random(2, GAMEBOULDERDASHMAZESIZEX);
-            y = random(2, 7); // ToDo random(2, GAMEBOULDERDASHMAZESIZEY);
+            x = random(2, GAMEBOULDERDASHMAZESIZEX);
+            y = random(2, GAMEBOULDERDASHMAZESIZEY);
             ok = _maze[y][x] == GAMEBOULDERDASHCOLORINDEXDIRT;
         } while (!ok);
         _maze[y][x] = GAMEBOULDERDASHCOLORINDEXDIAMOND;
@@ -133,8 +166,8 @@ void NG8x8RGBMatrixGameBoulderdash::_initLevelOneMaze() {
     for (int i = 0; i < boulders; i++) {
         bool ok;
         do {
-            x = random(2, 7); // ToDo random(2, GAMEBOULDERDASHMAZESIZEX);
-            y = random(2, 7); // ToDo random(2, GAMEBOULDERDASHMAZESIZEY);
+            x = random(2, GAMEBOULDERDASHMAZESIZEX);
+            y = random(2, GAMEBOULDERDASHMAZESIZEY);
             ok = _maze[y][x] == GAMEBOULDERDASHCOLORINDEXDIRT;
         } while (!ok);
         _maze[y][x] = GAMEBOULDERDASHCOLORINDEXBOULDER;
@@ -232,7 +265,29 @@ void NG8x8RGBMatrixGameBoulderdash::_calculateViewPos() {
 }
 
 void NG8x8RGBMatrixGameBoulderdash::_ownIntro() {
-    
+    _cdm->beginUpdate();
+    // Dirt
+    _cdm->fillRect(0, 0, 7, 7, globalBoulderdashColors[GAMEBOULDERDASHCOLORINDEXDIRT - 1]);
+    // Diamonds
+    _cdm->drawPoint(6, 3, globalBoulderdashColors[GAMEBOULDERDASHCOLORINDEXDIAMOND - 1]);
+    _cdm->drawPoint(5, 5, globalBoulderdashColors[GAMEBOULDERDASHCOLORINDEXDIAMOND - 1]);
+    _cdm->drawPoint(2, 6, globalBoulderdashColors[GAMEBOULDERDASHCOLORINDEXDIAMOND - 1]);
+    // Boulders
+    _cdm->drawPoint(5, 1, globalBoulderdashColors[GAMEBOULDERDASHCOLORINDEXBOULDER - 1]);
+    _cdm->drawPoint(6, 1, globalBoulderdashColors[GAMEBOULDERDASHCOLORINDEXBOULDER - 1]);
+    _cdm->drawPoint(1, 5, globalBoulderdashColors[GAMEBOULDERDASHCOLORINDEXBOULDER - 1]);
+    _cdm->drawPoint(6, 7, globalBoulderdashColors[GAMEBOULDERDASHCOLORINDEXBOULDER - 1]);
+    _cdm->endUpdate();
+    for (int i = 0; i < 6; i++) {
+        if (i % 2 == 0) {
+            _cdm->drawPoint(2, 2, globalBoulderdashColors[GAMEBOULDERDASHCOLORINDEXROCKY - 1]);
+        } else {
+            _cdm->drawPoint(2, 2, COLOR_BLUE_LOW);
+        }
+        if (i < 5) {
+            delay(GAMEBOULDERDASHROCKYBLINKDELAY);
+        }
+    }
 }
 
 void NG8x8RGBMatrixGameBoulderdash::_ownOutro() {

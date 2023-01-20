@@ -95,6 +95,8 @@ private:
     
     void _initLevel();
     
+    void _initLevelTestMaze();
+
     void _initLevelOneMaze();
     
     void _clearRocky();
