@@ -42,6 +42,21 @@ void NG8x8RGBMatrixGameBoulderdash::_computeGravity() {
                     _maze[y][x] = 0;
                     _maze[y + 1][x] = GAMEBOULDERDASHCOLORINDEXBOULDER;
                     checkRocky = true;
+                } else if ((_maze[y + 1][x] == GAMEBOULDERDASHCOLORINDEXBOULDER || _maze[y + 1][x] == GAMEBOULDERDASHCOLORINDEXDIAMOND)) {
+                    if (x - 1 >= 0) {
+                        if (_maze[y + 1][x - 1] == 0 && _maze[y][x - 1] == 0) {
+                            _maze[y][x] = 0;
+                            _maze[y + 1][x - 1] = GAMEBOULDERDASHCOLORINDEXBOULDER;
+                            checkRocky = true;
+                        }
+                    }
+                    if (x + 1 < GAMEBOULDERDASHMAZESIZEX) {
+                        if (_maze[y + 1][x + 1] == 0 && _maze[y][x + 1] == 0) {
+                            _maze[y][x] = 0;
+                            _maze[y + 1][x + 1] = GAMEBOULDERDASHCOLORINDEXBOULDER;
+                            checkRocky = true;
+                        }
+                    }
                 }
             }
             if (_maze[y][x] == GAMEBOULDERDASHCOLORINDEXDIAMOND) {
@@ -49,6 +64,21 @@ void NG8x8RGBMatrixGameBoulderdash::_computeGravity() {
                     _maze[y][x] = 0;
                     _maze[y + 1][x] = GAMEBOULDERDASHCOLORINDEXDIAMOND;
                     checkRocky = true;
+                } else if ((_maze[y + 1][x] == GAMEBOULDERDASHCOLORINDEXBOULDER || _maze[y + 1][x] == GAMEBOULDERDASHCOLORINDEXDIAMOND)) {
+                    if (x - 1 >= 0) {
+                        if (_maze[y + 1][x - 1] == 0 && _maze[y][x - 1] == 0) {
+                            _maze[y][x] = 0;
+                            _maze[y + 1][x - 1] = GAMEBOULDERDASHCOLORINDEXDIAMOND;
+                            checkRocky = true;
+                        }
+                    }
+                    if (x + 1 < GAMEBOULDERDASHMAZESIZEX) {
+                        if (_maze[y + 1][x + 1] == 0 && _maze[y][x + 1] == 0) {
+                            _maze[y][x] = 0;
+                            _maze[y + 1][x + 1] = GAMEBOULDERDASHCOLORINDEXDIAMOND;
+                            checkRocky = true;
+                        }
+                    }
                 }
             }
             if (checkRocky) {
@@ -181,16 +211,15 @@ void NG8x8RGBMatrixGameBoulderdash::_ownOutro() {
         _cdm->endUpdate();
         delay(GAMEBOULDERDASHSOUTROANIMATIONDELAY);
     }
+    _score->setValue(_scoreCounter);
     delay(GAMEBOULDERDASHSOUTRODELAY);
 }
 
 void NG8x8RGBMatrixGameBoulderdash::_ownLevelOutro() {
+    _score->setValue(_scoreCounter);
     for (int i = 0; i < 4; i++) {
         _cdm->beginUpdate();
         _cdm->clearRect(_posXRocky - _viewPosX + 1 - i, _posYRocky - _viewPosY + 1 - i, _posXRocky - _viewPosX + 1 + i, _posYRocky - _viewPosY + 1 + i);
-        _score->setValue(_scoreCounter);
-        _lives->setValue(_livesCounter);
-        _fuse->setValue(_fuseValue);
         _cdm->endUpdate();
         delay(GAMEBOULDERDASHSOUTROANIMATIONDELAY);
     }
