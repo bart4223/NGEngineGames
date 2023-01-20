@@ -33,12 +33,40 @@ void NG8x8RGBMatrixGameBoulderdash::_resetMaze() {
     }
 }
 
-void NG8x8RGBMatrixGameBoulderdash::_computeMaze() {
-    
+void NG8x8RGBMatrixGameBoulderdash::_computeGravity() {
+    for (int y = GAMEBOULDERDASHMAZESIZEY - 2; y >= 0; y--) {
+        for (int x = 0; x < GAMEBOULDERDASHMAZESIZEX; x++) {
+            bool checkRocky = false;
+            if (_maze[y][x] == GAMEBOULDERDASHCOLORINDEXBOULDER) {
+                if (_maze[y + 1][x] == 0) {
+                    _maze[y][x] = 0;
+                    _maze[y + 1][x] = GAMEBOULDERDASHCOLORINDEXBOULDER;
+                    checkRocky = true;
+                }
+            }
+            if (_maze[y][x] == GAMEBOULDERDASHCOLORINDEXDIAMOND) {
+                if (_maze[y + 1][x] == 0) {
+                    _maze[y][x] = 0;
+                    _maze[y + 1][x] = GAMEBOULDERDASHCOLORINDEXDIAMOND;
+                    checkRocky = true;
+                }
+            }
+            if (checkRocky) {
+                if ((y < (GAMEBOULDERDASHMAZESIZEY - 2)) && (_maze[y + 2][x] == GAMEBOULDERDASHCOLORINDEXROCKY)) {
+                    _livesCounter--;
+                    _gameFinished = _livesCounter == 0;
+                    if (!_gameFinished) {
+                        _levelRetry = true;
+                    }
+                }
+            }
+        }
+    }
 }
 
 void NG8x8RGBMatrixGameBoulderdash::_initLevel() {
     _levelFinished = false;
+    _levelRetry = false;
     switch(_level) {
         case 1:
             _posXRocky = random(0, 2);
@@ -143,7 +171,29 @@ void NG8x8RGBMatrixGameBoulderdash::_ownIntro() {
 }
 
 void NG8x8RGBMatrixGameBoulderdash::_ownOutro() {
-    
+    for (int i = 0; i < 4; i++) {
+        _cdm->beginUpdate();
+        if (i < 3) {
+            _cdm->fillRect(4 - i, 4 - i, 4 + i, 4 + i, globalBoulderdashColors[GAMEBOULDERDASHCOLORINDEXDIAMOND - 1]);
+        } else {
+            _cdm->drawRect(4 - i, 4 - i, 4 + i, 4 + i, globalBoulderdashColors[GAMEBOULDERDASHCOLORINDEXDIRT - 1]);
+        }
+        _cdm->endUpdate();
+        delay(GAMEBOULDERDASHSOUTROANIMATIONDELAY);
+    }
+    delay(GAMEBOULDERDASHSOUTRODELAY);
+}
+
+void NG8x8RGBMatrixGameBoulderdash::_ownLevelOutro() {
+    for (int i = 0; i < 4; i++) {
+        _cdm->beginUpdate();
+        _cdm->clearRect(_posXRocky - _viewPosX + 1 - i, _posYRocky - _viewPosY + 1 - i, _posXRocky - _viewPosX + 1 + i, _posYRocky - _viewPosY + 1 + i);
+        _score->setValue(_scoreCounter);
+        _lives->setValue(_livesCounter);
+        _fuse->setValue(_fuseValue);
+        _cdm->endUpdate();
+        delay(GAMEBOULDERDASHSOUTROANIMATIONDELAY);
+    }
 }
 
 void NG8x8RGBMatrixGameBoulderdash::_ownRender() {
@@ -308,23 +358,35 @@ void NG8x8RGBMatrixGameBoulderdash::_doProcessingLoop() {
                 _initLevel();
             }
         }
+        if (_levelRetry) {
+            _ownLevelOutro();
+            _initLevel();
+        }
         if (!_gameFinished) {
             if ((millis() - _lastRockyBlinked) > GAMEBOULDERDASHROCKYBLINKDELAY) {
                 _renderRocky();
                 _lastRockyBlinked = millis();
             }
             if ((millis() - _lastGravityMove) > _gameNextStepDelay) {
-                _computeMaze();
+                _computeGravity();
                 _ownRender();
                 _lastGravityMove = millis();
             }
             if ((millis() - _lastFuseStep) > _fuseStepDelay) {
                 _fuseValue--;
-                _gameFinished = _fuseValue == 0;
-                _lastFuseStep = millis();
+                if (_fuseValue == 0) {
+                    _livesCounter--;
+                    _gameFinished = _livesCounter == 0;
+                    if (!_gameFinished) {
+                        _fuseValue = GAMEBOULDERDASHMAXFUSE;
+                        _levelRetry = true;
+                    }
+                }
                 _ownRender();
+                _lastFuseStep = millis();
             }
-        } else {
+        }
+        if (_gameFinished) {
             _ownOutro();
         }
     }

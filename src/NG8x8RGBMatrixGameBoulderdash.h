@@ -39,7 +39,7 @@
 #define GAMEBOULDERDASHLIVESDIGITYPOS     7
 #define GAMEBOULDERDASHLIVESDIRECTION bddUp
 
-#define GAMEBOULDERDASHGRAVITYDELAY     200
+#define GAMEBOULDERDASHGRAVITYDELAY      50
 #define GAMEBOULDERDASHROCKYBLINKDELAY  500
 #define GAMEBOULDERDASHFINISHDELAY     1000
 
@@ -55,6 +55,8 @@
 #define GAMEBOULDERDASHMAXLEVEL     1
 
 #define GAMEBOULDERDASHLEVELONEFUSESTEPDELAY    5000
+#define GAMEBOULDERDASHSOUTROANIMATIONDELAY      100
+#define GAMEBOULDERDASHSOUTRODELAY              3000
 
 static colorRGB globalBoulderdashColors[4] = {
   COLOR_BROWN,  // Dirt
@@ -81,12 +83,13 @@ private:
     byte _level = GAMEBOULDERDASHSTARTLEVEL;
     byte _levelDiamonds = 0;
     bool _levelFinished = false;
+    bool _levelRetry = false;
     byte _posXRocky = 0;
     byte _posYRocky = 0;
     
     void _resetMaze();
     
-    void _computeMaze();
+    void _computeGravity();
     
     void _initLevel();
     
@@ -109,6 +112,8 @@ private:
     void _ownIntro();
     
     void _ownOutro();
+    
+    void _ownLevelOutro();
     
 protected:
     void _doInitialize();
