@@ -6,6 +6,7 @@
 //
 
 #include "NGGamePad.h"
+#include "NGGameExceptions.h"
 
 NGGamePad::NGGamePad() {
     _create();
@@ -28,7 +29,7 @@ void NGGamePad::registerNotification(NGCustomNotification *notification) {
         sprintf(log, "%s registered", _notification[_notificationCount - 1]->getName());
         writeInfo(log);
     } else {
-        _raiseException(ExceptionTooMuchNotificationCount);
+        _raiseException(ExceptionGamePadTooMuchGameCount);
     }
 }
 

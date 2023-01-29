@@ -119,7 +119,7 @@ bool NGCustomGame::getLogging() {
     return _logging;
 }
 
-char* getName() {
+char* NGCustomGame::getName() {
     return _name;
 }
 

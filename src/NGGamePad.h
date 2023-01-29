@@ -35,7 +35,7 @@ private:
     gamePad _games[GAMEPADMAXGAMECOUNT];
     byte _gamesCount = 0;
     
-    protected
+protected:
     void _create();
     
     void _raiseException(int id);
