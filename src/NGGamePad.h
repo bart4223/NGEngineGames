@@ -20,6 +20,8 @@
 #define GAMEPADNOTIFICATIONCOUNT 3
 #define GAMEPADMAXGAMECOUNT      5
 
+#define GAMEPADNOGAME -1
+
 struct gamePadStruct
 {
     NGCustomGame *game;
@@ -35,6 +37,7 @@ private:
     gamePad _games[GAMEPADMAXGAMECOUNT];
     byte _gamesCount = 0;
     bool _logging = false;
+    int _currentGame = GAMEPADNOGAME;
     
 protected:
     void _create();
@@ -58,7 +61,13 @@ public:
     
     void writeInfo(char* info);
     
-    void processingLoop();
+    void setCurrentGame(int current);
+    
+    bool hasCurrentGame();
+
+    void processingLoop();    
+    
+    void handleGameKeyEvent(byte id);
 };
 
 #endif /* NGGamePad_h */

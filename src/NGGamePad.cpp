@@ -52,8 +52,12 @@ void NGGamePad::registerGame(NGCustomGame *game) {
     if (_gamesCount < GAMEPADMAXGAMECOUNT) {
         char log[100];
         _games[_gamesCount].game = game;
+        _games[_gamesCount].game->setLogging(_logging);
+        for (int i = 0; i < _notificationCount; i++) {
+            _games[_gamesCount].game->registerNotification(_notification[i]);
+        }
         _gamesCount++;
-        sprintf(log, "Game %d registered", _games[_gamesCount - 1].game->getName());
+        sprintf(log, "Game \"%s\" registered", _games[_gamesCount - 1].game->getName());
         writeInfo(log);
     } else {
         _raiseException(ExceptionGamePadTooMuchGameCount);
@@ -81,7 +85,27 @@ void NGGamePad::writeInfo(char* info) {
     }
 }
 
-void NGGamePad::processingLoop() {
-
+void NGGamePad::setCurrentGame(int current) {
+    if (current == GAMEPADNOGAME || (current >= 0 && current < _currentGame)) {
+        _currentGame = current;
+        if (hasCurrentGame()) {
+            _games[_currentGame].game->startUp();
+        }
+    }
 }
 
+bool NGGamePad::hasCurrentGame() {
+    return _currentGame != GAMEPADNOGAME;
+}
+
+void NGGamePad::processingLoop() {
+    if (hasCurrentGame()) {
+        _games[_currentGame].game->processingLoop();
+    }
+}
+
+void NGGamePad::handleGameKeyEvent(byte id) {
+    if (hasCurrentGame()) {
+        _games[_currentGame].game->handleKeyEvent(id);
+    }
+}
