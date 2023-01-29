@@ -34,6 +34,7 @@ private:
     int _exceptionCount = 0;
     gamePad _games[GAMEPADMAXGAMECOUNT];
     byte _gamesCount = 0;
+    bool _logging = false;
     
 protected:
     void _create();
@@ -45,6 +46,10 @@ public:
     
     void initialize();
 
+    void setLogging(bool logging);
+    
+    bool getLogging();
+    
     void registerNotification(NGCustomNotification *notification);
     
     void registerGame(NGCustomGame *game);

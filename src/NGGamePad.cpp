@@ -12,12 +12,27 @@ NGGamePad::NGGamePad() {
     _create();
 }
 
+void NGGamePad::_create() {
+    
+}
+
 void NGGamePad::_raiseException(int id) {
     char info[100];
     clearInfo();
     _exceptionCount++;
     sprintf(info, "Ex %d(%d)", id, _exceptionCount);
     writeInfo(info);
+}
+
+void NGGamePad::setLogging(bool logging) {
+    _logging = logging;
+    for (int i = 0; i < _gamesCount; i++) {
+        _games[i].game->setLogging(_logging);
+    }
+}
+
+bool NGGamePad::getLogging() {
+    return _logging;
 }
 
 void NGGamePad::registerNotification(NGCustomNotification *notification) {
@@ -48,6 +63,9 @@ void NGGamePad::registerGame(NGCustomGame *game) {
 void NGGamePad::initialize() {
     for (int i = 0; i < _gamesCount; i++) {
         _games[i].game->initialize();
+    }
+    if (_logging) {
+        writeInfo("...GamePad initialized");
     }
 }
 
