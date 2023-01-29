@@ -13,4 +13,6 @@
 #define ExceptionGameTooMuchKeyCount        20100
 #define ExceptionGameTooMuchJoystickCount   20101
 
+#define ExceptionGamePadTooMuchGameCount    20200
+
 #endif /* NGGameExceptions_h */

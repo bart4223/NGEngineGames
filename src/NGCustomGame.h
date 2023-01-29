@@ -118,6 +118,8 @@ public:
     
     bool getLogging();
     
+    char* getName();
+    
     void initialize();
     
     void startUp();

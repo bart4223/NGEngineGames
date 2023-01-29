@@ -119,6 +119,10 @@ bool NGCustomGame::getLogging() {
     return _logging;
 }
 
+char* getName() {
+    return _name;
+}
+
 void NGCustomGame::initialize() {
     _initializeJoysticks();
     _doInitialize();
