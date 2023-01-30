@@ -59,6 +59,7 @@ void NG8x8RGBMatrixGameDot::_doStartUp() {
         sprintf(log, "%s.StartUp", _name);
         writeInfo(log);
     }
+    _ownIntro();
 }
 
 void NG8x8RGBMatrixGameDot::_doStartUpDone() {
@@ -121,6 +122,28 @@ void NG8x8RGBMatrixGameDot::_doProcessingLoop() {
             _ownRender();
         }
     }
+}
+
+void NG8x8RGBMatrixGameDot::_ownIntro() {
+    colorRGB c;
+    byte dotX = random(5, 8);
+    byte dotY = random(5, 8);
+    _cdm->drawPoint(dotX, dotY, COLOR_RED);
+    byte playerX = 0;
+    byte playerY = 0;
+    _rollPlayerColor();
+    for (int i = 0; i < 10; i++) {
+        _cdm->drawPoint(playerX, playerY, _colorPlayer);
+        delay(100);
+        _cdm->drawPoint(playerX, playerY, COLOR_BLACK);
+        if (_getYesOrNo()) {
+            playerX++;
+        } else {
+            playerY++;
+        }
+    }
+    _cdm->clear();
+    _score->setValue(_scoreCounter);
 }
 
 void NG8x8RGBMatrixGameDot::_ownRender() {
