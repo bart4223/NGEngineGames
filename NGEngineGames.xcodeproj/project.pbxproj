@@ -13,6 +13,7 @@
 		295A7E4C2969DB65003779A3 /* asteroids.ino */ = {isa = PBXFileReference; lastKnownFileType = text; path = asteroids.ino; sourceTree = "<group>"; };
 		295A7E4D2969DB99003779A3 /* NG8x8RGBMatrixGameAsteroids.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = NG8x8RGBMatrixGameAsteroids.cpp; sourceTree = "<group>"; };
 		295A7E4E2969DB99003779A3 /* NG8x8RGBMatrixGameAsteroids.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NG8x8RGBMatrixGameAsteroids.h; sourceTree = "<group>"; };
+		296452872987F05B00E1EF1D /* GamePadI0.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = GamePadI0.png; sourceTree = "<group>"; };
 		299C2B7D294F512A00F53CAA /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		299C2B7F294F52B200F53CAA /* ToDo.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = ToDo.txt; sourceTree = "<group>"; };
 		299C2B82294F532E00F53CAA /* keywords.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = keywords.txt; sourceTree = "<group>"; };
@@ -180,6 +181,7 @@
 		29FCF0B52955D7000065BD20 /* images */ = {
 			isa = PBXGroup;
 			children = (
+				296452872987F05B00E1EF1D /* GamePadI0.png */,
 			);
 			path = images;
 			sourceTree = "<group>";

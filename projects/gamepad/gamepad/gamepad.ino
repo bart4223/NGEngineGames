@@ -7,8 +7,16 @@
 #include <NGGamePad.h>
 #include <NG8x8RGBMatrixGameDot.h>
 
-#define GAMEONEPIN  8
-#define GAMEONEID   0x00
+#define GAMEONEPIN      8
+#define GAMEONEID       0x00
+#define GAMETWOPIN      9
+#define GAMETWOID       0x01
+#define GAMETHREEPIN    10
+#define GAMETHREEID     0x02
+#define GAMEFOURPIN     11
+#define GAMEFOURID      0x03
+#define GAMEFIVEPIN     12
+#define GAMEFIVEID      0x04
 
 #define KEYDELAY      500
 #define JOYSTICKDELAY 100
