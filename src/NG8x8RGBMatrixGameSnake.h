@@ -71,6 +71,8 @@ protected:
     
     void _ownRender();
     
+    void _ownIntro();
+    
 public:
     NG8x8RGBMatrixGameSnake();
 };

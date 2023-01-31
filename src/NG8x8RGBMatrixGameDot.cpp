@@ -126,6 +126,7 @@ void NG8x8RGBMatrixGameDot::_doProcessingLoop() {
 
 void NG8x8RGBMatrixGameDot::_ownIntro() {
     colorRGB c;
+    _cdm->clear();
     byte dotX = random(5, 8);
     byte dotY = random(5, 8);
     _cdm->drawPoint(dotX, dotY, COLOR_RED);
@@ -143,7 +144,7 @@ void NG8x8RGBMatrixGameDot::_ownIntro() {
         }
     }
     _cdm->clear();
-    _score->setValue(_scoreCounter);
+    _score->setValue(0);
 }
 
 void NG8x8RGBMatrixGameDot::_ownRender() {
