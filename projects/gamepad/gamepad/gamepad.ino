@@ -1,5 +1,5 @@
 #define PROD true //false, true
-#define GAMES1
+#define GAMES2
 
 #include <NGMemoryObserver.h>
 #include <NGSimpleKeypad.h>
@@ -125,7 +125,11 @@ void GameKeypadCallback(byte id) {
 }
 
 void ChooseKeypadCallback(byte id) {
-  gamepad.setCurrentGame(id);
+  if (id == GAMEFIVEID) {
+    gamepad.toggleDoPlaySound();
+  } else {
+    gamepad.setCurrentGame(id);
+  }
   #if (PROD == false)
   observeMemory(0);
   #endif

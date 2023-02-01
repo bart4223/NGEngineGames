@@ -70,6 +70,7 @@ protected:
     int _soundStart = GAMENOSOUND;
     int _soundFinish = GAMENOSOUND;
     int _startUpDoneDelay = 0;
+    bool _doPlaySound = true;
 
     void _create(char* name);
     
@@ -119,6 +120,12 @@ public:
     bool getLogging();
     
     char* getName();
+    
+    void setDoPlaySound(bool doplaysound);
+    
+    bool getDoPlaySound();
+    
+    void toggleDoPlaySound();
     
     void initialize();
     

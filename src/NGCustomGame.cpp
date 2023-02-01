@@ -48,7 +48,7 @@ void NGCustomGame::_doInitialized() {
 }
 
 void NGCustomGame::_playSound(int index) {
-    if (_soundMachine != nullptr) {
+    if (_soundMachine != nullptr && _doPlaySound) {
         _soundMachine->play(index);
     }
 }
@@ -121,6 +121,18 @@ bool NGCustomGame::getLogging() {
 
 char* NGCustomGame::getName() {
     return _name;
+}
+
+void NGCustomGame::setDoPlaySound(bool doplaysound) {
+    _doPlaySound = doplaysound;
+}
+
+bool NGCustomGame::getDoPlaySound() {
+    return _doPlaySound;
+}
+
+void NGCustomGame::toggleDoPlaySound() {
+    setDoPlaySound(!getDoPlaySound());
 }
 
 void NGCustomGame::initialize() {

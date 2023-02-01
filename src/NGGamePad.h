@@ -64,6 +64,8 @@ public:
     void setCurrentGame(int current);
     
     bool hasCurrentGame();
+    
+    void toggleDoPlaySound();
 
     void processingLoop();    
     

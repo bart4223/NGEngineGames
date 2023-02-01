@@ -101,6 +101,12 @@ bool NGGamePad::hasCurrentGame() {
     return _currentGame != GAMEPADNOGAME;
 }
 
+void NGGamePad::toggleDoPlaySound() {
+    for (int i = 0; i < _gamesCount; i++) {
+        _games[i].game->toggleDoPlaySound();
+    }
+}
+
 void NGGamePad::processingLoop() {
     if (hasCurrentGame()) {
         _games[_currentGame].game->processingLoop();
