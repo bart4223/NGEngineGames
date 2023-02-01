@@ -169,36 +169,36 @@ void NG8x8RGBMatrixGameSnake::_ownIntro() {
     _cdm->clear();
     _rollSnakeColor();
     _cdm->drawPoint(4, 3, _colorSnake);
-    delay(200);
+    delay(GAMESNAKEMINTRODELAY);
     _rollSnakeColor();
     _cdm->drawPoint(4, 4, _colorSnake);
-    delay(200);
+    delay(GAMESNAKEMINTRODELAY);
     _rollSnakeColor();
     _cdm->drawPoint(3, 4, _colorSnake);
-    delay(200);
+    delay(GAMESNAKEMINTRODELAY);
     _rollSnakeColor();
     _cdm->drawPoint(2, 4, _colorSnake);
-    delay(200);
+    delay(GAMESNAKEMINTRODELAY);
     _rollSnakeColor();
     _cdm->drawPoint(2, 3, _colorSnake);
-    delay(200);
+    delay(GAMESNAKEMINTRODELAY);
     _rollSnakeColor();
     _cdm->drawPoint(2, 2, _colorSnake);
-    delay(200);
+    delay(GAMESNAKEMINTRODELAY);
     for (int i = 2; i < 7; i++) {
         _rollSnakeColor();
         _cdm->drawPoint(i, 1, _colorSnake);
-        delay(200);
+        delay(GAMESNAKEMINTRODELAY);
     }
     for (int i = 2; i < 7; i++) {
         _rollSnakeColor();
         _cdm->drawPoint(6, i, _colorSnake);
-        delay(200);
+        delay(GAMESNAKEMINTRODELAY);
     }
     for (int i = 5; i > 0; i--) {
         _rollSnakeColor();
         _cdm->drawPoint(i, 6, _colorSnake);
-        delay(200);
+        delay(GAMESNAKEMINTRODELAY);
     }
     delay(500);
     _cdm->clear();

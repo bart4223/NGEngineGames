@@ -1,11 +1,17 @@
-#define PROD false //false, true
+#define PROD true //false, true
+#define GAMES1
 
 #include <NGMemoryObserver.h>
 #include <NGSimpleKeypad.h>
 #include <NGJingleHelloDude.h>
+#include <NGJingleSuperMarioShort.h>
 #include <NGSerialNotification.h>
 #include <NGGamePad.h>
 #include <NG8x8RGBMatrixGameDot.h>
+#include <NG8x8RGBMatrixGameSnake.h>
+#include <NG8x8RGBMatrixGameAsteroids.h>
+#include <NG8x8RGBMatrixGameTetris.h>
+#include <NG8x8RGBMatrixGameBoulderdash.h>
 
 #define GAMEONEPIN      8
 #define GAMEONEID       0x00
@@ -40,7 +46,18 @@ NGSoundMachine soundMachine = NGSoundMachine();
 NGJoystickControl joystick = NGJoystickControl(JOYSTICKID, JOYSTICKPINX, JOYSTICKPINY, JOYSTICKPINFIRE);
 NGColorDotMatrix cdm = NGColorDotMatrix();
 NGGamePad gamepad = NGGamePad();
+#ifdef GAMES1
 NG8x8RGBMatrixGameDot gameOne = NG8x8RGBMatrixGameDot();
+NG8x8RGBMatrixGameSnake gameTwo = NG8x8RGBMatrixGameSnake();
+#endif
+#ifdef GAMES2
+NG8x8RGBMatrixGameAsteroids gameOne = NG8x8RGBMatrixGameAsteroids();
+NG8x8RGBMatrixGameTetris gameTwo = NG8x8RGBMatrixGameTetris();
+#endif
+#ifdef GAMES3
+NG8x8RGBMatrixGameTetris gameOne = NG8x8RGBMatrixGameTetris();
+NG8x8RGBMatrixGameBoulderdash gameTwo = NG8x8RGBMatrixGameBoulderdash();
+#endif
 
 void setup() {
   observeMemory(0);
@@ -52,6 +69,10 @@ void setup() {
   // ChooseKeypad
   choosekeypad.registerCallback(&ChooseKeypadCallback);
   choosekeypad.registerKey(GAMEONEPIN, GAMEONEID, KEYDELAY);
+  choosekeypad.registerKey(GAMETWOPIN, GAMETWOID, KEYDELAY);
+  choosekeypad.registerKey(GAMETHREEPIN, GAMETHREEID, KEYDELAY);
+  choosekeypad.registerKey(GAMEFOURPIN, GAMEFOURID, KEYDELAY);
+  choosekeypad.registerKey(GAMEFIVEPIN, GAMEFIVEID, KEYDELAY);
   choosekeypad.initialize();
   // GameKeypad
   gamekeypad.registerCallback(&GameKeypadCallback);
@@ -66,16 +87,25 @@ void setup() {
   // ColorDotMatrix
   cdm.initialize();
   // Sound
-  int jingleHelloDude = soundMachine.registerJingle(new NGJingleHelloDude());
+  int jingleStartUp = soundMachine.registerJingle(new NGJingleSuperMarioShort());
+  int jingleStart = soundMachine.registerJingle(new NGJingleHelloDude());
   soundMachine.initialize();
   // Game "One"
   gamepad.registerGame(&gameOne);
   gameOne.registerGameKey(gfStartGame, STARTGAMEID);
   gameOne.registerGameJoystick(&joystick);
   gameOne.registerSoundMachine(&soundMachine);
-  gameOne.registerSoundStartUp(jingleHelloDude);
-  gameOne.registerSoundStart(jingleHelloDude);
+  gameOne.registerSoundStartUp(jingleStartUp);
+  gameOne.registerSoundStart(jingleStart);
   gameOne.registerColorDotMatrix(&cdm);
+  // Game "Two"
+  gamepad.registerGame(&gameTwo);
+  gameTwo.registerGameKey(gfStartGame, STARTGAMEID);
+  gameTwo.registerGameJoystick(&joystick);
+  gameTwo.registerSoundMachine(&soundMachine);
+  gameTwo.registerSoundStartUp(jingleStartUp);
+  gameTwo.registerSoundStart(jingleStart);
+  gameTwo.registerColorDotMatrix(&cdm);
   // Init
   gamepad.initialize();
   observeMemory(0);

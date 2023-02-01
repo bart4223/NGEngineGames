@@ -25,6 +25,7 @@
 
 #define GAMESNAKEMOVEDELAY    500
 #define GAMESNAKEFINISHDELAY 1000
+#define GAMESNAKEMINTRODELAY  100
 
 class NG8x8RGBMatrixGameSnake : public NGCustom8x8RGBMatrixGame {
   
