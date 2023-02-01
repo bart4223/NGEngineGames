@@ -178,8 +178,6 @@ void NGCustomGame::handleKeyEvent(byte id) {
                                 }
                                 break;
                         }
-                        //Start Or Finish?
-                        
                     }
                     break;
                 case gfFinishGame:

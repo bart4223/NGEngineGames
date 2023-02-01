@@ -384,6 +384,7 @@ void NG8x8RGBMatrixGameTetris::_ownIntro() {
     c.red = globalTetrominoColors[0][0];
     c.green = globalTetrominoColors[0][1];
     c.blue = globalTetrominoColors[0][2];
+    _cdm->clear();
     _cdm->drawPoint(0, 6, c);
     _cdm->drawPoint(0, 7, c);
     _cdm->drawPoint(1, 7, c);

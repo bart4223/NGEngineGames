@@ -242,6 +242,7 @@ void NG8x8RGBMatrixGameAsteroids::_ownIntro() {
     c.red = globalAsteroidsColors[GAMEASTEROIDSCOLORINDEXSPACECRAFT - 1][0];
     c.green = globalAsteroidsColors[GAMEASTEROIDSCOLORINDEXSPACECRAFT - 1][1];
     c.blue = globalAsteroidsColors[GAMEASTEROIDSCOLORINDEXSPACECRAFT - 1][2];
+    _cdm->clear();
     _cdm->drawPoint(1, 2, c);
     _cdm->drawPoint(0, 3, c);
     _cdm->drawPoint(1, 3, c);
