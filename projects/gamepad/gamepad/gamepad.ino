@@ -17,12 +17,8 @@
 #define GAMEONEID       0x00
 #define GAMETWOPIN      9
 #define GAMETWOID       0x01
-#define GAMETHREEPIN    10
-#define GAMETHREEID     0x02
-#define GAMEFOURPIN     11
-#define GAMEFOURID      0x03
-#define GAMEFIVEPIN     12
-#define GAMEFIVEID      0x04
+#define TOGGLESOUNDPIN  12
+#define TOGGLESOUND     0x20
 
 #define KEYDELAY      500
 #define JOYSTICKDELAY 100
@@ -60,7 +56,9 @@ NG8x8RGBMatrixGameBoulderdash gameTwo = NG8x8RGBMatrixGameBoulderdash();
 #endif
 
 void setup() {
+  #if (PROD == false)
   observeMemory(0);
+  #endif
   // GamePad
   #if (PROD == false)
   gamepad.setLogging(true);
@@ -70,9 +68,7 @@ void setup() {
   choosekeypad.registerCallback(&ChooseKeypadCallback);
   choosekeypad.registerKey(GAMEONEPIN, GAMEONEID, KEYDELAY);
   choosekeypad.registerKey(GAMETWOPIN, GAMETWOID, KEYDELAY);
-  choosekeypad.registerKey(GAMETHREEPIN, GAMETHREEID, KEYDELAY);
-  choosekeypad.registerKey(GAMEFOURPIN, GAMEFOURID, KEYDELAY);
-  choosekeypad.registerKey(GAMEFIVEPIN, GAMEFIVEID, KEYDELAY);
+  choosekeypad.registerKey(TOGGLESOUNDPIN, TOGGLESOUNDPIN, KEYDELAY);
   choosekeypad.initialize();
   // GameKeypad
   gamekeypad.registerCallback(&GameKeypadCallback);
@@ -108,13 +104,17 @@ void setup() {
   gameTwo.registerColorDotMatrix(&cdm);
   // Init
   gamepad.initialize();
+  #if (PROD == false)
   observeMemory(0);
+  #endif
 }
 
 void loop() {
   choosekeypad.processingLoop();
-  gamekeypad.processingLoop();
-  gamepad.processingLoop();
+  if (gamepad.hasCurrentGame()) {
+    gamekeypad.processingLoop();
+    gamepad.processingLoop();
+  }
 }
 
 void GameKeypadCallback(byte id) {
@@ -125,10 +125,14 @@ void GameKeypadCallback(byte id) {
 }
 
 void ChooseKeypadCallback(byte id) {
-  if (id == GAMEFIVEID) {
-    gamepad.toggleDoPlaySound();
-  } else {
-    gamepad.setCurrentGame(id);
+  switch (id) {
+    case GAMEONEID:
+    case GAMETWOID:
+      gamepad.setCurrentGame(id);
+      break;
+    case TOGGLESOUNDPIN:
+      gamepad.toggleDoPlaySound();
+      break;
   }
   #if (PROD == false)
   observeMemory(0);
