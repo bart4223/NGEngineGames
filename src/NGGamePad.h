@@ -63,6 +63,8 @@ public:
     
     void setCurrentGame(int current);
     
+    void setNoCurrentGame();
+    
     bool hasCurrentGame();
     
     void toggleDoPlaySound();

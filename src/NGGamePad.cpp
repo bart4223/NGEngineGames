@@ -85,6 +85,10 @@ void NGGamePad::writeInfo(char* info) {
     }
 }
 
+void NGGamePad::setNoCurrentGame() {
+    setCurrentGame(GAMEPADNOGAME);
+}
+
 void NGGamePad::setCurrentGame(int current) {
     if (current == GAMEPADNOGAME || (current >= 0 && current < _gamesCount)) {
         if (_currentGame != GAMEPADNOGAME) {
