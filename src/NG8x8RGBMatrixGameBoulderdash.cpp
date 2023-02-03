@@ -419,9 +419,9 @@ void NG8x8RGBMatrixGameBoulderdash::_doStartUp() {
 
 void NG8x8RGBMatrixGameBoulderdash::_doStartUpDone() {
     _cdm->clear();
-    _score->setValue(_scoreCounter);
-    _lives->setValue(_livesCounter);
-    _fuse->setValue(_fuseValue);
+    _score->setValue(0);
+    _lives->setValue(GAMEBOULDERDASHLIVES);
+    _fuse->setValue(GAMEBOULDERDASHMAXFUSE);
     if (_logging) {
         char log[100];
         sprintf(log, "%s.StartUp done", _name);
