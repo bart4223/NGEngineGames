@@ -10,6 +10,7 @@
 		2906CF86298BDA6B00C6212D /* GamePadI1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = GamePadI1.png; sourceTree = "<group>"; };
 		2906CF87298BDC9D00C6212D /* GamePadI2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = GamePadI2.png; sourceTree = "<group>"; };
 		29255B70298D2D2800234506 /* Dot.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Dot.png; sourceTree = "<group>"; };
+		29255B72298D30DE00234506 /* Snake.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Snake.png; sourceTree = "<group>"; };
 		295A7E48295F2E87003779A3 /* tetris.ino */ = {isa = PBXFileReference; lastKnownFileType = text; path = tetris.ino; sourceTree = "<group>"; };
 		295A7E49295F2EB2003779A3 /* NG8x8RGBMatrixGameTetris.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = NG8x8RGBMatrixGameTetris.cpp; sourceTree = "<group>"; };
 		295A7E4A295F2EB2003779A3 /* NG8x8RGBMatrixGameTetris.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NG8x8RGBMatrixGameTetris.h; sourceTree = "<group>"; };
@@ -47,6 +48,7 @@
 			isa = PBXGroup;
 			children = (
 				29255B70298D2D2800234506 /* Dot.png */,
+				29255B72298D30DE00234506 /* Snake.png */,
 			);
 			path = games;
 			sourceTree = "<group>";
