@@ -12,6 +12,7 @@
 		29255B70298D2D2800234506 /* Dot.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Dot.png; sourceTree = "<group>"; };
 		29255B72298D30DE00234506 /* Snake.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Snake.png; sourceTree = "<group>"; };
 		29255B73298D330600234506 /* Asteroids.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Asteroids.png; sourceTree = "<group>"; };
+		29255B74298D350100234506 /* Tetris.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Tetris.png; sourceTree = "<group>"; };
 		295A7E48295F2E87003779A3 /* tetris.ino */ = {isa = PBXFileReference; lastKnownFileType = text; path = tetris.ino; sourceTree = "<group>"; };
 		295A7E49295F2EB2003779A3 /* NG8x8RGBMatrixGameTetris.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = NG8x8RGBMatrixGameTetris.cpp; sourceTree = "<group>"; };
 		295A7E4A295F2EB2003779A3 /* NG8x8RGBMatrixGameTetris.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NG8x8RGBMatrixGameTetris.h; sourceTree = "<group>"; };
@@ -51,6 +52,7 @@
 				29255B73298D330600234506 /* Asteroids.png */,
 				29255B70298D2D2800234506 /* Dot.png */,
 				29255B72298D30DE00234506 /* Snake.png */,
+				29255B74298D350100234506 /* Tetris.png */,
 			);
 			path = games;
 			sourceTree = "<group>";
