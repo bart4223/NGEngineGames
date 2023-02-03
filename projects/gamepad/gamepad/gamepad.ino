@@ -1,4 +1,4 @@
-#define PROD false //false, true
+#define PROD true //false, true
 #define GAMES2
 
 #include <NGMemoryObserver.h>
