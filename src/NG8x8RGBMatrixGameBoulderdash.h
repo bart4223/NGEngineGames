@@ -46,13 +46,17 @@
 #define GAMEBOULDERDASHLIVES    3
 #define GAMEBOULDERDASHMAXFUSE  8
 
+#define GAMEBOULDERDASHCOLORINDEXVOID    0
 #define GAMEBOULDERDASHCOLORINDEXDIRT    1
 #define GAMEBOULDERDASHCOLORINDEXROCKY   2
 #define GAMEBOULDERDASHCOLORINDEXBOULDER 3
 #define GAMEBOULDERDASHCOLORINDEXDIAMOND 4
+#define GAMEBOULDERDASHCOLORINDEXWALL    5
 
+#define GAMEBOULDERDASHLEVELONE     1
+#define GAMEBOULDERDASHLEVELTWO     2
 #define GAMEBOULDERDASHSTARTLEVEL   1
-#define GAMEBOULDERDASHMAXLEVEL     1
+#define GAMEBOULDERDASHMAXLEVEL     2
 
 #define GAMEBOULDERDASHLEVELONEFUSESTEPDELAY    5000
 #define GAMEBOULDERDASHSOUTROANIMATIONDELAY      100
@@ -60,11 +64,12 @@
 
 enum rockyMoveDirection { rmdUp, rmdDown, rmdLeft, rmdRight };
 
-static colorRGB globalBoulderdashColors[4] = {
+static colorRGB globalBoulderdashColors[5] = {
   COLOR_BROWN,  // Dirt
   COLOR_BLUE,   // Rocky
   COLOR_WHITE,  // Boulder
-  COLOR_TEAL    // Diamond
+  COLOR_TEAL,   // Diamond
+  COLOR_PURPLE, // Wall
 };
 
 class NG8x8RGBMatrixGameBoulderdash : public NGCustom8x8RGBMatrixGame {
@@ -98,6 +103,28 @@ private:
     void _initLevelTestMaze();
 
     void _initLevelOneMaze();
+    
+    void _initLevelTwoMaze();
+    
+    void _generateDiamond(byte x, byte y);
+    
+    void _generateBoulder(byte x, byte y);
+    
+    void _generateBoulderLine(byte topX, byte topY, byte bottomX, byte bottomY);
+    
+    void _generateWall(byte x, byte y);
+    
+    void _generateWallLine(byte topX, byte topY, byte bottomX, byte bottomY);
+    
+    void _generateLine(byte topX, byte topY, byte bottomX, byte bottomY, byte solid);
+    
+    void _generateVoidRect(byte topX, byte topY, byte bottomX, byte bottomY);
+    
+    void _generateDirtRect(byte topX, byte topY, byte bottomX, byte bottomY);
+    
+    void _generateSolidRect(byte topX, byte topY, byte bottomX, byte bottomY, byte solid);
+    
+    void _generateWallRect(byte topX, byte topY, byte bottomX, byte bottomY, byte filler);
     
     void _clearRocky();
     

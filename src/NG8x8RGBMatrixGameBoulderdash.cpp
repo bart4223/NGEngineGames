@@ -37,6 +37,7 @@ void NG8x8RGBMatrixGameBoulderdash::_computeGravity() {
     for (int y = GAMEBOULDERDASHMAZESIZEY - 2; y >= 0; y--) {
         for (int x = 0; x < GAMEBOULDERDASHMAZESIZEX; x++) {
             bool checkRocky = false;
+            int checkRockyOffset = 0;
             if (_maze[y][x] == GAMEBOULDERDASHCOLORINDEXBOULDER) {
                 if (_maze[y + 1][x] == 0) {
                     _maze[y][x] = 0;
@@ -48,6 +49,7 @@ void NG8x8RGBMatrixGameBoulderdash::_computeGravity() {
                             _maze[y][x] = 0;
                             _maze[y + 1][x - 1] = GAMEBOULDERDASHCOLORINDEXBOULDER;
                             checkRocky = true;
+                            checkRockyOffset = -1;
                         }
                     }
                     if (x + 1 < GAMEBOULDERDASHMAZESIZEX) {
@@ -55,6 +57,7 @@ void NG8x8RGBMatrixGameBoulderdash::_computeGravity() {
                             _maze[y][x] = 0;
                             _maze[y + 1][x + 1] = GAMEBOULDERDASHCOLORINDEXBOULDER;
                             checkRocky = true;
+                            checkRockyOffset = 1;
                         }
                     }
                 }
@@ -70,6 +73,7 @@ void NG8x8RGBMatrixGameBoulderdash::_computeGravity() {
                             _maze[y][x] = 0;
                             _maze[y + 1][x - 1] = GAMEBOULDERDASHCOLORINDEXDIAMOND;
                             checkRocky = true;
+                            checkRockyOffset = -1;
                         }
                     }
                     if (x + 1 < GAMEBOULDERDASHMAZESIZEX) {
@@ -77,12 +81,13 @@ void NG8x8RGBMatrixGameBoulderdash::_computeGravity() {
                             _maze[y][x] = 0;
                             _maze[y + 1][x + 1] = GAMEBOULDERDASHCOLORINDEXDIAMOND;
                             checkRocky = true;
+                            checkRockyOffset = 1;
                         }
                     }
                 }
             }
             if (checkRocky) {
-                if ((y < (GAMEBOULDERDASHMAZESIZEY - 2)) && (_maze[y + 2][x] == GAMEBOULDERDASHCOLORINDEXROCKY)) {
+                if ((y < (GAMEBOULDERDASHMAZESIZEY - 2)) && (_maze[y + 2][x + checkRockyOffset] == GAMEBOULDERDASHCOLORINDEXROCKY)) {
                     _livesCounter--;
                     _gameFinished = _livesCounter == 0;
                     if (!_gameFinished) {
@@ -98,7 +103,7 @@ void NG8x8RGBMatrixGameBoulderdash::_initLevel() {
     _levelFinished = false;
     _levelRetry = false;
     switch(_level) {
-        case 1:
+        case GAMEBOULDERDASHLEVELONE:
             _posXRocky = random(0, 2);
             _posYRocky = random(0, 2);
             _calculateViewPos();
@@ -107,6 +112,14 @@ void NG8x8RGBMatrixGameBoulderdash::_initLevel() {
             _initLevelOneMaze();
             //_initLevelTestMaze();
             break;
+        case GAMEBOULDERDASHLEVELTWO:
+            _posXRocky = 9;
+            _posYRocky = 15;
+            _calculateViewPos();
+            _levelDiamonds = 9;
+            _fuseStepDelay = GAMEBOULDERDASHLEVELONEFUSESTEPDELAY;
+            _initLevelTwoMaze();
+            break;
     }
     _renderRocky();
 }
@@ -114,21 +127,9 @@ void NG8x8RGBMatrixGameBoulderdash::_initLevel() {
 void NG8x8RGBMatrixGameBoulderdash::_initLevelTestMaze() {
     int x, y;
     // Dirt
-    for (y = 0; y < GAMEBOULDERDASHMAZESIZEY; y++) {
-        for (x = 0; x < GAMEBOULDERDASHMAZESIZEX; x++) {
-            _maze[y][x] = GAMEBOULDERDASHCOLORINDEXDIRT;
-        }
-    }
-    // Diamonds
-    for (int i = 0; i < _levelDiamonds; i++) {
-        bool ok;
-        do {
-            x = random(2, 7);
-            y = random(2, 7);
-            ok = _maze[y][x] == GAMEBOULDERDASHCOLORINDEXDIRT;
-        } while (!ok);
-        _maze[y][x] = GAMEBOULDERDASHCOLORINDEXDIAMOND;
-    }
+    _generateDirtRect(0, 0, GAMEBOULDERDASHMAZESIZEX, GAMEBOULDERDASHMAZESIZEY);
+    // Wall
+    _generateWallRect(8, 3, 12, 6, GAMEBOULDERDASHCOLORINDEXVOID);
     // Boulders
     int boulders = random(1, 4);
     for (int i = 0; i < boulders; i++) {
@@ -139,6 +140,16 @@ void NG8x8RGBMatrixGameBoulderdash::_initLevelTestMaze() {
             ok = _maze[y][x] == GAMEBOULDERDASHCOLORINDEXDIRT;
         } while (!ok);
         _maze[y][x] = GAMEBOULDERDASHCOLORINDEXBOULDER;
+    }
+    // Diamonds
+    for (int i = 0; i < _levelDiamonds; i++) {
+        bool ok;
+        do {
+            x = random(2, 7);
+            y = random(2, 7);
+            ok = _maze[y][x] == GAMEBOULDERDASHCOLORINDEXDIRT;
+        } while (!ok);
+        _maze[y][x] = GAMEBOULDERDASHCOLORINDEXDIAMOND;
     }
     // Rocky
     _computeRocky();
@@ -147,21 +158,7 @@ void NG8x8RGBMatrixGameBoulderdash::_initLevelTestMaze() {
 void NG8x8RGBMatrixGameBoulderdash::_initLevelOneMaze() {
     int x, y;
     // Dirt
-    for (y = 0; y < GAMEBOULDERDASHMAZESIZEY; y++) {
-        for (x = 0; x < GAMEBOULDERDASHMAZESIZEX; x++) {
-            _maze[y][x] = GAMEBOULDERDASHCOLORINDEXDIRT;
-        }
-    }
-    // Diamonds
-    for (int i = 0; i < _levelDiamonds; i++) {
-        bool ok;
-        do {
-            x = random(2, GAMEBOULDERDASHMAZESIZEX);
-            y = random(2, GAMEBOULDERDASHMAZESIZEY);
-            ok = _maze[y][x] == GAMEBOULDERDASHCOLORINDEXDIRT;
-        } while (!ok);
-        _maze[y][x] = GAMEBOULDERDASHCOLORINDEXDIAMOND;
-    }
+    _generateDirtRect(0, 0, GAMEBOULDERDASHMAZESIZEX, GAMEBOULDERDASHMAZESIZEY);
     // Boulders
     int boulders = random(1, 4);
     for (int i = 0; i < boulders; i++) {
@@ -173,12 +170,144 @@ void NG8x8RGBMatrixGameBoulderdash::_initLevelOneMaze() {
         } while (!ok);
         _maze[y][x] = GAMEBOULDERDASHCOLORINDEXBOULDER;
     }
+    // Diamonds
+    for (int i = 0; i < _levelDiamonds; i++) {
+        bool ok;
+        do {
+            x = random(2, GAMEBOULDERDASHMAZESIZEX);
+            y = random(2, GAMEBOULDERDASHMAZESIZEY);
+            ok = _maze[y][x] == GAMEBOULDERDASHCOLORINDEXDIRT;
+        } while (!ok);
+        _maze[y][x] = GAMEBOULDERDASHCOLORINDEXDIAMOND;
+    }
     // Rocky
     _computeRocky();
 }
 
+void NG8x8RGBMatrixGameBoulderdash::_initLevelTwoMaze() {
+    // Dirt
+    _generateDirtRect(0, 0, GAMEBOULDERDASHMAZESIZEX - 1, GAMEBOULDERDASHMAZESIZEY - 1);
+    // Void
+    _generateVoidRect(10, 20, 17, 23);
+    _generateVoidRect(21, 17, 23, 23);
+    // Wall
+    _generateWallLine(9, 20, 17, 20);
+    _generateWallLine(9, 21, 9, 23);
+    _generateWallLine(18, 16, 18, 23);
+    _generateWallLine(20, 16, 20, 23);
+    _generateWallLine(21, 16, 23, 16);
+    _generateWallLine(16, 7, 20, 11);
+    _generateWallLine(21, 11, 23, 9);
+    _generateWall(23, 8);
+    // Boulders
+    _generateBoulderLine(3, 3, 4, 3);
+    _generateBoulder(5, 2);
+    _generateBoulderLine(6, 2, 6, 5);
+    _generateBoulder(7, 5);
+    _generateBoulderLine(8, 5, 8, 2);
+    _generateBoulderLine(9, 2, 14, 2);
+    _generateBoulderLine(15, 1, 15, 3);
+    _generateBoulderLine(18, 3, 18, 5);
+    _generateBoulder(19, 5);
+    _generateBoulderLine(20, 5, 20, 2);
+    _generateBoulderLine(18, 8, 20, 8);
+    _generateBoulderLine(3, 8, 5, 8);
+    _generateBoulderLine(3, 9, 3, 12);
+    _generateBoulderLine(4, 12, 9, 12);
+    _generateBoulderLine(4, 13, 4, 15);
+    _generateBoulderLine(2, 18, 4, 16);
+    _generateBoulderLine(8, 11, 8, 9);
+    _generateBoulderLine(9, 9, 12, 9);
+    _generateBoulderLine(12, 10, 12, 14);
+    _generateBoulderLine(2, 22, 6, 18);
+    _generateBoulder(2, 23);
+    _generateBoulder(7, 18);
+    _generateBoulderLine(11, 18, 11, 19);
+    _generateBoulderLine(13, 17, 14, 17);
+    _generateBoulderLine(15, 16, 17, 16);
+    _generateBoulderLine(17, 17, 17, 19);
+    _generateBoulder(19, 15);
+    // Diamonds
+    _generateDiamond(5, 3);
+    _generateDiamond(7, 4);
+    _generateDiamond(19, 4);
+    _generateDiamond(14, 5);
+    _generateDiamond(17, 7);
+    _generateDiamond(10, 11);
+    _generateDiamond(16, 19);
+    _generateDiamond(6, 21);
+    _generateDiamond(19, 23);
+    // Rocky
+    _computeRocky();
+}
+
+void NG8x8RGBMatrixGameBoulderdash::_generateDiamond(byte x, byte y) {
+    _maze[y][x] = GAMEBOULDERDASHCOLORINDEXDIAMOND;
+}
+
+void NG8x8RGBMatrixGameBoulderdash::_generateBoulder(byte x, byte y) {
+    _maze[y][x] = GAMEBOULDERDASHCOLORINDEXBOULDER;
+}
+
+void NG8x8RGBMatrixGameBoulderdash::_generateBoulderLine(byte topX, byte topY, byte bottomX, byte bottomY) {
+    _generateLine(topX, topY, bottomX, bottomY, GAMEBOULDERDASHCOLORINDEXBOULDER);
+}
+
+void NG8x8RGBMatrixGameBoulderdash::_generateWall(byte x, byte y) {
+    _maze[y][x] = GAMEBOULDERDASHCOLORINDEXWALL;
+}
+
+void NG8x8RGBMatrixGameBoulderdash::_generateWallLine(byte topX, byte topY, byte bottomX, byte bottomY) {
+    _generateLine(topX, topY, bottomX, bottomY, GAMEBOULDERDASHCOLORINDEXWALL);
+}
+
+void NG8x8RGBMatrixGameBoulderdash::_generateLine(byte topX, byte topY, byte bottomX, byte bottomY, byte solid) {
+    int dx =  abs(bottomX - topX);
+    int sx = topX < bottomX ? 1 : -1;
+    int dy = -abs(bottomY - topY);
+    int sy = topY < bottomY ? 1 : -1;
+    int err = dx + dy;
+    int e2;
+    for (;;) {
+        _maze[topY][topX] = solid;
+        if (topX == bottomX && topY == bottomY)
+            break;
+        e2 = 2 * err;
+        if (e2 > dy) { err += dy; topX += sx; }
+        if (e2 < dx) { err += dx; topY += sy; }
+    }
+}
+
+void NG8x8RGBMatrixGameBoulderdash::_generateVoidRect(byte topX, byte topY, byte bottomX, byte bottomY) {
+    _generateSolidRect(topX, topY, bottomX, bottomY, GAMEBOULDERDASHCOLORINDEXVOID);
+}
+
+void NG8x8RGBMatrixGameBoulderdash::_generateDirtRect(byte topX, byte topY, byte bottomX, byte bottomY) {
+    _generateSolidRect(topX, topY, bottomX, bottomY, GAMEBOULDERDASHCOLORINDEXDIRT);
+}
+
+void NG8x8RGBMatrixGameBoulderdash::_generateSolidRect(byte topX, byte topY, byte bottomX, byte bottomY, byte solid) {
+    for (int y = topY; y <= bottomY; y++) {
+        for (int x = topX; x <= bottomX; x++) {
+            _maze[y][x] = solid;
+        }
+    }
+}
+
+void NG8x8RGBMatrixGameBoulderdash::_generateWallRect(byte topX, byte topY, byte bottomX, byte bottomY, byte filler) {
+    for (int y = topY; y <= bottomY; y++) {
+        for (int x = topX; x <= bottomX; x++) {
+            if (y == topY || y == bottomY || x == topX || x == bottomX) {
+                _generateWall(x, y);
+            } else {
+                _maze[y][x] = filler;
+            }
+        }
+    }
+}
+
 void NG8x8RGBMatrixGameBoulderdash::_clearRocky() {
-    _maze[_posYRocky][_posXRocky] = 0;
+    _maze[_posYRocky][_posXRocky] = GAMEBOULDERDASHCOLORINDEXVOID;
 }
 
 void NG8x8RGBMatrixGameBoulderdash::_computeRocky() {
