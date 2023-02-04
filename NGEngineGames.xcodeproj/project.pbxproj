@@ -48,17 +48,6 @@
 /* End PBXFileReference section */
 
 /* Begin PBXGroup section */
-		29255B71298D2D4000234506 /* games */ = {
-			isa = PBXGroup;
-			children = (
-				29255B73298D330600234506 /* Asteroids.png */,
-				29255B70298D2D2800234506 /* Dot.png */,
-				29255B72298D30DE00234506 /* Snake.png */,
-				29255B74298D350100234506 /* Tetris.png */,
-			);
-			path = games;
-			sourceTree = "<group>";
-		};
 		29255B77298E5BEA00234506 /* images */ = {
 			isa = PBXGroup;
 			children = (
@@ -68,9 +57,42 @@
 			path = images;
 			sourceTree = "<group>";
 		};
+		29255B79298E800C00234506 /* images */ = {
+			isa = PBXGroup;
+			children = (
+				29255B73298D330600234506 /* Asteroids.png */,
+			);
+			path = images;
+			sourceTree = "<group>";
+		};
+		29255B7A298E802200234506 /* images */ = {
+			isa = PBXGroup;
+			children = (
+				29255B70298D2D2800234506 /* Dot.png */,
+			);
+			path = images;
+			sourceTree = "<group>";
+		};
+		29255B7B298E803E00234506 /* images */ = {
+			isa = PBXGroup;
+			children = (
+				29255B72298D30DE00234506 /* Snake.png */,
+			);
+			path = images;
+			sourceTree = "<group>";
+		};
+		29255B7C298E804D00234506 /* images */ = {
+			isa = PBXGroup;
+			children = (
+				29255B74298D350100234506 /* Tetris.png */,
+			);
+			path = images;
+			sourceTree = "<group>";
+		};
 		295A7E47295F2E67003779A3 /* tetris */ = {
 			isa = PBXGroup;
 			children = (
+				29255B7C298E804D00234506 /* images */,
 				295A7E48295F2E87003779A3 /* tetris.ino */,
 			);
 			path = tetris;
@@ -79,6 +101,7 @@
 		295A7E4B2969DB41003779A3 /* asteroids */ = {
 			isa = PBXGroup;
 			children = (
+				29255B79298E800C00234506 /* images */,
 				295A7E4C2969DB65003779A3 /* asteroids.ino */,
 			);
 			path = asteroids;
@@ -87,7 +110,6 @@
 		296452882987F28800E1EF1D /* images */ = {
 			isa = PBXGroup;
 			children = (
-				29255B71298D2D4000234506 /* games */,
 				296452892987F32C00E1EF1D /* eNGineGameShield.png */,
 			);
 			path = images;
@@ -122,8 +144,8 @@
 				295A7E4B2969DB41003779A3 /* asteroids */,
 				29E872FE296C07C900F7BF90 /* boulderdash */,
 				299C2B8C294F617900F53CAA /* dot */,
-				295A7E47295F2E67003779A3 /* tetris */,
 				299C2B90295496D400F53CAA /* snake */,
+				295A7E47295F2E67003779A3 /* tetris */,
 			);
 			path = games;
 			sourceTree = "<group>";
@@ -163,6 +185,7 @@
 		299C2B8C294F617900F53CAA /* dot */ = {
 			isa = PBXGroup;
 			children = (
+				29255B7A298E802200234506 /* images */,
 				299C2B8D294F619900F53CAA /* dot.ino */,
 			);
 			path = dot;
@@ -179,6 +202,7 @@
 		299C2B90295496D400F53CAA /* snake */ = {
 			isa = PBXGroup;
 			children = (
+				29255B7B298E803E00234506 /* images */,
 				299C2B91295496F200F53CAA /* snake.ino */,
 			);
 			path = snake;
