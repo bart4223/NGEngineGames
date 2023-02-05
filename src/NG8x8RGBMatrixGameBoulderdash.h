@@ -61,7 +61,7 @@
 #define GAMEBOULDERDASHLEVELONE     1
 #define GAMEBOULDERDASHLEVELTWO     2
 #define GAMEBOULDERDASHLEVELTHREE   3
-#define GAMEBOULDERDASHSTARTLEVEL   1
+#define GAMEBOULDERDASHSTARTLEVEL   3
 #define GAMEBOULDERDASHMAXLEVEL     3
 
 #define GAMEBOULDERDASHLEVELONEFUSESTEPDELAY    5000
@@ -136,6 +136,8 @@ private:
     void _generateWallLine(byte topX, byte topY, byte bottomX, byte bottomY);
     
     void _generateLine(byte topX, byte topY, byte bottomX, byte bottomY, byte solid);
+    
+    void _generateVoidLine(byte topX, byte topY, byte bottomX, byte bottomY);
     
     void _generateVoidRect(byte topX, byte topY, byte bottomX, byte bottomY);
     

@@ -105,7 +105,11 @@ void NG8x8RGBMatrixGameBoulderdash::_computeNPC() {
             bool moved = false;
             switch(_maze[y][x]) {
                 case GAMEBOULDERDASHCOLORINDEXNPCUP:
-                    if (y > 0 && _maze[y - 1][x] == 0) {
+                    if (x < (GAMEBOULDERDASHMAZESIZEX - 1) && _maze[y][x + 1] == 0) {
+                        _maze[y][x] = 0;
+                        _maze[y][x + 1] = -GAMEBOULDERDASHCOLORINDEXNPCUP;
+                        moved = true;
+                    } else if (y > 0 && _maze[y - 1][x] == 0) {
                         _maze[y][x] = 0;
                         _maze[y - 1][x] = -GAMEBOULDERDASHCOLORINDEXNPCUP;
                         moved = true;
@@ -133,7 +137,11 @@ void NG8x8RGBMatrixGameBoulderdash::_computeNPC() {
                     }
                     break;
                 case GAMEBOULDERDASHCOLORINDEXNPCDOWN:
-                    if (y < (GAMEBOULDERDASHMAZESIZEY - 1) && _maze[y + 1][x] == 0) {
+                    if (x > 0 && _maze[y][x - 1] == 0) {
+                        _maze[y][x] = 0;
+                        _maze[y][x - 1] = -GAMEBOULDERDASHCOLORINDEXNPCDOWN;
+                        moved = true;
+                    } else if (y < (GAMEBOULDERDASHMAZESIZEY - 1) && _maze[y + 1][x] == 0) {
                         _maze[y][x] = 0;
                         _maze[y + 1][x] = -GAMEBOULDERDASHCOLORINDEXNPCDOWN;
                         moved = true;
@@ -161,7 +169,11 @@ void NG8x8RGBMatrixGameBoulderdash::_computeNPC() {
                     }
                     break;
                 case GAMEBOULDERDASHCOLORINDEXNPCLEFT:
-                    if (x > 0 && _maze[y][x - 1] == 0) {
+                    if (y > 0 && _maze[y - 1][x] == 0) {
+                        _maze[y][x] = 0;
+                        _maze[y - 1][x] = -GAMEBOULDERDASHCOLORINDEXNPCLEFT;
+                        moved = true;
+                    } else if (x > 0 && _maze[y][x - 1] == 0) {
                         _maze[y][x] = 0;
                         _maze[y][x - 1] = -GAMEBOULDERDASHCOLORINDEXNPCLEFT;
                         moved = true;
@@ -189,7 +201,11 @@ void NG8x8RGBMatrixGameBoulderdash::_computeNPC() {
                     }
                     break;
                 case GAMEBOULDERDASHCOLORINDEXNPCRIGHT:
-                    if (x < (GAMEBOULDERDASHMAZESIZEX - 1) && _maze[y][x + 1] == 0) {
+                    if (y < (GAMEBOULDERDASHMAZESIZEY - 1) && _maze[y + 1][x] == 0) {
+                        _maze[y][x] = 0;
+                        _maze[y + 1][x] = -GAMEBOULDERDASHCOLORINDEXNPCRIGHT;
+                        moved = true;
+                    } else if (x < (GAMEBOULDERDASHMAZESIZEX - 1) && _maze[y][x + 1] == 0) {
                         _maze[y][x] = 0;
                         _maze[y][x + 1] = -GAMEBOULDERDASHCOLORINDEXNPCRIGHT;
                         moved = true;
@@ -382,10 +398,14 @@ void NG8x8RGBMatrixGameBoulderdash::_initLevelThreeMaze() {
     // Dirt
     _generateDirtRect(0, 0, GAMEBOULDERDASHMAZESIZEX - 1, GAMEBOULDERDASHMAZESIZEY - 1);
     // Void
+    _generateVoidRect(2, 1, 5, 4);
+    _generateVoidLine(3, 5, 4, 5);
+    _generateVoidLine(3, 0, 4, 0);
+    _generateVoidLine(1, 2, 1, 3);
+    _generateVoidLine(6, 2, 6, 3);
     // Wall
-    _generateWallRect(2, 2, 6, 7, GAMEBOULDERDASHCOLORINDEXVOID);
     // NPC
-    _generateNPC(5, 6);
+    _generateNPC(5, 4);
     // Rocky
     _computeRocky();
 }
@@ -433,6 +453,10 @@ void NG8x8RGBMatrixGameBoulderdash::_generateLine(byte topX, byte topY, byte bot
         if (e2 > dy) { err += dy; topX += sx; }
         if (e2 < dx) { err += dx; topY += sy; }
     }
+}
+
+void NG8x8RGBMatrixGameBoulderdash::_generateVoidLine(byte topX, byte topY, byte bottomX, byte bottomY) {
+    _generateLine(topX, topY, bottomX, bottomY, GAMEBOULDERDASHCOLORINDEXVOID);
 }
 
 void NG8x8RGBMatrixGameBoulderdash::_generateVoidRect(byte topX, byte topY, byte bottomX, byte bottomY) {
