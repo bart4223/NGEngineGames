@@ -99,6 +99,135 @@ void NG8x8RGBMatrixGameBoulderdash::_computeGravity() {
     }
 }
 
+void NG8x8RGBMatrixGameBoulderdash::_computeNPC() {
+    for (int y = 0; y < GAMEBOULDERDASHMAZESIZEY; y++) {
+        for (int x = 0; x < GAMEBOULDERDASHMAZESIZEX; x++) {
+            bool moved = false;
+            switch(_maze[y][x]) {
+                case GAMEBOULDERDASHCOLORINDEXNPCUP:
+                    if (y > 0 && _maze[y - 1][x] == 0) {
+                        _maze[y][x] = 0;
+                        _maze[y - 1][x] = -GAMEBOULDERDASHCOLORINDEXNPCUP;
+                        moved = true;
+                    } else {
+                        if (_getYesOrNo() && x < (GAMEBOULDERDASHMAZESIZEX - 1)) {
+                            if (_maze[y][x + 1] == 0) {
+                                _maze[y][x] = 0;
+                                _maze[y][x + 1] = -GAMEBOULDERDASHCOLORINDEXNPCRIGHT;
+                                moved = true;
+                            }
+                        } else if (x > 0) {
+                            if (_maze[y][x - 1] == 0) {
+                                _maze[y][x] = 0;
+                                _maze[y][x - 1] = -GAMEBOULDERDASHCOLORINDEXNPCLEFT;
+                                moved = true;
+                            }
+                        }
+                        if (!moved && y < (GAMEBOULDERDASHMAZESIZEY - 1)) {
+                            if (_maze[y + 1][x] == 0) {
+                                _maze[y][x] = 0;
+                                _maze[y + 1][x] = -GAMEBOULDERDASHCOLORINDEXNPCDOWN;
+                                moved = true;
+                            }
+                        }
+                    }
+                    break;
+                case GAMEBOULDERDASHCOLORINDEXNPCDOWN:
+                    if (y < (GAMEBOULDERDASHMAZESIZEY - 1) && _maze[y + 1][x] == 0) {
+                        _maze[y][x] = 0;
+                        _maze[y + 1][x] = -GAMEBOULDERDASHCOLORINDEXNPCDOWN;
+                        moved = true;
+                    } else {
+                        if (_getYesOrNo() && x < (GAMEBOULDERDASHMAZESIZEX - 1)) {
+                            if (_maze[y][x + 1] == 0) {
+                                _maze[y][x] = 0;
+                                _maze[y][x + 1] = -GAMEBOULDERDASHCOLORINDEXNPCRIGHT;
+                                moved = true;
+                            }
+                        } else if (x > 0) {
+                            if (_maze[y][x - 1] == 0) {
+                                _maze[y][x] = 0;
+                                _maze[y][x - 1] = -GAMEBOULDERDASHCOLORINDEXNPCLEFT;
+                                moved = true;
+                            }
+                        }
+                        if (!moved && y > 0) {
+                            if (_maze[y - 1][x] == 0) {
+                                _maze[y][x] = 0;
+                                _maze[y - 1][x] = -GAMEBOULDERDASHCOLORINDEXNPCUP;
+                                moved = true;
+                            }
+                        }
+                    }
+                    break;
+                case GAMEBOULDERDASHCOLORINDEXNPCLEFT:
+                    if (x > 0 && _maze[y][x - 1] == 0) {
+                        _maze[y][x] = 0;
+                        _maze[y][x - 1] = -GAMEBOULDERDASHCOLORINDEXNPCLEFT;
+                        moved = true;
+                    } else {
+                        if (_getYesOrNo() && y < (GAMEBOULDERDASHMAZESIZEY - 1)) {
+                            if (_maze[y + 1][x] == 0) {
+                                _maze[y][x] = 0;
+                                _maze[y + 1][x] = -GAMEBOULDERDASHCOLORINDEXNPCDOWN;
+                                moved = true;
+                            }
+                        } else if (y > 0) {
+                            if (_maze[y - 1][x] == 0) {
+                                _maze[y][x] = 0;
+                                _maze[y - 1][x] = -GAMEBOULDERDASHCOLORINDEXNPCUP;
+                                moved = true;
+                            }
+                        }
+                        if (!moved && x < (GAMEBOULDERDASHMAZESIZEX - 1)) {
+                            if (_maze[y][x + 1] == 0) {
+                                _maze[y][x] = 0;
+                                _maze[y][x + 1] = -GAMEBOULDERDASHCOLORINDEXNPCRIGHT;
+                                moved = true;
+                            }
+                        }
+                    }
+                    break;
+                case GAMEBOULDERDASHCOLORINDEXNPCRIGHT:
+                    if (x < (GAMEBOULDERDASHMAZESIZEX - 1) && _maze[y][x + 1] == 0) {
+                        _maze[y][x] = 0;
+                        _maze[y][x + 1] = -GAMEBOULDERDASHCOLORINDEXNPCRIGHT;
+                        moved = true;
+                    } else {
+                        if (_getYesOrNo() && y < (GAMEBOULDERDASHMAZESIZEY - 1)) {
+                            if (_maze[y + 1][x] == 0) {
+                                _maze[y][x] = 0;
+                                _maze[y + 1][x] = -GAMEBOULDERDASHCOLORINDEXNPCDOWN;
+                                moved = true;
+                            }
+                        } else if (y > 0) {
+                            if (_maze[y - 1][x] == 0) {
+                                _maze[y][x] = 0;
+                                _maze[y - 1][x] = -GAMEBOULDERDASHCOLORINDEXNPCUP;
+                                moved = true;
+                            }
+                        }
+                        if (!moved && x > 0) {
+                            if (_maze[y][x - 1] == 0) {
+                                _maze[y][x] = 0;
+                                _maze[y][x - 1] = -GAMEBOULDERDASHCOLORINDEXNPCLEFT;
+                                moved = true;
+                            }
+                        }
+                    }
+                    break;
+            }
+        }
+    }
+    for (int y = 0; y < GAMEBOULDERDASHMAZESIZEY; y++) {
+        for (int x = 0; x < GAMEBOULDERDASHMAZESIZEX; x++) {
+            if (_maze[y][x] < 0) {
+                _maze[y][x] = abs(_maze[y][x]);
+            }
+        }
+    }
+}
+
 void NG8x8RGBMatrixGameBoulderdash::_initLevel() {
     _levelFinished = false;
     _levelRetry = false;
@@ -119,6 +248,14 @@ void NG8x8RGBMatrixGameBoulderdash::_initLevel() {
             _levelDiamonds = 9;
             _fuseStepDelay = GAMEBOULDERDASHLEVELONEFUSESTEPDELAY;
             _initLevelTwoMaze();
+            break;
+        case GAMEBOULDERDASHLEVELTHREE:
+            _posXRocky = 0;
+            _posYRocky = 0;
+            _calculateViewPos();
+            _levelDiamonds = 0;
+            _fuseStepDelay = GAMEBOULDERDASHLEVELONEFUSESTEPDELAY;
+            _initLevelThreeMaze();
             break;
     }
     _renderRocky();
@@ -239,6 +376,26 @@ void NG8x8RGBMatrixGameBoulderdash::_initLevelTwoMaze() {
     _generateDiamond(19, 23);
     // Rocky
     _computeRocky();
+}
+
+void NG8x8RGBMatrixGameBoulderdash::_initLevelThreeMaze() {
+    // Dirt
+    _generateDirtRect(0, 0, GAMEBOULDERDASHMAZESIZEX - 1, GAMEBOULDERDASHMAZESIZEY - 1);
+    // Void
+    // Wall
+    _generateWallRect(2, 2, 6, 7, GAMEBOULDERDASHCOLORINDEXVOID);
+    // NPC
+    _generateNPC(5, 6);
+    // Rocky
+    _computeRocky();
+}
+
+void NG8x8RGBMatrixGameBoulderdash::_generateNPC(byte x, byte y) {
+    _generateNPC(x, y, random(6, 10));
+}
+
+void NG8x8RGBMatrixGameBoulderdash::_generateNPC(byte x, byte y, byte kind) {
+    _maze[y][x] = kind;
 }
 
 void NG8x8RGBMatrixGameBoulderdash::_generateDiamond(byte x, byte y) {
@@ -620,6 +777,11 @@ void NG8x8RGBMatrixGameBoulderdash::_doProcessingLoop() {
                 _computeGravity();
                 _ownRender();
                 _lastGravityMove = millis();
+            }
+            if ((millis() - _lastNPCMove) > GAMEBOULDERDASHSNPCDELAY) {
+                _computeNPC();
+                _ownRender();
+                _lastNPCMove = millis();
             }
             if ((millis() - _lastFuseStep) > _fuseStepDelay) {
                 _fuseValue--;

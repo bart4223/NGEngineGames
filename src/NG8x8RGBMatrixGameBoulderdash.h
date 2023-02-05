@@ -40,23 +40,29 @@
 #define GAMEBOULDERDASHLIVESDIRECTION bddUp
 
 #define GAMEBOULDERDASHGRAVITYDELAY      50
+#define GAMEBOULDERDASHSNPCDELAY        300
 #define GAMEBOULDERDASHROCKYBLINKDELAY  500
 #define GAMEBOULDERDASHFINISHDELAY     1000
 
 #define GAMEBOULDERDASHLIVES    3
 #define GAMEBOULDERDASHMAXFUSE  8
 
-#define GAMEBOULDERDASHCOLORINDEXVOID    0
-#define GAMEBOULDERDASHCOLORINDEXDIRT    1
-#define GAMEBOULDERDASHCOLORINDEXROCKY   2
-#define GAMEBOULDERDASHCOLORINDEXBOULDER 3
-#define GAMEBOULDERDASHCOLORINDEXDIAMOND 4
-#define GAMEBOULDERDASHCOLORINDEXWALL    5
+#define GAMEBOULDERDASHCOLORINDEXVOID       0
+#define GAMEBOULDERDASHCOLORINDEXDIRT       1
+#define GAMEBOULDERDASHCOLORINDEXROCKY      2
+#define GAMEBOULDERDASHCOLORINDEXBOULDER    3
+#define GAMEBOULDERDASHCOLORINDEXDIAMOND    4
+#define GAMEBOULDERDASHCOLORINDEXWALL       5
+#define GAMEBOULDERDASHCOLORINDEXNPCUP      6
+#define GAMEBOULDERDASHCOLORINDEXNPCDOWN    7
+#define GAMEBOULDERDASHCOLORINDEXNPCLEFT    8
+#define GAMEBOULDERDASHCOLORINDEXNPCRIGHT   9
 
 #define GAMEBOULDERDASHLEVELONE     1
 #define GAMEBOULDERDASHLEVELTWO     2
+#define GAMEBOULDERDASHLEVELTHREE   3
 #define GAMEBOULDERDASHSTARTLEVEL   1
-#define GAMEBOULDERDASHMAXLEVEL     2
+#define GAMEBOULDERDASHMAXLEVEL     3
 
 #define GAMEBOULDERDASHLEVELONEFUSESTEPDELAY    5000
 #define GAMEBOULDERDASHSOUTROANIMATIONDELAY      100
@@ -64,12 +70,16 @@
 
 enum rockyMoveDirection { rmdUp, rmdDown, rmdLeft, rmdRight };
 
-static colorRGB globalBoulderdashColors[5] = {
+static colorRGB globalBoulderdashColors[9] = {
   COLOR_BROWN,  // Dirt
   COLOR_BLUE,   // Rocky
   COLOR_WHITE,  // Boulder
   COLOR_TEAL,   // Diamond
   COLOR_PURPLE, // Wall
+  COLOR_GREEN,  // NPC Up
+  COLOR_GREEN_LOW,  // NPC Down
+  COLOR_YELLOW,  // NPC Left
+  COLOR_YELLOW_LOW   // NPC Right
 };
 
 class NG8x8RGBMatrixGameBoulderdash : public NGCustom8x8RGBMatrixGame {
@@ -77,8 +87,9 @@ class NG8x8RGBMatrixGameBoulderdash : public NGCustom8x8RGBMatrixGame {
 private:
     NGColorDotMatrixBinaryDigit *_lives;
     NGColorDotMatrixFuse *_fuse;
-    byte _maze[GAMEBOULDERDASHMAZESIZEY][GAMEBOULDERDASHMAZESIZEX];
+    int _maze[GAMEBOULDERDASHMAZESIZEY][GAMEBOULDERDASHMAZESIZEX];
     long _lastGravityMove = 0;
+    long _lastNPCMove = 0;
     long _lastFuseStep = 0;
     int  _fuseStepDelay = 0;
     long _lastRockyBlinked = 0;
@@ -98,6 +109,8 @@ private:
     
     void _computeGravity();
     
+    void _computeNPC();
+    
     void _initLevel();
     
     void _initLevelTestMaze();
@@ -105,6 +118,12 @@ private:
     void _initLevelOneMaze();
     
     void _initLevelTwoMaze();
+    
+    void _initLevelThreeMaze();
+    
+    void _generateNPC(byte x, byte y);
+    
+    void _generateNPC(byte x, byte y, byte kind);
     
     void _generateDiamond(byte x, byte y);
     
