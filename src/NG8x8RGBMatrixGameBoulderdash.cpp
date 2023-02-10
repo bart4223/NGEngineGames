@@ -103,28 +103,37 @@ void NG8x8RGBMatrixGameBoulderdash::_computeNPC() {
     for (int y = 0; y < GAMEBOULDERDASHMAZESIZEY; y++) {
         for (int x = 0; x < GAMEBOULDERDASHMAZESIZEX; x++) {
             bool moved = false;
+            bool rockyCatched = false;
             switch(_maze[y][x]) {
                 case GAMEBOULDERDASHCOLORINDEXNPCUP:
                     if (x < (GAMEBOULDERDASHMAZESIZEX - 1) && _maze[y][x + 1] == 0) {
                         _maze[y][x] = 0;
                         _maze[y][x + 1] = -GAMEBOULDERDASHCOLORINDEXNPCUP;
                         moved = true;
+                    } else if (x < (GAMEBOULDERDASHMAZESIZEX - 1) && _maze[y][x + 1] == GAMEBOULDERDASHCOLORINDEXROCKY) {
+                        rockyCatched = true;
                     } else if (y > 0 && _maze[y - 1][x] == 0) {
                         _maze[y][x] = 0;
                         _maze[y - 1][x] = -GAMEBOULDERDASHCOLORINDEXNPCUP;
                         moved = true;
+                    } else if (y > 0 && _maze[y - 1][x] == GAMEBOULDERDASHCOLORINDEXROCKY) {
+                        rockyCatched = true;
                     } else {
                         if (_getYesOrNo() && x < (GAMEBOULDERDASHMAZESIZEX - 1)) {
                             if (_maze[y][x + 1] == 0) {
                                 _maze[y][x] = 0;
                                 _maze[y][x + 1] = -GAMEBOULDERDASHCOLORINDEXNPCRIGHT;
                                 moved = true;
+                            } else {
+                                rockyCatched = _maze[y][x + 1] == GAMEBOULDERDASHCOLORINDEXROCKY;
                             }
                         } else if (x > 0) {
                             if (_maze[y][x - 1] == 0) {
                                 _maze[y][x] = 0;
                                 _maze[y][x - 1] = -GAMEBOULDERDASHCOLORINDEXNPCLEFT;
                                 moved = true;
+                            } else {
+                                rockyCatched = _maze[y][x - 1] == GAMEBOULDERDASHCOLORINDEXROCKY;
                             }
                         }
                         if (!moved && y < (GAMEBOULDERDASHMAZESIZEY - 1)) {
@@ -132,6 +141,8 @@ void NG8x8RGBMatrixGameBoulderdash::_computeNPC() {
                                 _maze[y][x] = 0;
                                 _maze[y + 1][x] = -GAMEBOULDERDASHCOLORINDEXNPCDOWN;
                                 moved = true;
+                            } else {
+                                rockyCatched = _maze[y + 1][x] == GAMEBOULDERDASHCOLORINDEXROCKY;
                             }
                         }
                     }
@@ -141,22 +152,30 @@ void NG8x8RGBMatrixGameBoulderdash::_computeNPC() {
                         _maze[y][x] = 0;
                         _maze[y][x - 1] = -GAMEBOULDERDASHCOLORINDEXNPCDOWN;
                         moved = true;
+                    } else if (x > 0 && _maze[y][x - 1] == GAMEBOULDERDASHCOLORINDEXROCKY) {
+                        rockyCatched = true;
                     } else if (y < (GAMEBOULDERDASHMAZESIZEY - 1) && _maze[y + 1][x] == 0) {
                         _maze[y][x] = 0;
                         _maze[y + 1][x] = -GAMEBOULDERDASHCOLORINDEXNPCDOWN;
                         moved = true;
+                    } else if (y < (GAMEBOULDERDASHMAZESIZEY - 1) && _maze[y + 1][x] == GAMEBOULDERDASHCOLORINDEXROCKY) {
+                        rockyCatched = true;
                     } else {
                         if (_getYesOrNo() && x < (GAMEBOULDERDASHMAZESIZEX - 1)) {
                             if (_maze[y][x + 1] == 0) {
                                 _maze[y][x] = 0;
                                 _maze[y][x + 1] = -GAMEBOULDERDASHCOLORINDEXNPCRIGHT;
                                 moved = true;
+                            } else {
+                                rockyCatched = _maze[y][x + 1] == GAMEBOULDERDASHCOLORINDEXROCKY;
                             }
                         } else if (x > 0) {
                             if (_maze[y][x - 1] == 0) {
                                 _maze[y][x] = 0;
                                 _maze[y][x - 1] = -GAMEBOULDERDASHCOLORINDEXNPCLEFT;
                                 moved = true;
+                            } else {
+                                rockyCatched = _maze[y][x - 1] == GAMEBOULDERDASHCOLORINDEXROCKY;
                             }
                         }
                         if (!moved && y > 0) {
@@ -164,6 +183,8 @@ void NG8x8RGBMatrixGameBoulderdash::_computeNPC() {
                                 _maze[y][x] = 0;
                                 _maze[y - 1][x] = -GAMEBOULDERDASHCOLORINDEXNPCUP;
                                 moved = true;
+                            } else {
+                                rockyCatched = _maze[y - 1][x] == GAMEBOULDERDASHCOLORINDEXROCKY;
                             }
                         }
                     }
@@ -173,22 +194,30 @@ void NG8x8RGBMatrixGameBoulderdash::_computeNPC() {
                         _maze[y][x] = 0;
                         _maze[y - 1][x] = -GAMEBOULDERDASHCOLORINDEXNPCLEFT;
                         moved = true;
+                    } else if (y > 0 && _maze[y - 1][x] == GAMEBOULDERDASHCOLORINDEXROCKY) {
+                        rockyCatched = true;
                     } else if (x > 0 && _maze[y][x - 1] == 0) {
                         _maze[y][x] = 0;
                         _maze[y][x - 1] = -GAMEBOULDERDASHCOLORINDEXNPCLEFT;
                         moved = true;
+                    } else if (x > 0 && _maze[y][x - 1] == GAMEBOULDERDASHCOLORINDEXROCKY) {
+                        rockyCatched = true;
                     } else {
                         if (_getYesOrNo() && y < (GAMEBOULDERDASHMAZESIZEY - 1)) {
                             if (_maze[y + 1][x] == 0) {
                                 _maze[y][x] = 0;
                                 _maze[y + 1][x] = -GAMEBOULDERDASHCOLORINDEXNPCDOWN;
                                 moved = true;
+                            } else {
+                                rockyCatched = _maze[y + 1][x] == GAMEBOULDERDASHCOLORINDEXROCKY;
                             }
                         } else if (y > 0) {
                             if (_maze[y - 1][x] == 0) {
                                 _maze[y][x] = 0;
                                 _maze[y - 1][x] = -GAMEBOULDERDASHCOLORINDEXNPCUP;
                                 moved = true;
+                            } else {
+                                rockyCatched = _maze[y - 1][x] == GAMEBOULDERDASHCOLORINDEXROCKY;
                             }
                         }
                         if (!moved && x < (GAMEBOULDERDASHMAZESIZEX - 1)) {
@@ -196,6 +225,8 @@ void NG8x8RGBMatrixGameBoulderdash::_computeNPC() {
                                 _maze[y][x] = 0;
                                 _maze[y][x + 1] = -GAMEBOULDERDASHCOLORINDEXNPCRIGHT;
                                 moved = true;
+                            } else {
+                                rockyCatched = _maze[y][x + 1] == GAMEBOULDERDASHCOLORINDEXROCKY;
                             }
                         }
                     }
@@ -205,22 +236,30 @@ void NG8x8RGBMatrixGameBoulderdash::_computeNPC() {
                         _maze[y][x] = 0;
                         _maze[y + 1][x] = -GAMEBOULDERDASHCOLORINDEXNPCRIGHT;
                         moved = true;
+                    } else if (y < (GAMEBOULDERDASHMAZESIZEY - 1) && _maze[y + 1][x] == GAMEBOULDERDASHCOLORINDEXROCKY) {
+                        rockyCatched = true;
                     } else if (x < (GAMEBOULDERDASHMAZESIZEX - 1) && _maze[y][x + 1] == 0) {
                         _maze[y][x] = 0;
                         _maze[y][x + 1] = -GAMEBOULDERDASHCOLORINDEXNPCRIGHT;
                         moved = true;
+                    } else if (x < (GAMEBOULDERDASHMAZESIZEX - 1) && _maze[y][x + 1] == GAMEBOULDERDASHCOLORINDEXROCKY) {
+                        rockyCatched = true;
                     } else {
                         if (_getYesOrNo() && y < (GAMEBOULDERDASHMAZESIZEY - 1)) {
                             if (_maze[y + 1][x] == 0) {
                                 _maze[y][x] = 0;
                                 _maze[y + 1][x] = -GAMEBOULDERDASHCOLORINDEXNPCDOWN;
                                 moved = true;
+                            } else {
+                                rockyCatched = _maze[y + 1][x] == GAMEBOULDERDASHCOLORINDEXROCKY;
                             }
                         } else if (y > 0) {
                             if (_maze[y - 1][x] == 0) {
                                 _maze[y][x] = 0;
                                 _maze[y - 1][x] = -GAMEBOULDERDASHCOLORINDEXNPCUP;
                                 moved = true;
+                            } else {
+                                rockyCatched = _maze[y - 1][x] == GAMEBOULDERDASHCOLORINDEXROCKY;
                             }
                         }
                         if (!moved && x > 0) {
@@ -228,10 +267,20 @@ void NG8x8RGBMatrixGameBoulderdash::_computeNPC() {
                                 _maze[y][x] = 0;
                                 _maze[y][x - 1] = -GAMEBOULDERDASHCOLORINDEXNPCLEFT;
                                 moved = true;
+                            } else {
+                                rockyCatched = _maze[y][x - 1] == GAMEBOULDERDASHCOLORINDEXROCKY;
                             }
                         }
                     }
                     break;
+            }
+            if (rockyCatched) {
+                _livesCounter--;
+                _gameFinished = _livesCounter == 0;
+                if (!_gameFinished) {
+                    _levelRetry = true;
+                }
+                return;
             }
         }
     }
@@ -398,14 +447,11 @@ void NG8x8RGBMatrixGameBoulderdash::_initLevelThreeMaze() {
     // Dirt
     _generateDirtRect(0, 0, GAMEBOULDERDASHMAZESIZEX - 1, GAMEBOULDERDASHMAZESIZEY - 1);
     // Void
-    _generateVoidRect(2, 1, 5, 4);
-    _generateVoidLine(3, 5, 4, 5);
-    _generateVoidLine(3, 0, 4, 0);
-    _generateVoidLine(1, 2, 1, 3);
-    _generateVoidLine(6, 2, 6, 3);
-    // Wall
+    _generateVoidLine(3, 2, 3, 7);
+    // Boulders
+    _generateBoulder(3, 0);
     // NPC
-    _generateNPC(5, 4);
+    _generateNPC(3, 7);
     // Rocky
     _computeRocky();
 }
