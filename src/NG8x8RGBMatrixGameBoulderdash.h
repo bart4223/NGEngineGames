@@ -65,7 +65,7 @@
 #define GAMEBOULDERDASHMAXLEVEL     3
 
 #define GAMEBOULDERDASHLEVELONEFUSESTEPDELAY    5000
-#define GAMEBOULDERDASHSOUTROANIMATIONDELAY      100
+#define GAMEBOULDERDASHSOUTROANIMATIONDELAY       75
 #define GAMEBOULDERDASHSOUTRODELAY              3000
 
 enum rockyMoveDirection { rmdUp, rmdDown, rmdLeft, rmdRight };
@@ -77,9 +77,9 @@ static colorRGB globalBoulderdashColors[9] = {
   COLOR_TEAL,   // Diamond
   COLOR_PURPLE, // Wall
   COLOR_GREEN,  // NPC Up
-  COLOR_GREEN_LOW,  // NPC Down
-  COLOR_YELLOW,  // NPC Left
-  COLOR_YELLOW_LOW   // NPC Right
+  COLOR_GREEN,  // NPC Down
+  COLOR_GREEN,  // NPC Left
+  COLOR_GREEN   // NPC Right
 };
 
 class NG8x8RGBMatrixGameBoulderdash : public NGCustom8x8RGBMatrixGame {
