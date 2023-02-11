@@ -121,9 +121,21 @@ private:
     
     void _initLevelThreeMaze();
     
+    void _generateNPCUp(byte x, byte y);
+    
+    void _generateNPCDown(byte x, byte y);
+    
+    void _generateNPCLeft(byte x, byte y);
+    
+    void _generateNPCRight(byte x, byte y);
+    
     void _generateNPC(byte x, byte y);
     
     void _generateNPC(byte x, byte y, byte kind);
+    
+    void _generateVoid(byte x, byte y);
+    
+    void _generateDirt(byte x, byte y);
     
     void _generateDiamond(byte x, byte y);
     
