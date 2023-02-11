@@ -71,6 +71,7 @@ protected:
     int _soundFinish = GAMENOSOUND;
     int _startUpDoneDelay = 0;
     bool _doPlaySound = true;
+    bool _testMode = false;
 
     void _create(char* name);
     

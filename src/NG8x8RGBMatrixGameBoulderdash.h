@@ -18,7 +18,7 @@
 #include <NGColorDotMatrixFuse.h>
 
 #define GAMEBOULDERDASHCOLORSCOREOFF  COLOR_BLACK
-#define GAMEBOULDERDASHCOLORSCOREON   COLOR_TEAL
+#define GAMEBOULDERDASHCOLORSCOREON   COLOR_TEAL_LOW
 #define GAMEBOULDERDASHCOLORLIVESOFF  COLOR_BLACK
 #define GAMEBOULDERDASHCOLORLIVESON   { .red = 0xCC, .green = 0x33, .blue = 0x33 }
 #define GAMEBOULDERDASHCOLORFUSEOFF   COLOR_BLACK
@@ -61,12 +61,16 @@
 #define GAMEBOULDERDASHLEVELONE     1
 #define GAMEBOULDERDASHLEVELTWO     2
 #define GAMEBOULDERDASHLEVELTHREE   3
-#define GAMEBOULDERDASHSTARTLEVEL   3
+#define GAMEBOULDERDASHSTARTLEVEL   1
 #define GAMEBOULDERDASHMAXLEVEL     3
 
-#define GAMEBOULDERDASHLEVELONEFUSESTEPDELAY    5000
-#define GAMEBOULDERDASHSOUTROANIMATIONDELAY       75
-#define GAMEBOULDERDASHSOUTRODELAY              3000
+#define GAMEBOULDERDASHLEVELONEFUSESTEPDELAY     5000
+#define GAMEBOULDERDASHLEVELTWOFUSESTEPDELAY    10000
+#define GAMEBOULDERDASHLEVELTHREEFUSESTEPDELAY  20000
+
+#define GAMEBOULDERDASHSOUTROANIMATIONFAILDELAY     75
+#define GAMEBOULDERDASHSOUTROANIMATIONSUCCESSDELAY 100
+#define GAMEBOULDERDASHSOUTRODELAY                3000
 
 enum rockyMoveDirection { rmdUp, rmdDown, rmdLeft, rmdRight };
 
@@ -157,6 +161,12 @@ private:
     
     void _generateSolidRect(byte topX, byte topY, byte bottomX, byte bottomY, byte solid);
     
+    void _generateBoulderRectWithVoid(byte topX, byte topY, byte bottomX, byte bottomY);
+    
+    void _generateBoulderRectWithDiamonds(byte topX, byte topY, byte bottomX, byte bottomY);
+    
+    void _generateBoulderRect(byte topX, byte topY, byte bottomX, byte bottomY, byte filler);
+    
     void _generateWallRect(byte topX, byte topY, byte bottomX, byte bottomY, byte filler);
     
     void _clearRocky();
@@ -177,8 +187,10 @@ private:
     
     void _ownOutro();
     
-    void _ownLevelOutro();
+    void _ownLevelOutroFail();
     
+    void _ownLevelOutroSuccess();
+
 protected:
     void _doInitialize();
     
