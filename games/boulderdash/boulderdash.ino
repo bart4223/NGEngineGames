@@ -48,7 +48,6 @@ void setup() {
   // Sound
   int jingleHelloDude = soundMachine.registerJingle(new NGJingleHelloDude());
   int jingleSuperMario = soundMachine.registerJingle(new NGJingleSuperMarioShort());
-  soundMachine.setConcurrently(true);
   soundMachine.initialize();
   // Game
   #if (PROD == false)

@@ -123,12 +123,12 @@ char* NGCustomGame::getName() {
     return _name;
 }
 
-bool NGCustomGame::hasSoundMachine() {
-    return _soundMachine != nullptr;
+void NGCustomGame::setPlayStartUpSoundConcurrently(bool concurrently) {
+    _playStartUpSoundConcurrently = concurrently;
 }
 
-bool NGCustomGame::isSoundConcurrently() {
-    return hasSoundMachine() && _soundMachine->getConcurrently();
+bool NGCustomGame::hasSoundMachine() {
+    return _soundMachine != nullptr;
 }
 
 bool NGCustomGame::hasSoundStartUp() {
@@ -162,8 +162,10 @@ void NGCustomGame::initialize() {
 }
 
 void NGCustomGame::startUp() {
-    bool concurrently = isSoundConcurrently();
-    if (concurrently) {
+    if (_playStartUpSoundConcurrently) {
+        if (hasSoundMachine()) {
+            _soundMachine->setConcurrently(true);
+        }
         if (hasSoundStartUp()) {
             _playSound(_soundStartUp);
         }
@@ -176,7 +178,7 @@ void NGCustomGame::startUp() {
     } else {
         _doStartUp();
     }
-    if (!concurrently && hasSoundStartUp()) {
+    if (!_playStartUpSoundConcurrently && hasSoundStartUp()) {
         _playSound(_soundStartUp);
     }
     if (_startUpDoneDelay > 0) {
@@ -273,6 +275,9 @@ void NGCustomGame::startGame() {
             writeInfo(log);
         }
         if (hasSoundStart()) {
+            if (hasSoundMachine()) {
+                _soundMachine->setConcurrently(false);
+            }
             _playSound(_soundStart);
         }
     }
@@ -307,6 +312,9 @@ void NGCustomGame::finishGame() {
         _doFinishGame();
         _gameStarted = false;
         if (hasSoundFinish()) {
+            if (hasSoundMachine()) {
+                _soundMachine->setConcurrently(false);
+            }
             _playSound(_soundFinish);
         }
         if (_logging) {

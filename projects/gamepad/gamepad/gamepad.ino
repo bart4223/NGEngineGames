@@ -1,5 +1,5 @@
 #define PROD true //false, true
-#define GAMES2
+#define GAMES3
 
 #include <NGMemoryObserver.h>
 #include <NGSimpleKeypad.h>
@@ -141,6 +141,7 @@ void setup() {
 }
 
 void loop() {
+  soundMachine.processingLoop();
   choosekeypad.processingLoop();
   if (gamepad.hasCurrentGame()) {
     gamekeypad.processingLoop();

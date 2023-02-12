@@ -15,6 +15,7 @@ NG8x8RGBMatrixGameBoulderdash::NG8x8RGBMatrixGameBoulderdash() {
     _scoreDirection = GAMEBOULDERDASHSCOREDIRECTION;
     _gameToggleMode = gtmBreakContinue;
     _autoRestartGame = true;
+    _playStartUpSoundConcurrently = true;
     _gameFinishedDelay = GAMEBOULDERDASHFINISHDELAY;
     _gameNextStepDelay = GAMEBOULDERDASHGRAVITYDELAY;
 }
@@ -781,19 +782,6 @@ void NG8x8RGBMatrixGameBoulderdash::_ownIntro() {
     _cdm->drawPoint(1, 5, globalBoulderdashColors[GAMEBOULDERDASHCOLORINDEXBOULDER - 1]);
     _cdm->drawPoint(6, 7, globalBoulderdashColors[GAMEBOULDERDASHCOLORINDEXBOULDER - 1]);
     _cdm->endUpdate();
-    if (!isSoundConcurrently()) {
-        for (int i = 0; i < 6; i++) {
-            if (i % 2 == 0) {
-                _cdm->drawPoint(2, 2, globalBoulderdashColors[GAMEBOULDERDASHCOLORINDEXROCKY - 1]);
-            } else {
-                _cdm->drawPoint(2, 2, COLOR_BLUE_LOW);
-            }
-            if (i < 5) {
-                delay(GAMEBOULDERDASHROCKYBLINKDELAY);
-            }
-        }
-        _startUpDone = true;
-    }
 }
 
 void NG8x8RGBMatrixGameBoulderdash::_ownIntroAnimation() {

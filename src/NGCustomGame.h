@@ -67,6 +67,7 @@ protected:
     bool _doRender = false;
     bool _autoRestartGame = false;
     int _soundStartUp = GAMENOSOUND;
+    bool _playStartUpSoundConcurrently = false;
     int _soundStart = GAMENOSOUND;
     int _soundFinish = GAMENOSOUND;
     int _startUpDoneDelay = 0;
@@ -123,9 +124,9 @@ public:
     
     char* getName();
     
-    bool hasSoundMachine();
+    void setPlayStartUpSoundConcurrently(bool concurrently);
     
-    bool isSoundConcurrently();
+    bool hasSoundMachine();
     
     bool hasSoundStartUp();
     
