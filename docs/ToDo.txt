@@ -1,5 +1,6 @@
 -CustomGame
 -Custom8x8RGBMatrixGame
   -Boulderdash
+    -bomb
     -Levels
 -GamePad
