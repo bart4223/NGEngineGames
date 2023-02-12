@@ -781,15 +781,31 @@ void NG8x8RGBMatrixGameBoulderdash::_ownIntro() {
     _cdm->drawPoint(1, 5, globalBoulderdashColors[GAMEBOULDERDASHCOLORINDEXBOULDER - 1]);
     _cdm->drawPoint(6, 7, globalBoulderdashColors[GAMEBOULDERDASHCOLORINDEXBOULDER - 1]);
     _cdm->endUpdate();
-    for (int i = 0; i < 6; i++) {
-        if (i % 2 == 0) {
+    if (!isSoundConcurrently()) {
+        for (int i = 0; i < 6; i++) {
+            if (i % 2 == 0) {
+                _cdm->drawPoint(2, 2, globalBoulderdashColors[GAMEBOULDERDASHCOLORINDEXROCKY - 1]);
+            } else {
+                _cdm->drawPoint(2, 2, COLOR_BLUE_LOW);
+            }
+            if (i < 5) {
+                delay(GAMEBOULDERDASHROCKYBLINKDELAY);
+            }
+        }
+        _startUpDone = true;
+    }
+}
+
+void NG8x8RGBMatrixGameBoulderdash::_ownIntroAnimation() {
+    if (_startUpAnimationStep == -1 || millis() - _lastStartUpAnimationStep >= GAMEBOULDERDASHROCKYBLINKDELAY) {
+        _startUpAnimationStep++;
+        if (_startUpAnimationStep % 2 == 0) {
             _cdm->drawPoint(2, 2, globalBoulderdashColors[GAMEBOULDERDASHCOLORINDEXROCKY - 1]);
         } else {
             _cdm->drawPoint(2, 2, COLOR_BLUE_LOW);
         }
-        if (i < 5) {
-            delay(GAMEBOULDERDASHROCKYBLINKDELAY);
-        }
+        _lastStartUpAnimationStep = millis();
+        _startUpDone = _startUpAnimationStep == 4;
     }
 }
 
@@ -920,12 +936,17 @@ void NG8x8RGBMatrixGameBoulderdash::_doInitialize() {
 }
 
 void NG8x8RGBMatrixGameBoulderdash::_doStartUp() {
-    if (_logging) {
-        char log[100];
-        sprintf(log, "%s.StartUp", _name);
-        writeInfo(log);
+    if (!_inStartUpAnimation) {
+        if (_logging) {
+            char log[100];
+            sprintf(log, "%s.StartUp", _name);
+            writeInfo(log);
+        }
+        _ownIntro();
+        _inStartUpAnimation = true;
+    } else {
+        _ownIntroAnimation();
     }
-    _ownIntro();
 }
 
 void NG8x8RGBMatrixGameBoulderdash::_doStartUpDone() {

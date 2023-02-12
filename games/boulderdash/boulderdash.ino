@@ -4,10 +4,13 @@
 #include <NGSimpleKeypad.h>
 #include <NGSerialNotification.h>
 #include <NGJingleHelloDude.h>
+#include <NGJingleSuperMarioShort.h>
 #include <NG8x8RGBMatrixGameBoulderdash.h>
 
 #define KEYDELAY      500
 #define JOYSTICKDELAY 100
+
+#define SOUNDPIN 44
 
 #define JOYSTICKID       0
 #define JOYSTICKPINX    A8
@@ -23,7 +26,7 @@
 #define STARTGAMEID  42
 
 NGSimpleKeypad keypad = NGSimpleKeypad();
-NGSoundMachine soundMachine = NGSoundMachine();
+NGSoundMachine soundMachine = NGSoundMachine(SOUNDPIN);
 NGJoystickControl joystick = NGJoystickControl(JOYSTICKID, JOYSTICKPINX, JOYSTICKPINY, JOYSTICKPINFIRE);
 NGColorDotMatrix cdm = NGColorDotMatrix();
 NG8x8RGBMatrixGameBoulderdash game = NG8x8RGBMatrixGameBoulderdash();
@@ -44,6 +47,8 @@ void setup() {
   cdm.initialize();
   // Sound
   int jingleHelloDude = soundMachine.registerJingle(new NGJingleHelloDude());
+  int jingleSuperMario = soundMachine.registerJingle(new NGJingleSuperMarioShort());
+  soundMachine.setConcurrently(true);
   soundMachine.initialize();
   // Game
   #if (PROD == false)
@@ -53,7 +58,7 @@ void setup() {
   game.registerGameKey(gfStartGame, STARTGAMEID);
   game.registerGameJoystick(&joystick);
   game.registerSoundMachine(&soundMachine);
-  game.registerSoundStartUp(jingleHelloDude);
+  game.registerSoundStartUp(jingleSuperMario);
   game.registerSoundStart(jingleHelloDude);
   game.registerColorDotMatrix(&cdm);
   game.initialize();
@@ -62,6 +67,7 @@ void setup() {
 }
 
 void loop() {
+  soundMachine.processingLoop();
   keypad.processingLoop();
   game.processingLoop();
 }

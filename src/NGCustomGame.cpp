@@ -48,7 +48,7 @@ void NGCustomGame::_doInitialized() {
 }
 
 void NGCustomGame::_playSound(int index) {
-    if (_soundMachine != nullptr && _doPlaySound) {
+    if (hasSoundMachine() && _doPlaySound) {
         _soundMachine->play(index);
     }
 }
@@ -123,6 +123,26 @@ char* NGCustomGame::getName() {
     return _name;
 }
 
+bool NGCustomGame::hasSoundMachine() {
+    return _soundMachine != nullptr;
+}
+
+bool NGCustomGame::isSoundConcurrently() {
+    return hasSoundMachine() && _soundMachine->getConcurrently();
+}
+
+bool NGCustomGame::hasSoundStartUp() {
+    return _soundStartUp != GAMENOSOUND;
+}
+
+bool NGCustomGame::hasSoundStart() {
+    return _soundStart != GAMENOSOUND;
+}
+
+bool NGCustomGame::hasSoundFinish() {
+    return _soundFinish != GAMENOSOUND;
+}
+
 void NGCustomGame::setDoPlaySound(bool doplaysound) {
     _doPlaySound = doplaysound;
 }
@@ -142,8 +162,21 @@ void NGCustomGame::initialize() {
 }
 
 void NGCustomGame::startUp() {
-    _doStartUp();
-    if (_soundStartUp != GAMENOSOUND) {
+    bool concurrently = isSoundConcurrently();
+    if (concurrently) {
+        if (hasSoundStartUp()) {
+            _playSound(_soundStartUp);
+        }
+        while (!_startUpDone) {
+            if (hasSoundMachine()) {
+                _soundMachine->processingLoop();
+            }
+            _doStartUp();
+        }
+    } else {
+        _doStartUp();
+    }
+    if (!concurrently && hasSoundStartUp()) {
         _playSound(_soundStartUp);
     }
     if (_startUpDoneDelay > 0) {
@@ -239,7 +272,7 @@ void NGCustomGame::startGame() {
             sprintf(log, "...Game \"%s\" started", _name);
             writeInfo(log);
         }
-        if (_soundStart != GAMENOSOUND) {
+        if (hasSoundStart()) {
             _playSound(_soundStart);
         }
     }
@@ -273,7 +306,7 @@ void NGCustomGame::finishGame() {
     if (_gameStarted) {
         _doFinishGame();
         _gameStarted = false;
-        if (_soundFinish != GAMENOSOUND) {
+        if (hasSoundFinish()) {
             _playSound(_soundFinish);
         }
         if (_logging) {

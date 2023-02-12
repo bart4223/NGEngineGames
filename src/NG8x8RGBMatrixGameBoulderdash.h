@@ -95,7 +95,7 @@ private:
     long _lastGravityMove = 0;
     long _lastNPCMove = 0;
     long _lastFuseStep = 0;
-    int  _fuseStepDelay = 0;
+    int _fuseStepDelay = 0;
     long _lastRockyBlinked = 0;
     byte _rockyBlinkIndex = 0;
     byte _livesCounter = GAMEBOULDERDASHLIVES;
@@ -108,6 +108,9 @@ private:
     bool _levelRetry = false;
     byte _posXRocky = 0;
     byte _posYRocky = 0;
+    bool _inStartUpAnimation = false;
+    int _startUpAnimationStep = -1;
+    long _lastStartUpAnimationStep = 0;
     
     void _resetMaze();
     
@@ -184,6 +187,8 @@ private:
     void _ownRender();
     
     void _ownIntro();
+    
+    void _ownIntroAnimation();
     
     void _ownOutro();
     

@@ -70,6 +70,7 @@ protected:
     int _soundStart = GAMENOSOUND;
     int _soundFinish = GAMENOSOUND;
     int _startUpDoneDelay = 0;
+    bool _startUpDone = false;
     bool _doPlaySound = true;
     bool _testMode = false;
 
@@ -121,6 +122,16 @@ public:
     bool getLogging();
     
     char* getName();
+    
+    bool hasSoundMachine();
+    
+    bool isSoundConcurrently();
+    
+    bool hasSoundStartUp();
+    
+    bool hasSoundStart();
+    
+    bool hasSoundFinish();
     
     void setDoPlaySound(bool doplaysound);
     
