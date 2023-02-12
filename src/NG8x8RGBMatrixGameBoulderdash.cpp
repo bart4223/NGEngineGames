@@ -794,6 +794,9 @@ void NG8x8RGBMatrixGameBoulderdash::_ownIntroAnimation() {
         }
         _lastStartUpAnimationStep = millis();
         _startUpDone = _startUpAnimationStep == 4;
+        if (_startUpDone) {
+            _inStartUpAnimation = false;
+        }
     }
 }
 
@@ -932,6 +935,7 @@ void NG8x8RGBMatrixGameBoulderdash::_doStartUp() {
         }
         _ownIntro();
         _inStartUpAnimation = true;
+        _startUpAnimationStep = -1;
     } else {
         _ownIntroAnimation();
     }

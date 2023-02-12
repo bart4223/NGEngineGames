@@ -52,7 +52,10 @@ private:
     byte _tetrominoColor = 0;
     int _maze[GAMETETRISMAZESIZEY][GAMETETRISMAZESIZEX];
     long _lastTetrominoMove = 0;
-    
+    bool _inStartUpAnimation = false;
+    int _startUpAnimationStep = -1;
+    long _lastStartUpAnimationStep = 0;
+
     void _resetMaze();
     
     void _clearTetromino();
@@ -72,6 +75,8 @@ private:
     void _ownRender();
     
     void _ownIntro();
+    
+    void _ownIntroAnimation();
     
     void _ownOutro();
     

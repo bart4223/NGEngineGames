@@ -12,6 +12,7 @@ NG8x8RGBMatrixGameTetris::NG8x8RGBMatrixGameTetris() {
     _scoreDigits = GAMETETRISSCOREDIGITS;
     _gameToggleMode = gtmBreakContinue;
     _autoRestartGame = true;
+    _playStartUpSoundConcurrently = true;
     _gameFinishedDelay = GAMETETRISFINISHDELAY;
     _gameNextStepDelay = GAMETETRISMOVEDELAY;
 }
@@ -274,12 +275,18 @@ void NG8x8RGBMatrixGameTetris::_doInitialize() {
 }
 
 void NG8x8RGBMatrixGameTetris::_doStartUp() {
-    if (_logging) {
-        char log[100];
-        sprintf(log, "%s.StartUp", _name);
-        writeInfo(log);
+    if (!_inStartUpAnimation) {
+        if (_logging) {
+            char log[100];
+            sprintf(log, "%s.StartUp", _name);
+            writeInfo(log);
+        }
+        _ownIntro();
+        _inStartUpAnimation = true;
+        _startUpAnimationStep = -1;
+    } else {
+        _ownIntroAnimation();
     }
-    _ownIntro();
 }
 
 void NG8x8RGBMatrixGameTetris::_doStartUpDone() {
@@ -404,12 +411,17 @@ void NG8x8RGBMatrixGameTetris::_ownIntro() {
     c.blue = globalTetrominoColors[2][2];
     _cdm->drawPoint(6, 7, c);
     _cdm->drawPoint(7, 7, c);
-    for (int i = 0; i < GAMETETRISSPLASHTIMES; i++) {
+}
+
+void NG8x8RGBMatrixGameTetris::_ownIntroAnimation() {
+    if (_startUpAnimationStep == -1 || millis() - _lastStartUpAnimationStep >= GAMETETRISSPLASHDELAY) {
+        _startUpAnimationStep++;
         _cdm->beginUpdate();
-        c.red = globalTetrominoColors[i%4][0];
-        c.green = globalTetrominoColors[i%4][1];
-        c.blue = globalTetrominoColors[i%4][2];
-        switch(i%4) {
+        colorRGB c;
+        c.red = globalTetrominoColors[_startUpAnimationStep%4][0];
+        c.green = globalTetrominoColors[_startUpAnimationStep%4][1];
+        c.blue = globalTetrominoColors[_startUpAnimationStep%4][2];
+        switch(_startUpAnimationStep%4) {
             case 0:
                 _cdm->drawPoint(3, 2, c);
                 _cdm->drawPoint(4, 2, COLOR_BLACK);
@@ -436,7 +448,11 @@ void NG8x8RGBMatrixGameTetris::_ownIntro() {
                 break;
         }
         _cdm->endUpdate();
-        delay(GAMETETRISSPLASHDELAY);
+        _lastStartUpAnimationStep = millis();
+        _startUpDone = _startUpAnimationStep == GAMETETRISSPLASHTIMES;
+        if (_startUpDone) {
+            _inStartUpAnimation = false;
+        }
     }
 }
 

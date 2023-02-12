@@ -162,6 +162,7 @@ void NGCustomGame::initialize() {
 }
 
 void NGCustomGame::startUp() {
+    _startUpDone = false;
     if (_playStartUpSoundConcurrently) {
         if (hasSoundMachine()) {
             _soundMachine->setConcurrently(true);
