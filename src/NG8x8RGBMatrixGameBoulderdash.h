@@ -47,16 +47,22 @@
 #define GAMEBOULDERDASHLIVES    3
 #define GAMEBOULDERDASHMAXFUSE  8
 
-#define GAMEBOULDERDASHCOLORINDEXVOID       0
-#define GAMEBOULDERDASHCOLORINDEXDIRT       1
-#define GAMEBOULDERDASHCOLORINDEXROCKY      2
-#define GAMEBOULDERDASHCOLORINDEXBOULDER    3
-#define GAMEBOULDERDASHCOLORINDEXDIAMOND    4
-#define GAMEBOULDERDASHCOLORINDEXWALL       5
-#define GAMEBOULDERDASHCOLORINDEXNPCUP      6
-#define GAMEBOULDERDASHCOLORINDEXNPCDOWN    7
-#define GAMEBOULDERDASHCOLORINDEXNPCLEFT    8
-#define GAMEBOULDERDASHCOLORINDEXNPCRIGHT   9
+#define GAMEBOULDERDASHCOLORINDEXVOID            0
+#define GAMEBOULDERDASHCOLORINDEXDIRT            1
+#define GAMEBOULDERDASHCOLORINDEXROCKY           2
+#define GAMEBOULDERDASHCOLORINDEXBOULDER         3
+#define GAMEBOULDERDASHCOLORINDEXDIAMOND         4
+#define GAMEBOULDERDASHCOLORINDEXWALL            5
+#define GAMEBOULDERDASHCOLORINDEXNPCUP           6
+#define GAMEBOULDERDASHCOLORINDEXNPCDOWN         7
+#define GAMEBOULDERDASHCOLORINDEXNPCLEFT         8
+#define GAMEBOULDERDASHCOLORINDEXNPCRIGHT        9
+#define GAMEBOULDERDASHCOLORINDEXBOMBINACTIVE   10
+#define GAMEBOULDERDASHCOLORINDEXBOMBACTIVE01   11
+#define GAMEBOULDERDASHCOLORINDEXBOMBACTIVE02   12
+#define GAMEBOULDERDASHCOLORINDEXBOMBACTIVE03   13
+#define GAMEBOULDERDASHCOLORINDEXBOMBACTIVE04   14
+#define GAMEBOULDERDASHCOLORINDEXBOMBACTIVE05   15
 
 #define GAMEBOULDERDASHLEVELONE     1
 #define GAMEBOULDERDASHLEVELTWO     2
@@ -74,16 +80,22 @@
 
 enum rockyMoveDirection { rmdUp, rmdDown, rmdLeft, rmdRight };
 
-static colorRGB globalBoulderdashColors[9] = {
-  COLOR_BROWN,  // Dirt
-  COLOR_BLUE,   // Rocky
-  COLOR_WHITE,  // Boulder
-  COLOR_TEAL,   // Diamond
-  COLOR_PURPLE, // Wall
-  COLOR_GREEN,  // NPC Up
-  COLOR_GREEN,  // NPC Down
-  COLOR_GREEN,  // NPC Left
-  COLOR_GREEN   // NPC Right
+static colorRGB globalBoulderdashColors[15] = {
+  COLOR_BROWN,   // Dirt
+  COLOR_BLUE,    // Rocky
+  COLOR_WHITE,   // Boulder
+  COLOR_TEAL,    // Diamond
+  COLOR_PURPLE,  // Wall
+  COLOR_GREEN,   // NPC Up
+  COLOR_GREEN,   // NPC Down
+  COLOR_GREEN,   // NPC Left
+  COLOR_GREEN,   // NPC Right
+  COLOR_RED_LOW, // Bomb inactive
+  COLOR_RED,     // Bomb active 1
+  COLOR_RED_LOW, // Bomb active 2
+  COLOR_RED,     // Bomb active 3
+  COLOR_RED_LOW, // Bomb active 4
+  COLOR_RED      // Bomb active 5
 };
 
 class NG8x8RGBMatrixGameBoulderdash : public NGCustom8x8RGBMatrixGame {
@@ -146,6 +158,8 @@ private:
     
     void _generateDiamond(byte x, byte y);
     
+    void _generateBomb(byte x, byte y);
+    
     void _generateBoulder(byte x, byte y);
     
     void _generateBoulderLine(byte topX, byte topY, byte bottomX, byte bottomY);
@@ -169,6 +183,8 @@ private:
     void _generateBoulderRectWithDiamonds(byte topX, byte topY, byte bottomX, byte bottomY);
     
     void _generateBoulderRect(byte topX, byte topY, byte bottomX, byte bottomY, byte filler);
+    
+    void _generateWallRectWithVoid(byte topX, byte topY, byte bottomX, byte bottomY);
     
     void _generateWallRect(byte topX, byte topY, byte bottomX, byte bottomY, byte filler);
     

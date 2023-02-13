@@ -124,6 +124,10 @@ public:
     
     char* getName();
     
+    void setTestMode(bool testmode);
+    
+    bool getTestMode();
+    
     void setPlayStartUpSoundConcurrently(bool concurrently);
     
     bool hasSoundMachine();

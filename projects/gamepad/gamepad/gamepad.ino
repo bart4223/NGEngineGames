@@ -5,6 +5,7 @@
 #include <NGSimpleKeypad.h>
 #include <NGJingleHelloDude.h>
 #include <NGJingleSuperMarioShort.h>
+#include <NGJingleGorilla.h>
 #include <NGSerialNotification.h>
 #include <NGBinaryClockUnitControl.h>
 #include <NGGamePad.h>
@@ -107,7 +108,8 @@ void setup() {
   // ColorDotMatrix
   cdm.initialize();
   // Sound
-  int jingleStartUp = soundMachine.registerJingle(new NGJingleSuperMarioShort());
+  int jingleStartUpOne = soundMachine.registerJingle(new NGJingleGorilla());
+  int jingleStartUpTwo = soundMachine.registerJingle(new NGJingleSuperMarioShort());
   int jingleStart = soundMachine.registerJingle(new NGJingleHelloDude());
   soundMachine.initialize();
   // Game "One"
@@ -115,7 +117,7 @@ void setup() {
   gameOne.registerGameKey(gfStartGame, STARTGAMEID);
   gameOne.registerGameJoystick(&joystick);
   gameOne.registerSoundMachine(&soundMachine);
-  gameOne.registerSoundStartUp(jingleStartUp);
+  gameOne.registerSoundStartUp(jingleStartUpOne);
   gameOne.registerSoundStart(jingleStart);
   gameOne.registerColorDotMatrix(&cdm);
   // Game "Two"
@@ -123,7 +125,7 @@ void setup() {
   gameTwo.registerGameKey(gfStartGame, STARTGAMEID);
   gameTwo.registerGameJoystick(&joystick);
   gameTwo.registerSoundMachine(&soundMachine);
-  gameTwo.registerSoundStartUp(jingleStartUp);
+  gameTwo.registerSoundStartUp(jingleStartUpTwo);
   gameTwo.registerSoundStart(jingleStart);
   gameTwo.registerColorDotMatrix(&cdm);
   // Init

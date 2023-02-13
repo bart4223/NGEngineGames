@@ -52,6 +52,7 @@ void setup() {
   // Game
   #if (PROD == false)
   game.setLogging(true);
+  game.setTestMode(true);
   game.registerNotification(new NGSerialNotification());
   #endif
   game.registerGameKey(gfStartGame, STARTGAMEID);
@@ -61,8 +62,8 @@ void setup() {
   game.registerSoundStart(jingleHelloDude);
   game.registerColorDotMatrix(&cdm);
   game.initialize();
-  observeMemory(0);
   game.startUp();
+  observeMemory(0);
 }
 
 void loop() {

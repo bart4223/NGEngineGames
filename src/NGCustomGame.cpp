@@ -123,6 +123,14 @@ char* NGCustomGame::getName() {
     return _name;
 }
 
+void NGCustomGame::setTestMode(bool testmode) {
+    _testMode = testmode;
+}
+
+bool NGCustomGame::getTestMode() {
+    return _testMode;
+}
+
 void NGCustomGame::setPlayStartUpSoundConcurrently(bool concurrently) {
     _playStartUpSoundConcurrently = concurrently;
 }
