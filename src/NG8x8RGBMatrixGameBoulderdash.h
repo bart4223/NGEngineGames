@@ -41,6 +41,7 @@
 
 #define GAMEBOULDERDASHGRAVITYDELAY      50
 #define GAMEBOULDERDASHSNPCDELAY        300
+#define GAMEBOULDERDASHSBOMBDELAY       400
 #define GAMEBOULDERDASHROCKYBLINKDELAY  500
 #define GAMEBOULDERDASHFINISHDELAY     1000
 
@@ -63,6 +64,11 @@
 #define GAMEBOULDERDASHCOLORINDEXBOMBACTIVE03   13
 #define GAMEBOULDERDASHCOLORINDEXBOMBACTIVE04   14
 #define GAMEBOULDERDASHCOLORINDEXBOMBACTIVE05   15
+#define GAMEBOULDERDASHCOLORINDEXBOMBACTIVE06   16
+#define GAMEBOULDERDASHCOLORINDEXBOMBACTIVE07   17
+#define GAMEBOULDERDASHCOLORINDEXBOMBACTIVE08   18
+#define GAMEBOULDERDASHCOLORINDEXBOMBACTIVE09   19
+#define GAMEBOULDERDASHCOLORINDEXBOMBDESTROYED  20
 
 #define GAMEBOULDERDASHLEVELONE     1
 #define GAMEBOULDERDASHLEVELTWO     2
@@ -80,7 +86,7 @@
 
 enum rockyMoveDirection { rmdUp, rmdDown, rmdLeft, rmdRight };
 
-static colorRGB globalBoulderdashColors[15] = {
+static colorRGB globalBoulderdashColors[20] = {
   COLOR_BROWN,   // Dirt
   COLOR_BLUE,    // Rocky
   COLOR_WHITE,   // Boulder
@@ -95,7 +101,12 @@ static colorRGB globalBoulderdashColors[15] = {
   COLOR_RED_LOW, // Bomb active 2
   COLOR_RED,     // Bomb active 3
   COLOR_RED_LOW, // Bomb active 4
-  COLOR_RED      // Bomb active 5
+  COLOR_RED,     // Bomb active 5
+  COLOR_RED_LOW, // Bomb active 6
+  COLOR_RED,     // Bomb active 7
+  COLOR_RED_LOW, // Bomb active 8
+  COLOR_RED,     // Bomb active 9
+  COLOR_RED      // Bomb detroyed
 };
 
 class NG8x8RGBMatrixGameBoulderdash : public NGCustom8x8RGBMatrixGame {
@@ -123,8 +134,11 @@ private:
     bool _inStartUpAnimation = false;
     int _startUpAnimationStep = -1;
     long _lastStartUpAnimationStep = 0;
+    long _lastBombIgnition = 0;
     
     void _resetMaze();
+    
+    bool _isColorIndexBomb(int index);
     
     void _computeGravity();
     
@@ -187,6 +201,10 @@ private:
     void _generateWallRectWithVoid(byte topX, byte topY, byte bottomX, byte bottomY);
     
     void _generateWallRect(byte topX, byte topY, byte bottomX, byte bottomY, byte filler);
+    
+    bool _checkBomb();
+    
+    void _computeBomb();
     
     void _clearRocky();
     
