@@ -69,16 +69,20 @@
 #define GAMEBOULDERDASHCOLORINDEXBOMBACTIVE08   18
 #define GAMEBOULDERDASHCOLORINDEXBOMBACTIVE09   19
 #define GAMEBOULDERDASHCOLORINDEXBOMBDESTROYED  20
+#define GAMEBOULDERDASHCOLORINDEXDOORINACTIVE   21
+#define GAMEBOULDERDASHCOLORINDEXDOORACTIVE     22
 
 #define GAMEBOULDERDASHLEVELONE     1
 #define GAMEBOULDERDASHLEVELTWO     2
 #define GAMEBOULDERDASHLEVELTHREE   3
+#define GAMEBOULDERDASHLEVELFOUR    4
 #define GAMEBOULDERDASHSTARTLEVEL   1
-#define GAMEBOULDERDASHMAXLEVEL     3
+#define GAMEBOULDERDASHMAXLEVEL     4
 
 #define GAMEBOULDERDASHLEVELONEFUSESTEPDELAY     5000
 #define GAMEBOULDERDASHLEVELTWOFUSESTEPDELAY    10000
 #define GAMEBOULDERDASHLEVELTHREEFUSESTEPDELAY  20000
+#define GAMEBOULDERDASHLEVELFOURFUSESTEPDELAY   20000
 
 #define GAMEBOULDERDASHSOUTROANIMATIONFAILDELAY     75
 #define GAMEBOULDERDASHSOUTROANIMATIONSUCCESSDELAY 100
@@ -86,27 +90,29 @@
 
 enum rockyMoveDirection { rmdUp, rmdDown, rmdLeft, rmdRight };
 
-static colorRGB globalBoulderdashColors[20] = {
-  COLOR_BROWN,   // Dirt
-  COLOR_BLUE,    // Rocky
-  COLOR_WHITE,   // Boulder
-  COLOR_TEAL,    // Diamond
-  COLOR_PURPLE,  // Wall
-  COLOR_GREEN,   // NPC Up
-  COLOR_GREEN,   // NPC Down
-  COLOR_GREEN,   // NPC Left
-  COLOR_GREEN,   // NPC Right
-  COLOR_RED_LOW, // Bomb inactive
-  COLOR_RED,     // Bomb active 1
-  COLOR_RED_LOW, // Bomb active 2
-  COLOR_RED,     // Bomb active 3
-  COLOR_RED_LOW, // Bomb active 4
-  COLOR_RED,     // Bomb active 5
-  COLOR_RED_LOW, // Bomb active 6
-  COLOR_RED,     // Bomb active 7
-  COLOR_RED_LOW, // Bomb active 8
-  COLOR_RED,     // Bomb active 9
-  COLOR_RED      // Bomb detroyed
+static colorRGB globalBoulderdashColors[22] = {
+  COLOR_BROWN,      // Dirt
+  COLOR_BLUE,       // Rocky
+  COLOR_WHITE,      // Boulder
+  COLOR_TEAL,       // Diamond
+  COLOR_PURPLE,     // Wall
+  COLOR_GREEN,      // NPC Up
+  COLOR_GREEN,      // NPC Down
+  COLOR_GREEN,      // NPC Left
+  COLOR_GREEN,      // NPC Right
+  COLOR_RED_LOW,    // Bomb inactive
+  COLOR_RED,        // Bomb active 1
+  COLOR_RED_LOW,    // Bomb active 2
+  COLOR_RED,        // Bomb active 3
+  COLOR_RED_LOW,    // Bomb active 4
+  COLOR_RED,        // Bomb active 5
+  COLOR_RED_LOW,    // Bomb active 6
+  COLOR_RED,        // Bomb active 7
+  COLOR_RED_LOW,    // Bomb active 8
+  COLOR_RED,        // Bomb active 9
+  COLOR_RED,        // Bomb detroyed
+  COLOR_YELLOW_LOW, // Door inactive
+  COLOR_YELLOW      // Door active
 };
 
 class NG8x8RGBMatrixGameBoulderdash : public NGCustom8x8RGBMatrixGame {
@@ -128,6 +134,7 @@ private:
     byte _level = GAMEBOULDERDASHSTARTLEVEL;
     byte _levelDiamonds = 0;
     bool _levelFinished = false;
+    bool _doorEntered = false;
     bool _levelRetry = false;
     byte _posXRocky = 0;
     byte _posYRocky = 0;
@@ -154,6 +161,8 @@ private:
     
     void _initLevelThreeMaze();
     
+    void _initLevelFourMaze();
+    
     void _generateNPCUp(byte x, byte y);
     
     void _generateNPCDown(byte x, byte y);
@@ -171,6 +180,8 @@ private:
     void _generateDirt(byte x, byte y);
     
     void _generateDiamond(byte x, byte y);
+    
+    void _generateDoor(byte x, byte y);
     
     void _generateBomb(byte x, byte y);
     
@@ -205,6 +216,8 @@ private:
     bool _checkBomb();
     
     void _computeBomb();
+    
+    void _computeDoor();
     
     void _clearRocky();
     
