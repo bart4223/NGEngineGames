@@ -536,7 +536,7 @@ void NG8x8RGBMatrixGameBoulderdash::_initLevelTwoMaze() {
     _generateDiamond(6, 21);
     _generateDiamond(19, 23);
     // Door
-    _generateDoor(x, y);
+    _generateDoor(23, 15);
     // Rocky
     _computeRocky();
 }
