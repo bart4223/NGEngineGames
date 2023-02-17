@@ -148,6 +148,8 @@ private:
     
     bool _isColorIndexBomb(int index);
     
+    bool _isColorIndexNPC(int index);
+    
     void _computeGravity();
     
     void _computeNPC();
