@@ -611,7 +611,7 @@ void NG8x8RGBMatrixGameBoulderdash::_initLevelThreeMaze() {
     _generateNPCUp(7, 21);
     _generateNPCRight(20, 17);
     // Door
-    _generateDoor(x, y);
+    _generateDoor(14, 14);
     // Rocky
     _computeRocky();
 }
@@ -620,7 +620,7 @@ void NG8x8RGBMatrixGameBoulderdash::_initLevelFourMaze() {
     // Dirt
     _generateDirtRect(0, 0, GAMEBOULDERDASHMAZESIZEX - 1, GAMEBOULDERDASHMAZESIZEY - 1);
     // Door
-    _generateDoor(x, y);
+    _generateDoor(0, 0);
     // Rocky
     _computeRocky();
 }
