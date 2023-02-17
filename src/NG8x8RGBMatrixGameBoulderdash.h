@@ -48,6 +48,7 @@
 #define GAMEBOULDERDASHLIVES    3
 #define GAMEBOULDERDASHMAXFUSE  8
 
+#define GAMEBOULDERDASHCOLORINDEXNONE           -1
 #define GAMEBOULDERDASHCOLORINDEXVOID            0
 #define GAMEBOULDERDASHCOLORINDEXDIRT            1
 #define GAMEBOULDERDASHCOLORINDEXROCKY           2
@@ -211,7 +212,9 @@ private:
     
     void _generateWallRectWithVoid(byte topX, byte topY, byte bottomX, byte bottomY);
     
-    void _generateWallRect(byte topX, byte topY, byte bottomX, byte bottomY, byte filler);
+    void _generateWallRectWithNone(byte topX, byte topY, byte bottomX, byte bottomY);
+    
+    void _generateWallRect(byte topX, byte topY, byte bottomX, byte bottomY, int filler);
     
     bool _checkBomb();
     

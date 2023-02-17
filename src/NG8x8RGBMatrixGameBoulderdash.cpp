@@ -396,10 +396,10 @@ void NG8x8RGBMatrixGameBoulderdash::_initLevel() {
             _initLevelTwoMaze();
             break;
         case GAMEBOULDERDASHLEVELTHREE:
-            _posXRocky = 0;
+            _posXRocky = 3;
             _posYRocky = 0;
             _calculateViewPos();
-            _levelDiamonds = 9;
+            _levelDiamonds = 11;
             _fuseStepDelay = GAMEBOULDERDASHLEVELTHREEFUSESTEPDELAY;
             _initLevelThreeMaze();
             break;
@@ -407,7 +407,7 @@ void NG8x8RGBMatrixGameBoulderdash::_initLevel() {
             _posXRocky = 0;
             _posYRocky = 0;
             _calculateViewPos();
-            _levelDiamonds = 1;
+            _levelDiamonds = 9;
             _fuseStepDelay = GAMEBOULDERDASHLEVELFOURFUSESTEPDELAY;
             _initLevelFourMaze();
             break;
@@ -545,6 +545,91 @@ void NG8x8RGBMatrixGameBoulderdash::_initLevelThreeMaze() {
     // Dirt
     _generateDirtRect(0, 0, GAMEBOULDERDASHMAZESIZEX - 1, GAMEBOULDERDASHMAZESIZEY - 1);
     // Void
+    _generateVoidRect(21, 19, 23, 23);
+    _generateVoidRect(12, 19, 13, 23);
+    _generateVoidLine(12, 8, 13, 8);
+    _generateVoid(13, 7);
+    _generateVoid(13, 10);
+    _generateVoid(15, 12);
+    _generateVoid(5, 13);
+    // Wall
+    _generateWallLine(0, 4, 3, 7);
+    _generateWallLine(0, 8, 2, 8);
+    _generateWallLine(7, 0, 9, 2);
+    _generateWallLine(5, 7, 8, 3);
+    _generateWallLine(11, 8, 15, 4);
+    _generateWallLine(16, 4, 19, 7);
+    _generateWallLine(20, 8, 20, 10);
+    _generateWall(19, 10);
+    _generateWallLine(11, 9, 15, 13);
+    _generateWallLine(16, 13, 19, 13);
+    _generateWallRectWithNone(4, 12, 8, 15);
+    _generateWallLine(0, 22, 9, 22);
+    _generateWallLine(9, 18, 9, 22);
+    _generateWallLine(11, 18, 11, 23);
+    _generateWallLine(14, 18, 14, 23);
+    _generateWallLine(12, 18, 13, 18);
+    _generateWallLine(20, 18, 20, 23);
+    _generateWallLine(21, 18, 23, 18);
+    // Boulders
+    _generateBoulderLine(6, 1, 6, 2);
+    _generateBoulderLine(4, 4, 4, 5);
+    _generateBoulder(2, 3);
+    _generateBoulderLine(12, 0, 12, 1);
+    _generateBoulderLine(18, 1, 19, 0);
+    _generateBoulderLine(17, 2, 19, 4);
+    _generateBoulder(20, 3);
+    _generateBoulderLine(11, 4, 12, 4);
+    _generateBoulder(10, 6);
+    _generateBoulder(23, 6);
+    _generateBoulder(15, 8);
+    _generateBoulder(17, 8);
+    _generateBoulder(16, 9);
+    _generateBoulder(12, 9);
+    _generateBoulder(4, 9);
+    _generateBoulderLine(0, 11, 1, 11);
+    _generateBoulder(22, 12);
+    _generateBoulderLine(0, 14, 1, 14);
+    _generateBoulder(1, 15);
+    _generateBoulderLine(0, 16, 1, 16);
+    _generateBoulderLine(11, 14, 11, 15);
+    _generateBoulderLine(12, 15, 13, 16);
+    _generateBoulder(21, 15);
+    _generateBoulderLine(2, 18, 7, 18);
+    _generateBoulderLine(2, 19, 2, 21);
+    _generateBoulder(4, 21);
+    _generateBoulderLine(3, 18, 7, 18);
+    _generateBoulder(5, 19);
+    _generateBoulderLine(16, 18, 17, 17);
+    _generateBoulder(16, 19);
+    _generateBoulderLine(18, 21, 18, 23);
+    _generateBoulder(19, 21);
+    // Diamonds
+    _generateDiamond(5, 2);
+    _generateDiamond(17, 1);
+    _generateDiamond(23, 7);
+    _generateDiamond(12, 5);
+    _generateDiamond(16, 8);
+    _generateDiamond(7, 14);
+    _generateDiamond(0, 15);
+    _generateDiamond(12, 16);
+    _generateDiamond(3, 21);
+    _generateDiamond(2, 23);
+    _generateDiamond(19, 23);
+    // Bombs
+    _generateBomb(21, 2);
+    _generateBomb(7, 7);
+    _generateBomb(17, 14);
+    // Door
+    _generateDoor(0, 23);
+    // Rocky
+    _computeRocky();
+}
+
+void NG8x8RGBMatrixGameBoulderdash::_initLevelFourMaze() {
+    // Dirt
+    _generateDirtRect(0, 0, GAMEBOULDERDASHMAZESIZEX - 1, GAMEBOULDERDASHMAZESIZEY - 1);
+    // Void
     _generateVoidLine(6, 16, 6, 18);
     _generateVoidRect(5, 19, 7, 21);
     _generateVoidLine(7, 10, 10, 10);
@@ -605,6 +690,9 @@ void NG8x8RGBMatrixGameBoulderdash::_initLevelThreeMaze() {
     _generateDiamond(17, 11);
     _generateDiamond(0, 17);
     _generateDiamond(15, 23);
+    // Bombs
+    _generateBomb(6, 9);
+    _generateBomb(22, 15);
     // NPC
     _generateNPCLeft(9, 10);
     _generateNPCRight(20, 10);
@@ -612,15 +700,6 @@ void NG8x8RGBMatrixGameBoulderdash::_initLevelThreeMaze() {
     _generateNPCRight(20, 17);
     // Door
     _generateDoor(14, 14);
-    // Rocky
-    _computeRocky();
-}
-
-void NG8x8RGBMatrixGameBoulderdash::_initLevelFourMaze() {
-    // Dirt
-    _generateDirtRect(0, 0, GAMEBOULDERDASHMAZESIZEX - 1, GAMEBOULDERDASHMAZESIZEY - 1);
-    // Door
-    _generateDoor(0, 0);
     // Rocky
     _computeRocky();
 }
@@ -746,12 +825,16 @@ void NG8x8RGBMatrixGameBoulderdash::_generateWallRectWithVoid(byte topX, byte to
     _generateWallRect(topX, topY, bottomX, bottomY, GAMEBOULDERDASHCOLORINDEXVOID);
 }
 
-void NG8x8RGBMatrixGameBoulderdash::_generateWallRect(byte topX, byte topY, byte bottomX, byte bottomY, byte filler) {
+void NG8x8RGBMatrixGameBoulderdash::_generateWallRectWithNone(byte topX, byte topY, byte bottomX, byte bottomY) {
+    _generateWallRect(topX, topY, bottomX, bottomY, GAMEBOULDERDASHCOLORINDEXNONE);
+}
+
+void NG8x8RGBMatrixGameBoulderdash::_generateWallRect(byte topX, byte topY, byte bottomX, byte bottomY, int filler) {
     for (int y = topY; y <= bottomY; y++) {
         for (int x = topX; x <= bottomX; x++) {
             if (y == topY || y == bottomY || x == topX || x == bottomX) {
                 _generateWall(x, y);
-            } else {
+            } else if (filler >= 0) {
                 _maze[y][x] = filler;
             }
         }
