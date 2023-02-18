@@ -18,7 +18,7 @@
 #include <NGColorDotMatrixFuse.h>
 
 #define GAMEBOULDERDASHCOLORSCOREOFF  COLOR_BLACK
-#define GAMEBOULDERDASHCOLORSCOREON   COLOR_TEAL_LOW
+#define GAMEBOULDERDASHCOLORSCOREON   COLOR_TEAL
 #define GAMEBOULDERDASHCOLORLIVESOFF  COLOR_BLACK
 #define GAMEBOULDERDASHCOLORLIVESON   { .red = 0xCC, .green = 0x33, .blue = 0x33 }
 #define GAMEBOULDERDASHCOLORFUSEOFF   COLOR_BLACK
@@ -39,11 +39,12 @@
 #define GAMEBOULDERDASHLIVESDIGITYPOS     7
 #define GAMEBOULDERDASHLIVESDIRECTION bddUp
 
-#define GAMEBOULDERDASHGRAVITYDELAY      50
-#define GAMEBOULDERDASHSNPCDELAY        300
-#define GAMEBOULDERDASHSBOMBDELAY       400
-#define GAMEBOULDERDASHROCKYBLINKDELAY  500
-#define GAMEBOULDERDASHFINISHDELAY     1000
+#define GAMEBOULDERDASHGRAVITYDELAY         100
+#define GAMEBOULDERDASHSNPCDELAY            300
+#define GAMEBOULDERDASHSBOMBDELAY           400
+#define GAMEBOULDERDASHROCKYBLINKDELAY      500
+#define GAMEBOULDERDASHDIAMONDSPARKLEDELAY  400
+#define GAMEBOULDERDASHFINISHDELAY         1000
 
 #define GAMEBOULDERDASHLIVES    3
 #define GAMEBOULDERDASHMAXFUSE  8
@@ -53,7 +54,7 @@
 #define GAMEBOULDERDASHCOLORINDEXDIRT            1
 #define GAMEBOULDERDASHCOLORINDEXROCKY           2
 #define GAMEBOULDERDASHCOLORINDEXBOULDER         3
-#define GAMEBOULDERDASHCOLORINDEXDIAMOND         4
+#define GAMEBOULDERDASHCOLORINDEXDIAMOND01       4
 #define GAMEBOULDERDASHCOLORINDEXWALL            5
 #define GAMEBOULDERDASHCOLORINDEXNPCUP           6
 #define GAMEBOULDERDASHCOLORINDEXNPCDOWN         7
@@ -72,6 +73,7 @@
 #define GAMEBOULDERDASHCOLORINDEXBOMBDESTROYED  20
 #define GAMEBOULDERDASHCOLORINDEXDOORINACTIVE   21
 #define GAMEBOULDERDASHCOLORINDEXDOORACTIVE     22
+#define GAMEBOULDERDASHCOLORINDEXDIAMOND02      23
 
 #define GAMEBOULDERDASHLEVELONE     1
 #define GAMEBOULDERDASHLEVELTWO     2
@@ -91,11 +93,11 @@
 
 enum rockyMoveDirection { rmdUp, rmdDown, rmdLeft, rmdRight };
 
-static colorRGB globalBoulderdashColors[22] = {
+static colorRGB globalBoulderdashColors[23] = {
   COLOR_BROWN,      // Dirt
   COLOR_BLUE,       // Rocky
   COLOR_WHITE,      // Boulder
-  COLOR_TEAL,       // Diamond
+  COLOR_TEAL,       // Diamond 01
   COLOR_PURPLE,     // Wall
   COLOR_GREEN,      // NPC Up
   COLOR_GREEN,      // NPC Down
@@ -113,7 +115,8 @@ static colorRGB globalBoulderdashColors[22] = {
   COLOR_RED,        // Bomb active 9
   COLOR_RED,        // Bomb detroyed
   COLOR_YELLOW_LOW, // Door inactive
-  COLOR_YELLOW      // Door active
+  COLOR_YELLOW,     // Door active
+  COLOR_TEAL_LOW,   // Diamond 02
 };
 
 class NG8x8RGBMatrixGameBoulderdash : public NGCustom8x8RGBMatrixGame {
@@ -143,10 +146,13 @@ private:
     int _startUpAnimationStep = -1;
     long _lastStartUpAnimationStep = 0;
     long _lastBombIgnition = 0;
+    long _lastDiamondSparkle = 0;
     
     void _resetMaze();
     
     bool _isColorIndexBomb(int index);
+    
+    bool _isColorIndexDiamond(int index);
     
     bool _isColorIndexNPC(int index);
     
@@ -223,6 +229,8 @@ private:
     void _computeBomb();
     
     void _computeDoor();
+    
+    void _computeDiamond();
     
     void _clearRocky();
     

@@ -38,6 +38,10 @@ bool NG8x8RGBMatrixGameBoulderdash::_isColorIndexBomb(int index) {
     return (index >= GAMEBOULDERDASHCOLORINDEXBOMBINACTIVE) && (index <= GAMEBOULDERDASHCOLORINDEXBOMBACTIVE09);
 }
 
+bool NG8x8RGBMatrixGameBoulderdash::_isColorIndexDiamond(int index) {
+    return (index == GAMEBOULDERDASHCOLORINDEXDIAMOND01 || index == GAMEBOULDERDASHCOLORINDEXDIAMOND02);
+}
+
 bool NG8x8RGBMatrixGameBoulderdash::_isColorIndexNPC(int index) {
     return (index >= GAMEBOULDERDASHCOLORINDEXNPCUP) && (index <= GAMEBOULDERDASHCOLORINDEXNPCRIGHT);
 }
@@ -53,7 +57,7 @@ void NG8x8RGBMatrixGameBoulderdash::_computeGravity() {
                         _maze[y][x] = 0;
                         _maze[y + 1][x] = GAMEBOULDERDASHCOLORINDEXBOULDER;
                         checkRocky = true;
-                    } else if ((_maze[y + 1][x] == GAMEBOULDERDASHCOLORINDEXBOULDER || _maze[y + 1][x] == GAMEBOULDERDASHCOLORINDEXDIAMOND) || _isColorIndexBomb(_maze[y + 1][x])) {
+                    } else if ((_maze[y + 1][x] == GAMEBOULDERDASHCOLORINDEXBOULDER || _isColorIndexDiamond(_maze[y + 1][x])) || _isColorIndexBomb(_maze[y + 1][x])) {
                         if (x - 1 >= 0) {
                             if (_maze[y + 1][x - 1] == 0 && _maze[y][x - 1] == 0) {
                                 _maze[y][x] = 0;
@@ -71,26 +75,27 @@ void NG8x8RGBMatrixGameBoulderdash::_computeGravity() {
                             }
                         }
                     } else if ((_maze[y + 1][x] == GAMEBOULDERDASHCOLORINDEXNPCUP || _maze[y + 1][x] == GAMEBOULDERDASHCOLORINDEXNPCDOWN || _maze[y + 1][x] == GAMEBOULDERDASHCOLORINDEXNPCLEFT || _maze[y + 1][x] == GAMEBOULDERDASHCOLORINDEXNPCRIGHT)) {
-                        _maze[y + 1][x] = GAMEBOULDERDASHCOLORINDEXDIAMOND;
+                        _maze[y + 1][x] = GAMEBOULDERDASHCOLORINDEXDIAMOND01;
                         if (x > 0 && _maze[y + 1][x - 1] == 0 && _getYesOrNo()) {
-                            _maze[y + 1][x - 1] = GAMEBOULDERDASHCOLORINDEXDIAMOND;
+                            _maze[y + 1][x - 1] = GAMEBOULDERDASHCOLORINDEXDIAMOND01;
                         } else if (x < GAMEBOULDERDASHMAZESIZEX - 1 && _maze[y + 1][x + 1] == 0 && _getYesOrNo()) {
-                            _maze[y + 1][x - 1] = GAMEBOULDERDASHCOLORINDEXDIAMOND;
+                            _maze[y + 1][x - 1] = GAMEBOULDERDASHCOLORINDEXDIAMOND01;
                         } else if (y < GAMEBOULDERDASHMAZESIZEY - 2 && _maze[y + 2][x] == 0 && _getYesOrNo()) {
-                            _maze[y + 1][x - 1] = GAMEBOULDERDASHCOLORINDEXDIAMOND;
+                            _maze[y + 1][x - 1] = GAMEBOULDERDASHCOLORINDEXDIAMOND01;
                         }
                     }
                     break;
-                case GAMEBOULDERDASHCOLORINDEXDIAMOND:
+                case GAMEBOULDERDASHCOLORINDEXDIAMOND01:
+                case GAMEBOULDERDASHCOLORINDEXDIAMOND02:
                     if (_maze[y + 1][x] == 0) {
                         _maze[y][x] = 0;
-                        _maze[y + 1][x] = GAMEBOULDERDASHCOLORINDEXDIAMOND;
+                        _maze[y + 1][x] = GAMEBOULDERDASHCOLORINDEXDIAMOND01;
                         checkRocky = true;
-                    } else if ((_maze[y + 1][x] == GAMEBOULDERDASHCOLORINDEXBOULDER || _maze[y + 1][x] == GAMEBOULDERDASHCOLORINDEXDIAMOND) || _isColorIndexBomb(_maze[y + 1][x])) {
+                    } else if ((_maze[y + 1][x] == GAMEBOULDERDASHCOLORINDEXBOULDER || _isColorIndexDiamond(_maze[y + 1][x])) || _isColorIndexBomb(_maze[y + 1][x])) {
                         if (x - 1 >= 0) {
                             if (_maze[y + 1][x - 1] == 0 && _maze[y][x - 1] == 0) {
                                 _maze[y][x] = 0;
-                                _maze[y + 1][x - 1] = GAMEBOULDERDASHCOLORINDEXDIAMOND;
+                                _maze[y + 1][x - 1] = GAMEBOULDERDASHCOLORINDEXDIAMOND01;
                                 checkRocky = true;
                                 checkRockyOffset = -1;
                             }
@@ -98,7 +103,7 @@ void NG8x8RGBMatrixGameBoulderdash::_computeGravity() {
                         if (!checkRocky && (x + 1 < GAMEBOULDERDASHMAZESIZEX)) {
                             if (_maze[y + 1][x + 1] == 0 && _maze[y][x + 1] == 0) {
                                 _maze[y][x] = 0;
-                                _maze[y + 1][x + 1] = GAMEBOULDERDASHCOLORINDEXDIAMOND;
+                                _maze[y + 1][x + 1] = GAMEBOULDERDASHCOLORINDEXDIAMOND01;
                                 checkRocky = true;
                                 checkRockyOffset = 1;
                             }
@@ -120,7 +125,7 @@ void NG8x8RGBMatrixGameBoulderdash::_computeGravity() {
                         _maze[y][x] = 0;
                         _maze[y + 1][x] = index;
                         checkRocky = true;
-                    } else if ((_maze[y + 1][x] == GAMEBOULDERDASHCOLORINDEXBOULDER || _maze[y + 1][x] == GAMEBOULDERDASHCOLORINDEXDIAMOND) || _isColorIndexBomb(_maze[y + 1][x])) {
+                    } else if ((_maze[y + 1][x] == GAMEBOULDERDASHCOLORINDEXBOULDER || _isColorIndexDiamond(_maze[y + 1][x])) || _isColorIndexBomb(_maze[y + 1][x])) {
                         if (x - 1 >= 0) {
                             if (_maze[y + 1][x - 1] == 0 && _maze[y][x - 1] == 0) {
                                 _maze[y][x] = 0;
@@ -483,7 +488,7 @@ void NG8x8RGBMatrixGameBoulderdash::_initLevelOneMaze() {
             y = random(2, GAMEBOULDERDASHMAZESIZEY - 1);
             ok = _maze[y][x] == GAMEBOULDERDASHCOLORINDEXDIRT;
         } while (!ok);
-        _maze[y][x] = GAMEBOULDERDASHCOLORINDEXDIAMOND;
+        _maze[y][x] = GAMEBOULDERDASHCOLORINDEXDIAMOND01;
     }
     // Door
     _generateDoor(23, 23);
@@ -746,7 +751,7 @@ void NG8x8RGBMatrixGameBoulderdash::_generateDirt(byte x, byte y) {
 }
 
 void NG8x8RGBMatrixGameBoulderdash::_generateDiamond(byte x, byte y) {
-    _maze[y][x] = GAMEBOULDERDASHCOLORINDEXDIAMOND;
+    _maze[y][x] = GAMEBOULDERDASHCOLORINDEXDIAMOND01;
 }
 
 void NG8x8RGBMatrixGameBoulderdash::_generateDoor(byte x, byte y) {
@@ -815,7 +820,7 @@ void NG8x8RGBMatrixGameBoulderdash::_generateBoulderRectWithVoid(byte topX, byte
 }
 
 void NG8x8RGBMatrixGameBoulderdash::_generateBoulderRectWithDiamonds(byte topX, byte topY, byte bottomX, byte bottomY) {
-    _generateBoulderRect(topX, topY, bottomX, bottomY, GAMEBOULDERDASHCOLORINDEXDIAMOND);
+    _generateBoulderRect(topX, topY, bottomX, bottomY, GAMEBOULDERDASHCOLORINDEXDIAMOND01);
 }
 
 void NG8x8RGBMatrixGameBoulderdash::_generateBoulderRect(byte topX, byte topY, byte bottomX, byte bottomY, byte filler) {
@@ -886,7 +891,7 @@ void NG8x8RGBMatrixGameBoulderdash::_computeBomb() {
                     if (_maze[y][x - 1] == GAMEBOULDERDASHCOLORINDEXROCKY) {
                         rockykilled = true;
                     } else if (_isColorIndexNPC(_maze[y][x - 1])) {
-                        _maze[y][x - 1] = GAMEBOULDERDASHCOLORINDEXDIAMOND;
+                        _maze[y][x - 1] = GAMEBOULDERDASHCOLORINDEXDIAMOND01;
                     } else {
                         _maze[y][x - 1] = -GAMEBOULDERDASHCOLORINDEXBOMBDESTROYED;
                     }
@@ -894,7 +899,7 @@ void NG8x8RGBMatrixGameBoulderdash::_computeBomb() {
                         if (_maze[y - 1][x - 1] == GAMEBOULDERDASHCOLORINDEXROCKY) {
                             rockykilled = true;
                         } else if (_isColorIndexNPC(_maze[y - 1][x - 1])) {
-                            _maze[y - 1][x - 1] = GAMEBOULDERDASHCOLORINDEXDIAMOND;
+                            _maze[y - 1][x - 1] = GAMEBOULDERDASHCOLORINDEXDIAMOND01;
                         } else {
                             _maze[y - 1][x - 1] = -GAMEBOULDERDASHCOLORINDEXBOMBDESTROYED;
                         }
@@ -903,7 +908,7 @@ void NG8x8RGBMatrixGameBoulderdash::_computeBomb() {
                         if (_maze[y + 1][x - 1] == GAMEBOULDERDASHCOLORINDEXROCKY) {
                             rockykilled = true;
                         } else if (_isColorIndexNPC(_maze[y + 1][x - 1])) {
-                            _maze[y + 1][x - 1] = GAMEBOULDERDASHCOLORINDEXDIAMOND;
+                            _maze[y + 1][x - 1] = GAMEBOULDERDASHCOLORINDEXDIAMOND01;
                         } else {
                             _maze[y + 1][x - 1] = -GAMEBOULDERDASHCOLORINDEXBOMBDESTROYED;
                         }
@@ -913,7 +918,7 @@ void NG8x8RGBMatrixGameBoulderdash::_computeBomb() {
                     if (_maze[y][x + 1] == GAMEBOULDERDASHCOLORINDEXROCKY) {
                         rockykilled = true;
                     } else if (_isColorIndexNPC(_maze[y][x + 1])) {
-                        _maze[y][x + 1] = GAMEBOULDERDASHCOLORINDEXDIAMOND;
+                        _maze[y][x + 1] = GAMEBOULDERDASHCOLORINDEXDIAMOND01;
                     } else {
                         _maze[y][x + 1] = -GAMEBOULDERDASHCOLORINDEXBOMBDESTROYED;
                     }
@@ -921,7 +926,7 @@ void NG8x8RGBMatrixGameBoulderdash::_computeBomb() {
                         if (_maze[y - 1][x + 1] == GAMEBOULDERDASHCOLORINDEXROCKY) {
                             rockykilled = true;
                         } else if (_isColorIndexNPC(_maze[y - 1][x + 1])) {
-                            _maze[y - 1][x + 1] = GAMEBOULDERDASHCOLORINDEXDIAMOND;
+                            _maze[y - 1][x + 1] = GAMEBOULDERDASHCOLORINDEXDIAMOND01;
                         } else {
                             _maze[y - 1][x + 1] = -GAMEBOULDERDASHCOLORINDEXBOMBDESTROYED;
                         }
@@ -930,7 +935,7 @@ void NG8x8RGBMatrixGameBoulderdash::_computeBomb() {
                         if (_maze[y + 1][x + 1] == GAMEBOULDERDASHCOLORINDEXROCKY) {
                             rockykilled = true;
                         } else if (_isColorIndexNPC(_maze[y + 1][x + 1])) {
-                            _maze[y + 1][x + 1] = GAMEBOULDERDASHCOLORINDEXDIAMOND;
+                            _maze[y + 1][x + 1] = GAMEBOULDERDASHCOLORINDEXDIAMOND01;
                         } else {
                             _maze[y + 1][x + 1] = -GAMEBOULDERDASHCOLORINDEXBOMBDESTROYED;
                         }
@@ -940,7 +945,7 @@ void NG8x8RGBMatrixGameBoulderdash::_computeBomb() {
                     if (_maze[y - 1][x] == GAMEBOULDERDASHCOLORINDEXROCKY) {
                         rockykilled = true;
                     } else if (_isColorIndexNPC(_maze[y - 1][x])) {
-                        _maze[y - 1][x] = GAMEBOULDERDASHCOLORINDEXDIAMOND;
+                        _maze[y - 1][x] = GAMEBOULDERDASHCOLORINDEXDIAMOND01;
                     } else {
                         _maze[y - 1][x] = -GAMEBOULDERDASHCOLORINDEXBOMBDESTROYED;
                     }
@@ -949,7 +954,7 @@ void NG8x8RGBMatrixGameBoulderdash::_computeBomb() {
                     if (_maze[y + 1][x] == GAMEBOULDERDASHCOLORINDEXROCKY) {
                         rockykilled = true;
                     } else if (_isColorIndexNPC(_maze[y + 1][x])) {
-                        _maze[y + 1][x] = GAMEBOULDERDASHCOLORINDEXDIAMOND;
+                        _maze[y + 1][x] = GAMEBOULDERDASHCOLORINDEXDIAMOND01;
                     } else {
                         _maze[y + 1][x] = -GAMEBOULDERDASHCOLORINDEXBOMBDESTROYED;
                     }
@@ -984,7 +989,18 @@ void NG8x8RGBMatrixGameBoulderdash::_computeDoor() {
             }
         }
     }
+}
 
+void NG8x8RGBMatrixGameBoulderdash::_computeDiamond() {
+    for (int y = 0; y < GAMEBOULDERDASHMAZESIZEY; y++) {
+        for (int x = 0; x < GAMEBOULDERDASHMAZESIZEX; x++) {
+            if (_maze[y][x] == GAMEBOULDERDASHCOLORINDEXDIAMOND01) {
+                _maze[y][x] = GAMEBOULDERDASHCOLORINDEXDIAMOND02;
+            } else if (_maze[y][x] == GAMEBOULDERDASHCOLORINDEXDIAMOND02) {
+                _maze[y][x] = GAMEBOULDERDASHCOLORINDEXDIAMOND01;
+            }
+        }
+    }
 }
 
 void NG8x8RGBMatrixGameBoulderdash::_clearRocky() {
@@ -1018,7 +1034,7 @@ bool NG8x8RGBMatrixGameBoulderdash::_checkRocky(rockyMoveDirection direction) {
         if (res) {
             _doorEntered = true;
         } else {
-            res = _maze[posY][posX] == GAMEBOULDERDASHCOLORINDEXDIAMOND;
+            res = _isColorIndexDiamond(_maze[posY][posX]);
             if (res) {
                 if (_levelDiamonds > 0) {
                     _levelDiamonds--;
@@ -1087,9 +1103,9 @@ void NG8x8RGBMatrixGameBoulderdash::_ownIntro() {
     // Dirt
     _cdm->fillRect(0, 0, 7, 7, globalBoulderdashColors[GAMEBOULDERDASHCOLORINDEXDIRT - 1]);
     // Diamonds
-    _cdm->drawPoint(6, 3, globalBoulderdashColors[GAMEBOULDERDASHCOLORINDEXDIAMOND - 1]);
-    _cdm->drawPoint(5, 5, globalBoulderdashColors[GAMEBOULDERDASHCOLORINDEXDIAMOND - 1]);
-    _cdm->drawPoint(2, 6, globalBoulderdashColors[GAMEBOULDERDASHCOLORINDEXDIAMOND - 1]);
+    _cdm->drawPoint(6, 3, globalBoulderdashColors[GAMEBOULDERDASHCOLORINDEXDIAMOND01 - 1]);
+    _cdm->drawPoint(5, 5, globalBoulderdashColors[GAMEBOULDERDASHCOLORINDEXDIAMOND01 - 1]);
+    _cdm->drawPoint(2, 6, globalBoulderdashColors[GAMEBOULDERDASHCOLORINDEXDIAMOND01 - 1]);
     // Boulders
     _cdm->drawPoint(5, 1, globalBoulderdashColors[GAMEBOULDERDASHCOLORINDEXBOULDER - 1]);
     _cdm->drawPoint(6, 1, globalBoulderdashColors[GAMEBOULDERDASHCOLORINDEXBOULDER - 1]);
@@ -1118,7 +1134,7 @@ void NG8x8RGBMatrixGameBoulderdash::_ownOutro() {
     for (int i = 0; i < 4; i++) {
         _cdm->beginUpdate();
         if (i < 3) {
-            _cdm->fillRect(4 - i, 4 - i, 4 + i, 4 + i, globalBoulderdashColors[GAMEBOULDERDASHCOLORINDEXDIAMOND - 1]);
+            _cdm->fillRect(4 - i, 4 - i, 4 + i, 4 + i, globalBoulderdashColors[GAMEBOULDERDASHCOLORINDEXDIAMOND01 - 1]);
         } else {
             _cdm->drawRect(4 - i, 4 - i, 4 + i, 4 + i, globalBoulderdashColors[GAMEBOULDERDASHCOLORINDEXDIRT - 1]);
         }
@@ -1132,7 +1148,7 @@ void NG8x8RGBMatrixGameBoulderdash::_ownOutro() {
 void NG8x8RGBMatrixGameBoulderdash::_ownLevelOutroSuccess() {
     for (int y = 7; y > 0; y--) {
         _cdm->beginUpdate();
-        _cdm->drawLine(1, y, 7, y, globalBoulderdashColors[GAMEBOULDERDASHCOLORINDEXDIAMOND - 1]);
+        _cdm->drawLine(1, y, 7, y, globalBoulderdashColors[GAMEBOULDERDASHCOLORINDEXDIAMOND01 - 1]);
         _cdm->endUpdate();
         delay(GAMEBOULDERDASHSOUTROANIMATIONSUCCESSDELAY);
     }
@@ -1327,6 +1343,10 @@ void NG8x8RGBMatrixGameBoulderdash::_doProcessingLoop() {
             if ((millis() - _lastRockyBlinked) > GAMEBOULDERDASHROCKYBLINKDELAY) {
                 _renderRocky();
                 _lastRockyBlinked = millis();
+            }
+            if ((millis() - _lastDiamondSparkle) > GAMEBOULDERDASHDIAMONDSPARKLEDELAY) {
+                _computeDiamond();
+                _lastDiamondSparkle = millis();
             }
             if ((millis() - _lastGravityMove) > _gameNextStepDelay) {
                 _computeGravity();
