@@ -1119,8 +1119,14 @@ void NG8x8RGBMatrixGameBoulderdash::_ownIntroAnimation() {
         _startUpAnimationStep++;
         if (_startUpAnimationStep % 2 == 0) {
             _cdm->drawPoint(2, 2, globalBoulderdashColors[GAMEBOULDERDASHCOLORINDEXROCKY - 1]);
+            _cdm->drawPoint(6, 3, globalBoulderdashColors[GAMEBOULDERDASHCOLORINDEXDIAMOND01 - 1]);
+            _cdm->drawPoint(5, 5, globalBoulderdashColors[GAMEBOULDERDASHCOLORINDEXDIAMOND01 - 1]);
+            _cdm->drawPoint(2, 6, globalBoulderdashColors[GAMEBOULDERDASHCOLORINDEXDIAMOND01 - 1]);
         } else {
             _cdm->drawPoint(2, 2, COLOR_BLUE_LOW);
+            _cdm->drawPoint(6, 3, globalBoulderdashColors[GAMEBOULDERDASHCOLORINDEXDIAMOND02 - 1]);
+            _cdm->drawPoint(5, 5, globalBoulderdashColors[GAMEBOULDERDASHCOLORINDEXDIAMOND02 - 1]);
+            _cdm->drawPoint(2, 6, globalBoulderdashColors[GAMEBOULDERDASHCOLORINDEXDIAMOND02 - 1]);
         }
         _lastStartUpAnimationStep = millis();
         _startUpDone = _startUpAnimationStep == 4;
