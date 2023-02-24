@@ -1,5 +1,7 @@
 -CustomGame
 -Custom8x8RGBMatrixGame
   -Boulderdash
+    -Diamant hits NPC
+    -Lava
     -Levels
 -GamePad
