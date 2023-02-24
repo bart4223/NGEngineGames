@@ -502,6 +502,14 @@ void NG8x8RGBMatrixGameTetris::_ownJoystickLoop() {
                 case jmUp:
                     break;
                 case jmDown:
+                    if (_posYTetromino < GAMETETRISMAZESIZEY - 2) {
+                        if (_checkTetromino(_posXTetromino, _posYTetromino + 1, _tetrominoSequence)) {
+                            _clearTetromino();
+                            _posYTetromino++;
+                            _computeTetromino();
+                            _ownRender();
+                        }
+                    }
                     break;
                 case jmLeft:
                     if (_posXTetromino > 0) {
@@ -509,12 +517,14 @@ void NG8x8RGBMatrixGameTetris::_ownJoystickLoop() {
                             _clearTetromino();
                             _posXTetromino--;
                             _computeTetromino();
+                            _ownRender();
                         }
                     } else if (_tetrominoKind == tkI && _tetrominoSequence == 1) {
                         if (_checkTetromino(_posXTetromino, _posYTetromino, 3)) {
                             _clearTetromino();
                             _tetrominoSequence = 3;
                             _computeTetromino();
+                            _ownRender();
                         }
                     }
                     break;
@@ -524,12 +534,14 @@ void NG8x8RGBMatrixGameTetris::_ownJoystickLoop() {
                             _clearTetromino();
                             _posXTetromino++;
                             _computeTetromino();
+                            _ownRender();
                         }
                     } else if (_tetrominoKind == tkI && _tetrominoSequence == 3) {
                         if (_checkTetromino(_posXTetromino, _posYTetromino, 1)) {
                             _clearTetromino();
                             _tetrominoSequence = 1;
                             _computeTetromino();
+                            _ownRender();
                         }
                     }
                     break;
@@ -542,6 +554,7 @@ void NG8x8RGBMatrixGameTetris::_ownJoystickLoop() {
                         _clearTetromino();
                         _tetrominoSequence = sequence;
                         _computeTetromino();
+                        _ownRender();
                     }
                     break;
             }
