@@ -387,6 +387,56 @@ void NG8x8RGBMatrixGameBoulderdash::_computeNPC() {
     }
 }
 
+void NG8x8RGBMatrixGameBoulderdash::_computeLava() {
+    for (int y = 0; y < GAMEBOULDERDASHMAZESIZEY; y++) {
+        for (int x = 0; x < GAMEBOULDERDASHMAZESIZEX; x++) {
+            bool rockyCatched = false;
+            switch(_maze[y][x]) {
+                case GAMEBOULDERDASHCOLORINDEXLAVA:
+                    if (x > 0 && (_maze[y][x - 1] == 0 || _isColorIndexDiamond(_maze[y][x - 1]))) {
+                        _maze[y][x - 1] = -GAMEBOULDERDASHCOLORINDEXLAVA;
+                    } else if (x > 0 && _maze[y][x - 1] == GAMEBOULDERDASHCOLORINDEXROCKY) {
+                        rockyCatched = true;
+                    }
+                        
+                    if (x < (GAMEBOULDERDASHMAZESIZEX - 1) && (_maze[y][x + 1] == 0 || _isColorIndexDiamond(_maze[y][x + 1]))) {
+                        _maze[y][x + 1] = -GAMEBOULDERDASHCOLORINDEXLAVA;
+                    } else if (x < (GAMEBOULDERDASHMAZESIZEX - 1) && _maze[y][x + 1] == GAMEBOULDERDASHCOLORINDEXROCKY) {
+                        rockyCatched = true;
+                    }
+                        
+                    if (y > 0 && (_maze[y - 1][x] == 0 || _isColorIndexDiamond(_maze[y - 1][x]))) {
+                        _maze[y - 1][x] = -GAMEBOULDERDASHCOLORINDEXLAVA;
+                    } else if (y > 0 && _maze[y - 1][x] == GAMEBOULDERDASHCOLORINDEXROCKY) {
+                        rockyCatched = true;
+                    }
+                        
+                    if (y < (GAMEBOULDERDASHMAZESIZEY - 1) && (_maze[y + 1][x] == 0 || _isColorIndexDiamond(_maze[y + 1][x]))) {
+                        _maze[y + 1][x] = -GAMEBOULDERDASHCOLORINDEXLAVA;
+                    } else if (y < (GAMEBOULDERDASHMAZESIZEY - 1) && _maze[y + 1][x] == GAMEBOULDERDASHCOLORINDEXROCKY) {
+                        rockyCatched = true;
+                    }
+                    break;
+            }
+            if (rockyCatched) {
+                _livesCounter--;
+                _gameFinished = _livesCounter == 0;
+                if (!_gameFinished) {
+                    _levelRetry = true;
+                }
+                return;
+            }
+        }
+    }
+    for (int y = 0; y < GAMEBOULDERDASHMAZESIZEY; y++) {
+        for (int x = 0; x < GAMEBOULDERDASHMAZESIZEX; x++) {
+            if (_maze[y][x] < 0) {
+                _maze[y][x] = abs(_maze[y][x]);
+            }
+        }
+    }
+}
+
 void NG8x8RGBMatrixGameBoulderdash::_initLevel() {
     _levelFinished = false;
     _doorEntered = false;
@@ -439,6 +489,7 @@ void NG8x8RGBMatrixGameBoulderdash::_initLevelTestMaze() {
     _generateDirtRect(0, 0, GAMEBOULDERDASHMAZESIZEX - 1, GAMEBOULDERDASHMAZESIZEY - 1);
     // Void
     _generateVoidRect(15, 10, 19, 11);
+    _generateVoidRect(2, 15, 5, 18);
     // Wall
     _generateWallRectWithVoid(8, 3, 12, 6);
     // Boulders
@@ -463,6 +514,8 @@ void NG8x8RGBMatrixGameBoulderdash::_initLevelTestMaze() {
         _generateDiamond(x, y);
     }
     _generateDiamond(11, 5);
+    // Lava
+    _generateLava(5, 15);
     // Bomb
     _generateBomb(5, 1);
     _generateBomb(20, 9);
@@ -770,6 +823,11 @@ void NG8x8RGBMatrixGameBoulderdash::_generateDoor(byte x, byte y) {
 void NG8x8RGBMatrixGameBoulderdash::_generateBomb(byte x, byte y) {
     _maze[y][x] = GAMEBOULDERDASHCOLORINDEXBOMBINACTIVE;
 }
+
+void NG8x8RGBMatrixGameBoulderdash::_generateLava(byte x, byte y) {
+    _maze[y][x] = GAMEBOULDERDASHCOLORINDEXLAVA;
+}
+
 
 void NG8x8RGBMatrixGameBoulderdash::_generateBoulder(byte x, byte y) {
     _maze[y][x] = GAMEBOULDERDASHCOLORINDEXBOULDER;
@@ -1379,6 +1437,11 @@ void NG8x8RGBMatrixGameBoulderdash::_doProcessingLoop() {
                 _computeBomb();
                 _ownRender();
                 _lastBombIgnition = millis();
+            }
+            if ((millis() - _lastLavaFlow) > GAMEBOULDERDASHSLAVADELAY) {
+                _computeLava();
+                _ownRender();
+                _lastLavaFlow = millis();
             }
             if ((millis() - _lastFuseStep) > _fuseStepDelay) {
                 _fuseValue--;

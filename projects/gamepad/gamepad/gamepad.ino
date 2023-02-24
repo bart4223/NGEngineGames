@@ -136,6 +136,9 @@ void setup() {
   #endif
   unitBinaryClock.startUp();
   unitBinaryClock.clearInfo();
+  #if (PROD == false)
+  gamepad.setTestMode(true);
+  #endif
   gamepad.initialize();
   #if (PROD == false)
   observeMemory(0);

@@ -105,6 +105,12 @@ bool NGGamePad::hasCurrentGame() {
     return _currentGame != GAMEPADNOGAME;
 }
 
+void NGGamePad::setTestMode(bool testmode) {
+    for (int i = 0; i < _gamesCount; i++) {
+        _games[i].game->setTestMode(testmode);
+    }
+}
+
 void NGGamePad::toggleDoPlaySound() {
     for (int i = 0; i < _gamesCount; i++) {
         _games[i].game->toggleDoPlaySound();

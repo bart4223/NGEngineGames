@@ -41,6 +41,7 @@
 
 #define GAMEBOULDERDASHGRAVITYDELAY         100
 #define GAMEBOULDERDASHSNPCDELAY            300
+#define GAMEBOULDERDASHSLAVADELAY          3000
 #define GAMEBOULDERDASHSBOMBDELAY           400
 #define GAMEBOULDERDASHROCKYBLINKDELAY      500
 #define GAMEBOULDERDASHDIAMONDSPARKLEDELAY  400
@@ -74,6 +75,7 @@
 #define GAMEBOULDERDASHCOLORINDEXDOORINACTIVE   21
 #define GAMEBOULDERDASHCOLORINDEXDOORACTIVE     22
 #define GAMEBOULDERDASHCOLORINDEXDIAMOND02      23
+#define GAMEBOULDERDASHCOLORINDEXLAVA           24
 
 #define GAMEBOULDERDASHLEVELONE     1
 #define GAMEBOULDERDASHLEVELTWO     2
@@ -93,7 +95,7 @@
 
 enum rockyMoveDirection { rmdUp, rmdDown, rmdLeft, rmdRight };
 
-static colorRGB globalBoulderdashColors[23] = {
+static colorRGB globalBoulderdashColors[24] = {
   COLOR_BROWN,      // Dirt
   COLOR_BLUE,       // Rocky
   COLOR_WHITE,      // Boulder
@@ -117,6 +119,7 @@ static colorRGB globalBoulderdashColors[23] = {
   COLOR_YELLOW_LOW, // Door inactive
   COLOR_YELLOW,     // Door active
   COLOR_TEAL_LOW,   // Diamond 02
+  COLOR_ORANGE      // Lava
 };
 
 class NG8x8RGBMatrixGameBoulderdash : public NGCustom8x8RGBMatrixGame {
@@ -147,6 +150,7 @@ private:
     long _lastStartUpAnimationStep = 0;
     long _lastBombIgnition = 0;
     long _lastDiamondSparkle = 0;
+    long _lastLavaFlow = 0;
     
     void _resetMaze();
     
@@ -159,6 +163,8 @@ private:
     void _computeGravity();
     
     void _computeNPC();
+    
+    void _computeLava();
     
     void _initLevel();
     
@@ -193,6 +199,8 @@ private:
     void _generateDoor(byte x, byte y);
     
     void _generateBomb(byte x, byte y);
+    
+    void _generateLava(byte x, byte y);
     
     void _generateBoulder(byte x, byte y);
     

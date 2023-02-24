@@ -67,6 +67,8 @@ public:
     
     bool hasCurrentGame();
     
+    void setTestMode(bool testmode);
+    
     void toggleDoPlaySound();
 
     void processingLoop();    
