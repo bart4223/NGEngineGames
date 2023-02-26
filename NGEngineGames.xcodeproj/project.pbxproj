@@ -26,6 +26,7 @@
 		2992AA7D2997C6E8004DDE5E /* LevelThree.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = LevelThree.png; sourceTree = "<group>"; };
 		2992AA7E299FF277004DDE5E /* LevelFour.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = LevelFour.png; sourceTree = "<group>"; };
 		2992AA7F29A14704004DDE5E /* GamePadI3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = GamePadI3.png; sourceTree = "<group>"; };
+		2997EE0E29AB7748003B64B0 /* LevelFive.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = LevelFive.png; sourceTree = "<group>"; };
 		299C2B7D294F512A00F53CAA /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		299C2B7F294F52B200F53CAA /* ToDo.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = ToDo.txt; sourceTree = "<group>"; };
 		299C2B82294F532E00F53CAA /* keywords.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = keywords.txt; sourceTree = "<group>"; };
@@ -58,6 +59,7 @@
 				29255B78298E5C5B00234506 /* LevelTwo.png */,
 				2992AA7D2997C6E8004DDE5E /* LevelThree.png */,
 				2992AA7E299FF277004DDE5E /* LevelFour.png */,
+				2997EE0E29AB7748003B64B0 /* LevelFive.png */,
 			);
 			path = images;
 			sourceTree = "<group>";
