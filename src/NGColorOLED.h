@@ -25,7 +25,7 @@
 #define SPI_RST   9
 #define SPI_DC    8
 
-class NGColorOLED  : public NGIPaintableComponent {
+class NGColorOLED : public NGIPaintableComponent {
 
 private:
     Adafruit_SSD1331 *_display;

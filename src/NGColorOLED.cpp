@@ -27,11 +27,11 @@ void NGColorOLED::initialize() {
 }
 
 int NGColorOLED::getWidth() {
-    return _display->TFTWIDTH;
+    return _display->width();
 }
 
 int NGColorOLED::getHeight() {
-    return _display->TFTHEIGHT;
+    return _display->height();
 }
 
 void NGColorOLED::beginUpdate() {

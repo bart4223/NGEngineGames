@@ -21,12 +21,13 @@
 		295A7E4C2969DB65003779A3 /* asteroids.ino */ = {isa = PBXFileReference; lastKnownFileType = text; path = asteroids.ino; sourceTree = "<group>"; };
 		295A7E4D2969DB99003779A3 /* NG8x8RGBMatrixGameAsteroids.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = NG8x8RGBMatrixGameAsteroids.cpp; sourceTree = "<group>"; };
 		295A7E4E2969DB99003779A3 /* NG8x8RGBMatrixGameAsteroids.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NG8x8RGBMatrixGameAsteroids.h; sourceTree = "<group>"; };
-		29620D7229B331120020B874 /* NGPointCounter.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = NGPointCounter.cpp; sourceTree = "<group>"; };
-		29620D7329B331120020B874 /* NGPointCounter.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NGPointCounter.h; sourceTree = "<group>"; };
+		29620D7229B331120020B874 /* NGDecimalPointCounter.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = NGDecimalPointCounter.cpp; sourceTree = "<group>"; };
+		29620D7329B331120020B874 /* NGDecimalPointCounter.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NGDecimalPointCounter.h; sourceTree = "<group>"; };
 		29620D7629B4B5ED0020B874 /* NGColorOLED.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = NGColorOLED.cpp; sourceTree = "<group>"; };
 		29620D7729B4B5ED0020B874 /* NGColorOLED.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NGColorOLED.h; sourceTree = "<group>"; };
 		29620D7929B4B6430020B874 /* colorOLED.ino */ = {isa = PBXFileReference; lastKnownFileType = text; path = colorOLED.ino; sourceTree = "<group>"; };
 		29620D7C29B4CC630020B874 /* colorOLEDDecimalDigit.ino */ = {isa = PBXFileReference; lastKnownFileType = text; path = colorOLEDDecimalDigit.ino; sourceTree = "<group>"; };
+		29620D7E29B4DB2B0020B874 /* decimalpointcounter.ino */ = {isa = PBXFileReference; lastKnownFileType = text; path = decimalpointcounter.ino; sourceTree = "<group>"; };
 		296452892987F32C00E1EF1D /* eNGineGameShield.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = eNGineGameShield.png; sourceTree = "<group>"; };
 		2964528A2987F66000E1EF1D /* GamePadI0.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = GamePadI0.png; sourceTree = "<group>"; };
 		2992AA7D2997C6E8004DDE5E /* LevelThree.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = LevelThree.png; sourceTree = "<group>"; };
@@ -124,6 +125,7 @@
 			isa = PBXGroup;
 			children = (
 				29620D7829B4B6170020B874 /* colorOLED */,
+				29620D7D29B4DB090020B874 /* decimalpointcounter */,
 			);
 			path = examples;
 			sourceTree = "<group>";
@@ -144,6 +146,14 @@
 				29620D7C29B4CC630020B874 /* colorOLEDDecimalDigit.ino */,
 			);
 			path = colorOLED;
+			sourceTree = "<group>";
+		};
+		29620D7D29B4DB090020B874 /* decimalpointcounter */ = {
+			isa = PBXGroup;
+			children = (
+				29620D7E29B4DB2B0020B874 /* decimalpointcounter.ino */,
+			);
+			path = decimalpointcounter;
 			sourceTree = "<group>";
 		};
 		296452882987F28800E1EF1D /* images */ = {
@@ -198,10 +208,10 @@
 				299C2B89294F5F9F00F53CAA /* specs */,
 				299C2B86294F552800F53CAA /* NGCustomGame.h */,
 				299C2B85294F552800F53CAA /* NGCustomGame.cpp */,
+				29620D7329B331120020B874 /* NGDecimalPointCounter.h */,
+				29620D7229B331120020B874 /* NGDecimalPointCounter.cpp */,
 				29FD0A6E297DA4D5003CAA71 /* NGGamePad.h */,
 				29FD0A6D297DA4D5003CAA71 /* NGGamePad.cpp */,
-				29620D7329B331120020B874 /* NGPointCounter.h */,
-				29620D7229B331120020B874 /* NGPointCounter.cpp */,
 			);
 			path = src;
 			sourceTree = "<group>";
