@@ -22,6 +22,6 @@ void setup() {
 
 void loop() {
   dpc->processingLoop();
-  dpc->incrementCounter(random(1, 11));
+  dpc->incrementCounter(random(1, 100));
   delay(DELAY);
 }
