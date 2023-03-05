@@ -21,6 +21,12 @@
 		295A7E4C2969DB65003779A3 /* asteroids.ino */ = {isa = PBXFileReference; lastKnownFileType = text; path = asteroids.ino; sourceTree = "<group>"; };
 		295A7E4D2969DB99003779A3 /* NG8x8RGBMatrixGameAsteroids.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = NG8x8RGBMatrixGameAsteroids.cpp; sourceTree = "<group>"; };
 		295A7E4E2969DB99003779A3 /* NG8x8RGBMatrixGameAsteroids.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NG8x8RGBMatrixGameAsteroids.h; sourceTree = "<group>"; };
+		29620D7229B331120020B874 /* NGPointCounter.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = NGPointCounter.cpp; sourceTree = "<group>"; };
+		29620D7329B331120020B874 /* NGPointCounter.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NGPointCounter.h; sourceTree = "<group>"; };
+		29620D7629B4B5ED0020B874 /* NGColorOLED.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = NGColorOLED.cpp; sourceTree = "<group>"; };
+		29620D7729B4B5ED0020B874 /* NGColorOLED.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NGColorOLED.h; sourceTree = "<group>"; };
+		29620D7929B4B6430020B874 /* colorOLED.ino */ = {isa = PBXFileReference; lastKnownFileType = text; path = colorOLED.ino; sourceTree = "<group>"; };
+		29620D7C29B4CC630020B874 /* colorOLEDDecimalDigit.ino */ = {isa = PBXFileReference; lastKnownFileType = text; path = colorOLEDDecimalDigit.ino; sourceTree = "<group>"; };
 		296452892987F32C00E1EF1D /* eNGineGameShield.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = eNGineGameShield.png; sourceTree = "<group>"; };
 		2964528A2987F66000E1EF1D /* GamePadI0.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = GamePadI0.png; sourceTree = "<group>"; };
 		2992AA7D2997C6E8004DDE5E /* LevelThree.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = LevelThree.png; sourceTree = "<group>"; };
@@ -114,6 +120,32 @@
 			path = asteroids;
 			sourceTree = "<group>";
 		};
+		29620D7429B331610020B874 /* examples */ = {
+			isa = PBXGroup;
+			children = (
+				29620D7829B4B6170020B874 /* colorOLED */,
+			);
+			path = examples;
+			sourceTree = "<group>";
+		};
+		29620D7529B4B58D0020B874 /* graphics */ = {
+			isa = PBXGroup;
+			children = (
+				29620D7729B4B5ED0020B874 /* NGColorOLED.h */,
+				29620D7629B4B5ED0020B874 /* NGColorOLED.cpp */,
+			);
+			name = graphics;
+			sourceTree = "<group>";
+		};
+		29620D7829B4B6170020B874 /* colorOLED */ = {
+			isa = PBXGroup;
+			children = (
+				29620D7929B4B6430020B874 /* colorOLED.ino */,
+				29620D7C29B4CC630020B874 /* colorOLEDDecimalDigit.ino */,
+			);
+			path = colorOLED;
+			sourceTree = "<group>";
+		};
 		296452882987F28800E1EF1D /* images */ = {
 			isa = PBXGroup;
 			children = (
@@ -130,6 +162,7 @@
 				299C2B84294F53A200F53CAA /* LICENSE */,
 				299C2B7D294F512A00F53CAA /* README.md */,
 				299C2B82294F532E00F53CAA /* keywords.txt */,
+				29620D7429B331610020B874 /* examples */,
 				299C2B80294F52D900F53CAA /* games */,
 				29FCF0B22955D68E0065BD20 /* projects */,
 				299C2B81294F52F800F53CAA /* src */,
@@ -161,11 +194,14 @@
 			isa = PBXGroup;
 			children = (
 				299C2B8E29508B1B00F53CAA /* common */,
+				29620D7529B4B58D0020B874 /* graphics */,
 				299C2B89294F5F9F00F53CAA /* specs */,
 				299C2B86294F552800F53CAA /* NGCustomGame.h */,
 				299C2B85294F552800F53CAA /* NGCustomGame.cpp */,
 				29FD0A6E297DA4D5003CAA71 /* NGGamePad.h */,
 				29FD0A6D297DA4D5003CAA71 /* NGGamePad.cpp */,
+				29620D7329B331120020B874 /* NGPointCounter.h */,
+				29620D7229B331120020B874 /* NGPointCounter.cpp */,
 			);
 			path = src;
 			sourceTree = "<group>";

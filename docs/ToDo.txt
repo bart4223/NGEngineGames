@@ -2,4 +2,5 @@
 -Custom8x8RGBMatrixGame
   -Boulderdash
     -Levels
+  -SuperMarioBros
 -GamePad
