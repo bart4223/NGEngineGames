@@ -8,18 +8,24 @@
 #include "NGDecimalPointCounter.h"
 
 NGDecimalPointCounter::NGDecimalPointCounter(NGIPaintableComponent *pc) {
-    _create(pc);
+    _create(pc, COLOR_BLUE);
 }
 
-void NGDecimalPointCounter::_create(NGIPaintableComponent *pc) {
+NGDecimalPointCounter::NGDecimalPointCounter(NGIPaintableComponent *pc, colorRGB color) {
+    _create(pc, color);
+}
+
+void NGDecimalPointCounter::_create(NGIPaintableComponent *pc,  colorRGB color) {
     _digit = new NGColorDotMatrixDecimalDigit(pc);
+    _digit->setColor(color);
 }
 
 void NGDecimalPointCounter::_render() {
     int counter = _counter;
-    for (int i = 0; i < _digits; i++) {
+    int maxdigits = _maxDigits;
+    for (int i = 0; i < maxdigits; i++) {
         _digit->beginUpdate();
-        _digit->setPosX(_posX + (8 * (_digits - i - 1)));
+        _digit->setPosX(_posX + (8 * (maxdigits - i - 1)));
         _digit->setPosY(_posY);
         _digit->setValue(counter % 10);
         _digit->endUpdate();
@@ -31,8 +37,8 @@ void NGDecimalPointCounter::initialize() {
     
 }
 
-void NGDecimalPointCounter::setDigits(byte digits) {
-    _digits = digits;
+void NGDecimalPointCounter::setMaxDigits(byte digits) {
+    _maxDigits = digits;
 }
 
 void NGDecimalPointCounter::setPosX(int x) {

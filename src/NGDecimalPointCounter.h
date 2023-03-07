@@ -16,29 +16,31 @@
 
 #include <NGColorDotMatrixDecimalDigit.h>
 
-#define DEFPOINTCOUNTERDIGITS 1
+#define DEFPOINTCOUNTERMAXDIGITS 1
 
 class NGDecimalPointCounter {
     
 private:
     int _counter = 0;
     NGColorDotMatrixDecimalDigit *_digit;
-    byte _digits = DEFPOINTCOUNTERDIGITS;
+    byte _maxDigits = DEFPOINTCOUNTERMAXDIGITS;
     int _posX = 0;
     int _posY = 0;
     bool _isInvalid = false;
     
 protected:
-    void _create(NGIPaintableComponent *pc);
+    void _create(NGIPaintableComponent *pc, colorRGB color);
     
     void _render();
     
 public:
     NGDecimalPointCounter(NGIPaintableComponent *pc);
+    
+    NGDecimalPointCounter(NGIPaintableComponent *pc, colorRGB color);
   
     void initialize();
     
-    void setDigits(byte digits);
+    void setMaxDigits(byte digits);
     
     void setPosX(int x);
     
