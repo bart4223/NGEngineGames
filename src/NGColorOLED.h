@@ -52,6 +52,8 @@ public:
     
     void setScale(int scale);
     
+    int getScale();
+    
     void clear();
     
     bool drawPoint(int x, int y, colorRGB color);

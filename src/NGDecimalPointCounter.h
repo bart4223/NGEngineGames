@@ -17,19 +17,33 @@
 #include <NGColorDotMatrixDecimalDigit.h>
 
 #define DEFPOINTCOUNTERMAXDIGITS 1
+#define DEFPOINTCOUNTERANIMATIONDELAY 500
+
+enum pointCounterAnimationDirection { pcadNone, pcadLeft, pcadRight };
 
 class NGDecimalPointCounter {
     
 private:
-    int _counter = 0;
+    long _counter = 0;
+    NGIPaintableComponent *_pc;
     NGColorDotMatrixDecimalDigit *_digit;
     byte _maxDigits = DEFPOINTCOUNTERMAXDIGITS;
+    byte _currentMaxDigits = 0;
     int _posX = 0;
     int _posY = 0;
     bool _isInvalid = false;
+    bool _showMaxDigits = true;
+    bool _isAnimationEnabled = false;
+    bool _hasAnimation = false;
+    long _lastAnimation = 0;
+    int _animationDelay = DEFPOINTCOUNTERANIMATIONDELAY;
+    pointCounterAnimationDirection _currentAnimationDirection = pcadNone;
+    int _animationPosXOffset = 0;
     
 protected:
     void _create(NGIPaintableComponent *pc, colorRGB color);
+    
+    void _calculateCurrentMaxDigits();
     
     void _render();
     
@@ -42,13 +56,19 @@ public:
     
     void setMaxDigits(byte digits);
     
+    void setShowMaxDigits(bool showmaxdigits);
+    
+    void setIsAnimationEnabled(bool animationenabled);
+    
+    void setAnimationDelay(int animationdelay);
+    
     void setPosX(int x);
     
     void setPosY(int y);
     
-    void setCounter(int counter);
+    void setCounter(long counter);
     
-    int getCounter();
+    long getCounter();
     
     void incrementCounter();
     

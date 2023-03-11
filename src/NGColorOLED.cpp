@@ -51,6 +51,10 @@ void NGColorOLED::setScale(int scale) {
     _scale = scale;
 }
 
+int NGColorOLED::getScale() {
+    return _scale;
+}
+
 void NGColorOLED::clear() {
     _display->fillScreen(_getColor(COLOR_BLACK));
 }
