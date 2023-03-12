@@ -1,4 +1,4 @@
-#define OLED //OLED, DOTMATRIX
+#define DOTMATRIX //OLED, DOTMATRIX
 
 #include <NGMemoryObserver.h>
 #ifdef OLED
@@ -16,7 +16,7 @@
 #endif
 #ifdef DOTMATRIX
 #define SCALE       1
-#define RANGE     100
+#define RANGE    1000
 #define DELAY   10000
 #endif
 
