@@ -57,6 +57,8 @@ public:
     void clear();
     
     bool drawPoint(int x, int y, colorRGB color);
+    
+    bool fillRect(int top, int left, int bottom, int right, colorRGB color);
 };
 
 #endif /* NGColorOLED_hpp */

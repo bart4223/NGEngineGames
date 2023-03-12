@@ -1,24 +1,24 @@
 //
-//  NG8x8RGBMatrixGameDot.cpp
+//  NGColorDotMatrixGameDot.cpp
 //  NGEngineGames
 //
 //  Created by Nils Grimmer on 18.12.22.
 //
 
-#include "NG8x8RGBMatrixGameDot.h"
+#include "NGColorDotMatrixGameDot.h"
 
-NG8x8RGBMatrixGameDot::NG8x8RGBMatrixGameDot() {
+NGColorDotMatrixGameDot::NGColorDotMatrixGameDot() {
     _create("Dot");
     _scoreDigits = GAMEDOTSCOREDIGITS;
 }
 
-void NG8x8RGBMatrixGameDot::_rollPlayerColor() {
+void NGColorDotMatrixGameDot::_rollPlayerColor() {
     _colorPlayer.red = random(0, 256);
     _colorPlayer.green = random(0, 256);
     _colorPlayer.blue = random(0, 256);
 }
 
-void NG8x8RGBMatrixGameDot::_calculateNewDotPosition() {
+void NGColorDotMatrixGameDot::_calculateNewDotPosition() {
     bool ok = false;
     while (!ok) {
         if (_getYesOrNo()) {
@@ -43,7 +43,7 @@ void NG8x8RGBMatrixGameDot::_calculateNewDotPosition() {
     _dotSpawned = millis();
 }
 
-void NG8x8RGBMatrixGameDot::_doInitialize() {
+void NGColorDotMatrixGameDot::_doInitialize() {
     _score->setColorOff(GAMDEDOTCOLORSCOREOFF);
     _score->setColorOn(GAMDEDOTCOLORSCOREON);
     if (_logging) {
@@ -53,7 +53,7 @@ void NG8x8RGBMatrixGameDot::_doInitialize() {
     }
 }
 
-void NG8x8RGBMatrixGameDot::_doStartUp() {
+void NGColorDotMatrixGameDot::_doStartUp() {
     if (_logging) {
         char log[100];
         sprintf(log, "%s.StartUp", _name);
@@ -62,7 +62,7 @@ void NG8x8RGBMatrixGameDot::_doStartUp() {
     _ownIntro();
 }
 
-void NG8x8RGBMatrixGameDot::_doStartUpDone() {
+void NGColorDotMatrixGameDot::_doStartUpDone() {
     if (_logging) {
         char log[100];
         sprintf(log, "%s.StartUpDone", _name);
@@ -70,7 +70,7 @@ void NG8x8RGBMatrixGameDot::_doStartUpDone() {
     }
 }
 
-void NG8x8RGBMatrixGameDot::_doStartGame() {
+void NGColorDotMatrixGameDot::_doStartGame() {
     _posXPlayer = 3;
     _posYPlayer = 4;
     _calculateNewDotPosition();
@@ -83,7 +83,7 @@ void NG8x8RGBMatrixGameDot::_doStartGame() {
     }
 }
 
-void NG8x8RGBMatrixGameDot::_doBreakGame() {
+void NGColorDotMatrixGameDot::_doBreakGame() {
     if (_logging) {
         char log[100];
         sprintf(log, "%s.BreakGame", _name);
@@ -91,7 +91,7 @@ void NG8x8RGBMatrixGameDot::_doBreakGame() {
     }
 }
 
-void NG8x8RGBMatrixGameDot::_doContinueGame() {
+void NGColorDotMatrixGameDot::_doContinueGame() {
     if (_logging) {
         char log[100];
         sprintf(log, "%s.ContinueGame", _name);
@@ -99,8 +99,8 @@ void NG8x8RGBMatrixGameDot::_doContinueGame() {
     }
 }
 
-void NG8x8RGBMatrixGameDot::_doFinishGame() {
-    _cdm->clear();
+void NGColorDotMatrixGameDot::_doFinishGame() {
+    _ipc->clear();
     if (_logging) {
         char log[100];
         sprintf(log, "%s.FinishGame", _name);
@@ -108,7 +108,7 @@ void NG8x8RGBMatrixGameDot::_doFinishGame() {
     }
 }
 
-void NG8x8RGBMatrixGameDot::_doProcessingLoop() {
+void NGColorDotMatrixGameDot::_doProcessingLoop() {
     if (_gameStarted) {
         _ownJoystickLoop();
         if (millis() - _dotSpawned > DOTMAXCATCHTIME) {
@@ -124,39 +124,39 @@ void NG8x8RGBMatrixGameDot::_doProcessingLoop() {
     }
 }
 
-void NG8x8RGBMatrixGameDot::_ownIntro() {
+void NGColorDotMatrixGameDot::_ownIntro() {
     colorRGB c;
-    _cdm->clear();
+    _ipc->clear();
     byte dotX = random(5, 8);
     byte dotY = random(5, 8);
-    _cdm->drawPoint(dotX, dotY, COLOR_RED);
+    _ipc->drawPoint(dotX, dotY, COLOR_RED);
     byte playerX = 0;
     byte playerY = 0;
     _rollPlayerColor();
     for (int i = 0; i < 10; i++) {
-        _cdm->drawPoint(playerX, playerY, _colorPlayer);
+        _ipc->drawPoint(playerX, playerY, _colorPlayer);
         delay(100);
-        _cdm->drawPoint(playerX, playerY, COLOR_BLACK);
+        _ipc->drawPoint(playerX, playerY, COLOR_BLACK);
         if (_getYesOrNo()) {
             playerX++;
         } else {
             playerY++;
         }
     }
-    _cdm->clear();
+    _ipc->clear();
     _score->setValue(0);
 }
 
-void NG8x8RGBMatrixGameDot::_ownRender() {
-    _cdm->beginUpdate();
-    _cdm->fillRect(0, 0, MAXGAMEDOTX, MAXGAMEDOTY, COLOR_BLACK);
-    _cdm->drawPoint(_posXPlayer, _posYPlayer, _colorPlayer);
-    _cdm->drawPoint(_posXDot, _posYDot, COLOR_RED);
+void NGColorDotMatrixGameDot::_ownRender() {
+    _ipc->beginUpdate();
+    _ipc->clear();
+    _ipc->drawPoint(_posXPlayer, _posYPlayer, _colorPlayer);
+    _ipc->drawPoint(_posXDot, _posYDot, COLOR_RED);
     _score->setValue(_scoreCounter);
-    _cdm->endUpdate();
+    _ipc->endUpdate();
 }
 
-void NG8x8RGBMatrixGameDot::_ownJoystickLoop() {
+void NGColorDotMatrixGameDot::_ownJoystickLoop() {
     _doRender = false;
     for (int i = 0; i < _joystickCount; i++) {
         if (_joysticks[i].joystick->hasLastMovement()) {
@@ -195,7 +195,7 @@ void NG8x8RGBMatrixGameDot::_ownJoystickLoop() {
     if ((_posXPlayer == _posXDot) && (_posYPlayer == _posYDot)) {
         _scoreCounter++;
         _score->setValue(_scoreCounter);
-        _cdm->drawPoint(_posXDot, _posYDot, COLOR_GREEN);
+        _ipc->drawPoint(_posXDot, _posYDot, COLOR_GREEN);
         delay(DOTCATCHDELAY);
         _calculateNewDotPosition();
     }

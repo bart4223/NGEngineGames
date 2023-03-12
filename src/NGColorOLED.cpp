@@ -66,3 +66,11 @@ bool NGColorOLED::drawPoint(int x, int y, colorRGB color) {
         _display->fillRect(x * _scale, y * _scale, _scale, _scale, _getColor(color));
     }
 }
+
+bool NGColorOLED::fillRect(int top, int left, int bottom, int right, colorRGB color) {
+    if (_scale == DEFCOLOROLEDSCALE) {
+        _display->fillRect(left, top, right - left, bottom - top, _getColor(color));
+    } else {
+        _display->fillRect(left * _scale, top * _scale, (right - left) * _scale, (bottom - top) * _scale, _getColor(color));
+    }
+}

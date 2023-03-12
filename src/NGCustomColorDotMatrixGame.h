@@ -1,12 +1,12 @@
 //
-//  NGCustom8x8RGBMatrixGame.h
+//  NGCustomColorDotMatrixGame.h
 //  NGEngineGames
 //
-//  Created by Nils Grimmer on 18.12.22.
+//  Created by Nils Grimmer on 12.03.23.
 //
 
-#ifndef _NGCustom8x8RGBMatrixGame_h
-#define _NGCustom8x8RGBMatrixGame_h
+#ifndef NGCustomColorDotMatrixGame_h
+#define NGCustomColorDotMatrixGame_h
 
 #if (ARDUINO >= 100)
 #include <Arduino.h>
@@ -23,10 +23,10 @@
 #define DEFSCOREDIGITPOSY     7
 #define DEFSCOREDIRECTION bddUp
 
-class NGCustom8x8RGBMatrixGame : public NGCustomGame {
+class NGCustomColorDotMatrixGame : public NGCustomGame {
        
 protected:
-    NGColorDotMatrix *_cdm;
+    NGIPaintableComponent *_ipc;
     NGColorDotMatrixBinaryDigit *_score;
     byte _scoreDigits = DEFSCOREDIGITS;
     byte _scoreDigitPosX = DEFSCOREDIGITPOSX;
@@ -34,7 +34,7 @@ protected:
     BinaryDigitDirection _scoreDirection = DEFSCOREDIRECTION;
 
 public:
-    void registerColorDotMatrix(NGColorDotMatrix *cdm);
+    void registerColorDotMatrix(NGIPaintableComponent *ipc);
 };
 
-#endif /* _NGCustom8x8RGBMatrixGame_h */
+#endif /* NGCustomColorDotMatrixGame_h */

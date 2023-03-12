@@ -1,16 +1,32 @@
 #define PROD true //false, true
+#define UNO
+#define DOTMATRIX //OLED, DOTMATRIX
 
 #include <NGMemoryObserver.h>
 #include <NGSimpleKeypad.h>
 #include <NGSerialNotification.h>
-#include <NG8x8RGBMatrixGameDot.h>
+#include <NGColorDotMatrixGameDot.h>
+#ifdef OLED
+#include <NGColorOLED.h>
+#endif
+#ifdef DOTMATRIX
+#include <NGColorDotMatrix.h>
+#endif
 
 #define KEYDELAY      500
 #define JOYSTICKDELAY 100
 
 #define JOYSTICKID       0
+#ifdef UNO
+#define JOYSTICKPINX    A1
+#else
 #define JOYSTICKPINX    A8
+#endif
+#ifdef UNO
+#define JOYSTICKPINY    A2
+#else
 #define JOYSTICKPINY    A9
+#endif
 #define JOYSTICKPINFIRE 14
 
 #define JOYSTICKTHRESHOLDUP       100
@@ -23,8 +39,13 @@
 
 NGSimpleKeypad keypad = NGSimpleKeypad();
 NGJoystickControl joystick = NGJoystickControl(JOYSTICKID, JOYSTICKPINX, JOYSTICKPINY, JOYSTICKPINFIRE);
+#ifdef DOTMATRIX
 NGColorDotMatrix cdm = NGColorDotMatrix();
-NG8x8RGBMatrixGameDot game = NG8x8RGBMatrixGameDot();
+#endif
+#ifdef OLED
+NGColorOLED cdm = NGColorOLED();
+#endif
+NGColorDotMatrixGameDot game = NGColorDotMatrixGameDot();
 
 void setup() {
   observeMemory(0);
@@ -44,6 +65,10 @@ void setup() {
   joystick.registerAction(JOYSTICKDELAY, jmFire);
   // ColorDotMatrix
   cdm.initialize();
+  #ifdef OLED
+  cdm.setScale(5);
+  #endif
+  cdm.clear();
   // Game
   game.registerGameKey(gfStartGame, STARTGAMEID);
   game.registerGameJoystick(&joystick);

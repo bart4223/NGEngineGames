@@ -1,12 +1,12 @@
 //
-//  NG8x8RGBMatrixGameDot.h
+//  NGColorDotMatrixGameDot.h
 //  NGEngineGames
 //
 //  Created by Nils Grimmer on 18.12.22.
 //
 
-#ifndef NG8x8RGBMatrixGameDot_h
-#define NG8x8RGBMatrixGameDot_h
+#ifndef NGColorDotMatrixGameDot_h
+#define NGColorDotMatrixGameDot_h
 
 #if (ARDUINO >= 100)
 #include <Arduino.h>
@@ -14,7 +14,7 @@
 #include <WProgram.h>
 #endif
 
-#include <NGCustom8x8RGBMatrixGame.h>
+#include <NGCustomColorDotMatrixGame.h>
 
 #define MAXGAMEDOTX     6
 #define MAXGAMEDOTY     7
@@ -29,7 +29,7 @@
 
 #define GAMEDOTSCOREDIGITS 8
 
-class NG8x8RGBMatrixGameDot : public NGCustom8x8RGBMatrixGame {
+class NGColorDotMatrixGameDot : public NGCustomColorDotMatrixGame {
     
 private:
     byte _posXDot;
@@ -67,7 +67,7 @@ protected:
     void _ownIntro();
     
 public:
-    NG8x8RGBMatrixGameDot();
+    NGColorDotMatrixGameDot();
 };
 
-#endif /* NG8x8RGBMatrixGameDot_h */
+#endif /* NGColorDotMatrixGameDot_h */
