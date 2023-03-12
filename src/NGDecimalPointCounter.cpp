@@ -144,7 +144,7 @@ void NGDecimalPointCounter::processingLoop() {
                 _render();
                 _pc->beginUpdate();
                 for (int y = 0; y < _digit->PIXELCOUNT * _digit->getScale(); y++) {
-                    _pc->drawPoint(_posX + _animationPosXOffset - 1, _posY + y, COLOR_BLACK);
+                    _pc->drawPoint(_posX + _animationPosXOffset - 1, _posY + y, _digit->getColorBackground());
                 }
                 _pc->endUpdate();
                 break;

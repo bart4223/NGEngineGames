@@ -1,12 +1,31 @@
+#define OLED //OLED, DOTMATRIX
+
 #include <NGMemoryObserver.h>
+#ifdef OLED
 #include <NGColorOLED.h>
+#endif
+#ifdef DOTMATRIX
+#include <NGColorDotMatrix.h>
+#endif
 #include <NGDecimalPointCounter.h>
 
+#ifdef OLED
 #define SCALE       3
-#define DELAY   10000
 #define RANGE 1000000
+#define DELAY   10000
+#endif
+#ifdef DOTMATRIX
+#define SCALE       1
+#define RANGE     100
+#define DELAY   10000
+#endif
 
+#ifdef OLED
 NGColorOLED *cdm = new NGColorOLED();
+#endif
+#ifdef DOTMATRIX
+NGColorDotMatrix *cdm = new NGColorDotMatrix();
+#endif
 NGDecimalPointCounter *dpc = new NGDecimalPointCounter(cdm, COLOR_RED);
 
 long _lastValue = 0;
@@ -17,12 +36,23 @@ void setup() {
   cdm->initialize();
   cdm->setScale(SCALE);
   cdm->clear();
+  #ifdef OLED
   dpc->setMaxDigits(5);
+  #endif
+  #ifdef DOTMATRIX
+  dpc->setMaxDigits(3);
+  #endif
   dpc->setShowMaxDigits(false);
   dpc->setIsAnimationEnabled(true);
   dpc->setAnimationDelay(100);
+  #ifdef OLED
   dpc->setPosX(5);
   dpc->setPosY(5);
+  #endif
+  #ifdef DOTMATRIX
+  dpc->setPosX(0);
+  dpc->setPosY(0);
+  #endif
   dpc->initialize();
   dpc->setCounter(random(1, RANGE));
   observeMemory(0);
