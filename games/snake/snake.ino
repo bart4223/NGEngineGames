@@ -1,7 +1,7 @@
 #define PROD true //false, true
-#define UNO
 #define OLED //OLED, DOTMATRIX
 
+#include <NGCommon.h>
 #include <NGMemoryObserver.h>
 #include <NGSimpleKeypad.h>
 #include <NGSerialNotification.h>
@@ -18,12 +18,12 @@
 #define JOYSTICKDELAY 200
 
 #define JOYSTICKID       0
-#ifdef UNO
+#ifdef NG_PLATFORM_UNO
 #define JOYSTICKPINX    A1
 #else
 #define JOYSTICKPINX    A8
 #endif
-#ifdef UNO
+#ifdef NG_PLATFORM_UNO
 #define JOYSTICKPINY    A2
 #else
 #define JOYSTICKPINY    A9
