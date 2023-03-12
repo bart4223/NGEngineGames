@@ -50,8 +50,8 @@
 		299C2B8D294F619900F53CAA /* dot.ino */ = {isa = PBXFileReference; lastKnownFileType = text; path = dot.ino; sourceTree = "<group>"; };
 		299C2B8F29508B6D00F53CAA /* NGGameExceptions.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NGGameExceptions.h; sourceTree = "<group>"; };
 		299C2B91295496F200F53CAA /* snake.ino */ = {isa = PBXFileReference; lastKnownFileType = text; path = snake.ino; sourceTree = "<group>"; };
-		299C2B922954A08B00F53CAA /* NG8x8RGBMatrixGameSnake.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = NG8x8RGBMatrixGameSnake.cpp; sourceTree = "<group>"; };
-		299C2B932954A08B00F53CAA /* NG8x8RGBMatrixGameSnake.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NG8x8RGBMatrixGameSnake.h; sourceTree = "<group>"; };
+		299C2B922954A08B00F53CAA /* NGColorDotMatrixGameSnake.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = NGColorDotMatrixGameSnake.cpp; sourceTree = "<group>"; };
+		299C2B932954A08B00F53CAA /* NGColorDotMatrixGameSnake.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NGColorDotMatrixGameSnake.h; sourceTree = "<group>"; };
 		29E872FF296C07EE00F7BF90 /* boulderdash.ino */ = {isa = PBXFileReference; lastKnownFileType = text; path = boulderdash.ino; sourceTree = "<group>"; };
 		29E87300296C081200F7BF90 /* NG8x8RGBMatrixGameBoulderdash.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = NG8x8RGBMatrixGameBoulderdash.cpp; sourceTree = "<group>"; };
 		29E87301296C081200F7BF90 /* NG8x8RGBMatrixGameBoulderdash.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NG8x8RGBMatrixGameBoulderdash.h; sourceTree = "<group>"; };
@@ -223,6 +223,8 @@
 			children = (
 				299C2B8B294F5FF100F53CAA /* NGColorDotMatrixGameDot.h */,
 				299C2B8A294F5FF100F53CAA /* NGColorDotMatrixGameDot.cpp */,
+				299C2B932954A08B00F53CAA /* NGColorDotMatrixGameSnake.h */,
+				299C2B922954A08B00F53CAA /* NGColorDotMatrixGameSnake.cpp */,
 				299C2B88294F5EAD00F53CAA /* NGCustom8x8RGBMatrixGame.h */,
 				299C2B87294F5EAD00F53CAA /* NGCustom8x8RGBMatrixGame.cpp */,
 				29620D8029BE2D6B0020B874 /* NGCustomColorDotMatrixGame.h */,
@@ -231,8 +233,6 @@
 				295A7E4D2969DB99003779A3 /* NG8x8RGBMatrixGameAsteroids.cpp */,
 				29E87301296C081200F7BF90 /* NG8x8RGBMatrixGameBoulderdash.h */,
 				29E87300296C081200F7BF90 /* NG8x8RGBMatrixGameBoulderdash.cpp */,
-				299C2B932954A08B00F53CAA /* NG8x8RGBMatrixGameSnake.h */,
-				299C2B922954A08B00F53CAA /* NG8x8RGBMatrixGameSnake.cpp */,
 				295A7E4A295F2EB2003779A3 /* NG8x8RGBMatrixGameTetris.h */,
 				295A7E49295F2EB2003779A3 /* NG8x8RGBMatrixGameTetris.cpp */,
 			);

@@ -1,12 +1,12 @@
 //
-//  NG8x8RGBMatrixGameSnake.h
+//  NGColorDotMatrixGameSnake.h
 //  NGEngineGames
 //
 //  Created by Nils Grimmer on 22.12.22.
 //
 
-#ifndef NG8x8RGBMatrixGameSnake_h
-#define NG8x8RGBMatrixGameSnake_h
+#ifndef NGColorDotMatrixGameSnake_h
+#define NGColorDotMatrixGameSnake_h
 
 #if (ARDUINO >= 100)
 #include <Arduino.h>
@@ -14,7 +14,7 @@
 #include <WProgram.h>
 #endif
 
-#include <NGCustom8x8RGBMatrixGame.h>
+#include <NGCustomColorDotMatrixGame.h>
 
 #define GAMESNAKECOLORSCOREOFF { .red = 5, .green = 5, .blue = 5 }
 #define GAMESNAKECOLORSCOREON COLOR_BLUE
@@ -27,7 +27,7 @@
 #define GAMESNAKEFINISHDELAY 1000
 #define GAMESNAKEMINTRODELAY  100
 
-class NG8x8RGBMatrixGameSnake : public NGCustom8x8RGBMatrixGame {
+class NGColorDotMatrixGameSnake : public NGCustomColorDotMatrixGame {
   
 private:
     byte _posXSnake;
@@ -75,7 +75,7 @@ protected:
     void _ownIntro();
     
 public:
-    NG8x8RGBMatrixGameSnake();
+    NGColorDotMatrixGameSnake();
 };
 
-#endif /* NG8x8RGBMatrixGameSnake_h */
+#endif /* NGColorDotMatrixGameSnake_h */

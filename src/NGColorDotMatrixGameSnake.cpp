@@ -1,13 +1,13 @@
 //
-//  NG8x8RGBMatrixGameSnake.cpp
+//  NGColorDotMatrixGameSnake.cpp
 //  NGEngineGames
 //
 //  Created by Nils Grimmer on 22.12.22.
 //
 
-#include "NG8x8RGBMatrixGameSnake.h"
+#include "NGColorDotMatrixGameSnake.h"
 
-NG8x8RGBMatrixGameSnake::NG8x8RGBMatrixGameSnake() {
+NGColorDotMatrixGameSnake::NGColorDotMatrixGameSnake() {
     _create("Snake");
     _scoreDigits = GAMESNAKESCOREDIGITS;
     _gameToggleMode = gtmBreakContinue;
@@ -16,13 +16,13 @@ NG8x8RGBMatrixGameSnake::NG8x8RGBMatrixGameSnake() {
     _gameNextStepDelay = GAMESNAKEMOVEDELAY;
 }
 
-void NG8x8RGBMatrixGameSnake::_rollSnakeColor() {
+void NGColorDotMatrixGameSnake::_rollSnakeColor() {
     _colorSnake.red = random(0, 256);
     _colorSnake.green = random(0, 256);
     _colorSnake.blue = random(0, 256);
 }
 
-void NG8x8RGBMatrixGameSnake::_calculateNewDiamondPosition() {
+void NGColorDotMatrixGameSnake::_calculateNewDiamondPosition() {
     bool ok = false;
     while (!ok) {
         int x = random(0, GAMESNAKEMAZESIZEX);
@@ -41,7 +41,7 @@ void NG8x8RGBMatrixGameSnake::_calculateNewDiamondPosition() {
     }
 }
 
-void NG8x8RGBMatrixGameSnake::_resetMaze() {
+void NGColorDotMatrixGameSnake::_resetMaze() {
     for (int y = 0; y < GAMESNAKEMAZESIZEY; y++) {
         for (int x = 0; x < GAMESNAKEMAZESIZEX; x++) {
             _maze[y][x] = 0;
@@ -49,7 +49,7 @@ void NG8x8RGBMatrixGameSnake::_resetMaze() {
     }
 }
 
-void NG8x8RGBMatrixGameSnake::_computeMaze() {
+void NGColorDotMatrixGameSnake::_computeMaze() {
     for (int y = 0; y < GAMESNAKEMAZESIZEY; y++) {
         for (int x = 0; x < GAMESNAKEMAZESIZEX; x++) {
             if (_maze[y][x] > 0) {
@@ -59,7 +59,7 @@ void NG8x8RGBMatrixGameSnake::_computeMaze() {
     }
 }
 
-bool NG8x8RGBMatrixGameSnake::_moveSnake() {
+bool NGColorDotMatrixGameSnake::_moveSnake() {
     bool res = false;
     _posXSnake = _posXSnake + _directionXSnake;
     _posYSnake = _posYSnake + _directionYSnake;
@@ -80,7 +80,7 @@ bool NG8x8RGBMatrixGameSnake::_moveSnake() {
     return res;
 }
 
-void NG8x8RGBMatrixGameSnake::_doInitialize() {
+void NGColorDotMatrixGameSnake::_doInitialize() {
     _score->setColorOff(GAMESNAKECOLORSCOREOFF);
     _score->setColorOn(GAMESNAKECOLORSCOREON);
     if (_logging) {
@@ -90,7 +90,7 @@ void NG8x8RGBMatrixGameSnake::_doInitialize() {
     }
 }
 
-void NG8x8RGBMatrixGameSnake::_doStartUp() {
+void NGColorDotMatrixGameSnake::_doStartUp() {
     if (_logging) {
         char log[100];
         sprintf(log, "%s.StartUp", _name);
@@ -99,7 +99,7 @@ void NG8x8RGBMatrixGameSnake::_doStartUp() {
     _ownIntro();
 }
 
-void NG8x8RGBMatrixGameSnake::_doStartUpDone() {
+void NGColorDotMatrixGameSnake::_doStartUpDone() {
     if (_logging) {
         char log[100];
         sprintf(log, "%s.StartUpDone", _name);
@@ -107,7 +107,7 @@ void NG8x8RGBMatrixGameSnake::_doStartUpDone() {
     }
 }
 
-void NG8x8RGBMatrixGameSnake::_doStartGame() {
+void NGColorDotMatrixGameSnake::_doStartGame() {
     _posXSnake = 3;
     _posYSnake = 3;
     _snakeThreshold = 1;
@@ -126,7 +126,7 @@ void NG8x8RGBMatrixGameSnake::_doStartGame() {
     }
 }
 
-void NG8x8RGBMatrixGameSnake::_doBreakGame() {
+void NGColorDotMatrixGameSnake::_doBreakGame() {
     if (_logging) {
         char log[100];
         sprintf(log, "%s.BreakGame", _name);
@@ -134,7 +134,7 @@ void NG8x8RGBMatrixGameSnake::_doBreakGame() {
     }
 }
 
-void NG8x8RGBMatrixGameSnake::_doContinueGame() {
+void NGColorDotMatrixGameSnake::_doContinueGame() {
     if (_logging) {
         char log[100];
         sprintf(log, "%s.ContinueGame", _name);
@@ -142,8 +142,8 @@ void NG8x8RGBMatrixGameSnake::_doContinueGame() {
     }
 }
 
-void NG8x8RGBMatrixGameSnake::_doFinishGame() {
-    _cdm->clear();
+void NGColorDotMatrixGameSnake::_doFinishGame() {
+    _ipc->clear();
     if (_logging) {
         char log[100];
         sprintf(log, "%s.FinishGame", _name);
@@ -151,7 +151,7 @@ void NG8x8RGBMatrixGameSnake::_doFinishGame() {
     }
 }
 
-void NG8x8RGBMatrixGameSnake::_doProcessingLoop() {
+void NGColorDotMatrixGameSnake::_doProcessingLoop() {
     if (_gameStarted) {
         _ownJoystickLoop();
         if ((millis() - _lastSnakeMove) > _gameNextStepDelay) {
@@ -165,63 +165,63 @@ void NG8x8RGBMatrixGameSnake::_doProcessingLoop() {
     }
 }
 
-void NG8x8RGBMatrixGameSnake::_ownIntro() {
-    _cdm->clear();
+void NGColorDotMatrixGameSnake::_ownIntro() {
+    _ipc->clear();
     _rollSnakeColor();
-    _cdm->drawPoint(4, 3, _colorSnake);
+    _ipc->drawPoint(4, 3, _colorSnake);
     delay(GAMESNAKEMINTRODELAY);
     _rollSnakeColor();
-    _cdm->drawPoint(4, 4, _colorSnake);
+    _ipc->drawPoint(4, 4, _colorSnake);
     delay(GAMESNAKEMINTRODELAY);
     _rollSnakeColor();
-    _cdm->drawPoint(3, 4, _colorSnake);
+    _ipc->drawPoint(3, 4, _colorSnake);
     delay(GAMESNAKEMINTRODELAY);
     _rollSnakeColor();
-    _cdm->drawPoint(2, 4, _colorSnake);
+    _ipc->drawPoint(2, 4, _colorSnake);
     delay(GAMESNAKEMINTRODELAY);
     _rollSnakeColor();
-    _cdm->drawPoint(2, 3, _colorSnake);
+    _ipc->drawPoint(2, 3, _colorSnake);
     delay(GAMESNAKEMINTRODELAY);
     _rollSnakeColor();
-    _cdm->drawPoint(2, 2, _colorSnake);
+    _ipc->drawPoint(2, 2, _colorSnake);
     delay(GAMESNAKEMINTRODELAY);
     for (int i = 2; i < 7; i++) {
         _rollSnakeColor();
-        _cdm->drawPoint(i, 1, _colorSnake);
+        _ipc->drawPoint(i, 1, _colorSnake);
         delay(GAMESNAKEMINTRODELAY);
     }
     for (int i = 2; i < 7; i++) {
         _rollSnakeColor();
-        _cdm->drawPoint(6, i, _colorSnake);
+        _ipc->drawPoint(6, i, _colorSnake);
         delay(GAMESNAKEMINTRODELAY);
     }
     for (int i = 5; i > 0; i--) {
         _rollSnakeColor();
-        _cdm->drawPoint(i, 6, _colorSnake);
+        _ipc->drawPoint(i, 6, _colorSnake);
         delay(GAMESNAKEMINTRODELAY);
     }
     delay(500);
-    _cdm->clear();
+    _ipc->clear();
     _score->setValue(0);
 }
 
-void NG8x8RGBMatrixGameSnake::_ownRender() {
-    _cdm->beginUpdate();
+void NGColorDotMatrixGameSnake::_ownRender() {
+    _ipc->beginUpdate();
     for (int y = 0; y < GAMESNAKEMAZESIZEY; y++) {
         for (int x = 0; x < GAMESNAKEMAZESIZEX; x++) {
             if (_maze[y][x] > 0) {
-                _cdm->drawPoint(x, y, _colorSnake);
+                _ipc->drawPoint(x, y, _colorSnake);
             } else {
-                _cdm->drawPoint(x, y, COLOR_BLACK);
+                _ipc->drawPoint(x, y, COLOR_BLACK);
             }
         }
     }
-    _cdm->drawPoint(_posXDiamond, _posYDiamond, COLOR_YELLOW);
+    _ipc->drawPoint(_posXDiamond, _posYDiamond, COLOR_YELLOW);
     _score->setValue(_scoreCounter);
-    _cdm->endUpdate();
+    _ipc->endUpdate();
 }
 
-void NG8x8RGBMatrixGameSnake::_ownJoystickLoop() {
+void NGColorDotMatrixGameSnake::_ownJoystickLoop() {
     for (int i = 0; i < _joystickCount; i++) {
         if (_joysticks[i].joystick->hasLastMovement()) {
             switch(_joysticks[i].joystick->getLastMovement()) {
