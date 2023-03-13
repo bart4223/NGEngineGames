@@ -56,9 +56,15 @@ public:
     
     void clear();
     
+    bool clearPoint(int x, int y);
+    
     bool drawPoint(int x, int y, colorRGB color);
     
     bool fillRect(int top, int left, int bottom, int right, colorRGB color);
+    
+    void clearCircle(int x0, int y0, int radius);
+    
+    void drawCircle(int x0, int y0, int radius, colorRGB color);
 };
 
 #endif /* NGColorOLED_hpp */

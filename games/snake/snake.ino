@@ -1,5 +1,5 @@
 #define PROD true //false, true
-#define OLED //OLED, DOTMATRIX
+#define DOTMATRIX //OLED, DOTMATRIX
 
 #include <NGCommon.h>
 #include <NGMemoryObserver.h>

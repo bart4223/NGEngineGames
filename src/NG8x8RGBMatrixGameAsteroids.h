@@ -14,7 +14,7 @@
 #include <WProgram.h>
 #endif
 
-#include <NGCustom8x8RGBMatrixGame.h>
+#include <NGCustomColorDotMatrixGame.h>
 
 #define GAMEASTEROIDSCOLORSCOREOFF  { .red = 5, .green = 5, .blue = 5 }
 #define GAMEASTEROIDSCOLORSCOREON   COLOR_GREEN
@@ -48,7 +48,7 @@ static byte globalAsteroidsColors[3][3] = {
   {255, 255, 0} // Asteroid
 };
 
-class NG8x8RGBMatrixGameAsteroids : public NGCustom8x8RGBMatrixGame {
+class NG8x8RGBMatrixGameAsteroids : public NGCustomColorDotMatrixGame {
  
 private:
     byte _posXSpacecraft = GAMEASTEROIDSSTARTPOSX;

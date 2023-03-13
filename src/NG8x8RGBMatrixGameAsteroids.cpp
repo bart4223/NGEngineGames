@@ -150,7 +150,7 @@ void NG8x8RGBMatrixGameAsteroids::_doStartUp() {
 }
 
 void NG8x8RGBMatrixGameAsteroids::_doStartUpDone() {
-    _cdm->clear();
+    _ipc->clear();
     _score->setValue(_scoreCounter);
     if (_logging) {
         char log[100];
@@ -189,7 +189,7 @@ void NG8x8RGBMatrixGameAsteroids::_doContinueGame() {
 }
 
 void NG8x8RGBMatrixGameAsteroids::_doFinishGame() {
-    _cdm->clear();
+    _ipc->clear();
     if (_logging) {
         char log[100];
         sprintf(log, "%s.FinishGame", _name);
@@ -218,7 +218,7 @@ void NG8x8RGBMatrixGameAsteroids::_doProcessingLoop() {
 void NG8x8RGBMatrixGameAsteroids::_ownRender() {
     colorRGB c;
     int value;
-    _cdm->beginUpdate();
+    _ipc->beginUpdate();
     for (int y = 0; y < GAMEASTEROIDSMAZESIZEY; y++) {
         for (int x = 0; x < GAMEASTEROIDSMAZESIZEX; x++) {
             value = abs(_maze[y][x]);
@@ -226,43 +226,43 @@ void NG8x8RGBMatrixGameAsteroids::_ownRender() {
                 c.red = globalAsteroidsColors[value - 1][0];
                 c.green = globalAsteroidsColors[value - 1][1];
                 c.blue = globalAsteroidsColors[value - 1][2];
-                _cdm->drawPoint(x, y, c);
+                _ipc->drawPoint(x, y, c);
             } else {
-                _cdm->clearPoint(x, y);
+                _ipc->clearPoint(x, y);
             }
         }
     }
     _score->setValue(_scoreCounter);
-    _cdm->endUpdate();
+    _ipc->endUpdate();
 }
 
 void NG8x8RGBMatrixGameAsteroids::_ownIntro() {
     colorRGB c;
-    _cdm->beginUpdate();
+    _ipc->beginUpdate();
     c.red = globalAsteroidsColors[GAMEASTEROIDSCOLORINDEXSPACECRAFT - 1][0];
     c.green = globalAsteroidsColors[GAMEASTEROIDSCOLORINDEXSPACECRAFT - 1][1];
     c.blue = globalAsteroidsColors[GAMEASTEROIDSCOLORINDEXSPACECRAFT - 1][2];
-    _cdm->clear();
-    _cdm->drawPoint(1, 2, c);
-    _cdm->drawPoint(0, 3, c);
-    _cdm->drawPoint(1, 3, c);
-    _cdm->drawPoint(2, 3, c);
+    _ipc->clear();
+    _ipc->drawPoint(1, 2, c);
+    _ipc->drawPoint(0, 3, c);
+    _ipc->drawPoint(1, 3, c);
+    _ipc->drawPoint(2, 3, c);
     c.red = globalAsteroidsColors[GAMEASTEROIDSCOLORINDEXASTEROID - 1][0];
     c.green = globalAsteroidsColors[GAMEASTEROIDSCOLORINDEXASTEROID - 1][1];
     c.blue = globalAsteroidsColors[GAMEASTEROIDSCOLORINDEXASTEROID - 1][2];
-    _cdm->drawPoint(2, 0, c);
-    _cdm->drawPoint(6, 2, c);
-    _cdm->drawPoint(4, 4, c);
-    _cdm->drawPoint(7, 6, c);
-    _cdm->drawPoint(3, 7, c);
-    _cdm->endUpdate();
+    _ipc->drawPoint(2, 0, c);
+    _ipc->drawPoint(6, 2, c);
+    _ipc->drawPoint(4, 4, c);
+    _ipc->drawPoint(7, 6, c);
+    _ipc->drawPoint(3, 7, c);
+    _ipc->endUpdate();
     c.red = globalAsteroidsColors[GAMEASTEROIDSCOLORINDEXLASERBEAM - 1][0];
     c.green = globalAsteroidsColors[GAMEASTEROIDSCOLORINDEXLASERBEAM - 1][1];
     c.blue = globalAsteroidsColors[GAMEASTEROIDSCOLORINDEXLASERBEAM - 1][2];
     for (int i = 0; i < GAMEASTEROIDSINTROLASERBEAMTIMES; i++) {
         for (int x = 3; x < GAMEASTEROIDSMAZESIZEX; x++) {
-            _cdm->drawPoint(x, 3, c);
-            _cdm->clearPoint(x, 3);
+            _ipc->drawPoint(x, 3, c);
+            _ipc->clearPoint(x, 3);
         }
         delay(GAMEASTEROIDSINTRODELAY);
     }
@@ -270,11 +270,11 @@ void NG8x8RGBMatrixGameAsteroids::_ownIntro() {
 
 void NG8x8RGBMatrixGameAsteroids::_ownOutro() {
     for (int i = 1; i < GAMEASTEROIDSMAZESIZEX + 2; i++) {
-        _cdm->beginUpdate();
-        _cdm->clearCircle(_posXSpacecraft + 1, _posYSpacecraft + 1, i - 1);
-        _cdm->drawCircle(_posXSpacecraft + 1, _posYSpacecraft + 1, i, COLOR_RED);
+        _ipc->beginUpdate();
+        _ipc->clearCircle(_posXSpacecraft + 1, _posYSpacecraft + 1, i - 1);
+        _ipc->drawCircle(_posXSpacecraft + 1, _posYSpacecraft + 1, i, COLOR_RED);
         _score->setValue(_scoreCounter);
-        _cdm->endUpdate();
+        _ipc->endUpdate();
         delay(GAMEASTEROIDSOUTRODELAY);
     }
 }
