@@ -221,6 +221,8 @@
 		299C2B89294F5F9F00F53CAA /* specs */ = {
 			isa = PBXGroup;
 			children = (
+				295A7E4E2969DB99003779A3 /* NGColorDotMatrixGameAsteroids.h */,
+				295A7E4D2969DB99003779A3 /* NGColorDotMatrixGameAsteroids.cpp */,
 				299C2B8B294F5FF100F53CAA /* NGColorDotMatrixGameDot.h */,
 				299C2B8A294F5FF100F53CAA /* NGColorDotMatrixGameDot.cpp */,
 				299C2B932954A08B00F53CAA /* NGColorDotMatrixGameSnake.h */,
@@ -229,8 +231,6 @@
 				299C2B87294F5EAD00F53CAA /* NGCustom8x8RGBMatrixGame.cpp */,
 				29620D8029BE2D6B0020B874 /* NGCustomColorDotMatrixGame.h */,
 				29620D7F29BE2D6B0020B874 /* NGCustomColorDotMatrixGame.cpp */,
-				295A7E4E2969DB99003779A3 /* NGColorDotMatrixGameAsteroids.h */,
-				295A7E4D2969DB99003779A3 /* NGColorDotMatrixGameAsteroids.cpp */,
 				29E87301296C081200F7BF90 /* NG8x8RGBMatrixGameBoulderdash.h */,
 				29E87300296C081200F7BF90 /* NG8x8RGBMatrixGameBoulderdash.cpp */,
 				295A7E4A295F2EB2003779A3 /* NG8x8RGBMatrixGameTetris.h */,
