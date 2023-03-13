@@ -6,7 +6,7 @@
 #include <NGSimpleKeypad.h>
 #include <NGSerialNotification.h>
 #include <NGJingleHelloDude.h>
-#include <NG8x8RGBMatrixGameAsteroids.h>
+#include <NGColorDotMatrixGameAsteroids.h>
 #ifdef OLED
 #include <NGColorOLED.h>
 #endif
@@ -47,7 +47,7 @@ NGColorDotMatrix cdm = NGColorDotMatrix();
 #ifdef OLED
 NGColorOLED cdm = NGColorOLED();
 #endif
-NG8x8RGBMatrixGameAsteroids game = NG8x8RGBMatrixGameAsteroids();
+NGColorDotMatrixGameAsteroids game = NGColorDotMatrixGameAsteroids();
 
 void setup() {
   observeMemory(0);

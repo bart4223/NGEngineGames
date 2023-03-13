@@ -1,12 +1,12 @@
 //
-//  NG8x8RGBMatrixGameAsteroids.h
+//  NGColorDotMatrixGameAsteroids.h
 //  NGEngineGames
 //
 //  Created by Nils Grimmer on 07.01.23.
 //
 
-#ifndef NG8x8RGBMatrixGameAsteroids_h
-#define NG8x8RGBMatrixGameAsteroids_h
+#ifndef NGColorDotMatrixGameAsteroids_h
+#define NGColorDotMatrixGameAsteroids_h
 
 #if (ARDUINO >= 100)
 #include <Arduino.h>
@@ -48,7 +48,7 @@ static byte globalAsteroidsColors[3][3] = {
   {255, 255, 0} // Asteroid
 };
 
-class NG8x8RGBMatrixGameAsteroids : public NGCustomColorDotMatrixGame {
+class NGColorDotMatrixGameAsteroids : public NGCustomColorDotMatrixGame {
  
 private:
     byte _posXSpacecraft = GAMEASTEROIDSSTARTPOSX;
@@ -100,8 +100,8 @@ protected:
     void _doProcessingLoop();
        
 public:
-    NG8x8RGBMatrixGameAsteroids();
+    NGColorDotMatrixGameAsteroids();
 };
 
 
-#endif /* NG8x8RGBMatrixGameAsteroids_h */
+#endif /* NGColorDotMatrixGameAsteroids_h */

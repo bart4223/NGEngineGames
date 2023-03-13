@@ -19,8 +19,8 @@
 		295A7E49295F2EB2003779A3 /* NG8x8RGBMatrixGameTetris.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = NG8x8RGBMatrixGameTetris.cpp; sourceTree = "<group>"; };
 		295A7E4A295F2EB2003779A3 /* NG8x8RGBMatrixGameTetris.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NG8x8RGBMatrixGameTetris.h; sourceTree = "<group>"; };
 		295A7E4C2969DB65003779A3 /* asteroids.ino */ = {isa = PBXFileReference; lastKnownFileType = text; path = asteroids.ino; sourceTree = "<group>"; };
-		295A7E4D2969DB99003779A3 /* NG8x8RGBMatrixGameAsteroids.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = NG8x8RGBMatrixGameAsteroids.cpp; sourceTree = "<group>"; };
-		295A7E4E2969DB99003779A3 /* NG8x8RGBMatrixGameAsteroids.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NG8x8RGBMatrixGameAsteroids.h; sourceTree = "<group>"; };
+		295A7E4D2969DB99003779A3 /* NGColorDotMatrixGameAsteroids.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = NGColorDotMatrixGameAsteroids.cpp; sourceTree = "<group>"; };
+		295A7E4E2969DB99003779A3 /* NGColorDotMatrixGameAsteroids.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NGColorDotMatrixGameAsteroids.h; sourceTree = "<group>"; };
 		29620D7229B331120020B874 /* NGDecimalPointCounter.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = NGDecimalPointCounter.cpp; sourceTree = "<group>"; };
 		29620D7329B331120020B874 /* NGDecimalPointCounter.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NGDecimalPointCounter.h; sourceTree = "<group>"; };
 		29620D7629B4B5ED0020B874 /* NGColorOLED.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = NGColorOLED.cpp; sourceTree = "<group>"; };
@@ -229,8 +229,8 @@
 				299C2B87294F5EAD00F53CAA /* NGCustom8x8RGBMatrixGame.cpp */,
 				29620D8029BE2D6B0020B874 /* NGCustomColorDotMatrixGame.h */,
 				29620D7F29BE2D6B0020B874 /* NGCustomColorDotMatrixGame.cpp */,
-				295A7E4E2969DB99003779A3 /* NG8x8RGBMatrixGameAsteroids.h */,
-				295A7E4D2969DB99003779A3 /* NG8x8RGBMatrixGameAsteroids.cpp */,
+				295A7E4E2969DB99003779A3 /* NGColorDotMatrixGameAsteroids.h */,
+				295A7E4D2969DB99003779A3 /* NGColorDotMatrixGameAsteroids.cpp */,
 				29E87301296C081200F7BF90 /* NG8x8RGBMatrixGameBoulderdash.h */,
 				29E87300296C081200F7BF90 /* NG8x8RGBMatrixGameBoulderdash.cpp */,
 				295A7E4A295F2EB2003779A3 /* NG8x8RGBMatrixGameTetris.h */,
