@@ -1,5 +1,5 @@
 #define PROD true //false, true
-#define DOTMATRIX //OLED, DOTMATRIX
+#define OLED //OLED, DOTMATRIX
 
 #include <NGCommon.h>
 #include <NGMemoryObserver.h>
@@ -81,6 +81,9 @@ void setup() {
   game.registerSoundStartUp(jingleHelloDude);
   game.registerSoundStart(jingleHelloDude);
   game.registerColorDotMatrix(&cdm);
+  #ifdef OLED
+  game.setIntroShotDelay(50);
+  #endif
   game.initialize();
   observeMemory(0);
   game.startUp();

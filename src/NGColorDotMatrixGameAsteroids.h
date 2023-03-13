@@ -38,6 +38,7 @@
 
 #define GAMEASTEROIDSINTROLASERBEAMTIMES     5
 #define GAMEASTEROIDSINTRODELAY            100
+#define GAMEASTEROIDSINTROSHOTDELAY          0
 #define GAMEASTEROIDSOUTRODELAY            100
 
 #define GAMEASTEROIDSMAXLOST 3
@@ -57,6 +58,7 @@ private:
     long _lastAsteroidsMove = 0;
     long _lastSpawnLaserbeam = 0;
     byte _asteroidsLost = 0;
+    int _introShotDelay = GAMEASTEROIDSINTROSHOTDELAY;
     
     void _resetMaze();
     
@@ -101,6 +103,8 @@ protected:
        
 public:
     NGColorDotMatrixGameAsteroids();
+    
+    void setIntroShotDelay(int shotdelay);
 };
 
 

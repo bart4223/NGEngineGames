@@ -262,6 +262,9 @@ void NGColorDotMatrixGameAsteroids::_ownIntro() {
     for (int i = 0; i < GAMEASTEROIDSINTROLASERBEAMTIMES; i++) {
         for (int x = 3; x < GAMEASTEROIDSMAZESIZEX; x++) {
             _ipc->drawPoint(x, 3, c);
+            if (_introShotDelay > 0) {
+                delay(_introShotDelay);
+            }
             _ipc->clearPoint(x, 3);
         }
         delay(GAMEASTEROIDSINTRODELAY);
@@ -334,4 +337,8 @@ void NGColorDotMatrixGameAsteroids::_ownJoystickLoop() {
             }
         }
     }
+}
+
+void NGColorDotMatrixGameAsteroids::setIntroShotDelay(int shotdelay) {
+    _introShotDelay = shotdelay;
 }
