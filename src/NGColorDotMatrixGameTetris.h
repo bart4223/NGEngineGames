@@ -1,12 +1,12 @@
 //
-//  NG8x8RGBMatrixGameTetris.h
+//  NGColorDotMatrixGameTetris.h
 //  NGEngineGames
 //
 //  Created by Nils Grimmer on 30.12.22.
 //
 
-#ifndef NG8x8RGBMatrixGameTetris_h
-#define NG8x8RGBMatrixGameTetris_h
+#ifndef NGColorDotMatrixGameTetris_h
+#define NGColorDotMatrixGameTetris_h
 
 #if (ARDUINO >= 100)
 #include <Arduino.h>
@@ -42,7 +42,7 @@ static byte globalTetrominoColors[7][3] = {
 
 enum tetrominoKind { tkNone, tkI, tkL };
 
-class NG8x8RGBMatrixGameTetris : public NGCustomColorDotMatrixGame {
+class NGColorDotMatrixGameTetris : public NGCustomColorDotMatrixGame {
  
 private:
     byte _posXTetromino = 0;
@@ -98,7 +98,7 @@ protected:
     void _doProcessingLoop();
        
 public:
-    NG8x8RGBMatrixGameTetris();
+    NGColorDotMatrixGameTetris();
 };
 
-#endif /* NG8x8RGBMatrixGameTetris_h */
+#endif /* NGColorDotMatrixGameTetris_h */

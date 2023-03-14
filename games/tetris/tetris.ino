@@ -7,7 +7,7 @@
 #include <NGSerialNotification.h>
 #include <NGJingleHelloDude.h>
 #include <NGJingleSuperMarioShort.h>
-#include <NG8x8RGBMatrixGameTetris.h>
+#include <NGColorDotMatrixGameTetris.h>
 #ifdef OLED
 #include <NGColorOLED.h>
 #endif
@@ -50,7 +50,7 @@ NGColorDotMatrix cdm = NGColorDotMatrix();
 #ifdef OLED
 NGColorOLED cdm = NGColorOLED();
 #endif
-NG8x8RGBMatrixGameTetris game = NG8x8RGBMatrixGameTetris();
+NGColorDotMatrixGameTetris game = NGColorDotMatrixGameTetris();
 
 void setup() {
   observeMemory(0);

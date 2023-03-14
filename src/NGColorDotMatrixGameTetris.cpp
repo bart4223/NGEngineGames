@@ -1,13 +1,13 @@
 //
-//  NG8x8RGBMatrixGameTetris.cpp
+//  NGColorDotMatrixGameTetris.cpp
 //  NGEngineGames
 //
 //  Created by Nils Grimmer on 30.12.22.
 //
 
-#include "NG8x8RGBMatrixGameTetris.h"
+#include "NGColorDotMatrixGameTetris.h"
 
-NG8x8RGBMatrixGameTetris::NG8x8RGBMatrixGameTetris() {
+NGColorDotMatrixGameTetris::NGColorDotMatrixGameTetris() {
     _create("Tetris");
     _scoreDigits = GAMETETRISSCOREDIGITS;
     _gameToggleMode = gtmBreakContinue;
@@ -17,7 +17,7 @@ NG8x8RGBMatrixGameTetris::NG8x8RGBMatrixGameTetris() {
     _gameNextStepDelay = GAMETETRISMOVEDELAY;
 }
 
-void NG8x8RGBMatrixGameTetris::_resetMaze() {
+void NGColorDotMatrixGameTetris::_resetMaze() {
     for (int y = 0; y < GAMETETRISMAZESIZEY; y++) {
         for (int x = 0; x < GAMETETRISMAZESIZEX; x++) {
             _maze[y][x] = 0;
@@ -25,7 +25,7 @@ void NG8x8RGBMatrixGameTetris::_resetMaze() {
     }
 }
 
-void NG8x8RGBMatrixGameTetris::_clearTetromino() {
+void NGColorDotMatrixGameTetris::_clearTetromino() {
     switch(_tetrominoKind) {
         case tkI:
             switch(_tetrominoSequence) {
@@ -74,7 +74,7 @@ void NG8x8RGBMatrixGameTetris::_clearTetromino() {
     }
 }
 
-void NG8x8RGBMatrixGameTetris::_persistTetromino() {
+void NGColorDotMatrixGameTetris::_persistTetromino() {
     for (int y = 0; y < GAMETETRISMAZESIZEY; y++) {
         for (int x = 0; x < GAMETETRISMAZESIZEX; x++) {
             if (_maze[y][x] <= 0) {
@@ -84,7 +84,7 @@ void NG8x8RGBMatrixGameTetris::_persistTetromino() {
     }
 }
 
-void NG8x8RGBMatrixGameTetris::_computeTetromino() {
+void NGColorDotMatrixGameTetris::_computeTetromino() {
     switch(_tetrominoKind) {
         case tkI:
             switch(_tetrominoSequence) {
@@ -133,7 +133,7 @@ void NG8x8RGBMatrixGameTetris::_computeTetromino() {
     }
 }
 
-void NG8x8RGBMatrixGameTetris::_computeMaze() {
+void NGColorDotMatrixGameTetris::_computeMaze() {
     for (int i = 0; i < 2; i++) {
         byte complete = 0;
         for (int y = GAMETETRISMAZESIZEY - 1; y > 0; y--) {
@@ -169,7 +169,7 @@ void NG8x8RGBMatrixGameTetris::_computeMaze() {
     }
 }
 
-bool NG8x8RGBMatrixGameTetris::_checkTetromino(byte posX, byte posY, byte sequence) {
+bool NGColorDotMatrixGameTetris::_checkTetromino(byte posX, byte posY, byte sequence) {
     bool res = true;
     switch(_tetrominoKind) {
         case tkI:
@@ -244,7 +244,7 @@ bool NG8x8RGBMatrixGameTetris::_checkTetromino(byte posX, byte posY, byte sequen
     return res;
 }
 
-void NG8x8RGBMatrixGameTetris::_spawnTetromino() {
+void NGColorDotMatrixGameTetris::_spawnTetromino() {
     _tetrominoColor = random(1, (sizeof(globalTetrominoColors) / sizeof(globalTetrominoColors[0])) + 1);
     _posYTetromino = 0;
     _posXTetromino = random(0, GAMETETRISMAZESIZEX - 1);
@@ -264,7 +264,7 @@ void NG8x8RGBMatrixGameTetris::_spawnTetromino() {
     }
 }
 
-void NG8x8RGBMatrixGameTetris::_doInitialize() {
+void NGColorDotMatrixGameTetris::_doInitialize() {
     _score->setColorOff(GAMETETRISCOLORSCOREOFF);
     _score->setColorOn(GAMETETRISCOLORSCOREON);
     if (_logging) {
@@ -274,7 +274,7 @@ void NG8x8RGBMatrixGameTetris::_doInitialize() {
     }
 }
 
-void NG8x8RGBMatrixGameTetris::_doStartUp() {
+void NGColorDotMatrixGameTetris::_doStartUp() {
     if (!_inStartUpAnimation) {
         if (_logging) {
             char log[100];
@@ -289,7 +289,7 @@ void NG8x8RGBMatrixGameTetris::_doStartUp() {
     }
 }
 
-void NG8x8RGBMatrixGameTetris::_doStartUpDone() {
+void NGColorDotMatrixGameTetris::_doStartUpDone() {
     _ipc->clear();
     _score->setValue(_scoreCounter);
     if (_logging) {
@@ -299,7 +299,7 @@ void NG8x8RGBMatrixGameTetris::_doStartUpDone() {
     }
 }
 
-void NG8x8RGBMatrixGameTetris::_doStartGame() {
+void NGColorDotMatrixGameTetris::_doStartGame() {
     _resetMaze();
     _spawnTetromino();
     _computeTetromino();
@@ -311,7 +311,7 @@ void NG8x8RGBMatrixGameTetris::_doStartGame() {
     }
 }
 
-void NG8x8RGBMatrixGameTetris::_doBreakGame() {
+void NGColorDotMatrixGameTetris::_doBreakGame() {
     if (_logging) {
         char log[100];
         sprintf(log, "%s.BreakGame", _name);
@@ -319,7 +319,7 @@ void NG8x8RGBMatrixGameTetris::_doBreakGame() {
     }
 }
 
-void NG8x8RGBMatrixGameTetris::_doContinueGame() {
+void NGColorDotMatrixGameTetris::_doContinueGame() {
     if (_logging) {
         char log[100];
         sprintf(log, "%s.ContinueGame", _name);
@@ -327,7 +327,7 @@ void NG8x8RGBMatrixGameTetris::_doContinueGame() {
     }
 }
 
-void NG8x8RGBMatrixGameTetris::_doFinishGame() {
+void NGColorDotMatrixGameTetris::_doFinishGame() {
     _ipc->clear();
     if (_logging) {
         char log[100];
@@ -336,7 +336,7 @@ void NG8x8RGBMatrixGameTetris::_doFinishGame() {
     }
 }
 
-void NG8x8RGBMatrixGameTetris::_doProcessingLoop() {
+void NGColorDotMatrixGameTetris::_doProcessingLoop() {
     if (_gameStarted) {
         _ownJoystickLoop();
         if ((millis() - _lastTetrominoMove) > _gameNextStepDelay) {
@@ -386,7 +386,7 @@ void NG8x8RGBMatrixGameTetris::_doProcessingLoop() {
     }
 }
 
-void NG8x8RGBMatrixGameTetris::_ownIntro() {
+void NGColorDotMatrixGameTetris::_ownIntro() {
     colorRGB c;
     c.red = globalTetrominoColors[0][0];
     c.green = globalTetrominoColors[0][1];
@@ -413,7 +413,7 @@ void NG8x8RGBMatrixGameTetris::_ownIntro() {
     _ipc->drawPoint(7, 7, c);
 }
 
-void NG8x8RGBMatrixGameTetris::_ownIntroAnimation() {
+void NGColorDotMatrixGameTetris::_ownIntroAnimation() {
     if (_startUpAnimationStep == -1 || millis() - _lastStartUpAnimationStep >= GAMETETRISSPLASHDELAY) {
         _startUpAnimationStep++;
         _ipc->beginUpdate();
@@ -456,7 +456,7 @@ void NG8x8RGBMatrixGameTetris::_ownIntroAnimation() {
     }
 }
 
-void NG8x8RGBMatrixGameTetris::_ownOutro() {
+void NGColorDotMatrixGameTetris::_ownOutro() {
     colorRGB c;
     for (int y = GAMETETRISMAZESIZEY - 1; y >= 0; y--) {
         _ipc->beginUpdate();
@@ -474,7 +474,7 @@ void NG8x8RGBMatrixGameTetris::_ownOutro() {
     }
 }
 
-void NG8x8RGBMatrixGameTetris::_ownRender() {
+void NGColorDotMatrixGameTetris::_ownRender() {
     colorRGB c;
     int value;
     _ipc->beginUpdate();
@@ -495,7 +495,7 @@ void NG8x8RGBMatrixGameTetris::_ownRender() {
     _ipc->endUpdate();
 }
 
-void NG8x8RGBMatrixGameTetris::_ownJoystickLoop() {
+void NGColorDotMatrixGameTetris::_ownJoystickLoop() {
     for (int i = 0; i < _joystickCount; i++) {
         if (_joysticks[i].joystick->hasLastMovement()) {
             switch(_joysticks[i].joystick->getLastMovement()) {

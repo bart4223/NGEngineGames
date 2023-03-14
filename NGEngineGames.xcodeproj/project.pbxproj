@@ -16,8 +16,8 @@
 		29255B76298D392E00234506 /* LevelOne.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = LevelOne.png; sourceTree = "<group>"; };
 		29255B78298E5C5B00234506 /* LevelTwo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = LevelTwo.png; sourceTree = "<group>"; };
 		295A7E48295F2E87003779A3 /* tetris.ino */ = {isa = PBXFileReference; lastKnownFileType = text; path = tetris.ino; sourceTree = "<group>"; };
-		295A7E49295F2EB2003779A3 /* NG8x8RGBMatrixGameTetris.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = NG8x8RGBMatrixGameTetris.cpp; sourceTree = "<group>"; };
-		295A7E4A295F2EB2003779A3 /* NG8x8RGBMatrixGameTetris.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NG8x8RGBMatrixGameTetris.h; sourceTree = "<group>"; };
+		295A7E49295F2EB2003779A3 /* NGColorDotMatrixGameTetris.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = NGColorDotMatrixGameTetris.cpp; sourceTree = "<group>"; };
+		295A7E4A295F2EB2003779A3 /* NGColorDotMatrixGameTetris.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NGColorDotMatrixGameTetris.h; sourceTree = "<group>"; };
 		295A7E4C2969DB65003779A3 /* asteroids.ino */ = {isa = PBXFileReference; lastKnownFileType = text; path = asteroids.ino; sourceTree = "<group>"; };
 		295A7E4D2969DB99003779A3 /* NGColorDotMatrixGameAsteroids.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = NGColorDotMatrixGameAsteroids.cpp; sourceTree = "<group>"; };
 		295A7E4E2969DB99003779A3 /* NGColorDotMatrixGameAsteroids.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NGColorDotMatrixGameAsteroids.h; sourceTree = "<group>"; };
@@ -227,14 +227,14 @@
 				299C2B8A294F5FF100F53CAA /* NGColorDotMatrixGameDot.cpp */,
 				299C2B932954A08B00F53CAA /* NGColorDotMatrixGameSnake.h */,
 				299C2B922954A08B00F53CAA /* NGColorDotMatrixGameSnake.cpp */,
+				295A7E4A295F2EB2003779A3 /* NGColorDotMatrixGameTetris.h */,
+				295A7E49295F2EB2003779A3 /* NGColorDotMatrixGameTetris.cpp */,
 				299C2B88294F5EAD00F53CAA /* NGCustom8x8RGBMatrixGame.h */,
 				299C2B87294F5EAD00F53CAA /* NGCustom8x8RGBMatrixGame.cpp */,
 				29620D8029BE2D6B0020B874 /* NGCustomColorDotMatrixGame.h */,
 				29620D7F29BE2D6B0020B874 /* NGCustomColorDotMatrixGame.cpp */,
 				29E87301296C081200F7BF90 /* NG8x8RGBMatrixGameBoulderdash.h */,
 				29E87300296C081200F7BF90 /* NG8x8RGBMatrixGameBoulderdash.cpp */,
-				295A7E4A295F2EB2003779A3 /* NG8x8RGBMatrixGameTetris.h */,
-				295A7E49295F2EB2003779A3 /* NG8x8RGBMatrixGameTetris.cpp */,
 			);
 			name = specs;
 			sourceTree = "<group>";
