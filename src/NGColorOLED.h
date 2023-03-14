@@ -26,7 +26,7 @@
 #define SPI_DC    8
 
 class NGColorOLED : public NGIPaintableComponent {
-
+    
 private:
     Adafruit_SSD1331 *_display;
     int _scale = DEFCOLOROLEDSCALE;
@@ -73,6 +73,14 @@ public:
     void clearCircle(int x0, int y0, int radius);
     
     void drawCircle(int x0, int y0, int radius, colorRGB color);
+    
+    void drawImage(int coord[][2], colorRGB color, int size);
+
+    void drawImage(int offsetX, int offsetY, int coord[][2], colorRGB color, int size);
+
+    void drawImage(int coord[][2], byte color[][3], int size);
+
+    void drawImage(int offsetX, int offsetY, int coord[][2], byte color[][3], int size);
 };
 
 #endif /* NGColorOLED_hpp */

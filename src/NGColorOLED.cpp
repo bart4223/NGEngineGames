@@ -109,3 +109,27 @@ void NGColorOLED::clearCircle(int x0, int y0, int radius) {
 void NGColorOLED::drawCircle(int x0, int y0, int radius, colorRGB color) {
     _display->drawCircle(x0 * _scale, y0 * _scale, radius * _scale, _getColor(color));
 }
+
+void NGColorOLED::drawImage(int coord[][2], colorRGB color, int size) {
+    drawImage(0, 0, coord, color, size);
+}
+
+void NGColorOLED::drawImage(int offsetX, int offsetY, int coord[][2], colorRGB color, int size) {
+    beginUpdate();
+    for (int i = 0; i < size; i++) {
+        drawPoint(offsetX + coord[i][0], offsetY + coord[i][1], color);
+    }
+    endUpdate();
+}
+
+void NGColorOLED::drawImage(int coord[][2], byte color[][3], int size) {
+    drawImage(0, 0, coord, color, size);
+}
+
+void NGColorOLED::drawImage(int offsetX, int offsetY, int coord[][2], byte color[][3], int size) {
+    beginUpdate();
+    for (int i = 0; i < size; i++) {
+        drawPoint(offsetX + coord[i][0], offsetY + coord[i][1], { color[i][0], color[i][1], color[i][2] });
+    }
+    endUpdate();
+}
