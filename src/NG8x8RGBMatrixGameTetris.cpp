@@ -290,7 +290,7 @@ void NG8x8RGBMatrixGameTetris::_doStartUp() {
 }
 
 void NG8x8RGBMatrixGameTetris::_doStartUpDone() {
-    _cdm->clear();
+    _ipc->clear();
     _score->setValue(_scoreCounter);
     if (_logging) {
         char log[100];
@@ -328,7 +328,7 @@ void NG8x8RGBMatrixGameTetris::_doContinueGame() {
 }
 
 void NG8x8RGBMatrixGameTetris::_doFinishGame() {
-    _cdm->clear();
+    _ipc->clear();
     if (_logging) {
         char log[100];
         sprintf(log, "%s.FinishGame", _name);
@@ -391,63 +391,63 @@ void NG8x8RGBMatrixGameTetris::_ownIntro() {
     c.red = globalTetrominoColors[0][0];
     c.green = globalTetrominoColors[0][1];
     c.blue = globalTetrominoColors[0][2];
-    _cdm->clear();
-    _cdm->drawPoint(0, 6, c);
-    _cdm->drawPoint(0, 7, c);
-    _cdm->drawPoint(1, 7, c);
+    _ipc->clear();
+    _ipc->drawPoint(0, 6, c);
+    _ipc->drawPoint(0, 7, c);
+    _ipc->drawPoint(1, 7, c);
     c.red = globalTetrominoColors[3][0];
     c.green = globalTetrominoColors[3][1];
     c.blue = globalTetrominoColors[3][2];
-    _cdm->drawPoint(2, 6, c);
-    _cdm->drawPoint(2, 7, c);
+    _ipc->drawPoint(2, 6, c);
+    _ipc->drawPoint(2, 7, c);
     c.red = globalTetrominoColors[5][0];
     c.green = globalTetrominoColors[5][1];
     c.blue = globalTetrominoColors[5][2];
-    _cdm->drawPoint(4, 7, c);
-    _cdm->drawPoint(5, 6, c);
-    _cdm->drawPoint(5, 7, c);
+    _ipc->drawPoint(4, 7, c);
+    _ipc->drawPoint(5, 6, c);
+    _ipc->drawPoint(5, 7, c);
     c.red = globalTetrominoColors[2][0];
     c.green = globalTetrominoColors[2][1];
     c.blue = globalTetrominoColors[2][2];
-    _cdm->drawPoint(6, 7, c);
-    _cdm->drawPoint(7, 7, c);
+    _ipc->drawPoint(6, 7, c);
+    _ipc->drawPoint(7, 7, c);
 }
 
 void NG8x8RGBMatrixGameTetris::_ownIntroAnimation() {
     if (_startUpAnimationStep == -1 || millis() - _lastStartUpAnimationStep >= GAMETETRISSPLASHDELAY) {
         _startUpAnimationStep++;
-        _cdm->beginUpdate();
+        _ipc->beginUpdate();
         colorRGB c;
         c.red = globalTetrominoColors[_startUpAnimationStep%4][0];
         c.green = globalTetrominoColors[_startUpAnimationStep%4][1];
         c.blue = globalTetrominoColors[_startUpAnimationStep%4][2];
         switch(_startUpAnimationStep%4) {
             case 0:
-                _cdm->drawPoint(3, 2, c);
-                _cdm->drawPoint(4, 2, COLOR_BLACK);
-                _cdm->drawPoint(3, 3, c);
-                _cdm->drawPoint(4, 3, c);
+                _ipc->drawPoint(3, 2, c);
+                _ipc->drawPoint(4, 2, COLOR_BLACK);
+                _ipc->drawPoint(3, 3, c);
+                _ipc->drawPoint(4, 3, c);
                break;
             case 1:
-                _cdm->drawPoint(3, 2, c);
-                _cdm->drawPoint(4, 2, c);
-                _cdm->drawPoint(3, 3, c);
-                _cdm->drawPoint(4, 3, COLOR_BLACK);
+                _ipc->drawPoint(3, 2, c);
+                _ipc->drawPoint(4, 2, c);
+                _ipc->drawPoint(3, 3, c);
+                _ipc->drawPoint(4, 3, COLOR_BLACK);
                 break;
             case 2:
-                _cdm->drawPoint(3, 2, c);
-                _cdm->drawPoint(4, 2, c);
-                _cdm->drawPoint(3, 3, COLOR_BLACK);
-                _cdm->drawPoint(4, 3, c);
+                _ipc->drawPoint(3, 2, c);
+                _ipc->drawPoint(4, 2, c);
+                _ipc->drawPoint(3, 3, COLOR_BLACK);
+                _ipc->drawPoint(4, 3, c);
                 break;
             case 3:
-                _cdm->drawPoint(3, 2, COLOR_BLACK);
-                _cdm->drawPoint(4, 2, c);
-                _cdm->drawPoint(3, 3, c);
-                _cdm->drawPoint(4, 3, c);
+                _ipc->drawPoint(3, 2, COLOR_BLACK);
+                _ipc->drawPoint(4, 2, c);
+                _ipc->drawPoint(3, 3, c);
+                _ipc->drawPoint(4, 3, c);
                 break;
         }
-        _cdm->endUpdate();
+        _ipc->endUpdate();
         _lastStartUpAnimationStep = millis();
         _startUpDone = _startUpAnimationStep == GAMETETRISSPLASHTIMES;
         if (_startUpDone) {
@@ -459,17 +459,17 @@ void NG8x8RGBMatrixGameTetris::_ownIntroAnimation() {
 void NG8x8RGBMatrixGameTetris::_ownOutro() {
     colorRGB c;
     for (int y = GAMETETRISMAZESIZEY - 1; y >= 0; y--) {
-        _cdm->beginUpdate();
+        _ipc->beginUpdate();
         for (int x = 0; x < GAMETETRISMAZESIZEX; x++) {
             if (_maze[y][x] == 0) {
                 byte value = random(0, sizeof(globalTetrominoColors) / sizeof(globalTetrominoColors[0]));
                 c.red = globalTetrominoColors[value][0];
                 c.green = globalTetrominoColors[value][1];
                 c.blue = globalTetrominoColors[value][2];
-                _cdm->drawPoint(x, y, c);
+                _ipc->drawPoint(x, y, c);
             }
         }
-        _cdm->endUpdate();
+        _ipc->endUpdate();
         delay(GAMETETRISOUTRODELAY);
     }
 }
@@ -477,7 +477,7 @@ void NG8x8RGBMatrixGameTetris::_ownOutro() {
 void NG8x8RGBMatrixGameTetris::_ownRender() {
     colorRGB c;
     int value;
-    _cdm->beginUpdate();
+    _ipc->beginUpdate();
     for (int y = 0; y < GAMETETRISMAZESIZEY; y++) {
         for (int x = 0; x < GAMETETRISMAZESIZEX; x++) {
             value = abs(_maze[y][x]);
@@ -485,14 +485,14 @@ void NG8x8RGBMatrixGameTetris::_ownRender() {
                 c.red = globalTetrominoColors[value - 1][0];
                 c.green = globalTetrominoColors[value - 1][1];
                 c.blue = globalTetrominoColors[value - 1][2];
-                _cdm->drawPoint(x, y, c);
+                _ipc->drawPoint(x, y, c);
             } else {
-                _cdm->drawPoint(x, y, COLOR_BLACK);
+                _ipc->drawPoint(x, y, COLOR_BLACK);
             }
         }
     }
     _score->setValue(_scoreCounter);
-    _cdm->endUpdate();
+    _ipc->endUpdate();
 }
 
 void NG8x8RGBMatrixGameTetris::_ownJoystickLoop() {

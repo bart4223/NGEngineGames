@@ -14,7 +14,7 @@
 #include <WProgram.h>
 #endif
 
-#include <NGCustom8x8RGBMatrixGame.h>
+#include <NGCustomColorDotMatrixGame.h>
 
 #define GAMETETRISCOLORSCOREOFF { .red = 5, .green = 5, .blue = 5 }
 #define GAMETETRISCOLORSCOREON COLOR_BLUE
@@ -42,7 +42,7 @@ static byte globalTetrominoColors[7][3] = {
 
 enum tetrominoKind { tkNone, tkI, tkL };
 
-class NG8x8RGBMatrixGameTetris : public NGCustom8x8RGBMatrixGame {
+class NG8x8RGBMatrixGameTetris : public NGCustomColorDotMatrixGame {
  
 private:
     byte _posXTetromino = 0;
