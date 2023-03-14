@@ -1,12 +1,12 @@
 //
-//  NG8x8RGBMatrixGameBoulderdash.h
+//  NGColorDotMatrixGameBoulderdash.h
 //  NGEngineGames
 //
 //  Created by Nils Grimmer on 09.01.23.
 //
 
-#ifndef NG8x8RGBMatrixGameBoulderdash_h
-#define NG8x8RGBMatrixGameBoulderdash_h
+#ifndef NGColorDotMatrixGameBoulderdash_h
+#define NGColorDotMatrixGameBoulderdash_h
 
 #if (ARDUINO >= 100)
 #include <Arduino.h>
@@ -124,7 +124,7 @@ static colorRGB globalBoulderdashColors[24] = {
   COLOR_ORANGE      // Lava
 };
 
-class NG8x8RGBMatrixGameBoulderdash : public NGCustomColorDotMatrixGame {
+class NGColorDotMatrixGameBoulderdash : public NGCustomColorDotMatrixGame {
     
 private:
     NGColorDotMatrixBinaryDigit *_lives;
@@ -288,7 +288,7 @@ protected:
 public:
     void registerColorDotMatrix(NGIPaintableComponent *ipc);
     
-    NG8x8RGBMatrixGameBoulderdash();
+    NGColorDotMatrixGameBoulderdash();
 };
 
-#endif /* NG8x8RGBMatrixGameBoulderdash_h */
+#endif /* NGColorDotMatrixGameBoulderdash_h */
