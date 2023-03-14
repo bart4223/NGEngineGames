@@ -72,7 +72,28 @@ bool NGColorOLED::drawPoint(int x, int y, colorRGB color) {
     return true;
 }
 
-bool NGColorOLED::fillRect(int top, int left, int bottom, int right, colorRGB color) {
+void NGColorOLED::clearLine(int x1, int y1, int x2, int y2) {
+    drawLine(x1, y1, x2, y2, COLOR_BLACK);
+}
+
+void NGColorOLED::drawLine(int x1, int y1, int x2, int y2, colorRGB color) {
+    _display->drawLine(x1 * _scale, y1 * _scale, x2 * _scale, y2 * _scale, _getColor(color));
+}
+
+void NGColorOLED::clearRect(int top, int left, int bottom, int right) {
+    fillRect(top, left, bottom, right, COLOR_BLACK);
+}
+
+void NGColorOLED::drawRect(int top, int left, int bottom, int right, colorRGB color) {
+    if (_scale == DEFCOLOROLEDSCALE) {
+        _display->drawRect(left, top, right - left, bottom - top, _getColor(color));
+    } else {
+        _display->drawRect(left * _scale, top * _scale, (right - left) * _scale, (bottom - top) * _scale, _getColor(color));
+    }
+    return true;
+}
+
+void NGColorOLED::fillRect(int top, int left, int bottom, int right, colorRGB color) {
     if (_scale == DEFCOLOROLEDSCALE) {
         _display->fillRect(left, top, right - left, bottom - top, _getColor(color));
     } else {

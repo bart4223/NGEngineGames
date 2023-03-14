@@ -60,7 +60,15 @@ public:
     
     bool drawPoint(int x, int y, colorRGB color);
     
-    bool fillRect(int top, int left, int bottom, int right, colorRGB color);
+    void clearLine(int x1, int y1, int x2, int y2);
+    
+    void drawLine(int x1, int y1, int x2, int y2, colorRGB color);
+    
+    void clearRect(int top, int left, int bottom, int right);
+    
+    void drawRect(int top, int left, int bottom, int right, colorRGB color);
+    
+    void fillRect(int top, int left, int bottom, int right, colorRGB color);
     
     void clearCircle(int x0, int y0, int radius);
     

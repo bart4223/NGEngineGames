@@ -14,7 +14,7 @@
 #include <WProgram.h>
 #endif
 
-#include <NGCustom8x8RGBMatrixGame.h>
+#include <NGCustomColorDotMatrixGame.h>
 #include <NGColorDotMatrixFuse.h>
 
 #define GAMEBOULDERDASHCOLORSCOREOFF  COLOR_BLACK
@@ -124,7 +124,7 @@ static colorRGB globalBoulderdashColors[24] = {
   COLOR_ORANGE      // Lava
 };
 
-class NG8x8RGBMatrixGameBoulderdash : public NGCustom8x8RGBMatrixGame {
+class NG8x8RGBMatrixGameBoulderdash : public NGCustomColorDotMatrixGame {
     
 private:
     NGColorDotMatrixBinaryDigit *_lives;
@@ -286,7 +286,7 @@ protected:
     void _doProcessingLoop();
        
 public:
-    void registerColorDotMatrix(NGColorDotMatrix *cdm);
+    void registerColorDotMatrix(NGIPaintableComponent *ipc);
     
     NG8x8RGBMatrixGameBoulderdash();
 };
