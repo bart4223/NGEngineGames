@@ -20,6 +20,7 @@
 #include <NGIPaintableComponent.h>
 
 #define DEFCOLOROLEDSCALE 1
+#define DEFCOLOROLEDBACKGROUNDCOLOR COLOR_BLACK
 
 #define SPI_SC   10
 #define SPI_RST   9
@@ -30,6 +31,7 @@ class NGColorOLED : public NGIPaintableComponent {
 private:
     Adafruit_SSD1331 *_display;
     int _scale = DEFCOLOROLEDSCALE;
+    colorRGB _background = DEFCOLOROLEDBACKGROUNDCOLOR;
     int _updateCount = 0;
     
 protected:
@@ -53,6 +55,8 @@ public:
     void setScale(int scale);
     
     int getScale();
+    
+    void setBackground(colorRGB color);
     
     void clear();
     

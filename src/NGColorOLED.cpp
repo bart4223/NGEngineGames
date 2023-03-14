@@ -55,12 +55,16 @@ int NGColorOLED::getScale() {
     return _scale;
 }
 
+void NGColorOLED::setBackground(colorRGB color) {
+    _background = color;
+}
+
 void NGColorOLED::clear() {
-    _display->fillScreen(_getColor(COLOR_BLACK));
+    _display->fillScreen(_getColor(_background));
 }
 
 bool NGColorOLED::clearPoint(int x, int y) {
-    return drawPoint(x, y, COLOR_BLACK);
+    return drawPoint(x, y, _background);
 }
 
 bool NGColorOLED::drawPoint(int x, int y, colorRGB color) {
@@ -73,7 +77,7 @@ bool NGColorOLED::drawPoint(int x, int y, colorRGB color) {
 }
 
 void NGColorOLED::clearLine(int x1, int y1, int x2, int y2) {
-    drawLine(x1, y1, x2, y2, COLOR_BLACK);
+    drawLine(x1, y1, x2, y2, _background);
 }
 
 void NGColorOLED::drawLine(int x1, int y1, int x2, int y2, colorRGB color) {
@@ -81,7 +85,7 @@ void NGColorOLED::drawLine(int x1, int y1, int x2, int y2, colorRGB color) {
 }
 
 void NGColorOLED::clearRect(int top, int left, int bottom, int right) {
-    fillRect(top, left, bottom, right, COLOR_BLACK);
+    fillRect(top, left, bottom, right, _background);
 }
 
 void NGColorOLED::drawRect(int top, int left, int bottom, int right, colorRGB color) {
@@ -103,7 +107,7 @@ void NGColorOLED::fillRect(int top, int left, int bottom, int right, colorRGB co
 }
 
 void NGColorOLED::clearCircle(int x0, int y0, int radius) {
-    drawCircle(x0, y0, radius, COLOR_BLACK);
+    drawCircle(x0, y0, radius, _background);
 }
 
 void NGColorOLED::drawCircle(int x0, int y0, int radius, colorRGB color) {
