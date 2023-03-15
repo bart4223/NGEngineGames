@@ -35,6 +35,13 @@
 		2992AA7D2997C6E8004DDE5E /* LevelThree.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = LevelThree.png; sourceTree = "<group>"; };
 		2992AA7E299FF277004DDE5E /* LevelFour.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = LevelFour.png; sourceTree = "<group>"; };
 		2992AA7F29A14704004DDE5E /* GamePadI3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = GamePadI3.png; sourceTree = "<group>"; };
+		29970A6829C0CA2A004B7F2D /* NGCustomSprite.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = NGCustomSprite.cpp; sourceTree = "<group>"; };
+		29970A6929C0CA2A004B7F2D /* NGCustomSprite.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NGCustomSprite.h; sourceTree = "<group>"; };
+		29970A6A29C0CACF004B7F2D /* colorOLEDSprite.ino */ = {isa = PBXFileReference; lastKnownFileType = text; path = colorOLEDSprite.ino; sourceTree = "<group>"; };
+		29970A6C29C0D8D5004B7F2D /* NGSpriteDirt.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = NGSpriteDirt.cpp; sourceTree = "<group>"; };
+		29970A6D29C0D8D5004B7F2D /* NGSpriteDirt.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NGSpriteDirt.h; sourceTree = "<group>"; };
+		29970A6E29C229DB004B7F2D /* NGSpriteHeart.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = NGSpriteHeart.cpp; sourceTree = "<group>"; };
+		29970A6F29C229DB004B7F2D /* NGSpriteHeart.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NGSpriteHeart.h; sourceTree = "<group>"; };
 		2997EE0E29AB7748003B64B0 /* LevelFive.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = LevelFive.png; sourceTree = "<group>"; };
 		299C2B7D294F512A00F53CAA /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		299C2B7F294F52B200F53CAA /* ToDo.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = ToDo.txt; sourceTree = "<group>"; };
@@ -144,6 +151,7 @@
 			children = (
 				29620D7929B4B6430020B874 /* colorOLED.ino */,
 				29620D7C29B4CC630020B874 /* colorOLEDDecimalDigit.ino */,
+				29970A6A29C0CACF004B7F2D /* colorOLEDSprite.ino */,
 			);
 			path = colorOLED;
 			sourceTree = "<group>";
@@ -162,6 +170,17 @@
 				296452892987F32C00E1EF1D /* eNGineGameShield.png */,
 			);
 			path = images;
+			sourceTree = "<group>";
+		};
+		29970A6B29C0D899004B7F2D /* sprites */ = {
+			isa = PBXGroup;
+			children = (
+				29970A6D29C0D8D5004B7F2D /* NGSpriteDirt.h */,
+				29970A6C29C0D8D5004B7F2D /* NGSpriteDirt.cpp */,
+				29970A6F29C229DB004B7F2D /* NGSpriteHeart.h */,
+				29970A6E29C229DB004B7F2D /* NGSpriteHeart.cpp */,
+			);
+			name = sprites;
 			sourceTree = "<group>";
 		};
 		299C2B76294F50E200F53CAA = {
@@ -206,10 +225,13 @@
 				299C2B8E29508B1B00F53CAA /* common */,
 				29620D7529B4B58D0020B874 /* graphics */,
 				299C2B89294F5F9F00F53CAA /* specs */,
+				29970A6B29C0D899004B7F2D /* sprites */,
 				299C2B86294F552800F53CAA /* NGCustomGame.h */,
 				299C2B85294F552800F53CAA /* NGCustomGame.cpp */,
 				29620D7329B331120020B874 /* NGDecimalPointCounter.h */,
 				29620D7229B331120020B874 /* NGDecimalPointCounter.cpp */,
+				29970A6929C0CA2A004B7F2D /* NGCustomSprite.h */,
+				29970A6829C0CA2A004B7F2D /* NGCustomSprite.cpp */,
 				29FD0A6E297DA4D5003CAA71 /* NGGamePad.h */,
 				29FD0A6D297DA4D5003CAA71 /* NGGamePad.cpp */,
 			);

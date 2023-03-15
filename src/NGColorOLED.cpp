@@ -59,6 +59,10 @@ void NGColorOLED::setBackground(colorRGB color) {
     _background = color;
 }
 
+colorRGB NGColorOLED::getBackground() {
+    return _background;
+}
+
 void NGColorOLED::clear() {
     _display->fillScreen(_getColor(_background));
 }
@@ -81,7 +85,21 @@ void NGColorOLED::clearLine(int x1, int y1, int x2, int y2) {
 }
 
 void NGColorOLED::drawLine(int x1, int y1, int x2, int y2, colorRGB color) {
-    _display->drawLine(x1 * _scale, y1 * _scale, x2 * _scale, y2 * _scale, _getColor(color));
+    if (_scale == DEFCOLOROLEDSCALE) {
+        _display->drawLine(x1, y1, x2, y2, _getColor(color));
+    } else {
+        int dx =  abs(x2 - x1), sx = x1 < x2 ? 1 : -1;
+        int dy = -abs(y2 - y1), sy = y1 < y2 ? 1 : -1;
+        int err = dx + dy, e2;
+        for(;;){
+            drawPoint(x1, y1, color);
+            if (x1 == x2 && y1 == y2)
+                break;
+            e2 = 2 * err;
+            if (e2 > dy) { err += dy; x1 += sx; }
+            if (e2 < dx) { err += dx; y1 += sy; }
+        }
+    }
 }
 
 void NGColorOLED::clearRect(int top, int left, int bottom, int right) {
@@ -92,7 +110,10 @@ void NGColorOLED::drawRect(int top, int left, int bottom, int right, colorRGB co
     if (_scale == DEFCOLOROLEDSCALE) {
         _display->drawRect(left, top, right - left, bottom - top, _getColor(color));
     } else {
-        _display->drawRect(left * _scale, top * _scale, (right - left) * _scale, (bottom - top) * _scale, _getColor(color));
+        drawLine(left, top, right, top, color);
+        drawLine(left, top, left, bottom, color);
+        drawLine(right, top, right, bottom, color);
+        drawLine(left, bottom, right, bottom, color);
     }
     return true;
 }
@@ -101,7 +122,9 @@ void NGColorOLED::fillRect(int top, int left, int bottom, int right, colorRGB co
     if (_scale == DEFCOLOROLEDSCALE) {
         _display->fillRect(left, top, right - left, bottom - top, _getColor(color));
     } else {
-        _display->fillRect(left * _scale, top * _scale, (right - left) * _scale, (bottom - top) * _scale, _getColor(color));
+        for (int y = top; y <= bottom; y++) {
+            drawLine(left, y, right, y, color);
+        }
     }
     return true;
 }
@@ -114,26 +137,26 @@ void NGColorOLED::drawCircle(int x0, int y0, int radius, colorRGB color) {
     _display->drawCircle(x0 * _scale, y0 * _scale, radius * _scale, _getColor(color));
 }
 
-void NGColorOLED::drawImage(int coord[][2], colorRGB color, int size) {
+void NGColorOLED::drawImage(coord2D coord[], colorRGB color, int size) {
     drawImage(0, 0, coord, color, size);
 }
 
-void NGColorOLED::drawImage(int offsetX, int offsetY, int coord[][2], colorRGB color, int size) {
+void NGColorOLED::drawImage(int offsetX, int offsetY, coord2D coord[], colorRGB color, int size) {
     beginUpdate();
     for (int i = 0; i < size; i++) {
-        drawPoint(offsetX + coord[i][0], offsetY + coord[i][1], color);
+        drawPoint(offsetX + coord[i].x, offsetY + coord[i].y, color);
     }
     endUpdate();
 }
 
-void NGColorOLED::drawImage(int coord[][2], byte color[][3], int size) {
+void NGColorOLED::drawImage(coord2D coord[], colorRGB color[], int size) {
     drawImage(0, 0, coord, color, size);
 }
 
-void NGColorOLED::drawImage(int offsetX, int offsetY, int coord[][2], byte color[][3], int size) {
+void NGColorOLED::drawImage(int offsetX, int offsetY, coord2D coord[], colorRGB color[], int size) {
     beginUpdate();
     for (int i = 0; i < size; i++) {
-        drawPoint(offsetX + coord[i][0], offsetY + coord[i][1], { color[i][0], color[i][1], color[i][2] });
+        drawPoint(offsetX + coord[i].x, offsetY + coord[i].y, color[i]);
     }
     endUpdate();
 }

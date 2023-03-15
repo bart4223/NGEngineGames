@@ -67,7 +67,7 @@ void setup() {
   // ColorDotMatrix
   cdm.initialize();
   #ifdef OLED
-  cdm.setScale(5);
+  cdm.setScale(8);
   #endif
   cdm.clear();
   // Sound

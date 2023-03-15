@@ -15,7 +15,6 @@
 #endif
 
 #include <NGCustomGame.h>
-#include <NGColorDotMatrix.h>
 #include <NGColorDotMatrixBinaryDigit.h>
 
 #define DEFSCOREDIGITS        4
