@@ -1,5 +1,5 @@
 #define PROD true //false, true
-#define OLED //OLED, DOTMATRIX
+#define DOTMATRIX //OLED, DOTMATRIX
 
 #include <NGCommon.h>
 #include <NGMemoryObserver.h>
@@ -66,7 +66,7 @@ void setup() {
   // ColorDotMatrix
   cdm.initialize();
   #ifdef OLED
-  cdm.setScale(5);
+  cdm.setScale(8);
   #endif
   cdm.clear();
   // Game
