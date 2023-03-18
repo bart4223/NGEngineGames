@@ -42,6 +42,8 @@
 		29970A6D29C0D8D5004B7F2D /* NGSpriteDirt.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NGSpriteDirt.h; sourceTree = "<group>"; };
 		29970A6E29C229DB004B7F2D /* NGSpriteHeart.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = NGSpriteHeart.cpp; sourceTree = "<group>"; };
 		29970A6F29C229DB004B7F2D /* NGSpriteHeart.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NGSpriteHeart.h; sourceTree = "<group>"; };
+		29970A7029C6371B004B7F2D /* NGSpriteRocky.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = NGSpriteRocky.cpp; sourceTree = "<group>"; };
+		29970A7129C6371B004B7F2D /* NGSpriteRocky.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NGSpriteRocky.h; sourceTree = "<group>"; };
 		2997EE0E29AB7748003B64B0 /* LevelFive.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = LevelFive.png; sourceTree = "<group>"; };
 		299C2B7D294F512A00F53CAA /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		299C2B7F294F52B200F53CAA /* ToDo.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = ToDo.txt; sourceTree = "<group>"; };
@@ -179,6 +181,8 @@
 				29970A6C29C0D8D5004B7F2D /* NGSpriteDirt.cpp */,
 				29970A6F29C229DB004B7F2D /* NGSpriteHeart.h */,
 				29970A6E29C229DB004B7F2D /* NGSpriteHeart.cpp */,
+				29970A7129C6371B004B7F2D /* NGSpriteRocky.h */,
+				29970A7029C6371B004B7F2D /* NGSpriteRocky.cpp */,
 			);
 			name = sprites;
 			sourceTree = "<group>";

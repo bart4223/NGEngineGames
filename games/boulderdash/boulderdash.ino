@@ -10,7 +10,7 @@
 #include <NGColorDotMatrixGameBoulderdash.h>
 #ifdef OLED
 #include <NGColorOLED.h>
-#include <NGSpriteDirt.h>
+#include <NGSpriteRocky.h>
 #endif
 #ifdef DOTMATRIX
 #include <NGColorDotMatrix.h>
@@ -88,7 +88,7 @@ void setup() {
   game.registerSoundStart(jingleHelloDude);
   game.registerColorDotMatrix(&cdm);
   #ifdef OLED
-  game.registerSprite(GAMEBOULDERDASHCOLORINDEXDIRT, new NGSpriteDirt(&cdm));
+  game.registerSprite(GAMEBOULDERDASHCOLORINDEXROCKY, new NGSpriteRocky(&cdm));
   #endif
   game.initialize();
   game.startUp();
