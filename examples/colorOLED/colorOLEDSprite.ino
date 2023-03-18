@@ -7,8 +7,8 @@
 #define SCALE    1
 
 NGColorOLED *cdm = new NGColorOLED();
-NGCustomSprite *sprite = new NGSpriteDirt(cdm);
-//NGCustomSprite *sprite = new NGSpriteHeart(cdm);
+//NGCustomSprite *sprite = new NGSpriteDirt(cdm);
+NGCustomSprite *sprite = new NGSpriteHeart(cdm);
 
 void setup() {
   observeMemory(0);

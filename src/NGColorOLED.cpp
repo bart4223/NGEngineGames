@@ -20,10 +20,7 @@ int NGColorOLED::_getColor(colorRGB c) {
 }
 
 void NGColorOLED::initialize() {
-    if (_updateCount == 0) {
-        _display->begin();
-    }
-    _updateCount++;
+    _display->begin();
 }
 
 int NGColorOLED::getWidth() {
@@ -79,7 +76,7 @@ bool NGColorOLED::drawPoint(int x, int y, colorRGB color) {
     if (_scale == DEFCOLOROLEDSCALE) {
         _display->writePixel(x, y, _getColor(color));
     } else {
-        _display->fillRect(x * _scale, y * _scale, _scale, _scale, _getColor(color));
+        _display->writeFillRect(x * _scale, y * _scale, _scale, _scale, _getColor(color));
     }
     return true;
 }
@@ -90,7 +87,7 @@ void NGColorOLED::clearLine(int x1, int y1, int x2, int y2) {
 
 void NGColorOLED::drawLine(int x1, int y1, int x2, int y2, colorRGB color) {
     if (_scale == DEFCOLOROLEDSCALE) {
-        _display->drawLine(x1, y1, x2, y2, _getColor(color));
+        _display->writeLine(x1, y1, x2, y2, _getColor(color));
     } else {
         int dx =  abs(x2 - x1), sx = x1 < x2 ? 1 : -1;
         int dy = -abs(y2 - y1), sy = y1 < y2 ? 1 : -1;
@@ -111,20 +108,16 @@ void NGColorOLED::clearRect(int top, int left, int bottom, int right) {
 }
 
 void NGColorOLED::drawRect(int top, int left, int bottom, int right, colorRGB color) {
-    if (_scale == DEFCOLOROLEDSCALE) {
-        _display->drawRect(left, top, right - left, bottom - top, _getColor(color));
-    } else {
-        drawLine(left, top, right, top, color);
-        drawLine(left, top, left, bottom, color);
-        drawLine(right, top, right, bottom, color);
-        drawLine(left, bottom, right, bottom, color);
-    }
+    drawLine(left, top, right, top, color);
+    drawLine(left, top, left, bottom, color);
+    drawLine(right, top, right, bottom, color);
+    drawLine(left, bottom, right, bottom, color);
     return true;
 }
 
 void NGColorOLED::fillRect(int top, int left, int bottom, int right, colorRGB color) {
     if (_scale == DEFCOLOROLEDSCALE) {
-        _display->fillRect(left, top, right - left + 1, bottom - top + 1, _getColor(color));
+        _display->writeFillRect(left, top, right - left + 1, bottom - top + 1, _getColor(color));
     } else {
         for (int y = top; y <= bottom; y++) {
             drawLine(left, y, right, y, color);
