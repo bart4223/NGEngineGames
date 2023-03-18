@@ -2,13 +2,19 @@
 #include <NGColorOLED.h>
 #include <NGSpriteDirt.h>
 #include <NGSpriteHeart.h>
+#include <NGSpriteRocky.h>
+#include <NGSpriteDiamond.h>
 
 #define DELAY 3000
 #define SCALE    1
 
 NGColorOLED *cdm = new NGColorOLED();
 //NGCustomSprite *sprite = new NGSpriteDirt(cdm);
-NGCustomSprite *sprite = new NGSpriteHeart(cdm);
+//NGCustomSprite *sprite = new NGSpriteHeart(cdm);
+//NGCustomSprite *sprite = new NGSpriteRocky(cdm);
+NGCustomSprite *sprite = new NGSpriteDiamond(cdm);
+
+long _lastToggle = 0;
 
 void setup() {
   observeMemory(0);
@@ -16,7 +22,7 @@ void setup() {
   cdm->setBackground(COLOR_DARKGRAY);
   cdm->clear();
   sprite->setScale(SCALE);
-  //sprite->setTransparent(true);
+  sprite->setTransparent(true);
   observeMemory(0);
 }
 
@@ -27,7 +33,10 @@ void loop() {
     }
   }
   //cdm->drawPoint(1, 1, COLOR_GREEN);
-  observeMemory(DELAY);
-  sprite->setTransparent(!sprite->getTransparent());
-  cdm->clear();
+  if (millis() - _lastToggle > DELAY) {
+    observeMemory(0);
+    //sprite->setTransparent(!sprite->getTransparent());
+    //cdm->clear();
+    _lastToggle = millis();
+  }
 }

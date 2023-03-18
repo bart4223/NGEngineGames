@@ -1,5 +1,5 @@
 #define PROD true //false, true
-#define DOTMATRIX //OLED, DOTMATRIX
+#define OLED //OLED, DOTMATRIX
 
 #include <NGCommon.h>
 #include <NGMemoryObserver.h>
@@ -11,6 +11,7 @@
 #ifdef OLED
 #include <NGColorOLED.h>
 #include <NGSpriteRocky.h>
+#include <NGSpriteDiamond.h>
 #endif
 #ifdef DOTMATRIX
 #include <NGColorDotMatrix.h>
@@ -89,6 +90,9 @@ void setup() {
   game.registerColorDotMatrix(&cdm);
   #ifdef OLED
   game.registerSprite(GAMEBOULDERDASHCOLORINDEXROCKY, new NGSpriteRocky(&cdm));
+  NGCustomSprite *sprite = new NGSpriteDiamond(&cdm);
+  game.registerSprite(GAMEBOULDERDASHCOLORINDEXDIAMOND01, sprite);
+  game.registerSprite(GAMEBOULDERDASHCOLORINDEXDIAMOND02, sprite);
   #endif
   game.initialize();
   game.startUp();
