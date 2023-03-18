@@ -66,6 +66,8 @@ public:
     
     bool drawPoint(int x, int y, colorRGB color);
     
+    bool drawPoint(int x, int y, int color);
+    
     void clearLine(int x1, int y1, int x2, int y2);
     
     void drawLine(int x1, int y1, int x2, int y2, colorRGB color);

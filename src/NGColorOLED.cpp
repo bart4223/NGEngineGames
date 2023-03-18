@@ -73,10 +73,14 @@ bool NGColorOLED::clearPoint(int x, int y) {
 }
 
 bool NGColorOLED::drawPoint(int x, int y, colorRGB color) {
+    drawPoint(x, y, _getColor(color));
+}
+
+bool NGColorOLED::drawPoint(int x, int y, int color) {
     if (_scale == DEFCOLOROLEDSCALE) {
-        _display->writePixel(x, y, _getColor(color));
+        _display->writePixel(x, y, color);
     } else {
-        _display->writeFillRect(x * _scale, y * _scale, _scale, _scale, _getColor(color));
+        _display->writeFillRect(x * _scale, y * _scale, _scale, _scale, color);
     }
     return true;
 }
