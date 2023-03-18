@@ -43,3 +43,19 @@ bool NGCustomSprite::getTransparent() {
 char* NGCustomSprite::getName() {
     return _name;
 }
+
+void NGCustomSprite::setScale(int scale) {
+    _scale = scale;
+}
+
+int NGCustomSprite::getScale() {
+    return _scale;
+}
+
+int NGCustomSprite::getWidth() {
+    return _width;
+}
+
+int NGCustomSprite::getHeight() {
+    return _height;
+}

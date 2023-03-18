@@ -124,7 +124,7 @@ void NGColorOLED::drawRect(int top, int left, int bottom, int right, colorRGB co
 
 void NGColorOLED::fillRect(int top, int left, int bottom, int right, colorRGB color) {
     if (_scale == DEFCOLOROLEDSCALE) {
-        _display->fillRect(left, top, right - left, bottom - top, _getColor(color));
+        _display->fillRect(left, top, right - left + 1, bottom - top + 1, _getColor(color));
     } else {
         for (int y = top; y <= bottom; y++) {
             drawLine(left, y, right, y, color);

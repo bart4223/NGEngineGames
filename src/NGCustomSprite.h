@@ -44,6 +44,14 @@ public:
     bool getTransparent();
     
     char* getName();
+    
+    void setScale(int scale);
+    
+    int getScale();
+    
+    int getWidth();
+    
+    int getHeight();
 };
 
 #endif /* NGCustomSprite_h */
