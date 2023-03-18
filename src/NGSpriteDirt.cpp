@@ -13,6 +13,7 @@ NGSpriteDirt::NGSpriteDirt(NGIPaintableComponent *ipc) {
 
 void NGSpriteDirt::_create(NGIPaintableComponent *ipc) {
     NGCustomSprite::_create(ipc);
+    _name = "Dirt";
     _width = 8;
     _height = 8;
     _background = COLOR_BROWN;

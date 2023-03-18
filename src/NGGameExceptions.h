@@ -12,6 +12,7 @@
 
 #define ExceptionGameTooMuchKeyCount        20100
 #define ExceptionGameTooMuchJoystickCount   20101
+#define ExceptionGameTooMuchSpriteCount     20102
 
 #define ExceptionGamePadTooMuchGameCount    20200
 

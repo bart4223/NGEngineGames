@@ -39,3 +39,7 @@ void NGCustomSprite::setTransparent(bool transparent) {
 bool NGCustomSprite::getTransparent() {
     return _transparent;
 }
+
+char* NGCustomSprite::getName() {
+    return _name;
+}

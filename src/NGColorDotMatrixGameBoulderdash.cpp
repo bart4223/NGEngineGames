@@ -1273,7 +1273,15 @@ void NGColorDotMatrixGameBoulderdash::_calculateViewPos() {
 void NGColorDotMatrixGameBoulderdash::_ownIntro() {
     _ipc->beginUpdate();
     // Dirt
-    _ipc->fillRect(0, 0, 7, 7, globalBoulderdashColors[GAMEBOULDERDASHCOLORINDEXDIRT - 1]);
+    if (_hasSprite(GAMEBOULDERDASHCOLORINDEXDIRT)) {
+        for (int y = 0; y < 8; y++) {
+            for (int x = 0; x < 8; x++) {
+                _renderSprite(GAMEBOULDERDASHCOLORINDEXDIRT, x, y);
+            }
+        }
+    } else {
+        _ipc->fillRect(0, 0, 7, 7, globalBoulderdashColors[GAMEBOULDERDASHCOLORINDEXDIRT - 1]);
+    }
     // Diamonds
     _ipc->drawPoint(6, 3, globalBoulderdashColors[GAMEBOULDERDASHCOLORINDEXDIAMOND01 - 1]);
     _ipc->drawPoint(5, 5, globalBoulderdashColors[GAMEBOULDERDASHCOLORINDEXDIAMOND01 - 1]);
@@ -1349,8 +1357,12 @@ void NGColorDotMatrixGameBoulderdash::_ownRender() {
             byte i = _maze[_viewPosY + y - 1][_viewPosX + x - 1];
             if (i > 0) {
                 if (i != GAMEBOULDERDASHCOLORINDEXROCKY) {
-                    colorRGB c = globalBoulderdashColors[i - 1];
-                    _ipc->drawPoint(x, y, c);
+                    if (_hasSprite(i)) {
+                        _renderSprite(i, x, y);
+                    } else {
+                        colorRGB c = globalBoulderdashColors[i - 1];
+                        _ipc->drawPoint(x, y, c);
+                    }
                 }
             } else {
                 _ipc->clearPoint(x, y);

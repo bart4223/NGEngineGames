@@ -28,6 +28,7 @@ protected:
     int _scale = 1;
     colorRGB _background = COLOR_BLACK;
     bool _transparent = false;
+    char* _name;
 
     void _create(NGIPaintableComponent *ipc);
 
@@ -41,6 +42,8 @@ public:
     void setTransparent(bool transparent);
     
     bool getTransparent();
+    
+    char* getName();
 };
 
 #endif /* NGCustomSprite_h */

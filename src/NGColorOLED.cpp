@@ -35,7 +35,11 @@ int NGColorOLED::getHeight() {
 }
 
 void NGColorOLED::beginUpdate() {
-    _display->startWrite();
+    if (_updateCount == 0) {
+        _display->startWrite();
+    } else {
+        _updateCount++;
+    }
 }
 
 void NGColorOLED::endUpdate() {

@@ -13,6 +13,7 @@ NGSpriteHeart::NGSpriteHeart(NGIPaintableComponent *ipc) {
 
 void NGSpriteHeart::_create(NGIPaintableComponent *ipc) {
     NGCustomSprite::_create(ipc);
+    _name = "Heart";
     _width = 8;
     _height = 8;
     _background = COLOR_BLACK;
