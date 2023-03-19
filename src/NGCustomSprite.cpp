@@ -11,6 +11,11 @@ void NGCustomSprite::_create(NGIPaintableComponent *ipc) {
     _ipc = ipc;
 }
 
+void NGCustomSprite::render(int x, int y) {
+    setPosition(x, y);
+    render();
+}
+
 void NGCustomSprite::render() {
     int scale = _ipc->getScale();
     colorRGB background = _ipc->getBackground();

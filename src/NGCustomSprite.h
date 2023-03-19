@@ -14,9 +14,10 @@
 #include <WProgram.h>
 #endif
 
+#include <NGIPaintableObject.h>
 #include <NGIPaintableComponent.h>
 
-class NGCustomSprite {
+class NGCustomSprite : public NGIPaintableObject {
     
 protected:
     NGIPaintableComponent *_ipc;
@@ -36,6 +37,8 @@ protected:
     
 public:
     void render();
+    
+    void render(int x, int y);
     
     void setPosition(int x, int y);
     

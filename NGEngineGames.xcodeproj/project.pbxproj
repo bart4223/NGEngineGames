@@ -48,6 +48,7 @@
 		29970A7329C6483B004B7F2D /* NGSpriteDiamond.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NGSpriteDiamond.h; sourceTree = "<group>"; };
 		29970A7429C735A9004B7F2D /* NGSpriteBoulder.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = NGSpriteBoulder.cpp; sourceTree = "<group>"; };
 		29970A7529C735A9004B7F2D /* NGSpriteBoulder.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NGSpriteBoulder.h; sourceTree = "<group>"; };
+		29970A7829C75A28004B7F2D /* colorOLEDBinaryDigit.ino */ = {isa = PBXFileReference; lastKnownFileType = text; path = colorOLEDBinaryDigit.ino; sourceTree = "<group>"; };
 		2997EE0E29AB7748003B64B0 /* LevelFive.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = LevelFive.png; sourceTree = "<group>"; };
 		299C2B7D294F512A00F53CAA /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		299C2B7F294F52B200F53CAA /* ToDo.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = ToDo.txt; sourceTree = "<group>"; };
@@ -158,6 +159,7 @@
 				29620D7929B4B6430020B874 /* colorOLED.ino */,
 				29620D7C29B4CC630020B874 /* colorOLEDDecimalDigit.ino */,
 				29970A6A29C0CACF004B7F2D /* colorOLEDSprite.ino */,
+				29970A7829C75A28004B7F2D /* colorOLEDBinaryDigit.ino */,
 			);
 			path = colorOLED;
 			sourceTree = "<group>";
