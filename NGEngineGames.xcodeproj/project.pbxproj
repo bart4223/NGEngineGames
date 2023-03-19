@@ -46,6 +46,8 @@
 		29970A7129C6371B004B7F2D /* NGSpriteRocky.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NGSpriteRocky.h; sourceTree = "<group>"; };
 		29970A7229C6483B004B7F2D /* NGSpriteDiamond.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = NGSpriteDiamond.cpp; sourceTree = "<group>"; };
 		29970A7329C6483B004B7F2D /* NGSpriteDiamond.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NGSpriteDiamond.h; sourceTree = "<group>"; };
+		29970A7429C735A9004B7F2D /* NGSpriteBoulder.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = NGSpriteBoulder.cpp; sourceTree = "<group>"; };
+		29970A7529C735A9004B7F2D /* NGSpriteBoulder.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NGSpriteBoulder.h; sourceTree = "<group>"; };
 		2997EE0E29AB7748003B64B0 /* LevelFive.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = LevelFive.png; sourceTree = "<group>"; };
 		299C2B7D294F512A00F53CAA /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		299C2B7F294F52B200F53CAA /* ToDo.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = ToDo.txt; sourceTree = "<group>"; };
@@ -179,14 +181,16 @@
 		29970A6B29C0D899004B7F2D /* sprites */ = {
 			isa = PBXGroup;
 			children = (
+				29970A7529C735A9004B7F2D /* NGSpriteBoulder.h */,
+				29970A7429C735A9004B7F2D /* NGSpriteBoulder.cpp */,
+				29970A7329C6483B004B7F2D /* NGSpriteDiamond.h */,
+				29970A7229C6483B004B7F2D /* NGSpriteDiamond.cpp */,
 				29970A6D29C0D8D5004B7F2D /* NGSpriteDirt.h */,
 				29970A6C29C0D8D5004B7F2D /* NGSpriteDirt.cpp */,
 				29970A6F29C229DB004B7F2D /* NGSpriteHeart.h */,
 				29970A6E29C229DB004B7F2D /* NGSpriteHeart.cpp */,
 				29970A7129C6371B004B7F2D /* NGSpriteRocky.h */,
 				29970A7029C6371B004B7F2D /* NGSpriteRocky.cpp */,
-				29970A7329C6483B004B7F2D /* NGSpriteDiamond.h */,
-				29970A7229C6483B004B7F2D /* NGSpriteDiamond.cpp */,
 			);
 			name = sprites;
 			sourceTree = "<group>";

@@ -12,6 +12,7 @@
 #include <NGColorOLED.h>
 #include <NGSpriteRocky.h>
 #include <NGSpriteDiamond.h>
+#include <NGSpriteBoulder.h>
 #endif
 #ifdef DOTMATRIX
 #include <NGColorDotMatrix.h>
@@ -90,9 +91,10 @@ void setup() {
   game.registerColorDotMatrix(&cdm);
   #ifdef OLED
   game.registerSprite(GAMEBOULDERDASHCOLORINDEXROCKY, new NGSpriteRocky(&cdm));
-  NGCustomSprite *sprite = new NGSpriteDiamond(&cdm);
+  NGCustomSprite *sprite = new NGSpriteDiamond(&cdm, true);
   game.registerSprite(GAMEBOULDERDASHCOLORINDEXDIAMOND01, sprite);
   game.registerSprite(GAMEBOULDERDASHCOLORINDEXDIAMOND02, sprite);
+  game.registerSprite(GAMEBOULDERDASHCOLORINDEXBOULDER, new NGSpriteBoulder(&cdm, true));
   #endif
   game.initialize();
   game.startUp();

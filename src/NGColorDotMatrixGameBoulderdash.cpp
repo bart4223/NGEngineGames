@@ -1297,10 +1297,17 @@ void NGColorDotMatrixGameBoulderdash::_ownIntro() {
         _ipc->drawPoint(2, 6, globalBoulderdashColors[GAMEBOULDERDASHCOLORINDEXDIAMOND01 - 1]);
     }
     // Boulders
-    _ipc->drawPoint(5, 1, globalBoulderdashColors[GAMEBOULDERDASHCOLORINDEXBOULDER - 1]);
-    _ipc->drawPoint(6, 1, globalBoulderdashColors[GAMEBOULDERDASHCOLORINDEXBOULDER - 1]);
-    _ipc->drawPoint(1, 5, globalBoulderdashColors[GAMEBOULDERDASHCOLORINDEXBOULDER - 1]);
-    _ipc->drawPoint(6, 7, globalBoulderdashColors[GAMEBOULDERDASHCOLORINDEXBOULDER - 1]);
+    if (_hasSprite(GAMEBOULDERDASHCOLORINDEXBOULDER)) {
+        _renderSprite(GAMEBOULDERDASHCOLORINDEXBOULDER, 5, 1);
+        _renderSprite(GAMEBOULDERDASHCOLORINDEXBOULDER, 6, 1);
+        _renderSprite(GAMEBOULDERDASHCOLORINDEXBOULDER, 1, 5);
+        _renderSprite(GAMEBOULDERDASHCOLORINDEXBOULDER, 6, 7);
+    } else {
+        _ipc->drawPoint(5, 1, globalBoulderdashColors[GAMEBOULDERDASHCOLORINDEXBOULDER - 1]);
+        _ipc->drawPoint(6, 1, globalBoulderdashColors[GAMEBOULDERDASHCOLORINDEXBOULDER - 1]);
+        _ipc->drawPoint(1, 5, globalBoulderdashColors[GAMEBOULDERDASHCOLORINDEXBOULDER - 1]);
+        _ipc->drawPoint(6, 7, globalBoulderdashColors[GAMEBOULDERDASHCOLORINDEXBOULDER - 1]);
+    }
     _ipc->endUpdate();
 }
 

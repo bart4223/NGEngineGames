@@ -25,12 +25,14 @@ private:
     bool _blink = false;
     
 protected:
-    void _create(NGIPaintableComponent *ipc);
+    void _create(NGIPaintableComponent *ipc, bool transparent);
     
     void _doRender(int x, int y);
     
 public:
     NGSpriteDiamond(NGIPaintableComponent *ipc);
+    
+    NGSpriteDiamond(NGIPaintableComponent *ipc, bool transparent);
 };
 
 #endif /* NGSpriteDiamond_h */

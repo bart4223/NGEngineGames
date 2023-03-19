@@ -8,15 +8,20 @@
 #include "NGSpriteDiamond.h"
 
 NGSpriteDiamond::NGSpriteDiamond(NGIPaintableComponent *ipc) {
-    _create(ipc);
+    _create(ipc, false);
 }
 
-void NGSpriteDiamond::_create(NGIPaintableComponent *ipc) {
+NGSpriteDiamond::NGSpriteDiamond(NGIPaintableComponent *ipc, bool transparent) {
+    _create(ipc, transparent);
+}
+
+void NGSpriteDiamond::_create(NGIPaintableComponent *ipc, bool transparent) {
     NGCustomSprite::_create(ipc);
     _name = "Diamond";
     _width = 8;
     _height = 8;
     _background = COLOR_BLACK;
+    _transparent = transparent;
 }
 
 void NGSpriteDiamond::_doRender(int x, int y) {
