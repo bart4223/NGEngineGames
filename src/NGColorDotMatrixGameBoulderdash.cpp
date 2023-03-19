@@ -26,6 +26,10 @@ void NGColorDotMatrixGameBoulderdash::registerColorDotMatrix(NGIPaintableCompone
     _fuse = new NGColorDotMatrixFuse(_ipc, GAMEBOULDERDASHFUSEARITY);
 }
 
+void NGColorDotMatrixGameBoulderdash::registerLiveCounterSprite(NGCustomSprite *sprite) {
+    _lives->registerPaintableObjectOn(sprite);
+}
+
 void NGColorDotMatrixGameBoulderdash::_resetMaze() {
     for (int y = 0; y < GAMEBOULDERDASHMAZESIZEY; y++) {
         for (int x = 0; x < GAMEBOULDERDASHMAZESIZEX; x++) {

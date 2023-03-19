@@ -53,6 +53,8 @@ public:
     void registerColorDotMatrix(NGIPaintableComponent *ipc);
     
     void registerSprite(byte id, NGCustomSprite *sprite);
+    
+    void registerScoreSprite(NGCustomSprite *sprite);
 };
 
 #endif /* NGCustomColorDotMatrixGame_h */

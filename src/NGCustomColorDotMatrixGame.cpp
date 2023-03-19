@@ -50,3 +50,7 @@ void NGCustomColorDotMatrixGame::registerSprite(byte id, NGCustomSprite *sprite)
         _raiseException(ExceptionGameTooMuchSpriteCount);
     }
 }
+
+void NGCustomColorDotMatrixGame::registerScoreSprite(NGCustomSprite *sprite) {
+    _score->registerPaintableObjectOn(sprite);
+}

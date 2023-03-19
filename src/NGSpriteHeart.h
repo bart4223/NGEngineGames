@@ -19,12 +19,14 @@
 class NGSpriteHeart : public NGCustomSprite {
    
 protected:
-    void _create(NGIPaintableComponent *ipc);
+    void _create(NGIPaintableComponent *ipc, bool transparent);
     
     void _doRender(int x, int y);
     
 public:
     NGSpriteHeart(NGIPaintableComponent *ipc);
+
+    NGSpriteHeart(NGIPaintableComponent *ipc, bool transparent);
 };
 
 #endif /* NGSpriteHeart_h */

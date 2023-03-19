@@ -171,7 +171,7 @@ private:
     void _initLevel();
     
     void _initLevelTestMaze();
-
+    
     void _initLevelOneMaze();
     
     void _initLevelTwoMaze();
@@ -267,7 +267,7 @@ private:
     void _ownLevelOutroFail();
     
     void _ownLevelOutroSuccess();
-
+    
 protected:
     void _doInitialize();
     
@@ -284,11 +284,13 @@ protected:
     void _doFinishGame();
     
     void _doProcessingLoop();
-       
+    
 public:
+    NGColorDotMatrixGameBoulderdash();
+    
     void registerColorDotMatrix(NGIPaintableComponent *ipc);
     
-    NGColorDotMatrixGameBoulderdash();
+    void registerLiveCounterSprite(NGCustomSprite *sprite);
 };
 
 #endif /* NGColorDotMatrixGameBoulderdash_h */

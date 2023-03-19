@@ -8,15 +8,20 @@
 #include "NGSpriteHeart.h"
 
 NGSpriteHeart::NGSpriteHeart(NGIPaintableComponent *ipc) {
-    _create(ipc);
+    _create(ipc, false);
 }
 
-void NGSpriteHeart::_create(NGIPaintableComponent *ipc) {
+NGSpriteHeart::NGSpriteHeart(NGIPaintableComponent *ipc, bool transparent) {
+    _create(ipc, transparent);
+}
+
+void NGSpriteHeart::_create(NGIPaintableComponent *ipc, bool transparent) {
     NGCustomSprite::_create(ipc);
     _name = "Heart";
     _width = 8;
     _height = 8;
     _background = COLOR_BLACK;
+    _transparent = transparent;
 }
 
 void NGSpriteHeart::_doRender(int x, int y) {
