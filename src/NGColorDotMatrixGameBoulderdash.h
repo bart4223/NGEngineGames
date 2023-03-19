@@ -291,6 +291,8 @@ public:
     void registerColorDotMatrix(NGIPaintableComponent *ipc);
     
     void registerLiveCounterSprite(NGCustomSprite *sprite);
+    
+    void registerFuseSprite(NGCustomSprite *sprite);
 };
 
 #endif /* NGColorDotMatrixGameBoulderdash_h */

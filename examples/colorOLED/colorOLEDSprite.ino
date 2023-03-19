@@ -5,16 +5,18 @@
 #include <NGSpriteRocky.h>
 #include <NGSpriteDiamond.h>
 #include <NGSpriteBoulder.h>
+#include <NGSpriteBomb.h>
 
 #define DELAY 3000
-#define SCALE    1
+#define SCALE    8
 
 NGColorOLED *cdm = new NGColorOLED();
 //NGCustomSprite *sprite = new NGSpriteDirt(cdm);
 //NGCustomSprite *sprite = new NGSpriteHeart(cdm);
 //NGCustomSprite *sprite = new NGSpriteRocky(cdm);
 //NGCustomSprite *sprite = new NGSpriteDiamond(cdm);
-NGCustomSprite *sprite = new NGSpriteBoulder(cdm);
+//NGCustomSprite *sprite = new NGSpriteBoulder(cdm);
+NGCustomSprite *sprite = new NGSpriteBomb(cdm);
 
 long _lastToggle = 0;
 

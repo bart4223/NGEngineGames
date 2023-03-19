@@ -11,6 +11,7 @@
 #ifdef OLED
 #include <NGColorOLED.h>
 #include <NGSpriteHeart.h>
+#include <NGSpriteBomb.h>
 #include <NGSpriteRocky.h>
 #include <NGSpriteDiamond.h>
 #include <NGSpriteBoulder.h>
@@ -94,6 +95,7 @@ void setup() {
   NGCustomSprite *sprite = new NGSpriteDiamond(&cdm, true);
   game.registerScoreSprite(sprite);
   game.registerLiveCounterSprite(new NGSpriteHeart(&cdm, true));
+  //game.registerFuseSprite(new NGSpriteBomb(&cdm, true));
   game.registerSprite(GAMEBOULDERDASHCOLORINDEXROCKY, new NGSpriteRocky(&cdm));
   game.registerSprite(GAMEBOULDERDASHCOLORINDEXDIAMOND01, sprite);
   game.registerSprite(GAMEBOULDERDASHCOLORINDEXDIAMOND02, sprite);
