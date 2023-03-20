@@ -20,6 +20,7 @@ void NGSpriteDot::_create(NGIPaintableComponent *ipc, bool transparent) {
     _name = "Dot";
     _width = 8;
     _height = 8;
+    _color = COLR_RED;
     _background = COLOR_BLACK;
     _transparent = transparent;
 }
