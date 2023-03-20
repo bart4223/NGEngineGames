@@ -51,6 +51,8 @@
 		29970A7829C75A28004B7F2D /* colorOLEDBinaryDigit.ino */ = {isa = PBXFileReference; lastKnownFileType = text; path = colorOLEDBinaryDigit.ino; sourceTree = "<group>"; };
 		29970A7B29C775E6004B7F2D /* NGSpriteBomb.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = NGSpriteBomb.cpp; sourceTree = "<group>"; };
 		29970A7C29C775E6004B7F2D /* NGSpriteBomb.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NGSpriteBomb.h; sourceTree = "<group>"; };
+		29970A7D29C8B3EE004B7F2D /* NGSpriteDot.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = NGSpriteDot.cpp; sourceTree = "<group>"; };
+		29970A7E29C8B3EE004B7F2D /* NGSpriteDot.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NGSpriteDot.h; sourceTree = "<group>"; };
 		2997EE0E29AB7748003B64B0 /* LevelFive.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = LevelFive.png; sourceTree = "<group>"; };
 		299C2B7D294F512A00F53CAA /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		299C2B7F294F52B200F53CAA /* ToDo.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = ToDo.txt; sourceTree = "<group>"; };
@@ -195,6 +197,8 @@
 				29970A7229C6483B004B7F2D /* NGSpriteDiamond.cpp */,
 				29970A6D29C0D8D5004B7F2D /* NGSpriteDirt.h */,
 				29970A6C29C0D8D5004B7F2D /* NGSpriteDirt.cpp */,
+				29970A7E29C8B3EE004B7F2D /* NGSpriteDot.h */,
+				29970A7D29C8B3EE004B7F2D /* NGSpriteDot.cpp */,
 				29970A6F29C229DB004B7F2D /* NGSpriteHeart.h */,
 				29970A6E29C229DB004B7F2D /* NGSpriteHeart.cpp */,
 				29970A7129C6371B004B7F2D /* NGSpriteRocky.h */,

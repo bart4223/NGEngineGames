@@ -28,6 +28,7 @@ protected:
     int _imageSize = 0;
     int _scale = 1;
     colorRGB _background = COLOR_BLACK;
+    colorRGB _color = COLOR_BLACK;
     bool _transparent = false;
     char* _name;
 
@@ -45,6 +46,10 @@ public:
     void setTransparent(bool transparent);
     
     bool getTransparent();
+    
+    void setBackground(colorRGB background);
+    
+    void setColor(colorRGB color);
     
     char* getName();
     

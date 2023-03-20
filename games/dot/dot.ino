@@ -8,6 +8,7 @@
 #include <NGColorDotMatrixGameDot.h>
 #ifdef OLED
 #include <NGColorOLED.h>
+#include <NGSpriteDot.h>
 #endif
 #ifdef DOTMATRIX
 #include <NGColorDotMatrix.h>
@@ -73,6 +74,9 @@ void setup() {
   game.registerGameKey(gfStartGame, STARTGAMEID);
   game.registerGameJoystick(&joystick);
   game.registerColorDotMatrix(&cdm);
+  #ifdef OLED
+  game.registerSprite(GAMESPRITEDOTID, new NGSpriteDot(&cdm, true));
+  #endif
   game.initialize();
   observeMemory(0);
   game.startUp();

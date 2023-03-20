@@ -31,6 +31,13 @@ void NGCustomColorDotMatrixGame::_renderSprite(int id, int x, int y) {
     }
 }
 
+void NGCustomColorDotMatrixGame::_setSpriteColor(int id, colorRGB color) {
+    int i = _getSpriteIndex(id);
+    if (i != NOSPRITE) {
+        _sprites[i].sprite->setColor(color);
+    }
+}
+
 void NGCustomColorDotMatrixGame::registerColorDotMatrix(NGIPaintableComponent *ipc) {
     _ipc = ipc;
     _score = new NGColorDotMatrixBinaryDigit(_ipc, _scoreDigits, _scoreDirection, _scoreDigitPosX, _scoreDigitPosY);

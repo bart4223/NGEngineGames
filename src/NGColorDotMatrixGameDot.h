@@ -27,6 +27,8 @@
 #define GAMDEDOTCOLORSCOREOFF { .red = 5, .green = 5, .blue = 5 }
 #define GAMDEDOTCOLORSCOREON COLOR_BLUE
 
+#define GAMESPRITEDOTID 1
+
 #define GAMEDOTSCOREDIGITS 8
 
 class NGColorDotMatrixGameDot : public NGCustomColorDotMatrixGame {

@@ -45,6 +45,14 @@ bool NGCustomSprite::getTransparent() {
     return _transparent;
 }
 
+void NGCustomSprite::setBackground(colorRGB background) {
+    _background = background;
+}
+
+void NGCustomSprite::setColor(colorRGB color) {
+    _color = color;
+}
+
 char* NGCustomSprite::getName() {
     return _name;
 }

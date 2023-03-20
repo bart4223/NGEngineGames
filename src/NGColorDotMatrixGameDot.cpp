@@ -129,7 +129,12 @@ void NGColorDotMatrixGameDot::_ownIntro() {
     _ipc->clear();
     byte dotX = random(5, 8);
     byte dotY = random(5, 8);
-    _ipc->drawPoint(dotX, dotY, COLOR_RED);
+    if (_hasSprite(GAMESPRITEDOTID)) {
+        _setSpriteColor(GAMESPRITEDOTID, COLOR_RED);
+        _renderSprite(GAMESPRITEDOTID, dotX, dotY);
+    } else {
+        _ipc->drawPoint(dotX, dotY, COLOR_RED);
+    }
     byte playerX = 0;
     byte playerY = 0;
     _rollPlayerColor();
@@ -151,7 +156,12 @@ void NGColorDotMatrixGameDot::_ownRender() {
     _ipc->beginUpdate();
     _ipc->clear();
     _ipc->drawPoint(_posXPlayer, _posYPlayer, _colorPlayer);
-    _ipc->drawPoint(_posXDot, _posYDot, COLOR_RED);
+    if (_hasSprite(GAMESPRITEDOTID)) {
+        _setSpriteColor(GAMESPRITEDOTID, COLOR_RED);
+        _renderSprite(GAMESPRITEDOTID, _posXDot, _posYDot);
+    } else {
+        _ipc->drawPoint(_posXDot, _posYDot, COLOR_RED);
+    }
     _score->setValue(_scoreCounter);
     _ipc->endUpdate();
 }
@@ -195,7 +205,12 @@ void NGColorDotMatrixGameDot::_ownJoystickLoop() {
     if ((_posXPlayer == _posXDot) && (_posYPlayer == _posYDot)) {
         _scoreCounter++;
         _score->setValue(_scoreCounter);
-        _ipc->drawPoint(_posXDot, _posYDot, COLOR_GREEN);
+        if (_hasSprite(GAMESPRITEDOTID)) {
+            _setSpriteColor(GAMESPRITEDOTID, COLOR_GREEN);
+            _renderSprite(GAMESPRITEDOTID, _posXDot, _posYDot);
+        } else {
+            _ipc->drawPoint(_posXDot, _posYDot, COLOR_GREEN);
+        }
         delay(DOTCATCHDELAY);
         _calculateNewDotPosition();
     }

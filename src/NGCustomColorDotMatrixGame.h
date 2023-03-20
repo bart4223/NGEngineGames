@@ -48,6 +48,7 @@ protected:
     bool _hasSprite(int id);
     int _getSpriteIndex(int id);
     void _renderSprite(int id, int x, int y);
+    void _setSpriteColor(int id, colorRGB color);
     
 public:
     void registerColorDotMatrix(NGIPaintableComponent *ipc);
