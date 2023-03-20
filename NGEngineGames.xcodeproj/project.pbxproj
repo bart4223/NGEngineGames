@@ -185,6 +185,8 @@
 		29970A6B29C0D899004B7F2D /* sprites */ = {
 			isa = PBXGroup;
 			children = (
+				29970A6929C0CA2A004B7F2D /* NGCustomSprite.h */,
+				29970A6829C0CA2A004B7F2D /* NGCustomSprite.cpp */,
 				29970A7C29C775E6004B7F2D /* NGSpriteBomb.h */,
 				29970A7B29C775E6004B7F2D /* NGSpriteBomb.cpp */,
 				29970A7529C735A9004B7F2D /* NGSpriteBoulder.h */,
@@ -248,8 +250,6 @@
 				299C2B85294F552800F53CAA /* NGCustomGame.cpp */,
 				29620D7329B331120020B874 /* NGDecimalPointCounter.h */,
 				29620D7229B331120020B874 /* NGDecimalPointCounter.cpp */,
-				29970A6929C0CA2A004B7F2D /* NGCustomSprite.h */,
-				29970A6829C0CA2A004B7F2D /* NGCustomSprite.cpp */,
 				29FD0A6E297DA4D5003CAA71 /* NGGamePad.h */,
 				29FD0A6D297DA4D5003CAA71 /* NGGamePad.cpp */,
 			);
