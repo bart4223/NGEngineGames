@@ -120,6 +120,8 @@ void NGColorDotMatrixGameDot::_doProcessingLoop() {
         }
         if (_doRender) {
             _ownRender();
+        } else if (_hasSprite(GAMESPRITEPLAYERID)) {
+            _renderSprite(GAMESPRITEPLAYERID, _posXPlayer, _posYPlayer);
         }
     }
 }
@@ -139,7 +141,11 @@ void NGColorDotMatrixGameDot::_ownIntro() {
     byte playerY = 0;
     _rollPlayerColor();
     for (int i = 0; i < 10; i++) {
-        _ipc->drawPoint(playerX, playerY, _colorPlayer);
+        if (_hasSprite(GAMESPRITEPLAYERID)) {
+            _renderSprite(GAMESPRITEPLAYERID, playerX, playerY);
+        } else {
+            _ipc->drawPoint(playerX, playerY, _colorPlayer);
+        }
         delay(100);
         _ipc->drawPoint(playerX, playerY, COLOR_BLACK);
         if (_getYesOrNo()) {
@@ -155,7 +161,12 @@ void NGColorDotMatrixGameDot::_ownIntro() {
 void NGColorDotMatrixGameDot::_ownRender() {
     _ipc->beginUpdate();
     _ipc->clear();
-    _ipc->drawPoint(_posXPlayer, _posYPlayer, _colorPlayer);
+    if (_hasSprite(GAMESPRITEPLAYERID)) {
+        _setSpriteColor(GAMESPRITEPLAYERID, _colorPlayer);
+        _renderSprite(GAMESPRITEPLAYERID, _posXPlayer, _posYPlayer);
+    } else {
+        _ipc->drawPoint(_posXPlayer, _posYPlayer, _colorPlayer);
+    }
     if (_hasSprite(GAMESPRITEDOTID)) {
         _setSpriteColor(GAMESPRITEDOTID, COLOR_RED);
         _renderSprite(GAMESPRITEDOTID, _posXDot, _posYDot);
