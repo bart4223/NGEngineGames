@@ -10,6 +10,7 @@
 #include <NGColorOLED.h>
 #include <NGSpriteDot.h>
 #include <NGSpriteRocky.h>
+#include <NGSpriteDiamond.h>
 #endif
 #ifdef DOTMATRIX
 #include <NGColorDotMatrix.h>
@@ -76,6 +77,7 @@ void setup() {
   game.registerGameJoystick(&joystick);
   game.registerColorDotMatrix(&cdm);
   #ifdef OLED
+  game.registerScoreSprite(new NGSpriteDiamond(&cdm, true));
   game.registerSprite(GAMESPRITEDOTID, new NGSpriteDot(&cdm, true));
   game.registerSprite(GAMESPRITEPLAYERID, new NGSpriteRocky(&cdm, true));
   #endif
