@@ -41,6 +41,14 @@ void NGCustomColorDotMatrixGame::_setSpriteColor(int id, colorRGB color) {
 void NGCustomColorDotMatrixGame::registerColorDotMatrix(NGIPaintableComponent *ipc) {
     _ipc = ipc;
     _score = new NGColorDotMatrixBinaryDigit(_ipc, _scoreDigits, _scoreDirection, _scoreDigitPosX, _scoreDigitPosY);
+    _pointCounter = new NGDecimalPointCounter(_ipc, _pointCounterColor);
+    _pointCounter->setMaxDigits(_pointCounterMaxDigits);
+    _pointCounter->setShowMaxDigits(_pointCounterShowMaxDigits);
+    _pointCounter->setIsAnimationEnabled(_pointCounterAnimationDelay > 0);
+    _pointCounter->setAnimationDelay(_pointCounterAnimationDelay);
+    _pointCounter->setPosX(_pointCounterPosX);
+    _pointCounter->setPosY(_pointCounterPosY);
+    _pointCounter->initialize();
 }
 
 void NGCustomColorDotMatrixGame::registerSprite(byte id, NGCustomSprite *sprite) {
@@ -59,5 +67,9 @@ void NGCustomColorDotMatrixGame::registerSprite(byte id, NGCustomSprite *sprite)
 }
 
 void NGCustomColorDotMatrixGame::registerScoreSprite(NGCustomSprite *sprite) {
-    _score->registerPaintableObjectOn(sprite);
+    if (_score != nullptr) {
+        _score->registerPaintableObjectOn(sprite);
+    } else {
+        _raiseException(ExceptionGameNoScoreCounter);
+    }
 }

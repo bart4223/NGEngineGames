@@ -12,8 +12,8 @@ NGColorDotMatrixGameSnake::NGColorDotMatrixGameSnake() {
     _scoreDigits = GAMESNAKESCOREDIGITS;
     _gameToggleMode = gtmBreakContinue;
     _autoRestartGame = true;
-    _gameFinishedDelay = GAMESNAKEFINISHDELAY;
     _gameNextStepDelay = GAMESNAKEMOVEDELAY;
+    _pointCounterAnimationDelay = GAMESNAKEOUTRODELAY;
 }
 
 void NGColorDotMatrixGameSnake::_rollSnakeColor() {
@@ -144,10 +144,20 @@ void NGColorDotMatrixGameSnake::_doContinueGame() {
 
 void NGColorDotMatrixGameSnake::_doFinishGame() {
     _ipc->clear();
+    _ownOutro();
     if (_logging) {
         char log[100];
         sprintf(log, "%s.FinishGame", _name);
         writeInfo(log);
+    }
+}
+
+void NGColorDotMatrixGameSnake::_ownOutro() {
+    long start = millis();
+    _pointCounter->setColor(_colorSnake);
+    _pointCounter->setCounter(_scoreCounter, true);
+    while (millis() - start < GAMESNAKEFINISHDELAY * _pointCounter->getCurrentMaxDigits()) {
+        _pointCounter->processingLoop();
     }
 }
 
@@ -169,36 +179,36 @@ void NGColorDotMatrixGameSnake::_ownIntro() {
     _ipc->clear();
     _rollSnakeColor();
     _ipc->drawPoint(4, 3, _colorSnake);
-    delay(GAMESNAKEMINTRODELAY);
+    delay(GAMESNAKEINTRODELAY);
     _rollSnakeColor();
     _ipc->drawPoint(4, 4, _colorSnake);
-    delay(GAMESNAKEMINTRODELAY);
+    delay(GAMESNAKEINTRODELAY);
     _rollSnakeColor();
     _ipc->drawPoint(3, 4, _colorSnake);
-    delay(GAMESNAKEMINTRODELAY);
+    delay(GAMESNAKEINTRODELAY);
     _rollSnakeColor();
     _ipc->drawPoint(2, 4, _colorSnake);
-    delay(GAMESNAKEMINTRODELAY);
+    delay(GAMESNAKEINTRODELAY);
     _rollSnakeColor();
     _ipc->drawPoint(2, 3, _colorSnake);
-    delay(GAMESNAKEMINTRODELAY);
+    delay(GAMESNAKEINTRODELAY);
     _rollSnakeColor();
     _ipc->drawPoint(2, 2, _colorSnake);
-    delay(GAMESNAKEMINTRODELAY);
+    delay(GAMESNAKEINTRODELAY);
     for (int i = 2; i < 7; i++) {
         _rollSnakeColor();
         _ipc->drawPoint(i, 1, _colorSnake);
-        delay(GAMESNAKEMINTRODELAY);
+        delay(GAMESNAKEINTRODELAY);
     }
     for (int i = 2; i < 7; i++) {
         _rollSnakeColor();
         _ipc->drawPoint(6, i, _colorSnake);
-        delay(GAMESNAKEMINTRODELAY);
+        delay(GAMESNAKEINTRODELAY);
     }
     for (int i = 5; i > 0; i--) {
         _rollSnakeColor();
         _ipc->drawPoint(i, 6, _colorSnake);
-        delay(GAMESNAKEMINTRODELAY);
+        delay(GAMESNAKEINTRODELAY);
     }
     delay(500);
     _ipc->clear();

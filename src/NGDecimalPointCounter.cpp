@@ -18,7 +18,7 @@ NGDecimalPointCounter::NGDecimalPointCounter(NGIPaintableComponent *pc, colorRGB
 void NGDecimalPointCounter::_create(NGIPaintableComponent *pc,  colorRGB color) {
     _pc = pc;
     _digit = new NGColorDotMatrixDecimalDigit(_pc);
-    _digit->setColor(color);
+    setColor(color);
 }
 
 void NGDecimalPointCounter::_calculateCurrentMaxDigits() {
@@ -78,7 +78,19 @@ void NGDecimalPointCounter::setPosY(int y) {
 }
 
 void NGDecimalPointCounter::setCounter(long counter) {
-    if (_counter != counter) {
+    setCounter(counter, false);
+}
+
+byte NGDecimalPointCounter::getCurrentMaxDigits() {
+    return _currentMaxDigits;
+}
+
+void NGDecimalPointCounter::setColor(colorRGB color) {
+    _digit->setColor(color);
+}
+
+void NGDecimalPointCounter::setCounter(long counter, bool force) {
+    if (_counter != counter || force) {
         _counter = counter;
         _calculateCurrentMaxDigits();
         _currentAnimationDirection = pcadNone;

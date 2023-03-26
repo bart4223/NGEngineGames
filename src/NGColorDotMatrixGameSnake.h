@@ -24,8 +24,9 @@
 #define GAMESNAKESCOREDIGITS 8
 
 #define GAMESNAKEMOVEDELAY    500
-#define GAMESNAKEFINISHDELAY 1000
-#define GAMESNAKEMINTRODELAY  100
+#define GAMESNAKEFINISHDELAY 3000
+#define GAMESNAKEINTRODELAY   100
+#define GAMESNAKEOUTRODELAY   100
 
 class NGColorDotMatrixGameSnake : public NGCustomColorDotMatrixGame {
   
@@ -73,6 +74,8 @@ protected:
     void _ownRender();
     
     void _ownIntro();
+    
+    void _ownOutro();
     
 public:
     NGColorDotMatrixGameSnake();

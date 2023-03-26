@@ -17,11 +17,15 @@
 #include <NGCustomGame.h>
 #include <NGCustomSprite.h>
 #include <NGColorDotMatrixBinaryDigit.h>
+#include <NGDecimalPointCounter.h>
 
 #define DEFSCOREDIGITS        4
 #define DEFSCOREDIGITPOSX     7
 #define DEFSCOREDIGITPOSY     7
 #define DEFSCOREDIRECTION bddUp
+
+#define DEFPOINTCOUNTERCOLOR     COLOR_BLUE
+#define DEFPOINTCOUNTERMAXDIGITS 5
 
 #define MAXSPRITECOUNT 10
 #define NOSPRITE -1
@@ -44,6 +48,13 @@ protected:
     BinaryDigitDirection _scoreDirection = DEFSCOREDIRECTION;
     gameSprite _sprites[MAXSPRITECOUNT];
     byte _spriteCount = 0;
+    NGDecimalPointCounter *_pointCounter = nullptr;
+    colorRGB _pointCounterColor = DEFPOINTCOUNTERCOLOR;
+    byte _pointCounterMaxDigits = DEFPOINTCOUNTERMAXDIGITS;
+    bool _pointCounterShowMaxDigits = false;
+    int _pointCounterAnimationDelay = 0;
+    int _pointCounterPosX = 0;
+    int _pointCounterPosY = 0;
     
     bool _hasSprite(int id);
     int _getSpriteIndex(int id);

@@ -68,7 +68,13 @@ public:
     
     void setCounter(long counter);
     
+    void setCounter(long counter, bool force);
+    
     long getCounter();
+    
+    byte getCurrentMaxDigits();
+    
+    void setColor(colorRGB color);
     
     void incrementCounter();
     
