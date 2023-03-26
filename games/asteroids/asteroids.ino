@@ -1,5 +1,5 @@
 #define PROD true //false, true
-#define OLED //OLED, DOTMATRIX
+#define DOTMATRIX //OLED, DOTMATRIX
 
 #include <NGCommon.h>
 #include <NGMemoryObserver.h>
@@ -9,6 +9,8 @@
 #include <NGColorDotMatrixGameAsteroids.h>
 #ifdef OLED
 #include <NGColorOLED.h>
+#include <NGSpriteDiamond.h>
+#include <NGSpriteBoulder.h>
 #endif
 #ifdef DOTMATRIX
 #include <NGColorDotMatrix.h>
@@ -64,7 +66,7 @@ void setup() {
   // ColorDotMatrix
   cdm.initialize();
   #ifdef OLED
-  cdm.setScale(5);
+  cdm.setScale(8);
   #endif
   cdm.clear();
   // Sound
@@ -83,6 +85,8 @@ void setup() {
   game.registerColorDotMatrix(&cdm);
   #ifdef OLED
   game.setIntroShotDelay(50);
+  game.registerSprite(GAMEASTEROIDSCOLORINDEXASTEROID, new NGSpriteBoulder(&cdm, true));
+  game.registerScoreSprite(new NGSpriteDiamond(&cdm, true));
   #endif
   game.initialize();
   observeMemory(0);

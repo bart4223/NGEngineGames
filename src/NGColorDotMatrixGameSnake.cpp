@@ -153,9 +153,9 @@ void NGColorDotMatrixGameSnake::_doFinishGame() {
 }
 
 void NGColorDotMatrixGameSnake::_ownOutro() {
-    long start = millis();
     _pointCounter->setColor(_colorSnake);
     _pointCounter->setCounter(_scoreCounter, true);
+    long start = millis();
     while (millis() - start < GAMESNAKEFINISHDELAY * _pointCounter->getCurrentMaxDigits()) {
         _pointCounter->processingLoop();
     }

@@ -135,7 +135,13 @@ void NGColorOLED::clearCircle(int x0, int y0, int radius) {
 }
 
 void NGColorOLED::drawCircle(int x0, int y0, int radius, colorRGB color) {
-    _display->drawCircle(x0 * _scale, y0 * _scale, radius * _scale, _getColor(color));
+    if (_scale == DEFCOLOROLEDSCALE) {
+        _display->drawCircle(x0 * _scale, y0 * _scale, radius * _scale, _getColor(color));
+    } else {
+        for (int i = 0; i < _scale; i++) {
+            _display->drawCircle(x0 * _scale, y0 * _scale, radius * _scale + i, _getColor(color));
+        }
+    }
 }
 
 void NGColorOLED::drawImage(coord2D coord[], colorRGB color, int size) {

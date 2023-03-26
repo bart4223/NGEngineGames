@@ -16,6 +16,7 @@ NGColorDotMatrixGameAsteroids::NGColorDotMatrixGameAsteroids() {
     _autoRestartGame = true;
     _gameFinishedDelay = GAMEASTEROIDSFINISHDELAY;
     _gameNextStepDelay = GAMEASTEROIDSMOVEDELAY;
+    _pointCounterAnimationDelay = GAMEASTEROIDSOUTRODELAY;
 }
 
 void NGColorDotMatrixGameAsteroids::_resetMaze() {
@@ -226,7 +227,12 @@ void NGColorDotMatrixGameAsteroids::_ownRender() {
                 c.red = globalAsteroidsColors[value - 1][0];
                 c.green = globalAsteroidsColors[value - 1][1];
                 c.blue = globalAsteroidsColors[value - 1][2];
-                _ipc->drawPoint(x, y, c);
+                if (_hasSprite(value)) {
+                    _setSpriteColor(value, c);
+                    _renderSprite(value, x, y);
+                } else {
+                    _ipc->drawPoint(x, y, c);
+                }
             } else {
                 _ipc->clearPoint(x, y);
             }
@@ -250,11 +256,20 @@ void NGColorDotMatrixGameAsteroids::_ownIntro() {
     c.red = globalAsteroidsColors[GAMEASTEROIDSCOLORINDEXASTEROID - 1][0];
     c.green = globalAsteroidsColors[GAMEASTEROIDSCOLORINDEXASTEROID - 1][1];
     c.blue = globalAsteroidsColors[GAMEASTEROIDSCOLORINDEXASTEROID - 1][2];
-    _ipc->drawPoint(2, 0, c);
-    _ipc->drawPoint(6, 2, c);
-    _ipc->drawPoint(4, 4, c);
-    _ipc->drawPoint(7, 6, c);
-    _ipc->drawPoint(3, 7, c);
+    if (_hasSprite(GAMEASTEROIDSCOLORINDEXASTEROID)) {
+        _setSpriteColor(GAMEASTEROIDSCOLORINDEXASTEROID, c);
+        _renderSprite(GAMEASTEROIDSCOLORINDEXASTEROID, 2, 0);
+        _renderSprite(GAMEASTEROIDSCOLORINDEXASTEROID, 6, 2);
+        _renderSprite(GAMEASTEROIDSCOLORINDEXASTEROID, 5, 4);
+        _renderSprite(GAMEASTEROIDSCOLORINDEXASTEROID, 7, 6);
+        _renderSprite(GAMEASTEROIDSCOLORINDEXASTEROID, 3, 7);
+    } else {
+        _ipc->drawPoint(2, 0, c);
+        _ipc->drawPoint(6, 2, c);
+        _ipc->drawPoint(4, 4, c);
+        _ipc->drawPoint(7, 6, c);
+        _ipc->drawPoint(3, 7, c);
+    }
     _ipc->endUpdate();
     c.red = globalAsteroidsColors[GAMEASTEROIDSCOLORINDEXLASERBEAM - 1][0];
     c.green = globalAsteroidsColors[GAMEASTEROIDSCOLORINDEXLASERBEAM - 1][1];
@@ -275,10 +290,17 @@ void NGColorDotMatrixGameAsteroids::_ownOutro() {
     for (int i = 1; i < GAMEASTEROIDSMAZESIZEX + 2; i++) {
         _ipc->beginUpdate();
         _ipc->clearCircle(_posXSpacecraft + 1, _posYSpacecraft + 1, i - 1);
-        _ipc->drawCircle(_posXSpacecraft + 1, _posYSpacecraft + 1, i, COLOR_RED);
+        _ipc->drawCircle(_posXSpacecraft + 1, _posYSpacecraft + 1, i, GAMEASTEROIDSCOLOROUTRO);
         _score->setValue(_scoreCounter);
         _ipc->endUpdate();
         delay(GAMEASTEROIDSOUTRODELAY);
+    }
+    _ipc->clear();
+    _pointCounter->setColor(GAMEASTEROIDSCOLOROUTRO);
+    _pointCounter->setCounter(_scoreCounter, true);
+    long start = millis();
+    while (millis() - start < GAMEASTEROIDSOUTRODPOINTCOUNTERELAY * _pointCounter->getCurrentMaxDigits()) {
+        _pointCounter->processingLoop();
     }
 }
 
