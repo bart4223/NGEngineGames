@@ -7,6 +7,7 @@
 #include <NGSpriteBoulder.h>
 #include <NGSpriteBomb.h>
 #include <NGSpriteDot.h>
+#include <NGSpriteLaserbeam.h>
 
 #define DELAY 3000
 #define SCALE    1
@@ -18,7 +19,8 @@ NGColorOLED *cdm = new NGColorOLED();
 //NGCustomSprite *sprite = new NGSpriteDiamond(cdm);
 //NGCustomSprite *sprite = new NGSpriteBoulder(cdm);
 //NGCustomSprite *sprite = new NGSpriteBomb(cdm);
-NGCustomSprite *sprite = new NGSpriteDot(cdm);
+//NGCustomSprite *sprite = new NGSpriteDot(cdm);
+NGCustomSprite *sprite = new NGSpriteLaserbeam(cdm);
 
 long _lastToggle = 0;
 
