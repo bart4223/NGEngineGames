@@ -10,6 +10,7 @@
 #include <NGColorDotMatrixGameTetris.h>
 #ifdef OLED
 #include <NGColorOLED.h>
+#include <NGSpriteDiamond.h>
 #endif
 #ifdef DOTMATRIX
 #include <NGColorDotMatrix.h>
@@ -85,6 +86,9 @@ void setup() {
   game.registerSoundStartUp(jingleSuperMario);
   game.registerSoundStart(jingleHelloDude);
   game.registerColorDotMatrix(&cdm);
+  #ifdef OLED
+  game.registerScoreSprite(new NGSpriteDiamond(&cdm, true));
+  #endif
   game.initialize();
   observeMemory(0);
   game.startUp();
