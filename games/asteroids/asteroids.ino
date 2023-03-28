@@ -12,6 +12,8 @@
 #include <NGSpriteDiamond.h>
 #include <NGSpriteBoulder.h>
 #include <NGSpriteLaserbeam.h>
+#include <NGSpriteNone.h>
+#include <NGSpriteSpaceship.h>
 #endif
 #ifdef DOTMATRIX
 #include <NGColorDotMatrix.h>
@@ -87,8 +89,10 @@ void setup() {
   #ifdef OLED
   game.setIntroShotDelay(50);
   game.registerSprite(GAMEASTEROIDSCOLORINDEXASTEROID, new NGSpriteBoulder(&cdm, true));
-  game.registerSprite(GAMEASTEROIDSCOLORINDEXLASERBEAM, new NGSpriteLaserbeam(&cdm, true));
-  game.registerScoreSprite(new NGSpriteDiamond(&cdm, true));
+  //game.registerSprite(GAMEASTEROIDSCOLORINDEXLASERBEAM, new NGSpriteLaserbeam(&cdm, true));
+  game.registerSprite(GAMEASTEROIDSCOLORINDEXSPACECRAFT01, new NGSpriteSpaceship(&cdm, true, -9, 0));
+  game.registerSprite(GAMEASTEROIDSCOLORINDEXSPACECRAFT02, new NGSpriteNone(&cdm));
+  //game.registerScoreSprite(new NGSpriteDiamond(&cdm, true));
   #endif
   game.initialize();
   observeMemory(0);

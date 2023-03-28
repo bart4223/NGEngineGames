@@ -25,6 +25,8 @@ protected:
     int _height;
     int _posX = 0;
     int _posY = 0;
+    int _posOffsetX = 0;
+    int _posOffsetY = 0;
     int _imageSize = 0;
     int _scale = 1;
     colorRGB _background = COLOR_BLACK;

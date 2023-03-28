@@ -11,6 +11,10 @@
 		2906CF87298BDC9D00C6212D /* GamePadI2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = GamePadI2.png; sourceTree = "<group>"; };
 		29097B8829D0A0B0006FBDF0 /* NGSpriteLaserbeam.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = NGSpriteLaserbeam.cpp; sourceTree = "<group>"; };
 		29097B8929D0A0B0006FBDF0 /* NGSpriteLaserbeam.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NGSpriteLaserbeam.h; sourceTree = "<group>"; };
+		29097B8A29D1FADF006FBDF0 /* NGSpriteNone.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = NGSpriteNone.cpp; sourceTree = "<group>"; };
+		29097B8B29D1FADF006FBDF0 /* NGSpriteNone.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NGSpriteNone.h; sourceTree = "<group>"; };
+		29097B8C29D2D1EF006FBDF0 /* NGSpriteSpaceship.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = NGSpriteSpaceship.cpp; sourceTree = "<group>"; };
+		29097B8D29D2D1EF006FBDF0 /* NGSpriteSpaceship.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NGSpriteSpaceship.h; sourceTree = "<group>"; };
 		29255B70298D2D2800234506 /* Dot.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Dot.png; sourceTree = "<group>"; };
 		29255B72298D30DE00234506 /* Snake.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Snake.png; sourceTree = "<group>"; };
 		29255B73298D330600234506 /* Asteroids.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Asteroids.png; sourceTree = "<group>"; };
@@ -205,8 +209,12 @@
 				29970A6E29C229DB004B7F2D /* NGSpriteHeart.cpp */,
 				29097B8929D0A0B0006FBDF0 /* NGSpriteLaserbeam.h */,
 				29097B8829D0A0B0006FBDF0 /* NGSpriteLaserbeam.cpp */,
+				29097B8B29D1FADF006FBDF0 /* NGSpriteNone.h */,
+				29097B8A29D1FADF006FBDF0 /* NGSpriteNone.cpp */,
 				29970A7129C6371B004B7F2D /* NGSpriteRocky.h */,
 				29970A7029C6371B004B7F2D /* NGSpriteRocky.cpp */,
+				29097B8D29D2D1EF006FBDF0 /* NGSpriteSpaceship.h */,
+				29097B8C29D2D1EF006FBDF0 /* NGSpriteSpaceship.cpp */,
 			);
 			name = sprites;
 			sourceTree = "<group>";

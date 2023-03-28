@@ -25,7 +25,7 @@ void NGCustomSprite::render() {
     if (!_transparent) {
         _ipc->fillRect(_posY * scale, _posX * scale, _posY * scale + _height - 1, _posX * scale + _width - 1, _background);
     }
-    _doRender(_posX * scale, _posY * scale);
+    _doRender(_posX * scale + _posOffsetX, _posY * scale + _posOffsetY);
     _ipc->endUpdate();
     _ipc->setBackground(background);
     _ipc->setScale(scale);

@@ -34,9 +34,10 @@
 #define GAMEASTEROIDSSTARTPOSX 0
 #define GAMEASTEROIDSSTARTPOSY 3
 
-#define GAMEASTEROIDSCOLORINDEXSPACECRAFT 1
-#define GAMEASTEROIDSCOLORINDEXLASERBEAM  2
-#define GAMEASTEROIDSCOLORINDEXASTEROID   3
+#define GAMEASTEROIDSCOLORINDEXSPACECRAFT01 1
+#define GAMEASTEROIDSCOLORINDEXSPACECRAFT02 2
+#define GAMEASTEROIDSCOLORINDEXLASERBEAM    3
+#define GAMEASTEROIDSCOLORINDEXASTEROID     4
 
 #define GAMEASTEROIDSINTROLASERBEAMTIMES       5
 #define GAMEASTEROIDSINTRODELAY              100
@@ -46,8 +47,9 @@
 
 #define GAMEASTEROIDSMAXLOST 3
 
-static byte globalAsteroidsColors[3][3] = {
-  {0, 0, 255},  // Spacecraft
+static byte globalAsteroidsColors[4][3] = {
+  {0, 0, 255},  // Spacecraft 01
+  {0, 0, 255},  // Spacecraft 02
   {255, 0, 0},  // Laser
   {255, 255, 0} // Asteroid
 };
@@ -64,6 +66,8 @@ private:
     int _introShotDelay = GAMEASTEROIDSINTROSHOTDELAY;
     
     void _resetMaze();
+    
+    bool _isColorIndexSpacecraft(int index);
     
     void _computeAsteroids();
     

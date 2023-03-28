@@ -27,13 +27,17 @@ void NGColorDotMatrixGameAsteroids::_resetMaze() {
     }
 }
 
+bool NGColorDotMatrixGameAsteroids::_isColorIndexSpacecraft(int index) {
+    return (index == GAMEASTEROIDSCOLORINDEXSPACECRAFT01 || index == GAMEASTEROIDSCOLORINDEXSPACECRAFT02);
+}
+
 void NGColorDotMatrixGameAsteroids::_computeAsteroids() {
     for (int y = 0; y < GAMEASTEROIDSMAZESIZEY; y++) {
         for (int x = 0; x < GAMEASTEROIDSMAZESIZEX; x++) {
             if (_maze[y][x] == GAMEASTEROIDSCOLORINDEXASTEROID) {
                 _maze[y][x] = 0;
                 if (x > 0) {
-                    _gameFinished = _maze[y][x - 1] == GAMEASTEROIDSCOLORINDEXSPACECRAFT;
+                    _gameFinished = _isColorIndexSpacecraft(_maze[y][x - 1]);
                     if (!_gameFinished) {
                         _maze[y][x - 1] = GAMEASTEROIDSCOLORINDEXASTEROID;
                     } else {
@@ -99,34 +103,42 @@ void NGColorDotMatrixGameAsteroids::_spawnLaserbeam() {
 
 void NGColorDotMatrixGameAsteroids::_spawnAsteroid() {
     if ((random(0, 10) % 3) == 0) {
-        _maze[random(0, GAMEASTEROIDSMAZESIZEY - 1)][GAMEASTEROIDSMAZESIZEX - 1] =  GAMEASTEROIDSCOLORINDEXASTEROID;
+        _maze[random(0, GAMEASTEROIDSMAZESIZEY - 1)][GAMEASTEROIDSMAZESIZEX - 1] = GAMEASTEROIDSCOLORINDEXASTEROID;
     }
 }
 
 void NGColorDotMatrixGameAsteroids::_clearSpacecraft() {
     _maze[_posYSpacecraft][_posXSpacecraft + 1] = 0;
+    if (_hasSprite(GAMEASTEROIDSCOLORINDEXSPACECRAFT01)) {
+        _maze[_posYSpacecraft][_posXSpacecraft] = 0;
+        _maze[_posYSpacecraft][_posXSpacecraft + 2] = 0;
+    }
     _maze[_posYSpacecraft + 1][_posXSpacecraft] = 0;
     _maze[_posYSpacecraft + 1][_posXSpacecraft + 1] = 0;
     _maze[_posYSpacecraft + 1][_posXSpacecraft + 2] = 0;
 }
 
 void NGColorDotMatrixGameAsteroids::_computeSpacecraft() {
-    _maze[_posYSpacecraft][_posXSpacecraft + 1] = GAMEASTEROIDSCOLORINDEXSPACECRAFT;
-    _maze[_posYSpacecraft + 1][_posXSpacecraft] = GAMEASTEROIDSCOLORINDEXSPACECRAFT;
-    _maze[_posYSpacecraft + 1][_posXSpacecraft + 1] = GAMEASTEROIDSCOLORINDEXSPACECRAFT;
-    _maze[_posYSpacecraft + 1][_posXSpacecraft + 2] = GAMEASTEROIDSCOLORINDEXSPACECRAFT;
+    _maze[_posYSpacecraft][_posXSpacecraft + 1] = GAMEASTEROIDSCOLORINDEXSPACECRAFT01;
+    if (_hasSprite(GAMEASTEROIDSCOLORINDEXSPACECRAFT01)) {
+        _maze[_posYSpacecraft][_posXSpacecraft] = GAMEASTEROIDSCOLORINDEXSPACECRAFT02;
+        _maze[_posYSpacecraft][_posXSpacecraft + 2] = GAMEASTEROIDSCOLORINDEXSPACECRAFT02;
+    }
+    _maze[_posYSpacecraft + 1][_posXSpacecraft] = GAMEASTEROIDSCOLORINDEXSPACECRAFT02;
+    _maze[_posYSpacecraft + 1][_posXSpacecraft + 1] = GAMEASTEROIDSCOLORINDEXSPACECRAFT02;
+    _maze[_posYSpacecraft + 1][_posXSpacecraft + 2] = GAMEASTEROIDSCOLORINDEXSPACECRAFT02;
 }
 
 bool NGColorDotMatrixGameAsteroids::_checkSpacecraft(byte posX, byte posY) {
-    bool res = _maze[posY][posX + 1] == 0 || _maze[posY][posX + 1] == GAMEASTEROIDSCOLORINDEXSPACECRAFT;
+    bool res = _maze[posY][posX + 1] == 0 || _isColorIndexSpacecraft(_maze[posY][posX + 1]);
     if (res) {
-        res = _maze[posY + 1][posX] == 0 || _maze[posY + 1][posX] == GAMEASTEROIDSCOLORINDEXSPACECRAFT;
+        res = _maze[posY + 1][posX] == 0 || _isColorIndexSpacecraft(_maze[posY + 1][posX]);
     }
     if (res) {
-        res = _maze[posY + 1][posX + 1] == 0 || _maze[posY + 1][posX + 1] == GAMEASTEROIDSCOLORINDEXSPACECRAFT;
+        res = _maze[posY + 1][posX + 1] == 0 || _isColorIndexSpacecraft(_maze[posY + 1][posX + 1]);
     }
     if (res) {
-        res = _maze[posY + 1][posX + 2] == 0 || _maze[posY + 1][posX + 2] == GAMEASTEROIDSCOLORINDEXSPACECRAFT;
+        res = _maze[posY + 1][posX + 2] == 0 || _isColorIndexSpacecraft(_maze[posY + 1][posX + 2]);
     }
     return res;
 }
@@ -243,16 +255,23 @@ void NGColorDotMatrixGameAsteroids::_ownRender() {
 }
 
 void NGColorDotMatrixGameAsteroids::_ownIntro() {
+    int beamOffset = 0;
     colorRGB c;
     _ipc->beginUpdate();
-    c.red = globalAsteroidsColors[GAMEASTEROIDSCOLORINDEXSPACECRAFT - 1][0];
-    c.green = globalAsteroidsColors[GAMEASTEROIDSCOLORINDEXSPACECRAFT - 1][1];
-    c.blue = globalAsteroidsColors[GAMEASTEROIDSCOLORINDEXSPACECRAFT - 1][2];
     _ipc->clear();
-    _ipc->drawPoint(1, 2, c);
-    _ipc->drawPoint(0, 3, c);
-    _ipc->drawPoint(1, 3, c);
-    _ipc->drawPoint(2, 3, c);
+    c.red = globalAsteroidsColors[GAMEASTEROIDSCOLORINDEXSPACECRAFT01 - 1][0];
+    c.green = globalAsteroidsColors[GAMEASTEROIDSCOLORINDEXSPACECRAFT01 - 1][1];
+    c.blue = globalAsteroidsColors[GAMEASTEROIDSCOLORINDEXSPACECRAFT01 - 1][2];
+    if (_hasSprite(GAMEASTEROIDSCOLORINDEXSPACECRAFT01)) {
+        _setSpriteColor(GAMEASTEROIDSCOLORINDEXSPACECRAFT01, c);
+        _renderSprite(GAMEASTEROIDSCOLORINDEXSPACECRAFT01, 2, 2);
+        beamOffset = 1;
+    } else {
+        _ipc->drawPoint(1, 2, c);
+        _ipc->drawPoint(0, 3, c);
+        _ipc->drawPoint(1, 3, c);
+        _ipc->drawPoint(2, 3, c);
+    }
     c.red = globalAsteroidsColors[GAMEASTEROIDSCOLORINDEXASTEROID - 1][0];
     c.green = globalAsteroidsColors[GAMEASTEROIDSCOLORINDEXASTEROID - 1][1];
     c.blue = globalAsteroidsColors[GAMEASTEROIDSCOLORINDEXASTEROID - 1][2];
@@ -275,7 +294,7 @@ void NGColorDotMatrixGameAsteroids::_ownIntro() {
     c.green = globalAsteroidsColors[GAMEASTEROIDSCOLORINDEXLASERBEAM - 1][1];
     c.blue = globalAsteroidsColors[GAMEASTEROIDSCOLORINDEXLASERBEAM - 1][2];
     for (int i = 0; i < GAMEASTEROIDSINTROLASERBEAMTIMES; i++) {
-        for (int x = 3; x < GAMEASTEROIDSMAZESIZEX; x++) {
+        for (int x = 3 + beamOffset; x < GAMEASTEROIDSMAZESIZEX; x++) {
             _ipc->drawPoint(x, 3, c);
             if (_introShotDelay > 0) {
                 delay(_introShotDelay);
@@ -313,6 +332,9 @@ void NGColorDotMatrixGameAsteroids::_ownJoystickLoop() {
                         _gameFinished = !_checkSpacecraft(_posXSpacecraft, _posYSpacecraft - 1);
                         if (!_gameFinished) {
                             _clearSpacecraft();
+                            if (_hasSprite(GAMEASTEROIDSCOLORINDEXSPACECRAFT01)) {
+                                _ownRender();
+                            }
                             _posYSpacecraft--;
                             _computeSpacecraft();
                             _ownRender();
@@ -324,6 +346,9 @@ void NGColorDotMatrixGameAsteroids::_ownJoystickLoop() {
                         _gameFinished = !_checkSpacecraft(_posXSpacecraft, _posYSpacecraft + 1);
                         if (!_gameFinished) {
                             _clearSpacecraft();
+                            if (_hasSprite(GAMEASTEROIDSCOLORINDEXSPACECRAFT01)) {
+                                _ownRender();
+                            }
                             _posYSpacecraft++;
                             _computeSpacecraft();
                             _ownRender();
@@ -335,6 +360,9 @@ void NGColorDotMatrixGameAsteroids::_ownJoystickLoop() {
                         _gameFinished = !_checkSpacecraft(_posXSpacecraft - 1, _posYSpacecraft);
                         if (!_gameFinished) {
                             _clearSpacecraft();
+                            if (_hasSprite(GAMEASTEROIDSCOLORINDEXSPACECRAFT01)) {
+                                _ownRender();
+                            }
                             _posXSpacecraft--;
                             _computeSpacecraft();
                             _ownRender();
@@ -346,6 +374,9 @@ void NGColorDotMatrixGameAsteroids::_ownJoystickLoop() {
                         _gameFinished = !_checkSpacecraft(_posXSpacecraft + 1, _posYSpacecraft);
                         if (!_gameFinished) {
                             _clearSpacecraft();
+                            if (_hasSprite(GAMEASTEROIDSCOLORINDEXSPACECRAFT01)) {
+                                _ownRender();
+                            }
                             _posXSpacecraft++;
                             _computeSpacecraft();
                             _ownRender();
