@@ -318,7 +318,7 @@ void NGColorDotMatrixGameAsteroids::_ownOutro() {
     _pointCounter->setColor(GAMEASTEROIDSCOLOROUTRO);
     _pointCounter->setCounter(_scoreCounter, true);
     long start = millis();
-    while (millis() - start < GAMEASTEROIDSOUTRODPOINTCOUNTERELAY * _pointCounter->getCurrentMaxDigits()) {
+    while (millis() - start < GAMEASTEROIDSOUTRODPOINTCOUNTERDELAY * _pointCounter->getCurrentMaxDigits()) {
         _pointCounter->processingLoop();
     }
 }

@@ -15,6 +15,7 @@ NGColorDotMatrixGameTetris::NGColorDotMatrixGameTetris() {
     _playStartUpSoundConcurrently = true;
     _gameFinishedDelay = GAMETETRISFINISHDELAY;
     _gameNextStepDelay = GAMETETRISMOVEDELAY;
+    _pointCounterAnimationDelay = GAMETETRISOUTRODELAY;
 }
 
 void NGColorDotMatrixGameTetris::_resetMaze() {
@@ -471,6 +472,16 @@ void NGColorDotMatrixGameTetris::_ownOutro() {
         }
         _ipc->endUpdate();
         delay(GAMETETRISOUTRODELAY);
+    }
+    _ipc->clear();
+    c.red = random(0, 256);
+    c.green = random(0, 256);
+    c.blue = random(0, 256);
+    _pointCounter->setColor(c);
+    _pointCounter->setCounter(_scoreCounter, true);
+    long start = millis();
+    while (millis() - start < GAMETETRISOUTRODPOINTCOUNTERDELAY * _pointCounter->getCurrentMaxDigits()) {
+        _pointCounter->processingLoop();
     }
 }
 
