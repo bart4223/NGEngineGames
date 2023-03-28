@@ -10,6 +10,7 @@
 NGColorDotMatrixGameTetris::NGColorDotMatrixGameTetris() {
     _create("Tetris");
     _scoreDigits = GAMETETRISSCOREDIGITS;
+    _scoreDigitPosX = GAMETETRISMAZESIZEX;
     _gameToggleMode = gtmBreakContinue;
     _autoRestartGame = true;
     _playStartUpSoundConcurrently = true;
@@ -388,33 +389,44 @@ void NGColorDotMatrixGameTetris::_doProcessingLoop() {
 }
 
 void NGColorDotMatrixGameTetris::_ownIntro() {
+    int x = 0;
     colorRGB c;
     c.red = globalTetrominoColors[0][0];
     c.green = globalTetrominoColors[0][1];
     c.blue = globalTetrominoColors[0][2];
     _ipc->clear();
-    _ipc->drawPoint(0, 6, c);
-    _ipc->drawPoint(0, 7, c);
-    _ipc->drawPoint(1, 7, c);
-    c.red = globalTetrominoColors[3][0];
-    c.green = globalTetrominoColors[3][1];
-    c.blue = globalTetrominoColors[3][2];
-    _ipc->drawPoint(2, 6, c);
-    _ipc->drawPoint(2, 7, c);
-    c.red = globalTetrominoColors[5][0];
-    c.green = globalTetrominoColors[5][1];
-    c.blue = globalTetrominoColors[5][2];
-    _ipc->drawPoint(4, 7, c);
-    _ipc->drawPoint(5, 6, c);
-    _ipc->drawPoint(5, 7, c);
-    c.red = globalTetrominoColors[2][0];
-    c.green = globalTetrominoColors[2][1];
-    c.blue = globalTetrominoColors[2][2];
-    _ipc->drawPoint(6, 7, c);
-    _ipc->drawPoint(7, 7, c);
+    while (x < GAMETETRISMAZESIZEX - 2) {
+        _ipc->drawPoint(x, 6, c);
+        _ipc->drawPoint(x, 7, c);
+        x++;
+        _ipc->drawPoint(x, 7, c);
+        c.red = globalTetrominoColors[3][0];
+        c.green = globalTetrominoColors[3][1];
+        c.blue = globalTetrominoColors[3][2];
+        x++;
+        _ipc->drawPoint(x, 6, c);
+        _ipc->drawPoint(x, 7, c);
+        c.red = globalTetrominoColors[5][0];
+        c.green = globalTetrominoColors[5][1];
+        c.blue = globalTetrominoColors[5][2];
+        x = x + 2;
+        _ipc->drawPoint(x, 7, c);
+        x++;
+        _ipc->drawPoint(x, 6, c);
+        _ipc->drawPoint(x, 7, c);
+        c.red = globalTetrominoColors[2][0];
+        c.green = globalTetrominoColors[2][1];
+        c.blue = globalTetrominoColors[2][2];
+        x++;
+        _ipc->drawPoint(x, 7, c);
+        x++;
+        _ipc->drawPoint(x, 7, c);
+        x++;
+    }
 }
 
 void NGColorDotMatrixGameTetris::_ownIntroAnimation() {
+    byte x = GAMETETRISMAZESIZEX / 2;
     if (_startUpAnimationStep == -1 || millis() - _lastStartUpAnimationStep >= GAMETETRISSPLASHDELAY) {
         _startUpAnimationStep++;
         _ipc->beginUpdate();
@@ -424,28 +436,28 @@ void NGColorDotMatrixGameTetris::_ownIntroAnimation() {
         c.blue = globalTetrominoColors[_startUpAnimationStep%4][2];
         switch(_startUpAnimationStep%4) {
             case 0:
-                _ipc->drawPoint(3, 2, c);
-                _ipc->drawPoint(4, 2, COLOR_BLACK);
-                _ipc->drawPoint(3, 3, c);
-                _ipc->drawPoint(4, 3, c);
+                _ipc->drawPoint(x, 2, c);
+                _ipc->drawPoint(x + 1, 2, COLOR_BLACK);
+                _ipc->drawPoint(x, 3, c);
+                _ipc->drawPoint(x + 1, 3, c);
                break;
             case 1:
-                _ipc->drawPoint(3, 2, c);
-                _ipc->drawPoint(4, 2, c);
-                _ipc->drawPoint(3, 3, c);
-                _ipc->drawPoint(4, 3, COLOR_BLACK);
+                _ipc->drawPoint(x, 2, c);
+                _ipc->drawPoint(x + 1, 2, c);
+                _ipc->drawPoint(x, 3, c);
+                _ipc->drawPoint(x + 1, 3, COLOR_BLACK);
                 break;
             case 2:
-                _ipc->drawPoint(3, 2, c);
-                _ipc->drawPoint(4, 2, c);
-                _ipc->drawPoint(3, 3, COLOR_BLACK);
-                _ipc->drawPoint(4, 3, c);
+                _ipc->drawPoint(x, 2, c);
+                _ipc->drawPoint(x + 1, 2, c);
+                _ipc->drawPoint(x, 3, COLOR_BLACK);
+                _ipc->drawPoint(x + 1, 3, c);
                 break;
             case 3:
-                _ipc->drawPoint(3, 2, COLOR_BLACK);
-                _ipc->drawPoint(4, 2, c);
-                _ipc->drawPoint(3, 3, c);
-                _ipc->drawPoint(4, 3, c);
+                _ipc->drawPoint(x, 2, COLOR_BLACK);
+                _ipc->drawPoint(x + 1, 2, c);
+                _ipc->drawPoint(x, 3, c);
+                _ipc->drawPoint(x + 1, 3, c);
                 break;
         }
         _ipc->endUpdate();
@@ -474,9 +486,10 @@ void NGColorDotMatrixGameTetris::_ownOutro() {
         delay(GAMETETRISOUTRODELAY);
     }
     _ipc->clear();
-    c.red = random(0, 256);
-    c.green = random(0, 256);
-    c.blue = random(0, 256);
+    byte value = random(0, sizeof(globalTetrominoColors) / sizeof(globalTetrominoColors[0]));
+    c.red = globalTetrominoColors[value][0];
+    c.green = globalTetrominoColors[value][1];
+    c.blue = globalTetrominoColors[value][2];
     _pointCounter->setColor(c);
     _pointCounter->setCounter(_scoreCounter, true);
     long start = millis();
