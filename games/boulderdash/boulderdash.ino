@@ -99,7 +99,7 @@ void setup() {
   game.registerSprite(GAMEBOULDERDASHCOLORINDEXROCKY, new NGSpriteRocky(&cdm));
   game.registerSprite(GAMEBOULDERDASHCOLORINDEXDIAMOND01, sprite);
   game.registerSprite(GAMEBOULDERDASHCOLORINDEXDIAMOND02, sprite);
-  game.registerSprite(GAMEBOULDERDASHCOLORINDEXBOULDER, new NGSpriteBoulder(&cdm, true));
+  //game.registerSprite(GAMEBOULDERDASHCOLORINDEXBOULDER, new NGSpriteBoulder(&cdm, true));
   #endif
   game.initialize();
   game.startUp();

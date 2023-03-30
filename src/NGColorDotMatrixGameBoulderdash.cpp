@@ -18,6 +18,7 @@ NGColorDotMatrixGameBoulderdash::NGColorDotMatrixGameBoulderdash() {
     _playStartUpSoundConcurrently = true;
     _gameFinishedDelay = GAMEBOULDERDASHFINISHDELAY;
     _gameNextStepDelay = GAMEBOULDERDASHGRAVITYDELAY;
+    _pointCounterAnimationDelay = GAMEBOULDERDASHSOUTROPOINTCOUNTERDELAY;
 }
 
 void NGColorDotMatrixGameBoulderdash::registerColorDotMatrix(NGIPaintableComponent *ipc) {
@@ -1398,18 +1399,11 @@ void NGColorDotMatrixGameBoulderdash::_ownOutro() {
             delay(GAMEBOULDERDASHSOUTROANIMATIONSUCCESSDELAY);
         }
     }
-    _score->setValue(_scoreCounter);
-    if (_hasSprite(GAMEBOULDERDASHCOLORINDEXDIAMOND01)) {
-        long _last = millis();
-        while (millis() - _last < GAMEBOULDERDASHSOUTRODELAY) {
-            for (int y = 2; y < 7; y++) {
-                for (int x = 2; x < 7; x++) {
-                    _renderSprite(GAMEBOULDERDASHCOLORINDEXDIAMOND01, x, y);
-                }
-            }
-        }
-    } else {
-        delay(GAMEBOULDERDASHSOUTRODELAY);
+    _pointCounter->setColor(globalBoulderdashColors[GAMEBOULDERDASHCOLORINDEXROCKY - 1]);
+    _pointCounter->setCounter(_scoreCounter, true);
+    long start = millis();
+    while (millis() - start < GAMEBOULDERDASHSOUTRODELAY * _pointCounter->getCurrentMaxDigits()) {
+        _pointCounter->processingLoop();
     }
 }
 

@@ -1,5 +1,5 @@
 -CustomGame
--Custom8x8RGBMatrixGame
+-CustomColorDotMatrixGame
   -Boulderdash
     -Levels
   -SuperMarioBros
