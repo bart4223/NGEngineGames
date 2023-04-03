@@ -78,9 +78,9 @@ bool NGColorOLED::drawPoint(int x, int y, colorRGB color) {
 
 bool NGColorOLED::drawPoint(int x, int y, int color) {
     if (_scale == DEFCOLOROLEDSCALE) {
-        _display->writePixel(x, y, color);
+        _display->writePixel(x + _offsetX, y + _offsetY, color);
     } else {
-        _display->writeFillRect(x * _scale, y * _scale, _scale, _scale, color);
+        _display->writeFillRect(x * _scale + _offsetX, y * _scale + _offsetY, _scale, _scale, color);
     }
     return true;
 }
@@ -145,25 +145,22 @@ void NGColorOLED::drawCircle(int x0, int y0, int radius, colorRGB color) {
 }
 
 void NGColorOLED::drawImage(coord2D coord[], colorRGB color, int size) {
-    drawImage(0, 0, coord, color, size);
-}
-
-void NGColorOLED::drawImage(int offsetX, int offsetY, coord2D coord[], colorRGB color, int size) {
     beginUpdate();
     for (int i = 0; i < size; i++) {
-        drawPoint(offsetX + coord[i].x, offsetY + coord[i].y, color);
+        drawPoint(_offsetX + coord[i].x, _offsetY + coord[i].y, color);
     }
     endUpdate();
 }
 
 void NGColorOLED::drawImage(coord2D coord[], colorRGB color[], int size) {
-    drawImage(0, 0, coord, color, size);
-}
-
-void NGColorOLED::drawImage(int offsetX, int offsetY, coord2D coord[], colorRGB color[], int size) {
     beginUpdate();
     for (int i = 0; i < size; i++) {
-        drawPoint(offsetX + coord[i].x, offsetY + coord[i].y, color[i]);
+        drawPoint(_offsetX + coord[i].x, _offsetY + coord[i].y, color[i]);
     }
     endUpdate();
+}
+
+void NGColorOLED::setOffset(int offsetX, int offsetY) {
+    _offsetX = offsetX;
+    _offsetY = offsetY;
 }

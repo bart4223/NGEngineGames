@@ -1,19 +1,35 @@
 #define PROD true //false, true
-#define GAMES3
+#define DOTMATRIX //OLED, DOTMATRIX
+
+// Game "Dot"
+//#define GAME1
+// Game "Snake"
+//#define GAME2
+// Game "Asteroids"
+//#define GAME3
+// Game "Tetris"
+#define GAME4
+// Game "Boulderdash"
+//#define GAME5
 
 #include <NGMemoryObserver.h>
 #include <NGSimpleKeypad.h>
 #include <NGJingleHelloDude.h>
 #include <NGJingleSuperMarioShort.h>
-#include <NGJingleGorilla.h>
 #include <NGSerialNotification.h>
 #include <NGBinaryClockUnitControl.h>
 #include <NGGamePad.h>
-#include <NG8x8RGBMatrixGameDot.h>
-#include <NG8x8RGBMatrixGameSnake.h>
-#include <NG8x8RGBMatrixGameAsteroids.h>
-#include <NG8x8RGBMatrixGameTetris.h>
-#include <NG8x8RGBMatrixGameBoulderdash.h>
+#include <NGColorDotMatrixGameDot.h>
+#include <NGColorDotMatrixGameSnake.h>
+#include <NGColorDotMatrixGameAsteroids.h>
+#include <NGColorDotMatrixGameTetris.h>
+#include <NGColorDotMatrixGameBoulderdash.h>
+#ifdef OLED
+#include <NGColorOLED.h>
+#endif
+#ifdef DOTMATRIX
+#include <NGColorDotMatrix.h>
+#endif
 
 #define _BINARYCLOCK  "Clock"
 #define BINARYCLOCK   (char*)_BINARYCLOCK
@@ -50,20 +66,28 @@ NGSimpleKeypad gamekeypad = NGSimpleKeypad();
 NGSoundMachine soundMachine = NGSoundMachine();
 NGSerialNotification serialNotification = NGSerialNotification();
 NGJoystickControl joystick = NGJoystickControl(JOYSTICKID, JOYSTICKPINX, JOYSTICKPINY, JOYSTICKPINFIRE);
+#ifdef DOTMATRIX
 NGColorDotMatrix cdm = NGColorDotMatrix();
+#endif
+#ifdef OLED
+NGColorOLED cdm = NGColorOLED();
+#endif
 NGBinaryClockUnitControl unitBinaryClock = NGBinaryClockUnitControl(BINARYCLOCK, &cdm);
 NGGamePad gamepad = NGGamePad();
-#ifdef GAMES1
-NG8x8RGBMatrixGameDot gameOne = NG8x8RGBMatrixGameDot();
-NG8x8RGBMatrixGameSnake gameTwo = NG8x8RGBMatrixGameSnake();
+#ifdef GAME1
+NGColorDotMatrixGameDot gameOne = NGColorDotMatrixGameDot();
 #endif
-#ifdef GAMES2
-NG8x8RGBMatrixGameAsteroids gameOne = NG8x8RGBMatrixGameAsteroids();
-NG8x8RGBMatrixGameTetris gameTwo = NG8x8RGBMatrixGameTetris();
+#ifdef GAME2
+NGColorDotMatrixGameSnake gameTwo = NGColorDotMatrixGameSnake();
 #endif
-#ifdef GAMES3
-NG8x8RGBMatrixGameTetris gameOne = NG8x8RGBMatrixGameTetris();
-NG8x8RGBMatrixGameBoulderdash gameTwo = NG8x8RGBMatrixGameBoulderdash();
+#ifdef GAME3
+NGColorDotMatrixGameAsteroids gameThree = NGColorDotMatrixGameAsteroids();
+#endif
+#ifdef GAME4
+NGColorDotMatrixGameTetris gameFour = NGColorDotMatrixGameTetris();
+#endif
+#ifdef GAME5
+NGColorDotMatrixGameBoulderdash gameFive = NGColorDotMatrixGameBoulderdash();
 #endif
 
 colorRGB clockColorOff = COLOR_LIME;
@@ -78,6 +102,12 @@ void setup() {
   #if (PROD == false)
   unitBinaryClock.registerNotification(&serialNotification);
   #endif
+  // ColorDotMatrix
+  cdm.initialize();
+  #ifdef OLED
+  cdm.setScale(8);
+  #endif
+  cdm.clear();
   unitBinaryClock.setColorOff(clockColorOff);
   unitBinaryClock.setColorOn(clockColorOn);
   //unitBinaryClock.setAdjustRTC(true);
@@ -105,29 +135,58 @@ void setup() {
   joystick.registerAction(jaY, jtkLess, JOYSTICKTHRESHOLDUP, JOYSTICKDELAY, jmUp);
   joystick.registerAction(jaY, jtkGreater, JOYSTICKTHRESHOLDDOWN, JOYSTICKDELAY, jmDown);
   joystick.registerAction(JOYSTICKDELAY, jmFire);
-  // ColorDotMatrix
-  cdm.initialize();
   // Sound
-  int jingleStartUpOne = soundMachine.registerJingle(new NGJingleGorilla());
-  int jingleStartUpTwo = soundMachine.registerJingle(new NGJingleSuperMarioShort());
   int jingleStart = soundMachine.registerJingle(new NGJingleHelloDude());
+  int jingleStartUp = soundMachine.registerJingle(new NGJingleSuperMarioShort());
   soundMachine.initialize();
   // Game "One"
+  #ifdef GAME1
   gamepad.registerGame(&gameOne);
   gameOne.registerGameKey(gfStartGame, STARTGAMEID);
   gameOne.registerGameJoystick(&joystick);
   gameOne.registerSoundMachine(&soundMachine);
-  gameOne.registerSoundStartUp(jingleStartUpOne);
+  gameOne.registerSoundStartUp(jingleStartUp);
   gameOne.registerSoundStart(jingleStart);
   gameOne.registerColorDotMatrix(&cdm);
+  #endif
   // Game "Two"
+  #ifdef GAME2
   gamepad.registerGame(&gameTwo);
   gameTwo.registerGameKey(gfStartGame, STARTGAMEID);
   gameTwo.registerGameJoystick(&joystick);
   gameTwo.registerSoundMachine(&soundMachine);
-  gameTwo.registerSoundStartUp(jingleStartUpTwo);
+  gameTwo.registerSoundStartUp(jingleStartUp);
   gameTwo.registerSoundStart(jingleStart);
   gameTwo.registerColorDotMatrix(&cdm);
+  #endif
+  // Game "Three"
+  #ifdef GAME3
+  gamepad.registerGame(&gameThree);
+  gameThree.registerGameKey(gfStartGame, STARTGAMEID);
+  gameThree.registerGameJoystick(&joystick);
+  gameThree.registerSoundMachine(&soundMachine);
+  gameThree.registerSoundStartUp(jingleStartUp);
+  gameThree.registerSoundStart(jingleStart);
+  gameThree.registerColorDotMatrix(&cdm);
+  #endif
+  #ifdef GAME4
+  gamepad.registerGame(&gameFour);
+  gameFour.registerGameKey(gfStartGame, STARTGAMEID);
+  gameFour.registerGameJoystick(&joystick);
+  gameFour.registerSoundMachine(&soundMachine);
+  gameFour.registerSoundStartUp(jingleStartUp);
+  gameFour.registerSoundStart(jingleStart);
+  gameFour.registerColorDotMatrix(&cdm);
+  #endif
+  #ifdef GAME5
+  gamepad.registerGame(&gameFive);
+  gameFive.registerGameKey(gfStartGame, STARTGAMEID);
+  gameFive.registerGameJoystick(&joystick);
+  gameFive.registerSoundMachine(&soundMachine);
+  gameFive.registerSoundStartUp(jingleStartUp);
+  gameFive.registerSoundStart(jingleStart);
+  gameFive.registerColorDotMatrix(&cdm);
+  #endif
   // Init
   #if (PROD == true)
   unitBinaryClock.setWorkMode(wmNone);
