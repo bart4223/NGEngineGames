@@ -41,6 +41,10 @@
 
 #define STARTGAMEPIN 15
 #define STARTGAMEID  42
+#define SCALEDOWNPIN 17
+#define SCALEDOWNID  43
+#define SCALEUPPIN   16
+#define SCALEUPID    44
 
 NGSimpleKeypad keypad = NGSimpleKeypad();
 NGSoundMachine soundMachine = NGSoundMachine(SOUNDPIN);
@@ -58,6 +62,8 @@ void setup() {
   // Keypad
   keypad.registerCallback(&SimpleKeypadCallback);
   keypad.registerKey(STARTGAMEPIN, STARTGAMEID, KEYDELAY);
+  keypad.registerKey(SCALEDOWNPIN, SCALEDOWNID, KEYDELAY);
+  keypad.registerKey(SCALEUPPIN, SCALEUPID, KEYDELAY);
   keypad.initialize();
   // Joystick
   joystick.registerAction(jaX, jtkLess, JOYSTICKTHRESHOLDLEFT, JOYSTICKDELAY, jmLeft);
@@ -101,6 +107,23 @@ void loop() {
 }
 
 void SimpleKeypadCallback(byte id) {
-  game.handleKeyEvent(id);
+  int scale;
+  switch(id) {
+    case SCALEDOWNID:
+      scale = cdm.getScale();
+      if (scale > 1) {
+        cdm.setScale(scale - 1);
+        cdm.clear();
+      }
+      break;
+    case SCALEUPID:
+      scale = cdm.getScale();
+      cdm.setScale(scale + 1);
+      cdm.clear();
+      break;
+    default:
+      game.handleKeyEvent(id);
+      break;
+  }
   observeMemory(0);
 }
