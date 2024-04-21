@@ -41,6 +41,7 @@ void NGDecimalPointCounter::_render() {
     long counter = _counter;
     for (int i = 0; i < _currentMaxDigits; i++) {
         _digit->beginUpdate();
+        _digit->setFont(_font);
         _digit->setPosX(_posX + _animationPosXOffset + (_digit->PIXELCOUNT * (_currentMaxDigits - i - 1)));
         _digit->setPosY(_posY);
         _digit->setValue(counter % 10);
@@ -59,6 +60,14 @@ void NGDecimalPointCounter::setIsAnimationEnabled(bool animationenabled) {
 
 void NGDecimalPointCounter::setAnimationDelay(int animationdelay) {
     _animationDelay = animationdelay;
+}
+
+void NGDecimalPointCounter::setFont(NGCustomFont *font) {
+    _font = font;
+}
+
+NGCustomFont* NGDecimalPointCounter::getFont() {
+    return _font;
 }
 
 void NGDecimalPointCounter::setMaxDigits(byte digits) {

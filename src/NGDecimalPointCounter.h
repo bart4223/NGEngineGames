@@ -14,6 +14,7 @@
 #include <WProgram.h>
 #endif
 
+#include <NGCustomFont.h>
 #include <NGColorDotMatrixDecimalDigit.h>
 
 #define DEFPOINTCOUNTERMAXDIGITS 1
@@ -39,6 +40,7 @@ private:
     int _animationDelay = DEFPOINTCOUNTERANIMATIONDELAY;
     pointCounterAnimationDirection _currentAnimationDirection = pcadNone;
     int _animationPosXOffset = 0;
+    NGCustomFont *_font = nullptr;
     
 protected:
     void _create(NGIPaintableComponent *pc, colorRGB color);
@@ -61,6 +63,10 @@ public:
     void setIsAnimationEnabled(bool animationenabled);
     
     void setAnimationDelay(int animationdelay);
+    
+    void setFont(NGCustomFont *font);
+    
+    NGCustomFont* getFont();
     
     void setPosX(int x);
     

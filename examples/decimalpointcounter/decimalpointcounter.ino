@@ -1,6 +1,7 @@
-#define DOTMATRIX //OLED, DOTMATRIX
+#define OLED //OLED, DOTMATRIX
 
 #include <NGMemoryObserver.h>
+#include <NGZX81Font.h>
 #ifdef OLED
 #include <NGColorOLED.h>
 #endif
@@ -19,6 +20,8 @@
 #define RANGE    1000
 #define DELAY   10000
 #endif
+
+NGZX81Font *fontZX81 = new NGZX81Font();
 
 #ifdef OLED
 NGColorOLED *cdm = new NGColorOLED();
@@ -45,6 +48,7 @@ void setup() {
   dpc->setShowMaxDigits(false);
   dpc->setIsAnimationEnabled(true);
   dpc->setAnimationDelay(100);
+  dpc->setFont(fontZX81);
   #ifdef OLED
   dpc->setPosX(5);
   dpc->setPosY(5);

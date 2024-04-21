@@ -1,8 +1,11 @@
 #include <NGMemoryObserver.h>
+#include <NGZX81Font.h>
 #include <NGColorOLED.h>
 #include <NGColorDotMatrixDecimalDigit.h>
 
 #define DELAY 1000
+
+NGZX81Font *fontZX81 = new NGZX81Font();
 
 NGColorOLED *cdm = new NGColorOLED();
 NGColorDotMatrixDecimalDigit *cdmdd = new NGColorDotMatrixDecimalDigit(cdm);
@@ -13,11 +16,12 @@ int posx = 0;
 void setup() {
   observeMemory(0);
   cdm->initialize();
-  cdm->setScale(5);
+  cdm->setScale(1);
   //cdmdd->setRandomColorBackground(true);
   //cdmdd->setColorBackground(COLOR_RED);
-  cdmdd->setRandomColor(true);
+  //cdmdd->setRandomColor(true);
   //cdmdd->setColor(COLOR_GREEN);
+  cdmdd->setFont(fontZX81);
   cdmdd->setPosX(posx);
   cdmdd->setValue(counter);
   observeMemory(0);
