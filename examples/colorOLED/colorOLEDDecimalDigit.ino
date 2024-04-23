@@ -3,7 +3,8 @@
 #include <NGColorOLED.h>
 #include <NGColorDotMatrixDecimalDigit.h>
 
-#define DELAY 1000
+#define SCALE     3
+#define DELAY   500
 
 NGZX81Font *fontZX81 = new NGZX81Font();
 
@@ -16,7 +17,8 @@ int posx = 0;
 void setup() {
   observeMemory(0);
   cdm->initialize();
-  cdm->setScale(1);
+  cdm->setScale(SCALE);
+  cdm->clear();
   //cdmdd->setRandomColorBackground(true);
   //cdmdd->setColorBackground(COLOR_RED);
   //cdmdd->setRandomColor(true);
@@ -29,7 +31,6 @@ void setup() {
 
 void loop() {
   delay(DELAY);
-  posx++;
   cdm->beginUpdate();
   cdm->clear();
   if (counter == 0) {

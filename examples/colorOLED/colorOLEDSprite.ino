@@ -33,7 +33,8 @@ int _posOffsetY = 0;
 void setup() {
   observeMemory(0);
   cdm->initialize();
-  cdm->setBackground(COLOR_BLACK);
+  //cdm->setBackground(COLOR_BLACK);
+  cdm->setBackground(COLOR_RED);
   cdm->clear();
   sprite->setScale(SCALE);
   sprite->setTransparent(true);
@@ -49,8 +50,8 @@ void loop() {
   }
   if (millis() - _lastToggle > DELAY) {
     observeMemory(0);
-    //sprite->setTransparent(!sprite->getTransparent());
-    //cdm->clear();
+    sprite->setTransparent(!sprite->getTransparent());
+    cdm->clear();
     _lastToggle = millis();
   }
 }
