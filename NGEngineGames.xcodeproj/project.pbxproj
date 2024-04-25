@@ -77,6 +77,7 @@
 		29E872FF296C07EE00F7BF90 /* boulderdash.ino */ = {isa = PBXFileReference; lastKnownFileType = text; path = boulderdash.ino; sourceTree = "<group>"; };
 		29E87300296C081200F7BF90 /* NGColorDotMatrixGameBoulderdash.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = NGColorDotMatrixGameBoulderdash.cpp; sourceTree = "<group>"; };
 		29E87301296C081200F7BF90 /* NGColorDotMatrixGameBoulderdash.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NGColorDotMatrixGameBoulderdash.h; sourceTree = "<group>"; };
+		29F15E292BD8035100F1E714 /* colorOLEDText.ino */ = {isa = PBXFileReference; lastKnownFileType = text; path = colorOLEDText.ino; sourceTree = "<group>"; };
 		29FD0A6C297DA494003CAA71 /* gamepad.ino */ = {isa = PBXFileReference; lastKnownFileType = text; path = gamepad.ino; sourceTree = "<group>"; };
 		29FD0A6D297DA4D5003CAA71 /* NGGamePad.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = NGGamePad.cpp; sourceTree = "<group>"; };
 		29FD0A6E297DA4D5003CAA71 /* NGGamePad.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NGGamePad.h; sourceTree = "<group>"; };
@@ -167,9 +168,10 @@
 			isa = PBXGroup;
 			children = (
 				29620D7929B4B6430020B874 /* colorOLED.ino */,
+				29970A7829C75A28004B7F2D /* colorOLEDBinaryDigit.ino */,
 				29620D7C29B4CC630020B874 /* colorOLEDDecimalDigit.ino */,
 				29970A6A29C0CACF004B7F2D /* colorOLEDSprite.ino */,
-				29970A7829C75A28004B7F2D /* colorOLEDBinaryDigit.ino */,
+				29F15E292BD8035100F1E714 /* colorOLEDText.ino */,
 			);
 			path = colorOLED;
 			sourceTree = "<group>";
