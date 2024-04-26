@@ -4,7 +4,7 @@
 #include <NGColorDotMatrixText.h>
 
 #define SCALE     1
-#define DELAY   500
+#define DELAY  5000
 
 NGZXSpectrumFont *fontZXSpectrum = new NGZXSpectrumFont();
 
