@@ -39,8 +39,8 @@ void loop() {
       cdm->setScale(1);
       break;
     case 0x02:
-      cdm->setScale(1);
       cdm->setBackground(COLOR_BLUE_C64_LOW);
+      cdm->setScale(1);
       break;
   }
   cdm->beginUpdate();
