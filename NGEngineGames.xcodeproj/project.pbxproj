@@ -21,6 +21,9 @@
 		29255B74298D350100234506 /* Tetris.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Tetris.png; sourceTree = "<group>"; };
 		29255B76298D392E00234506 /* LevelOne.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = LevelOne.png; sourceTree = "<group>"; };
 		29255B78298E5C5B00234506 /* LevelTwo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = LevelTwo.png; sourceTree = "<group>"; };
+		295848A92BE8C63B00AFEF4C /* NGColorDotMatrixEffectZini.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = NGColorDotMatrixEffectZini.cpp; sourceTree = "<group>"; };
+		295848AA2BE8C63B00AFEF4C /* NGColorDotMatrixEffectZini.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NGColorDotMatrixEffectZini.h; sourceTree = "<group>"; };
+		295848AC2BE8C6CD00AFEF4C /* zini.ino */ = {isa = PBXFileReference; lastKnownFileType = text; path = zini.ino; sourceTree = "<group>"; };
 		295A7E48295F2E87003779A3 /* tetris.ino */ = {isa = PBXFileReference; lastKnownFileType = text; path = tetris.ino; sourceTree = "<group>"; };
 		295A7E49295F2EB2003779A3 /* NGColorDotMatrixGameTetris.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = NGColorDotMatrixGameTetris.cpp; sourceTree = "<group>"; };
 		295A7E4A295F2EB2003779A3 /* NGColorDotMatrixGameTetris.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NGColorDotMatrixGameTetris.h; sourceTree = "<group>"; };
@@ -128,6 +131,23 @@
 			path = images;
 			sourceTree = "<group>";
 		};
+		295848A82BE8C5D600AFEF4C /* effects */ = {
+			isa = PBXGroup;
+			children = (
+				295848AA2BE8C63B00AFEF4C /* NGColorDotMatrixEffectZini.h */,
+				295848A92BE8C63B00AFEF4C /* NGColorDotMatrixEffectZini.cpp */,
+			);
+			name = effects;
+			sourceTree = "<group>";
+		};
+		295848AB2BE8C69E00AFEF4C /* zini */ = {
+			isa = PBXGroup;
+			children = (
+				295848AC2BE8C6CD00AFEF4C /* zini.ino */,
+			);
+			path = zini;
+			sourceTree = "<group>";
+		};
 		295A7E47295F2E67003779A3 /* tetris */ = {
 			isa = PBXGroup;
 			children = (
@@ -151,6 +171,7 @@
 			children = (
 				29620D7829B4B6170020B874 /* colorOLED */,
 				29620D7D29B4DB090020B874 /* decimalpointcounter */,
+				295848AB2BE8C69E00AFEF4C /* zini */,
 			);
 			path = examples;
 			sourceTree = "<group>";
@@ -261,6 +282,7 @@
 			isa = PBXGroup;
 			children = (
 				299C2B8E29508B1B00F53CAA /* common */,
+				295848A82BE8C5D600AFEF4C /* effects */,
 				29620D7529B4B58D0020B874 /* graphics */,
 				299C2B89294F5F9F00F53CAA /* specs */,
 				29970A6B29C0D899004B7F2D /* sprites */,
