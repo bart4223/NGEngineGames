@@ -12,7 +12,7 @@ NGColorDotMatrixEffectZini *ziniTwo;
 
 void setup() {
   observeMemory(0);
-  setGlobalRandomSeedAnalogInput(A0);
+  initGlobalRandomSeedWithAnalogInput(A0);
   ziniOne = new NGColorDotMatrixEffectZini(cdm, getRandomColor(), random(6, MAXGRADIENTSTAGES + 1), random(6, MAXDELAY));
   ziniTwo = new NGColorDotMatrixEffectZini(cdm, getRandomColor(), random(6, MAXGRADIENTSTAGES + 1), random(6, MAXDELAY));
   cdm->initialize();
