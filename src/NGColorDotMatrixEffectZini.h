@@ -35,6 +35,7 @@ private:
     bool _noDelay = false;
     int _ziniDelay = DEFZINIDELAY;
     int _defziniDelay = DEFZINIDELAY;
+    bool _randomDelay = true;
     
 protected:
     void _create(NGIPaintableComponent *ipc, colorRGB color, byte gradientstages, int delay);
@@ -47,6 +48,8 @@ public:
     NGColorDotMatrixEffectZini(NGIPaintableComponent *ipc, colorRGB color, byte gradientstages);
     
     NGColorDotMatrixEffectZini(NGIPaintableComponent *ipc, colorRGB color, byte gradientstages, int delay);
+    
+    void setRandomDelay(bool randomDelay);
     
     void processingLoop();
 };

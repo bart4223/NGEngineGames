@@ -51,6 +51,10 @@ void NGColorDotMatrixEffectZini::_diceDirection() {
     }
 }
 
+void NGColorDotMatrixEffectZini::setRandomDelay(bool randomDelay) {
+    _randomDelay = randomDelay;
+}
+
 void NGColorDotMatrixEffectZini::processingLoop() {
     bool ok = _delay == 0;
     if (!ok) {
@@ -120,7 +124,7 @@ void NGColorDotMatrixEffectZini::processingLoop() {
             _delay = millis();
         } else {
             _noDelay = false;
-            if (_defziniDelay != DEFZINIDELAY) {
+            if (_randomDelay) {
                 _ziniDelay = random(0, _defziniDelay);
             }
         }
