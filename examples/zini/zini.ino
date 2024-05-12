@@ -1,4 +1,5 @@
 #define OLED //OLED, DOTMATRIX
+//#define RANDOMCOLOR
 
 #include <NGCommon.h>
 #include <NGMemoryObserver.h>
@@ -12,8 +13,8 @@
 
 #ifdef OLED
 #define SCALE       6
-#define MINDELAY   40
-#define MAXDELAY  160
+#define MINDELAY   60
+#define MAXDELAY  120
 #endif
 #ifdef DOTMATRIX
 #define SCALE      1
@@ -35,8 +36,17 @@ NGColorDotMatrixEffectZini *ziniTwo;
 void setup() {
   observeMemory(0);
   initGlobalRandomSeedWithAnalogInput(A0);
-  ziniOne = new NGColorDotMatrixEffectZini(cdm, getRandomColor(), random(MINGRADIENTSTAGES, MAXGRADIENTSTAGES + 1), random(MINDELAY, MAXDELAY));
-  ziniTwo = new NGColorDotMatrixEffectZini(cdm, getRandomColor(), random(MINGRADIENTSTAGES, MAXGRADIENTSTAGES + 1), random(MINDELAY, MAXDELAY));
+  colorRGB colorZiniOne;
+  colorRGB colorZiniTwo;
+  #ifdef RANDOMCOLOR
+  colorZiniOne = getRandomColor();
+  colorZiniTwo = getRandomColor();
+  #else
+  colorZiniOne = COLOR_GREEN;
+  colorZiniTwo = COLOR_YELLOW;
+  #endif
+  ziniOne = new NGColorDotMatrixEffectZini(cdm, colorZiniOne, random(MINGRADIENTSTAGES, MAXGRADIENTSTAGES + 1), random(MINDELAY, MAXDELAY));
+  ziniTwo = new NGColorDotMatrixEffectZini(cdm, colorZiniTwo, random(MINGRADIENTSTAGES, MAXGRADIENTSTAGES + 1), random(MINDELAY, MAXDELAY));
   #ifdef OLED
   ziniOne->setRandomDelay(false);
   ziniTwo->setRandomDelay(false);
