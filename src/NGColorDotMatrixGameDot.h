@@ -16,13 +16,13 @@
 
 #include <NGCustomColorDotMatrixGame.h>
 
-#define MAXGAMEDOTX     6
-#define MAXGAMEDOTY     7
+#define MAXINTROX       8
+#define MAXINTROY       8
 #define MINGAMEDOTDIFF  1
 #define MAXGAMEDOTDIFF  4
 
-#define DOTMAXCATCHTIME 1000
-#define DOTCATCHDELAY    200
+#define DEFDOTMAXCATCHTIME 1000
+#define DOTCATCHDELAY       200
 
 #define GAMDEDOTCOLORSCOREOFF { .red = 5, .green = 5, .blue = 5 }
 #define GAMDEDOTCOLORSCOREON COLOR_BLUE
@@ -30,7 +30,7 @@
 #define GAMESPRITEDOTID    1
 #define GAMESPRITEPLAYERID 2
 
-#define GAMEDOTSCOREDIGITS 8
+#define DEFGAMEDOTSCOREDIGITS 8
 
 class NGColorDotMatrixGameDot : public NGCustomColorDotMatrixGame {
     
@@ -41,6 +41,9 @@ private:
     byte _posXPlayer;
     byte _posYPlayer;
     colorRGB _colorPlayer;
+    int _dotMaxCatchTime;
+    byte _maxGameDotX;
+    byte _maxGameDotY;
     
     void _rollPlayerColor();
 
@@ -71,6 +74,8 @@ protected:
     
 public:
     NGColorDotMatrixGameDot();
+    
+    void registerColorDotMatrix(NGIPaintableComponent *ipc);
 };
 
 #endif /* NGColorDotMatrixGameDot_h */

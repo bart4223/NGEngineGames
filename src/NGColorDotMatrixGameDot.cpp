@@ -9,7 +9,7 @@
 
 NGColorDotMatrixGameDot::NGColorDotMatrixGameDot() {
     _create("Dot");
-    _scoreDigits = GAMEDOTSCOREDIGITS;
+    _scoreDigits = DEFGAMEDOTSCOREDIGITS;
 }
 
 void NGColorDotMatrixGameDot::_rollPlayerColor() {
@@ -31,8 +31,8 @@ void NGColorDotMatrixGameDot::_calculateNewDotPosition() {
         } else {
             _posYDot = _posYDot + random(MINGAMEDOTDIFF, MAXGAMEDOTDIFF);
         }
-        _posXDot = _posXDot % (MAXGAMEDOTX + 1);
-        _posYDot = _posYDot % (MAXGAMEDOTY + 1);
+        _posXDot = _posXDot % (_maxGameDotX + 1);
+        _posYDot = _posYDot % (_maxGameDotY + 1);
         ok = (_posXDot != _posXPlayer) && (_posYDot != _posYPlayer);
     }
     if (_logging) {
@@ -71,8 +71,8 @@ void NGColorDotMatrixGameDot::_doStartUpDone() {
 }
 
 void NGColorDotMatrixGameDot::_doStartGame() {
-    _posXPlayer = 3;
-    _posYPlayer = 4;
+    _posXPlayer = _maxGameDotX / 2;
+    _posYPlayer = _maxGameDotY / 2 + 1;
     _calculateNewDotPosition();
     _rollPlayerColor();
     _ownRender();
@@ -111,7 +111,7 @@ void NGColorDotMatrixGameDot::_doFinishGame() {
 void NGColorDotMatrixGameDot::_doProcessingLoop() {
     if (_gameStarted) {
         _ownJoystickLoop();
-        if (millis() - _dotSpawned > DOTMAXCATCHTIME) {
+        if (millis() - _dotSpawned > _dotMaxCatchTime) {
             if (_scoreCounter > 0) {
                 _scoreCounter--;
             }
@@ -129,8 +129,8 @@ void NGColorDotMatrixGameDot::_doProcessingLoop() {
 void NGColorDotMatrixGameDot::_ownIntro() {
     colorRGB c;
     _ipc->clear();
-    byte dotX = random(5, 8);
-    byte dotY = random(5, 8);
+    byte dotX = random(5, MAXINTROX);
+    byte dotY = random(5, MAXINTROY);
     if (_hasSprite(GAMESPRITEDOTID)) {
         _setSpriteColor(GAMESPRITEDOTID, COLOR_RED);
         _renderSprite(GAMESPRITEDOTID, dotX, dotY);
@@ -189,7 +189,7 @@ void NGColorDotMatrixGameDot::_ownJoystickLoop() {
                     }
                     break;
                 case jmDown:
-                    if (_posYPlayer < MAXGAMEDOTY) {
+                    if (_posYPlayer < _maxGameDotY) {
                         _posYPlayer++;
                         _doRender = true;
                     }
@@ -201,7 +201,7 @@ void NGColorDotMatrixGameDot::_ownJoystickLoop() {
                     }
                     break;
                 case jmRight:
-                    if (_posXPlayer < MAXGAMEDOTX) {
+                    if (_posXPlayer < _maxGameDotX) {
                         _posXPlayer++;
                         _doRender = true;
                     }
@@ -225,4 +225,14 @@ void NGColorDotMatrixGameDot::_ownJoystickLoop() {
         delay(DOTCATCHDELAY);
         _calculateNewDotPosition();
     }
+}
+
+void NGColorDotMatrixGameDot::registerColorDotMatrix(NGIPaintableComponent *ipc) {
+    _scoreDigitPosX = ipc->getWidth() - 1;
+    _scoreDigitPosY = ipc->getHeight() - 1;
+    _scoreDigits = ipc->getHeight();
+    _dotMaxCatchTime = DEFDOTMAXCATCHTIME + ((ipc->getWidth() - DEFSCOREDIGITPOSX) * (ipc->getHeight() - DEFSCOREDIGITPOSY) * ((DEFSCOREDIGITPOSX + 1) * (DEFSCOREDIGITPOSY + 1) / DEFDOTMAXCATCHTIME));
+    NGCustomColorDotMatrixGame::registerColorDotMatrix(ipc);
+    _maxGameDotX = ipc->getWidth() - 2;
+    _maxGameDotY = ipc->getHeight() - 1;
 }
