@@ -1,40 +1,40 @@
 //
-//  NGGameConsoleUnitControl.cpp
+//  NGGameMachineUnitControl.cpp
 //  NGEngineGames
 //
 //  Created by Nils Grimmer on 12.07.24.
 //
 
-#include "NGGameConsoleUnitControl.h"
+#include "NGGameMachineUnitControl.h"
 
-NGGameConsoleUnitControl::NGGameConsoleUnitControl(char* name, NGCustomGame *game) {
+NGGameMachineUnitControl::NGGameMachineUnitControl(char* name, NGCustomGame *game) {
     _create(name, NOADDRESS, DEFAULTSERIALRATE, game);
 }
 
-NGGameConsoleUnitControl::NGGameConsoleUnitControl(char* name, byte address, int serialRate, NGCustomGame *game) {
+NGGameMachineUnitControl::NGGameMachineUnitControl(char* name, byte address, int serialRate, NGCustomGame *game) {
     _create(name, address, serialRate, game);
 }
 
-void NGGameConsoleUnitControl::_create(char* name, byte address, int serialRate, NGCustomGame *game) {
+void NGGameMachineUnitControl::_create(char* name, byte address, int serialRate, NGCustomGame *game) {
     NGCustomUnitControl::_create(name, address, serialRate);
     _version = VERSION;
     Wire.begin(_address);
     _game = game;
 }
 
-void NGGameConsoleUnitControl::_processingReceivedData() {
+void NGGameMachineUnitControl::_processingReceivedData() {
     
 }
 
-void NGGameConsoleUnitControl::_processingStartupLoop() {
+void NGGameMachineUnitControl::_processingStartupLoop() {
     
 }
 
-void NGGameConsoleUnitControl::_processingIRRemoteData() {
+void NGGameMachineUnitControl::_processingIRRemoteData() {
     
 }
 
-void NGGameConsoleUnitControl::initialize() {
+void NGGameMachineUnitControl::initialize() {
     _game->initialize();
     if (_logging) {
         char log[100];
@@ -43,15 +43,15 @@ void NGGameConsoleUnitControl::initialize() {
     }
 }
 
-void NGGameConsoleUnitControl::processingLoop() {
+void NGGameMachineUnitControl::processingLoop() {
     _game->processingLoop();
 }
     
-void NGGameConsoleUnitControl::requestData(byte* data) {
+void NGGameMachineUnitControl::requestData(byte* data) {
     memcpy(data, _requestedData, REQUESTEDDATALENGTH);
 }
 
-void NGGameConsoleUnitControl::startGame() {
+void NGGameMachineUnitControl::startGame() {
     char log[100];
     if (_logging) {
         sprintf(log, "Game \"%s\" startup...", _game->getName());
@@ -65,6 +65,6 @@ void NGGameConsoleUnitControl::startGame() {
     }
 }
 
-void NGGameConsoleUnitControl::toggleDoPlaySound() {
+void NGGameMachineUnitControl::toggleDoPlaySound() {
     _game->toggleDoPlaySound();
 }

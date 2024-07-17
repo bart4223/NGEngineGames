@@ -17,7 +17,7 @@
 #include <NGJingleHelloDude.h>
 #include <NGJingleSuperMarioShort.h>
 #include <NGSerialNotification.h>
-#include <NGGameConsoleUnitControl.h>
+#include <NGGameMachineUnitControl.h>
 #ifdef GAME1
 #include <NGColorDotMatrixGameDot.h>
 #endif
@@ -47,8 +47,8 @@
 #define LEDSTRIPBRIGHTNESS 0.05
 #endif
 
-#define _GAMECONSOLE  "GameConsole"
-#define GAMECONSOLE   (char*)_GAMECONSOLE
+#define _GAMEMACHINE  "GameMachine"
+#define GAMEMACHINE   (char*)_GAMEMACHINE
 
 #define STARTGAMEPIN        12
 #define STARTGAMEID         0x2A
@@ -68,7 +68,7 @@
 #define JOYSTICKTHRESHOLDLEFT     200
 #define JOYSTICKTHRESHOLDRIGHT    823
 
-NGSimpleKeypad consoleKeypad = NGSimpleKeypad();
+NGSimpleKeypad simpleKeypad = NGSimpleKeypad();
 NGSoundMachine soundMachine = NGSoundMachine();
 NGSerialNotification serialNotification = NGSerialNotification();
 NGJoystickControl joystick = NGJoystickControl(JOYSTICKID, JOYSTICKPINX, JOYSTICKPINY, JOYSTICKPINFIRE);
@@ -96,16 +96,16 @@ NGColorDotMatrixGameTetris game = NGColorDotMatrixGameTetris();
 #ifdef GAME5
 NGColorDotMatrixGameBoulderdash game = NGColorDotMatrixGameBoulderdash();
 #endif
-NGGameConsoleUnitControl unitGameConsole = NGGameConsoleUnitControl(GAMECONSOLE, &game);
+NGGameMachineUnitControl unitGameMachine = NGGameMachineUnitControl(GAMEMACHINE, &game);
 
 void setup() {
   #if (PROD == false)
   observeMemory(0);
   #endif
-  // GameConsole
-  setGlobalUnit(&unitGameConsole);
+  // GameMachine
+  setGlobalUnit(&unitGameMachine);
   #if (PROD == false)
-  unitGameConsole.registerNotification(&serialNotification);
+  unitGameMachine.registerNotification(&serialNotification);
   #endif
   // ColorDotMatrix
   #ifdef LEDSTRIP
@@ -117,12 +117,12 @@ void setup() {
   cdm.setScale(8);
   #endif
   cdm.clear();
-  unitGameConsole.initialize();
-  // ConsoleKeypad
-  consoleKeypad.registerCallback(&ConsoleKeypadCallback);
-  consoleKeypad.registerKey(STARTGAMEPIN, STARTGAMEID, KEYDELAY);
-  consoleKeypad.registerKey(TOGGLESOUNDPIN, TOGGLESOUND, KEYDELAY);
-  consoleKeypad.initialize();
+  unitGameMachine.initialize();
+  // Keypad
+  simpleKeypad.registerCallback(&SimpleKeypadCallback);
+  simpleKeypad.registerKey(STARTGAMEPIN, STARTGAMEID, KEYDELAY);
+  simpleKeypad.registerKey(TOGGLESOUNDPIN, TOGGLESOUND, KEYDELAY);
+  simpleKeypad.initialize();
   // Joystick
   joystick.registerAction(jaX, jtkLess, JOYSTICKTHRESHOLDLEFT, JOYSTICKDELAY, jmLeft);
   joystick.registerAction(jaX, jtkGreater, JOYSTICKTHRESHOLDRIGHT, JOYSTICKDELAY, jmRight);
@@ -178,13 +178,13 @@ void setup() {
   #endif
   // Init
   #if (PROD == true)
-  unitGameConsole.setWorkMode(wmNone);
+  unitGameMachine.setWorkMode(wmNone);
   #else
-  unitGameConsole.setWorkMode(wmObserveMemory);
-  unitGameConsole.toggleDoPlaySound();
+  unitGameMachine.setWorkMode(wmObserveMemory);
+  unitGameMachine.toggleDoPlaySound();
   #endif
-  unitGameConsole.startUp();
-  unitGameConsole.clearInfo();
+  unitGameMachine.startUp();
+  unitGameMachine.clearInfo();
   #if (PROD == false)
   observeMemory(0);
   #endif
@@ -192,17 +192,17 @@ void setup() {
 
 void loop() {
   soundMachine.processingLoop();
-  consoleKeypad.processingLoop();
-  unitGameConsole.processingLoop();
+  simpleKeypad.processingLoop();
+  unitGameMachine.processingLoop();
 }
 
-void ConsoleKeypadCallback(byte id) {
+void SimpleKeypadCallback(byte id) {
   switch(id) {
     case STARTGAMEID:
-      unitGameConsole.startGame();
+      unitGameMachine.startGame();
       break;
     case TOGGLESOUND:
-      unitGameConsole.toggleDoPlaySound();
+      unitGameMachine.toggleDoPlaySound();
       break;
   }
   #if (PROD == false)

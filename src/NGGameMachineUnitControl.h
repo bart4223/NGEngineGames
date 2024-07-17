@@ -1,12 +1,12 @@
 //
-//  NGGameConsoleUnitControl.h
+//  NGGameMachineUnitControl.h
 //  NGEngineGames
 //
 //  Created by Nils Grimmer on 12.07.24.
 //
 
-#ifndef NGGameConsoleUnitControl_h
-#define NGGameConsoleUnitControl_h
+#ifndef NGGameMachineUnitControl_h
+#define NGGameMachineUnitControl_h
 
 #if (ARDUINO >= 100)
 #include <Arduino.h>
@@ -17,10 +17,10 @@
 #include <NGCustomUnitControl.h>
 #include <NGCustomGame.h>
 
-#define _VERSION "0.2"
+#define _VERSION "0.3"
 #define VERSION (char*)_VERSION
 
-class NGGameConsoleUnitControl : public NGCustomUnitControl {
+class NGGameMachineUnitControl : public NGCustomUnitControl {
     
 private:
     NGCustomGame *_game;
@@ -35,9 +35,9 @@ protected:
     void _processingIRRemoteData();
 
 public:
-    NGGameConsoleUnitControl(char* name, NGCustomGame *game);
+    NGGameMachineUnitControl(char* name, NGCustomGame *game);
     
-    NGGameConsoleUnitControl(char* name, byte address, int serialRate, NGCustomGame *game);
+    NGGameMachineUnitControl(char* name, byte address, int serialRate, NGCustomGame *game);
     
     void initialize();
     
@@ -50,4 +50,4 @@ public:
     void toggleDoPlaySound();
 };
 
-#endif /* NGGameConsoleUnitControl_h */
+#endif /* NGGameMachineUnitControl_h */
