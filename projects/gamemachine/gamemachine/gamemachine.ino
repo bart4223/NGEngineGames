@@ -1,6 +1,7 @@
-#define PROD false //false, true
-#define LEDSTRIP //OLED, DOTMATRIX, LEDSTRIP
-
+#define PROD true  //false, true
+#define LEDSTRIP    //OLED, DOTMATRIX, LEDSTRIP
+#define LEDSTRIP100 //LEDSTRIP100, LEDSTRIP256
+ 
 // Game "Dot"
 #define GAME1
 // Game "Snake"
@@ -42,8 +43,14 @@
 #ifdef LEDSTRIP
 #include <NGColorLEDStrip.h>
 #define LEDSTRIPPIN           6
+#ifdef LEDSTRIP100
 #define LEDSTRIPPIXELS      100
 #define LEDSTRIPROWS         10
+#endif
+#ifdef LEDSTRIP256
+#define LEDSTRIPPIXELS      256
+#define LEDSTRIPROWS         16
+#endif
 #define LEDSTRIPBRIGHTNESS 0.05
 #endif
 
@@ -128,7 +135,7 @@ void setup() {
   joystick.registerAction(jaX, jtkGreater, JOYSTICKTHRESHOLDRIGHT, JOYSTICKDELAY, jmRight);
   joystick.registerAction(jaY, jtkLess, JOYSTICKTHRESHOLDUP, JOYSTICKDELAY, jmUp);
   joystick.registerAction(jaY, jtkGreater, JOYSTICKTHRESHOLDDOWN, JOYSTICKDELAY, jmDown);
-  joystick.registerAction(JOYSTICKDELAY, jmFire);
+  joystick.registerAction(JOYSTICKPINFIRE, jamTriggerLOW, JOYSTICKDELAY, jmFire);
   // Sound
   int jingleStart = soundMachine.registerJingle(new NGJingleHelloDude());
   int jingleStartUp = soundMachine.registerJingle(new NGJingleSuperMarioShort());

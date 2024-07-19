@@ -25,8 +25,8 @@ void NGColorDotMatrixGameSnake::_rollSnakeColor() {
 void NGColorDotMatrixGameSnake::_calculateNewDiamondPosition() {
     bool ok = false;
     while (!ok) {
-        int x = random(0, GAMESNAKEMAZESIZEX);
-        int y = random(0, GAMESNAKEMAZESIZEY);
+        int x = random(0, _maxGameSnakeX);
+        int y = random(0, _maxGameSnakeY);
         ok = _posXSnake != x || _posYSnake != y;
         ok = ok && _maze[y][x] == 0;
         if (ok) {
@@ -42,16 +42,16 @@ void NGColorDotMatrixGameSnake::_calculateNewDiamondPosition() {
 }
 
 void NGColorDotMatrixGameSnake::_resetMaze() {
-    for (int y = 0; y < GAMESNAKEMAZESIZEY; y++) {
-        for (int x = 0; x < GAMESNAKEMAZESIZEX; x++) {
+    for (int y = 0; y < _maxGameSnakeY; y++) {
+        for (int x = 0; x < _maxGameSnakeX; x++) {
             _maze[y][x] = 0;
         }
     }
 }
 
 void NGColorDotMatrixGameSnake::_computeMaze() {
-    for (int y = 0; y < GAMESNAKEMAZESIZEY; y++) {
-        for (int x = 0; x < GAMESNAKEMAZESIZEX; x++) {
+    for (int y = 0; y < _maxGameSnakeY; y++) {
+        for (int x = 0; x < _maxGameSnakeX; x++) {
             if (_maze[y][x] > 0) {
                 _maze[y][x]--;
             }
@@ -63,7 +63,7 @@ bool NGColorDotMatrixGameSnake::_moveSnake() {
     bool res = false;
     _posXSnake = _posXSnake + _directionXSnake;
     _posYSnake = _posYSnake + _directionYSnake;
-    _gameFinished = (_posXSnake < 0 || _posXSnake > (GAMESNAKEMAZESIZEX - 1) || _posYSnake < 0 || _posYSnake > (GAMESNAKEMAZESIZEY - 1) || _maze[_posYSnake][_posXSnake] > 0);
+    _gameFinished = (_posXSnake < 0 || _posXSnake > (_maxGameSnakeX - 1) || _posYSnake < 0 || _posYSnake > (_maxGameSnakeY - 1) || _maze[_posYSnake][_posXSnake] > 0);
     if (!_gameFinished) {
         res = (_posXSnake == _posXDiamond) && (_posYSnake == _posYDiamond);
         if (res) {
@@ -217,8 +217,8 @@ void NGColorDotMatrixGameSnake::_ownIntro() {
 
 void NGColorDotMatrixGameSnake::_ownRender() {
     _ipc->beginUpdate();
-    for (int y = 0; y < GAMESNAKEMAZESIZEY; y++) {
-        for (int x = 0; x < GAMESNAKEMAZESIZEX; x++) {
+    for (int y = 0; y < _maxGameSnakeY; y++) {
+        for (int x = 0; x < _maxGameSnakeX; x++) {
             if (_maze[y][x] > 0) {
                 _ipc->drawPoint(x, y, _colorSnake);
             } else {
@@ -258,4 +258,13 @@ void NGColorDotMatrixGameSnake::_ownJoystickLoop() {
             }
         }
     }
+}
+
+void NGColorDotMatrixGameSnake::registerColorDotMatrix(NGIPaintableComponent *ipc) {
+    _scoreDigitPosX = ipc->getWidth() - 1;
+    _scoreDigitPosY = ipc->getHeight() - 1;
+    _scoreDigits = ipc->getHeight();
+    NGCustomColorDotMatrixGame::registerColorDotMatrix(ipc);
+    _maxGameSnakeX = ipc->getWidth() - 1;
+    _maxGameSnakeY = ipc->getHeight();
 }

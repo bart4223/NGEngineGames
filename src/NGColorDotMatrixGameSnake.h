@@ -19,8 +19,8 @@
 #define GAMESNAKECOLORSCOREOFF { .red = 5, .green = 5, .blue = 5 }
 #define GAMESNAKECOLORSCOREON COLOR_BLUE
 
-#define GAMESNAKEMAZESIZEX   7
-#define GAMESNAKEMAZESIZEY   8
+#define GAMESNAKEMAXMAZESIZEX   16
+#define GAMESNAKEMAXMAZESIZEY   16
 #define GAMESNAKESCOREDIGITS 8
 
 #define GAMESNAKEMOVEDELAY    500
@@ -31,6 +31,8 @@
 class NGColorDotMatrixGameSnake : public NGCustomColorDotMatrixGame {
   
 private:
+    byte _maxGameSnakeX;
+    byte _maxGameSnakeY;
     byte _posXSnake;
     byte _posYSnake;
     int _directionXSnake;
@@ -38,7 +40,7 @@ private:
     int _snakeThreshold;
     byte _posXDiamond;
     byte _posYDiamond;
-    byte _maze[GAMESNAKEMAZESIZEY][GAMESNAKEMAZESIZEX];
+    byte _maze[GAMESNAKEMAXMAZESIZEX][GAMESNAKEMAXMAZESIZEY];
     colorRGB _colorSnake;
     long _lastSnakeMove = 0;
     
@@ -79,6 +81,8 @@ protected:
     
 public:
     NGColorDotMatrixGameSnake();
+    
+    void registerColorDotMatrix(NGIPaintableComponent *ipc);
 };
 
 #endif /* NGColorDotMatrixGameSnake_h */
