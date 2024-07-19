@@ -20,8 +20,8 @@ NGColorDotMatrixGameAsteroids::NGColorDotMatrixGameAsteroids() {
 }
 
 void NGColorDotMatrixGameAsteroids::_resetMaze() {
-    for (int y = 0; y < GAMEASTEROIDSMAZESIZEY; y++) {
-        for (int x = 0; x < GAMEASTEROIDSMAZESIZEX; x++) {
+    for (int y = 0; y < _maxGameAsteroidsY; y++) {
+        for (int x = 0; x < _maxGameAsteroidsX; x++) {
             _maze[y][x] = 0;
         }
     }
@@ -32,8 +32,8 @@ bool NGColorDotMatrixGameAsteroids::_isColorIndexSpacecraft(int index) {
 }
 
 void NGColorDotMatrixGameAsteroids::_computeAsteroids() {
-    for (int y = 0; y < GAMEASTEROIDSMAZESIZEY; y++) {
-        for (int x = 0; x < GAMEASTEROIDSMAZESIZEX; x++) {
+    for (int y = 0; y < _maxGameAsteroidsY; y++) {
+        for (int x = 0; x < _maxGameAsteroidsX; x++) {
             if (_maze[y][x] == GAMEASTEROIDSCOLORINDEXASTEROID) {
                 _maze[y][x] = 0;
                 if (x > 0) {
@@ -59,11 +59,11 @@ void NGColorDotMatrixGameAsteroids::_computeAsteroids() {
 
 bool NGColorDotMatrixGameAsteroids::_computeLaserbeam() {
     bool res = false;
-    for (int y = 0; y < GAMEASTEROIDSMAZESIZEY; y++) {
-        for (int x = 0; x < GAMEASTEROIDSMAZESIZEX; x++) {
+    for (int y = 0; y < _maxGameAsteroidsY; y++) {
+        for (int x = 0; x < _maxGameAsteroidsX; x++) {
             if (_maze[y][x] == GAMEASTEROIDSCOLORINDEXLASERBEAM) {
                 _maze[y][x] = 0;
-                if ((x + 1) < GAMEASTEROIDSMAZESIZEX) {
+                if ((x + 1) < _maxGameAsteroidsX) {
                     if (_maze[y][x + 1] == GAMEASTEROIDSCOLORINDEXASTEROID) {
                         _scoreCounter++;
                         _asteroidsLost = 0;
@@ -83,8 +83,8 @@ bool NGColorDotMatrixGameAsteroids::_computeLaserbeam() {
         }
     }
     if (res) {
-        for (int y = 0; y < GAMEASTEROIDSMAZESIZEY; y++) {
-            for (int x = 0; x < GAMEASTEROIDSMAZESIZEX; x++) {
+        for (int y = 0; y < _maxGameAsteroidsY; y++) {
+            for (int x = 0; x < _maxGameAsteroidsX; x++) {
                 if (_maze[y][x] == -GAMEASTEROIDSCOLORINDEXLASERBEAM) {
                     _maze[y][x] = abs(_maze[y][x]);
                 }
@@ -103,7 +103,7 @@ void NGColorDotMatrixGameAsteroids::_spawnLaserbeam() {
 
 void NGColorDotMatrixGameAsteroids::_spawnAsteroid() {
     if ((random(0, 10) % 3) == 0) {
-        _maze[random(0, GAMEASTEROIDSMAZESIZEY - 1)][GAMEASTEROIDSMAZESIZEX - 1] = GAMEASTEROIDSCOLORINDEXASTEROID;
+        _maze[random(0, _maxGameAsteroidsY - 1)][_maxGameAsteroidsX - 1] = GAMEASTEROIDSCOLORINDEXASTEROID;
     }
 }
 
@@ -232,8 +232,8 @@ void NGColorDotMatrixGameAsteroids::_ownRender() {
     colorRGB c;
     int value;
     _ipc->beginUpdate();
-    for (int y = 0; y < GAMEASTEROIDSMAZESIZEY; y++) {
-        for (int x = 0; x < GAMEASTEROIDSMAZESIZEX; x++) {
+    for (int y = 0; y < _maxGameAsteroidsY; y++) {
+        for (int x = 0; x < _maxGameAsteroidsX; x++) {
             value = abs(_maze[y][x]);
             if (value > 0) {
                 c.red = globalAsteroidsColors[value - 1][0];
@@ -294,7 +294,7 @@ void NGColorDotMatrixGameAsteroids::_ownIntro() {
     c.green = globalAsteroidsColors[GAMEASTEROIDSCOLORINDEXLASERBEAM - 1][1];
     c.blue = globalAsteroidsColors[GAMEASTEROIDSCOLORINDEXLASERBEAM - 1][2];
     for (int i = 0; i < GAMEASTEROIDSINTROLASERBEAMTIMES; i++) {
-        for (int x = 3 + beamOffset; x < GAMEASTEROIDSMAZESIZEX; x++) {
+        for (int x = 3 + beamOffset; x < _maxGameAsteroidsX; x++) {
             _ipc->drawPoint(x, 3, c);
             if (_introShotDelay > 0) {
                 delay(_introShotDelay);
@@ -306,7 +306,7 @@ void NGColorDotMatrixGameAsteroids::_ownIntro() {
 }
 
 void NGColorDotMatrixGameAsteroids::_ownOutro() {
-    for (int i = 1; i < GAMEASTEROIDSMAZESIZEX + 2; i++) {
+    for (int i = 1; i < _maxGameAsteroidsX + 2; i++) {
         _ipc->beginUpdate();
         _ipc->clearCircle(_posXSpacecraft + 1, _posYSpacecraft + 1, i - 1);
         _ipc->drawCircle(_posXSpacecraft + 1, _posYSpacecraft + 1, i, GAMEASTEROIDSCOLOROUTRO);
@@ -342,7 +342,7 @@ void NGColorDotMatrixGameAsteroids::_ownJoystickLoop() {
                     }
                     break;
                 case jmDown:
-                    if (_posYSpacecraft < GAMEASTEROIDSMAZESIZEY - 2) {
+                    if (_posYSpacecraft < _maxGameAsteroidsY - 2) {
                         _gameFinished = !_checkSpacecraft(_posXSpacecraft, _posYSpacecraft + 1);
                         if (!_gameFinished) {
                             _clearSpacecraft();
@@ -370,7 +370,7 @@ void NGColorDotMatrixGameAsteroids::_ownJoystickLoop() {
                     }
                     break;
                 case jmRight:
-                    if (_posXSpacecraft < GAMEASTEROIDSMAZESIZEX - 2) {
+                    if (_posXSpacecraft < _maxGameAsteroidsX - 2) {
                         _gameFinished = !_checkSpacecraft(_posXSpacecraft + 1, _posYSpacecraft);
                         if (!_gameFinished) {
                             _clearSpacecraft();
@@ -394,4 +394,13 @@ void NGColorDotMatrixGameAsteroids::_ownJoystickLoop() {
 
 void NGColorDotMatrixGameAsteroids::setIntroShotDelay(int shotdelay) {
     _introShotDelay = shotdelay;
+}
+
+void NGColorDotMatrixGameAsteroids::registerColorDotMatrix(NGIPaintableComponent *ipc) {
+    _scoreDigitPosX = ipc->getWidth() - 1;
+    _scoreDigitPosY = ipc->getHeight() - 1;
+    _scoreDigits = ipc->getHeight();
+    NGCustomColorDotMatrixGame::registerColorDotMatrix(ipc);
+    _maxGameAsteroidsX = ipc->getWidth();
+    _maxGameAsteroidsY = ipc->getHeight() - 1;
 }

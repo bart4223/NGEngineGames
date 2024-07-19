@@ -21,9 +21,8 @@
 
 #define GAMEASTEROIDSCOLOROUTRO   COLOR_RED
 
-//#define GAMEASTEROIDSMAZESIZEX           12
-#define GAMEASTEROIDSMAZESIZEX            8
-#define GAMEASTEROIDSMAZESIZEY            7
+#define GAMEASTEROIDSMAXMAZESIZEX        16
+#define GAMEASTEROIDSMAXMAZESIZEY        16
 #define GAMEASTEROIDSSCOREDIGITS          8
 #define GAMEASTEROIDSSCOREDIGITXPOS       0
 #define GAMEASTEROIDSSCOREDIRECTION bddLeft
@@ -60,11 +59,13 @@ class NGColorDotMatrixGameAsteroids : public NGCustomColorDotMatrixGame {
 private:
     byte _posXSpacecraft = GAMEASTEROIDSSTARTPOSX;
     byte _posYSpacecraft = GAMEASTEROIDSSTARTPOSY;
-    int _maze[GAMEASTEROIDSMAZESIZEY][GAMEASTEROIDSMAZESIZEX];
+    int _maze[GAMEASTEROIDSMAXMAZESIZEY][GAMEASTEROIDSMAXMAZESIZEX];
     long _lastAsteroidsMove = 0;
     long _lastSpawnLaserbeam = 0;
     byte _asteroidsLost = 0;
     int _introShotDelay = GAMEASTEROIDSINTROSHOTDELAY;
+    byte _maxGameAsteroidsX;
+    byte _maxGameAsteroidsY;
     
     void _resetMaze();
     
@@ -113,6 +114,8 @@ public:
     NGColorDotMatrixGameAsteroids();
     
     void setIntroShotDelay(int shotdelay);
+    
+    void registerColorDotMatrix(NGIPaintableComponent *ipc);
 };
 
 
