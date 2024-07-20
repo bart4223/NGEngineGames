@@ -174,7 +174,7 @@ void NGColorDotMatrixGameAsteroids::_doStartUpDone() {
 void NGColorDotMatrixGameAsteroids::_doStartGame() {
     _resetMaze();
     _posXSpacecraft = GAMEASTEROIDSSTARTPOSX;
-    _posYSpacecraft = GAMEASTEROIDSSTARTPOSY;
+    _posYSpacecraft = _maxGameAsteroidsY / 2;
     _computeSpacecraft();
     _ownRender();
     if (_logging) {

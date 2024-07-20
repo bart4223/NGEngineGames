@@ -31,7 +31,6 @@
 #define GAMEASTEROIDSLASERBEAMSPAWNDELAY   200
 
 #define GAMEASTEROIDSSTARTPOSX 0
-#define GAMEASTEROIDSSTARTPOSY 3
 
 #define GAMEASTEROIDSCOLORINDEXSPACECRAFT01 1
 #define GAMEASTEROIDSCOLORINDEXSPACECRAFT02 2
@@ -56,8 +55,8 @@ static byte globalAsteroidsColors[4][3] = {
 class NGColorDotMatrixGameAsteroids : public NGCustomColorDotMatrixGame {
  
 private:
-    byte _posXSpacecraft = GAMEASTEROIDSSTARTPOSX;
-    byte _posYSpacecraft = GAMEASTEROIDSSTARTPOSY;
+    byte _posXSpacecraft;
+    byte _posYSpacecraft;
     int _maze[GAMEASTEROIDSMAXMAZESIZEY][GAMEASTEROIDSMAXMAZESIZEX];
     long _lastAsteroidsMove = 0;
     long _lastSpawnLaserbeam = 0;
