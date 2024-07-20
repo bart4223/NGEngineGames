@@ -9,8 +9,6 @@
 
 NGColorDotMatrixGameTetris::NGColorDotMatrixGameTetris() {
     _create("Tetris");
-    _scoreDigits = GAMETETRISSCOREDIGITS;
-    _scoreDigitPosX = GAMETETRISMAZESIZEX;
     _gameToggleMode = gtmBreakContinue;
     _autoRestartGame = true;
     _playStartUpSoundConcurrently = true;
@@ -20,8 +18,8 @@ NGColorDotMatrixGameTetris::NGColorDotMatrixGameTetris() {
 }
 
 void NGColorDotMatrixGameTetris::_resetMaze() {
-    for (int y = 0; y < GAMETETRISMAZESIZEY; y++) {
-        for (int x = 0; x < GAMETETRISMAZESIZEX; x++) {
+    for (int y = 0; y < _maxGameTetrisY; y++) {
+        for (int x = 0; x < _maxGameTetrisX; x++) {
             _maze[y][x] = 0;
         }
     }
@@ -77,8 +75,8 @@ void NGColorDotMatrixGameTetris::_clearTetromino() {
 }
 
 void NGColorDotMatrixGameTetris::_persistTetromino() {
-    for (int y = 0; y < GAMETETRISMAZESIZEY; y++) {
-        for (int x = 0; x < GAMETETRISMAZESIZEX; x++) {
+    for (int y = 0; y < _maxGameTetrisY; y++) {
+        for (int x = 0; x < _maxGameTetrisX; x++) {
             if (_maze[y][x] <= 0) {
                 _maze[y][x] = abs(_maze[y][x]);
             }
@@ -138,14 +136,14 @@ void NGColorDotMatrixGameTetris::_computeTetromino() {
 void NGColorDotMatrixGameTetris::_computeMaze() {
     for (int i = 0; i < 2; i++) {
         byte complete = 0;
-        for (int y = GAMETETRISMAZESIZEY - 1; y > 0; y--) {
+        for (int y = _maxGameTetrisY - 1; y > 0; y--) {
             if (complete == 0) {
-                for (int x = 0; x < GAMETETRISMAZESIZEX; x++) {
+                for (int x = 0; x < _maxGameTetrisX; x++) {
                     if (_maze[y][x] > 0) {
                         complete++;
                     }
                 }
-                if (complete == GAMETETRISMAZESIZEX) {
+                if (complete == _maxGameTetrisX) {
                     _scoreCounter++;
                     if (_scoreCounter % 10 == 0) {
                         _gameNextStepDelay = _gameNextStepDelay - (GAMETETRISMOVEDELAY / 10);
@@ -158,13 +156,13 @@ void NGColorDotMatrixGameTetris::_computeMaze() {
                 }
             }
             if (complete > 0) {
-                for (int x = 0; x < GAMETETRISMAZESIZEX; x++) {
+                for (int x = 0; x < _maxGameTetrisX; x++) {
                     _maze[y][x] = _maze[y - 1][x];
                 }
             }
         }
         if (complete > 0) {
-            for (int x = 0; x < GAMETETRISMAZESIZEX; x++) {
+            for (int x = 0; x < _maxGameTetrisX; x++) {
                 _maze[0][x] = 0;
             }
         }
@@ -249,7 +247,7 @@ bool NGColorDotMatrixGameTetris::_checkTetromino(byte posX, byte posY, byte sequ
 void NGColorDotMatrixGameTetris::_spawnTetromino() {
     _tetrominoColor = random(1, (sizeof(globalTetrominoColors) / sizeof(globalTetrominoColors[0])) + 1);
     _posYTetromino = 0;
-    _posXTetromino = random(0, GAMETETRISMAZESIZEX - 1);
+    _posXTetromino = random(0, _maxGameTetrisX - 1);
     switch(random(0, 2)) {
         case 0:
             _tetrominoKind = tkI;
@@ -343,7 +341,7 @@ void NGColorDotMatrixGameTetris::_doProcessingLoop() {
         _ownJoystickLoop();
         if ((millis() - _lastTetrominoMove) > _gameNextStepDelay) {
             bool spawnTetromino = false;
-            if (_posYTetromino < GAMETETRISMAZESIZEY - 2) {
+            if (_posYTetromino < _maxGameTetrisY - 2) {
                 spawnTetromino = !_checkTetromino(_posXTetromino, _posYTetromino + 1, _tetrominoSequence);
                 if (!spawnTetromino) {
                     _clearTetromino();
@@ -351,7 +349,7 @@ void NGColorDotMatrixGameTetris::_doProcessingLoop() {
                     _computeTetromino();
                     _lastTetrominoMove = millis();
                 }
-            } else if (_posYTetromino == GAMETETRISMAZESIZEY - 2 && _tetrominoKind == tkI && _tetrominoSequence == 0) {
+            } else if (_posYTetromino == _maxGameTetrisY - 2 && _tetrominoKind == tkI && _tetrominoSequence == 0) {
                 spawnTetromino = !_checkTetromino(_posXTetromino, _posYTetromino, 2);
                 if (!spawnTetromino) {
                     _clearTetromino();
@@ -395,38 +393,39 @@ void NGColorDotMatrixGameTetris::_ownIntro() {
     c.green = globalTetrominoColors[0][1];
     c.blue = globalTetrominoColors[0][2];
     _ipc->clear();
-    while (x < GAMETETRISMAZESIZEX - 2) {
-        _ipc->drawPoint(x, 6, c);
-        _ipc->drawPoint(x, 7, c);
+    while (x < _maxGameTetrisX - 2) {
+        _ipc->drawPoint(x, _maxGameTetrisY - 2, c);
+        _ipc->drawPoint(x, _maxGameTetrisY - 1, c);
         x++;
-        _ipc->drawPoint(x, 7, c);
+        _ipc->drawPoint(x, _maxGameTetrisY - 1, c);
         c.red = globalTetrominoColors[3][0];
         c.green = globalTetrominoColors[3][1];
         c.blue = globalTetrominoColors[3][2];
         x++;
-        _ipc->drawPoint(x, 6, c);
-        _ipc->drawPoint(x, 7, c);
+        _ipc->drawPoint(x, _maxGameTetrisY - 2, c);
+        _ipc->drawPoint(x, _maxGameTetrisY - 1, c);
         c.red = globalTetrominoColors[5][0];
         c.green = globalTetrominoColors[5][1];
         c.blue = globalTetrominoColors[5][2];
         x = x + 2;
-        _ipc->drawPoint(x, 7, c);
+        _ipc->drawPoint(x, _maxGameTetrisY - 1, c);
         x++;
-        _ipc->drawPoint(x, 6, c);
-        _ipc->drawPoint(x, 7, c);
+        _ipc->drawPoint(x, _maxGameTetrisY - 2, c);
+        _ipc->drawPoint(x, _maxGameTetrisY - 1, c);
         c.red = globalTetrominoColors[2][0];
         c.green = globalTetrominoColors[2][1];
         c.blue = globalTetrominoColors[2][2];
         x++;
-        _ipc->drawPoint(x, 7, c);
+        _ipc->drawPoint(x, _maxGameTetrisY - 1, c);
         x++;
-        _ipc->drawPoint(x, 7, c);
+        _ipc->drawPoint(x, _maxGameTetrisY - 1, c);
         x++;
     }
 }
 
 void NGColorDotMatrixGameTetris::_ownIntroAnimation() {
-    byte x = GAMETETRISMAZESIZEX / 2;
+    byte x = _maxGameTetrisX / 2;
+    byte y = _maxGameTetrisY / 2;
     if (_startUpAnimationStep == -1 || millis() - _lastStartUpAnimationStep >= GAMETETRISSPLASHDELAY) {
         _startUpAnimationStep++;
         _ipc->beginUpdate();
@@ -436,28 +435,28 @@ void NGColorDotMatrixGameTetris::_ownIntroAnimation() {
         c.blue = globalTetrominoColors[_startUpAnimationStep%4][2];
         switch(_startUpAnimationStep%4) {
             case 0:
-                _ipc->drawPoint(x, 2, c);
-                _ipc->drawPoint(x + 1, 2, COLOR_BLACK);
-                _ipc->drawPoint(x, 3, c);
-                _ipc->drawPoint(x + 1, 3, c);
+                _ipc->drawPoint(x, y - 2, c);
+                _ipc->drawPoint(x + 1, y - 2, COLOR_BLACK);
+                _ipc->drawPoint(x, y - 1, c);
+                _ipc->drawPoint(x + 1, y - 1, c);
                break;
             case 1:
-                _ipc->drawPoint(x, 2, c);
-                _ipc->drawPoint(x + 1, 2, c);
-                _ipc->drawPoint(x, 3, c);
-                _ipc->drawPoint(x + 1, 3, COLOR_BLACK);
+                _ipc->drawPoint(x, y - 2, c);
+                _ipc->drawPoint(x + 1, y - 2, c);
+                _ipc->drawPoint(x, y - 1, c);
+                _ipc->drawPoint(x + 1, y - 1, COLOR_BLACK);
                 break;
             case 2:
-                _ipc->drawPoint(x, 2, c);
-                _ipc->drawPoint(x + 1, 2, c);
-                _ipc->drawPoint(x, 3, COLOR_BLACK);
-                _ipc->drawPoint(x + 1, 3, c);
+                _ipc->drawPoint(x, y - 2, c);
+                _ipc->drawPoint(x + 1, y - 2, c);
+                _ipc->drawPoint(x, y - 1, COLOR_BLACK);
+                _ipc->drawPoint(x + 1, y - 1, c);
                 break;
             case 3:
-                _ipc->drawPoint(x, 2, COLOR_BLACK);
-                _ipc->drawPoint(x + 1, 2, c);
-                _ipc->drawPoint(x, 3, c);
-                _ipc->drawPoint(x + 1, 3, c);
+                _ipc->drawPoint(x, y - 2, COLOR_BLACK);
+                _ipc->drawPoint(x + 1, y - 2, c);
+                _ipc->drawPoint(x, y - 1, c);
+                _ipc->drawPoint(x + 1, y - 1, c);
                 break;
         }
         _ipc->endUpdate();
@@ -471,9 +470,9 @@ void NGColorDotMatrixGameTetris::_ownIntroAnimation() {
 
 void NGColorDotMatrixGameTetris::_ownOutro() {
     colorRGB c;
-    for (int y = GAMETETRISMAZESIZEY - 1; y >= 0; y--) {
+    for (int y = _maxGameTetrisY - 1; y >= 0; y--) {
         _ipc->beginUpdate();
-        for (int x = 0; x < GAMETETRISMAZESIZEX; x++) {
+        for (int x = 0; x < _maxGameTetrisX; x++) {
             if (_maze[y][x] == 0) {
                 byte value = random(0, sizeof(globalTetrominoColors) / sizeof(globalTetrominoColors[0]));
                 c.red = globalTetrominoColors[value][0];
@@ -502,8 +501,8 @@ void NGColorDotMatrixGameTetris::_ownRender() {
     colorRGB c;
     int value;
     _ipc->beginUpdate();
-    for (int y = 0; y < GAMETETRISMAZESIZEY; y++) {
-        for (int x = 0; x < GAMETETRISMAZESIZEX; x++) {
+    for (int y = 0; y < _maxGameTetrisY; y++) {
+        for (int x = 0; x < _maxGameTetrisX; x++) {
             value = abs(_maze[y][x]);
             if (value > 0) {
                 c.red = globalTetrominoColors[value - 1][0];
@@ -526,7 +525,7 @@ void NGColorDotMatrixGameTetris::_ownJoystickLoop() {
                 case jmUp:
                     break;
                 case jmDown:
-                    if (_posYTetromino < GAMETETRISMAZESIZEY - 2) {
+                    if (_posYTetromino < _maxGameTetrisY - 2) {
                         if (_checkTetromino(_posXTetromino, _posYTetromino + 1, _tetrominoSequence)) {
                             _clearTetromino();
                             _posYTetromino++;
@@ -553,7 +552,7 @@ void NGColorDotMatrixGameTetris::_ownJoystickLoop() {
                     }
                     break;
                 case jmRight:
-                    if (_posXTetromino < GAMETETRISMAZESIZEX - 2) {
+                    if (_posXTetromino < _maxGameTetrisX - 2) {
                         if (_checkTetromino(_posXTetromino + 1, _posYTetromino, _tetrominoSequence)) {
                             _clearTetromino();
                             _posXTetromino++;
@@ -584,5 +583,14 @@ void NGColorDotMatrixGameTetris::_ownJoystickLoop() {
             }
         }
     }
+}
+
+void NGColorDotMatrixGameTetris::registerColorDotMatrix(NGIPaintableComponent *ipc) {
+    _scoreDigitPosX = ipc->getWidth() - 1;
+    _scoreDigitPosY = ipc->getHeight() - 1;
+    _scoreDigits = ipc->getHeight();
+    NGCustomColorDotMatrixGame::registerColorDotMatrix(ipc);
+    _maxGameTetrisX = ipc->getWidth() - 1;
+    _maxGameTetrisY = ipc->getHeight();
 }
 

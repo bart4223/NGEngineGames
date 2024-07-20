@@ -19,10 +19,8 @@
 #define GAMETETRISCOLORSCOREOFF { .red = 5, .green = 5, .blue = 5 }
 #define GAMETETRISCOLORSCOREON COLOR_BLUE
 
-//#define GAMETETRISMAZESIZEX   11
-#define GAMETETRISMAZESIZEX    7
-#define GAMETETRISMAZESIZEY    8
-#define GAMETETRISSCOREDIGITS  8
+#define GAMETETRISMAXMAZESIZEX    16
+#define GAMETETRISMAXMAZESIZEY    16
 
 #define GAMETETRISMOVEDELAY    500
 #define GAMETETRISFINISHDELAY 1000
@@ -47,12 +45,14 @@ enum tetrominoKind { tkNone, tkI, tkL };
 class NGColorDotMatrixGameTetris : public NGCustomColorDotMatrixGame {
  
 private:
+    byte _maxGameTetrisX;
+    byte _maxGameTetrisY;
     byte _posXTetromino = 0;
     byte _posYTetromino = 0;
     tetrominoKind _tetrominoKind = tkNone;
     byte _tetrominoSequence = 0;
     byte _tetrominoColor = 0;
-    int _maze[GAMETETRISMAZESIZEY][GAMETETRISMAZESIZEX];
+    int _maze[GAMETETRISMAXMAZESIZEY][GAMETETRISMAXMAZESIZEX];
     long _lastTetrominoMove = 0;
     bool _inStartUpAnimation = false;
     int _startUpAnimationStep = -1;
@@ -101,6 +101,8 @@ protected:
        
 public:
     NGColorDotMatrixGameTetris();
+    
+    void registerColorDotMatrix(NGIPaintableComponent *ipc);
 };
 
 #endif /* NGColorDotMatrixGameTetris_h */

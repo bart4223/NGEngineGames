@@ -333,3 +333,7 @@ void NGCustomGame::finishGame() {
         }
     }
 }
+
+bool NGCustomGame::isGameStarted() {
+    return _gameStarted;
+}

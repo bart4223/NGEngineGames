@@ -53,6 +53,13 @@ void NGGameMachineUnitControl::requestData(byte* data) {
 
 void NGGameMachineUnitControl::startGame() {
     char log[100];
+    if (_game->isGameStarted()) {
+        _game->finishGame();
+        if (_logging) {
+            sprintf(log, "...Game \"%s\" finished", _game->getName());
+            writeInfo(log);
+        }
+    }
     if (_logging) {
         sprintf(log, "Game \"%s\" startup...", _game->getName());
         writeInfo(log);

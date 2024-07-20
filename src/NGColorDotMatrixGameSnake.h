@@ -39,7 +39,7 @@ private:
     int _snakeThreshold;
     byte _posXDiamond;
     byte _posYDiamond;
-    byte _maze[GAMESNAKEMAXMAZESIZEX][GAMESNAKEMAXMAZESIZEY];
+    byte _maze[GAMESNAKEMAXMAZESIZEY][GAMESNAKEMAXMAZESIZEX];
     colorRGB _colorSnake;
     long _lastSnakeMove = 0;
     

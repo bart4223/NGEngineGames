@@ -163,6 +163,8 @@ public:
     void finishGame();
     
     void handleKeyEvent(byte id);
+    
+    bool isGameStarted();
 };
 
 #endif /* NGCustomGame_h */
