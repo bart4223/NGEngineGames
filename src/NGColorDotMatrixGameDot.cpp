@@ -9,7 +9,6 @@
 
 NGColorDotMatrixGameDot::NGColorDotMatrixGameDot() {
     _create("Dot");
-    _scoreDigits = DEFGAMEDOTSCOREDIGITS;
 }
 
 void NGColorDotMatrixGameDot::_rollPlayerColor() {

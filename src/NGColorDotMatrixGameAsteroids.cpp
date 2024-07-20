@@ -9,7 +9,6 @@
 
 NGColorDotMatrixGameAsteroids::NGColorDotMatrixGameAsteroids() {
     _create("Asteroids");
-    _scoreDigits = GAMEASTEROIDSSCOREDIGITS;
     _scoreDigitPosX = GAMEASTEROIDSSCOREDIGITXPOS;
     _scoreDirection = GAMEASTEROIDSSCOREDIRECTION;
     _gameToggleMode = gtmBreakContinue;
@@ -397,9 +396,8 @@ void NGColorDotMatrixGameAsteroids::setIntroShotDelay(int shotdelay) {
 }
 
 void NGColorDotMatrixGameAsteroids::registerColorDotMatrix(NGIPaintableComponent *ipc) {
-    _scoreDigitPosX = ipc->getWidth() - 1;
-    _scoreDigitPosY = ipc->getHeight() - 1;
-    _scoreDigits = ipc->getHeight();
+    _scoreDigitPosY = ipc->getWidth() - 1;
+    _scoreDigits = ipc->getWidth();
     NGCustomColorDotMatrixGame::registerColorDotMatrix(ipc);
     _maxGameAsteroidsX = ipc->getWidth();
     _maxGameAsteroidsY = ipc->getHeight() - 1;

@@ -9,7 +9,6 @@
 
 NGColorDotMatrixGameSnake::NGColorDotMatrixGameSnake() {
     _create("Snake");
-    _scoreDigits = GAMESNAKESCOREDIGITS;
     _gameToggleMode = gtmBreakContinue;
     _autoRestartGame = true;
     _gameNextStepDelay = GAMESNAKEMOVEDELAY;

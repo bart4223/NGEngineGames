@@ -30,8 +30,6 @@
 #define GAMESPRITEDOTID    1
 #define GAMESPRITEPLAYERID 2
 
-#define DEFGAMEDOTSCOREDIGITS 8
-
 class NGColorDotMatrixGameDot : public NGCustomColorDotMatrixGame {
     
 private:
