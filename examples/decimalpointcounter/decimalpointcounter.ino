@@ -30,7 +30,7 @@
 #endif
 #ifdef LEDSTRIP
 #define SCALE       1
-#define RANGE     100
+#define RANGE    1000
 #define DELAY   10000
 #endif
 
@@ -49,7 +49,7 @@ NGColorLEDStrip *cdm = new NGColorLEDStrip(LEDSTRIPPIN, LEDSTRIPPIXELS, LEDSTRIP
 #endif
 NGDecimalPointCounter *dpc = new NGDecimalPointCounter(cdm, COLOR_RED);
 
-#define ANIMATIONDELAY 1000
+#define ANIMATIONDELAY 100
 
 long _lastValue = 0;
 bool _init = true;
@@ -71,7 +71,7 @@ void setup() {
   dpc->setMaxDigits(3);
   #endif
   dpc->setShowMaxDigits(false);
-  //dpc->setIsAnimationEnabled(true);
+  dpc->setIsAnimationEnabled(true);
   dpc->setAnimationDelay(ANIMATIONDELAY);
   #ifdef FONTZX81
   dpc->setFont(fontZX81);
