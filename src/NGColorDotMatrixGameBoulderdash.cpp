@@ -9,9 +9,6 @@
 
 NGColorDotMatrixGameBoulderdash::NGColorDotMatrixGameBoulderdash() {
     _create("Boulderdash");
-    _scoreDigits = GAMEBOULDERDASHSCOREDIGITS;
-    _scoreDigitPosX = GAMEBOULDERDASHSCOREDIGITXPOS;
-    _scoreDigitPosY = GAMEBOULDERDASHSCOREDIGITYPOS;
     _scoreDirection = GAMEBOULDERDASHSCOREDIRECTION;
     _gameToggleMode = gtmBreakContinue;
     _autoRestartGame = true;
@@ -22,9 +19,18 @@ NGColorDotMatrixGameBoulderdash::NGColorDotMatrixGameBoulderdash() {
 }
 
 void NGColorDotMatrixGameBoulderdash::registerColorDotMatrix(NGIPaintableComponent *ipc) {
+    _scoreDigitPosX = 0;
+    _scoreDigitPosY = ipc->getHeight() - 3;
+    _scoreDigits = ipc->getHeight() - 3;
     NGCustomColorDotMatrixGame::registerColorDotMatrix(ipc);
-    _lives = new NGColorDotMatrixBinaryDigit(_ipc, GAMEBOULDERDASHLIVESDIGITS, GAMEBOULDERDASHLIVESDIRECTION, GAMEBOULDERDASHLIVESDIGITXPOS, GAMEBOULDERDASHLIVESDIGITYPOS);
-    _fuse = new NGColorDotMatrixFuse(_ipc, GAMEBOULDERDASHFUSEARITY);
+    _score->setColorOff(GAMEBOULDERDASHCOLORSCOREOFF);
+    _score->setColorOn(GAMEBOULDERDASHCOLORSCOREON);
+    _lives = new NGColorDotMatrixBinaryDigit(_ipc, GAMEBOULDERDASHLIVESDIGITS, GAMEBOULDERDASHLIVESDIRECTION, 0, ipc->getHeight() - 1);
+    _lives->setColorOff(GAMEBOULDERDASHCOLORLIVESOFF);
+    _lives->setColorOn(GAMEBOULDERDASHCOLORLIVESON);
+    _fuse = new NGColorDotMatrixFuse(_ipc, ipc->getWidth());
+    _fuse->setColorOff(GAMEBOULDERDASHCOLORFUSEOFF);
+    _fuse->setColorOn(GAMEBOULDERDASHCOLORFUSEON);
 }
 
 void NGColorDotMatrixGameBoulderdash::registerLiveCounterSprite(NGCustomSprite *sprite) {
@@ -483,7 +489,7 @@ void NGColorDotMatrixGameBoulderdash::_initLevel() {
     _levelFinished = false;
     _doorEntered = false;
     _levelRetry = false;
-    _fuseValue = GAMEBOULDERDASHMAXFUSE;
+    _fuseValue = _ipc->getWidth();
     switch(_level) {
         case GAMEBOULDERDASHLEVELONE:
             _posXRocky = random(0, 2);
@@ -1267,19 +1273,19 @@ void NGColorDotMatrixGameBoulderdash::_renderRocky() {
 }
 
 void NGColorDotMatrixGameBoulderdash::_calculateViewPos() {
-    if (_posXRocky - 4 < 0) {
+    if (_posXRocky - _ipc->getWidth() / 2 < 0) {
         _viewPosX = 0;
-    } else if (_posXRocky > (GAMEBOULDERDASHMAZESIZEX - 4)) {
-        _viewPosX = GAMEBOULDERDASHMAZESIZEX - 7;
+    } else if (_posXRocky > (GAMEBOULDERDASHMAZESIZEX - _ipc->getWidth() / 2)) {
+        _viewPosX = GAMEBOULDERDASHMAZESIZEX - _ipc->getWidth() + 1;
     } else {
-        _viewPosX = _posXRocky - 4;
+        _viewPosX = _posXRocky - _ipc->getWidth() / 2;
     }
-    if (_posYRocky - 4 < 0) {
+    if (_posYRocky - _ipc->getHeight() / 2 < 0) {
         _viewPosY = 0;
-    } else if (_posYRocky > (GAMEBOULDERDASHMAZESIZEY - 4)) {
-        _viewPosY = GAMEBOULDERDASHMAZESIZEY - 7;
+    } else if (_posYRocky > (GAMEBOULDERDASHMAZESIZEY - _ipc->getHeight() / 2)) {
+        _viewPosY = GAMEBOULDERDASHMAZESIZEY - _ipc->getHeight() + 1;
     } else {
-        _viewPosY = _posYRocky - 4;
+        _viewPosY = _posYRocky - _ipc->getHeight() / 2;
     }
 }
 
@@ -1287,13 +1293,13 @@ void NGColorDotMatrixGameBoulderdash::_ownIntro() {
     _ipc->beginUpdate();
     // Dirt
     if (_hasSprite(GAMEBOULDERDASHCOLORINDEXDIRT)) {
-        for (int y = 0; y < 8; y++) {
-            for (int x = 0; x < 8; x++) {
+        for (int y = 0; y < _ipc->getHeight(); y++) {
+            for (int x = 0; x < _ipc->getWidth(); x++) {
                 _renderSprite(GAMEBOULDERDASHCOLORINDEXDIRT, x, y);
             }
         }
     } else {
-        _ipc->fillRect(0, 0, 7, 7, globalBoulderdashColors[GAMEBOULDERDASHCOLORINDEXDIRT - 1]);
+        _ipc->fillRect(0, 0, _ipc->getHeight() - 1, _ipc->getWidth() - 1, globalBoulderdashColors[GAMEBOULDERDASHCOLORINDEXDIRT - 1]);
     }
     // Diamonds
     if (_hasSprite(GAMEBOULDERDASHCOLORINDEXDIAMOND01) && _hasSprite(GAMEBOULDERDASHCOLORINDEXDIAMOND02)) {
@@ -1399,6 +1405,7 @@ void NGColorDotMatrixGameBoulderdash::_ownOutro() {
             delay(GAMEBOULDERDASHSOUTROANIMATIONSUCCESSDELAY);
         }
     }
+    _ipc->clear();
     _pointCounter->setColor(globalBoulderdashColors[GAMEBOULDERDASHCOLORINDEXROCKY - 1]);
     _pointCounter->setCounter(_scoreCounter, true);
     long start = millis();
@@ -1408,9 +1415,9 @@ void NGColorDotMatrixGameBoulderdash::_ownOutro() {
 }
 
 void NGColorDotMatrixGameBoulderdash::_ownLevelOutroSuccess() {
-    for (int y = 7; y > 0; y--) {
+    for (int y = _ipc->getHeight() - 1; y > 0; y--) {
         _ipc->beginUpdate();
-        _ipc->drawLine(1, y, 7, y, globalBoulderdashColors[GAMEBOULDERDASHCOLORINDEXDIAMOND01 - 1]);
+        _ipc->drawLine(1, y, _ipc->getWidth() - 1, y, globalBoulderdashColors[GAMEBOULDERDASHCOLORINDEXDIAMOND01 - 1]);
         _ipc->endUpdate();
         delay(GAMEBOULDERDASHSOUTROANIMATIONSUCCESSDELAY);
     }
@@ -1428,8 +1435,8 @@ void NGColorDotMatrixGameBoulderdash::_ownLevelOutroFail() {
 
 void NGColorDotMatrixGameBoulderdash::_ownRender() {
     _ipc->beginUpdate();
-    for (int y = 1; y < 8; y++) {
-        for (int x = 1; x < 8; x++) {
+    for (int y = 1; y < _ipc->getHeight(); y++) {
+        for (int x = 1; x < _ipc->getWidth(); x++) {
             byte i = _maze[_viewPosY + y - 1][_viewPosX + x - 1];
             if (i > 0) {
                 if (i != GAMEBOULDERDASHCOLORINDEXROCKY) {
@@ -1510,12 +1517,6 @@ void NGColorDotMatrixGameBoulderdash::_ownJoystickLoop() {
 }
 
 void NGColorDotMatrixGameBoulderdash::_doInitialize() {
-    _score->setColorOff(GAMEBOULDERDASHCOLORSCOREOFF);
-    _score->setColorOn(GAMEBOULDERDASHCOLORSCOREON);
-    _lives->setColorOff(GAMEBOULDERDASHCOLORLIVESOFF);
-    _lives->setColorOn(GAMEBOULDERDASHCOLORLIVESON);
-    _fuse->setColorOff(GAMEBOULDERDASHCOLORFUSEOFF);
-    _fuse->setColorOn(GAMEBOULDERDASHCOLORFUSEON);
     if (_logging) {
         char log[100];
         sprintf(log, "%s.Initialize", _name);
@@ -1542,7 +1543,7 @@ void NGColorDotMatrixGameBoulderdash::_doStartUpDone() {
     _ipc->clear();
     _score->setValue(0);
     _lives->setValue(GAMEBOULDERDASHLIVES);
-    _fuse->setValue(GAMEBOULDERDASHMAXFUSE);
+    _fuse->setValue(_ipc->getWidth());
     if (_logging) {
         char log[100];
         sprintf(log, "%s.StartUp done", _name);
@@ -1552,7 +1553,7 @@ void NGColorDotMatrixGameBoulderdash::_doStartUpDone() {
 
 void NGColorDotMatrixGameBoulderdash::_doStartGame() {
     _livesCounter = GAMEBOULDERDASHLIVES;
-    _fuseValue = GAMEBOULDERDASHMAXFUSE;
+    _fuseValue = _ipc->getWidth();
     _level = GAMEBOULDERDASHSTARTLEVEL;
     _resetMaze();
     _initLevel();
@@ -1644,7 +1645,7 @@ void NGColorDotMatrixGameBoulderdash::_doProcessingLoop() {
                     _livesCounter--;
                     _gameFinished = _livesCounter == 0;
                     if (!_gameFinished) {
-                        _fuseValue = GAMEBOULDERDASHMAXFUSE;
+                        _fuseValue = _ipc->getWidth();
                         _levelRetry = true;
                     }
                 }
