@@ -13,7 +13,6 @@ NGColorDotMatrixGameTetris::NGColorDotMatrixGameTetris() {
     _autoRestartGame = true;
     _playStartUpSoundConcurrently = true;
     _gameFinishedDelay = GAMETETRISFINISHDELAY;
-    _gameNextStepDelay = GAMETETRISMOVEDELAY;
     _pointCounterAnimationDelay = GAMETETRISOUTRODELAY;
 }
 
@@ -292,6 +291,7 @@ void NGColorDotMatrixGameTetris::_doStartUp() {
 void NGColorDotMatrixGameTetris::_doStartUpDone() {
     _ipc->clear();
     _score->setValue(_scoreCounter);
+    _gameNextStepDelay = GAMETETRISMOVEDELAY;
     if (_logging) {
         char log[100];
         sprintf(log, "%s.StartUp done", _name);
