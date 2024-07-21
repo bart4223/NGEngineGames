@@ -113,6 +113,9 @@ void setup() {
   setGlobalUnit(&unitGameMachine);
   #if (PROD == false)
   unitGameMachine.registerNotification(&serialNotification);
+  unitGameMachine.setLogging(true);
+  #else
+  unitGameMachine.setLogging(false);
   #endif
   // ColorDotMatrix
   #ifdef LEDSTRIP

@@ -36,11 +36,6 @@ void NGGameMachineUnitControl::_processingIRRemoteData() {
 
 void NGGameMachineUnitControl::initialize() {
     _game->initialize();
-    if (_logging) {
-        char log[100];
-        sprintf(log, "...Game \"%s\" initialized", _game->getName());
-        writeInfo(log);
-    }
 }
 
 void NGGameMachineUnitControl::processingLoop() {
@@ -52,26 +47,23 @@ void NGGameMachineUnitControl::requestData(byte* data) {
 }
 
 void NGGameMachineUnitControl::startGame() {
-    char log[100];
     if (_game->isGameStarted()) {
         _game->finishGame();
-        if (_logging) {
-            sprintf(log, "...Game \"%s\" finished", _game->getName());
-            writeInfo(log);
-        }
-    }
-    if (_logging) {
-        sprintf(log, "Game \"%s\" startup...", _game->getName());
-        writeInfo(log);
     }
     _game->startUp();
     _game->startGame();
-    if (_logging) {
-        sprintf(log, "...Game \"%s\" started", _game->getName());
-        writeInfo(log);
-    }
 }
 
 void NGGameMachineUnitControl::toggleDoPlaySound() {
     _game->toggleDoPlaySound();
+}
+
+void NGGameMachineUnitControl::registerNotification(NGCustomNotification *notification) {
+    NGCustomUnitControl::registerNotification(notification);
+    _game->registerNotification(notification);
+}
+
+void NGGameMachineUnitControl::setLogging(bool logging) {
+    NGCustomUnitControl::setLogging(logging);
+    _game->setLogging(logging);
 }

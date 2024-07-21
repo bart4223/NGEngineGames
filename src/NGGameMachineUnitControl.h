@@ -17,7 +17,7 @@
 #include <NGCustomUnitControl.h>
 #include <NGCustomGame.h>
 
-#define _VERSION "1.1"
+#define _VERSION "1.2"
 #define VERSION (char*)_VERSION
 
 class NGGameMachineUnitControl : public NGCustomUnitControl {
@@ -48,6 +48,10 @@ public:
     void startGame();
     
     void toggleDoPlaySound();
+    
+    void registerNotification(NGCustomNotification *notification);
+    
+    void setLogging(bool logging);
 };
 
 #endif /* NGGameMachineUnitControl_h */
