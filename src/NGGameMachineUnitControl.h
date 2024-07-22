@@ -45,6 +45,8 @@ public:
         
     void requestData(byte* data);
     
+    long int startUp();
+    
     void startGame();
     
     void toggleDoPlaySound();

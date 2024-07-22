@@ -46,6 +46,16 @@ void NGGameMachineUnitControl::requestData(byte* data) {
     memcpy(data, _requestedData, REQUESTEDDATALENGTH);
 }
 
+long int NGGameMachineUnitControl::startUp() {
+    long int res = NGCustomUnitControl::startUp();
+    if (_logging) {
+        char log[100];
+        sprintf(log, "\"%s\" started in game mode %d", _name, _game->getGameMode());
+        writeInfo(log);
+    }
+    return res;
+}
+
 void NGGameMachineUnitControl::startGame() {
     if (_game->isGameStarted()) {
         _game->finishGame();

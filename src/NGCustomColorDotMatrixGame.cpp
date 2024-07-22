@@ -49,6 +49,12 @@ void NGCustomColorDotMatrixGame::registerColorDotMatrix(NGIPaintableComponent *i
     _pointCounter->setPosX(_pointCounterPosX);
     _pointCounter->setPosY(_pointCounterPosY);
     _pointCounter->initialize();
+    int pixels = _ipc->getWidth() * _ipc->getHeight();
+    if (pixels <= 64) {
+        _gameMode = gmMinimal;
+    } else if (pixels > 100) {
+        _gameMode = gmBig;
+    }
 }
 
 void NGCustomColorDotMatrixGame::registerSprite(byte id, NGCustomSprite *sprite) {

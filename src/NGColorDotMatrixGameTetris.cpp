@@ -592,8 +592,5 @@ void NGColorDotMatrixGameTetris::registerColorDotMatrix(NGIPaintableComponent *i
     NGCustomColorDotMatrixGame::registerColorDotMatrix(ipc);
     _maxGameTetrisX = ipc->getWidth() - 1;
     _maxGameTetrisY = ipc->getHeight();
-    if (_maxGameTetrisY <= 8) {
-        _tetrisMode = tmMinimal;
-    }
 }
 

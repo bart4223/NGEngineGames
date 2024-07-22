@@ -337,3 +337,7 @@ void NGCustomGame::finishGame() {
 bool NGCustomGame::isGameStarted() {
     return _gameStarted;
 }
+
+gameMode NGCustomGame::getGameMode() {
+    return _gameMode;
+}

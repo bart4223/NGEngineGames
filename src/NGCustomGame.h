@@ -28,6 +28,7 @@
 
 enum gameFunction { gfStartGame, gfFinishGame, gfBreakGame, gfFasterGame, gfSlowerGame };
 enum gameToggleMode { gtmStartFinish, gtmBreakContinue };
+enum gameMode { gmMinimal, gmNormal, gmBig };
 
 struct gameKeyStruct
 {
@@ -74,6 +75,7 @@ protected:
     bool _startUpDone = false;
     bool _doPlaySound = true;
     bool _testMode = false;
+    gameMode _gameMode = gmNormal;
 
     void _create(char* name);
     
@@ -165,6 +167,8 @@ public:
     void handleKeyEvent(byte id);
     
     bool isGameStarted();
+    
+    gameMode getGameMode();
 };
 
 #endif /* NGCustomGame_h */

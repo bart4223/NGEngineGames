@@ -40,7 +40,6 @@ static byte globalTetrominoColors[7][3] = {
   {128, 0, 128}
 };
 
-enum tetrisMode { tmMinimal, tmNormal };
 enum tetrominoKind { tkNone, tkI, tkL };
 
 class NGColorDotMatrixGameTetris : public NGCustomColorDotMatrixGame {
@@ -58,7 +57,6 @@ private:
     bool _inStartUpAnimation = false;
     int _startUpAnimationStep = -1;
     long _lastStartUpAnimationStep = 0;
-    tetrisMode _tetrisMode = tmNormal;
 
     void _resetMaze();
     

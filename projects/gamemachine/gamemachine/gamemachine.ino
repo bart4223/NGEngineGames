@@ -1,6 +1,6 @@
 #define PROD true  //false, true
 #define LEDSTRIP    //OLED, DOTMATRIX, LEDSTRIP
-#define LEDSTRIP100 //LEDSTRIP100, LEDSTRIP256
+#define LEDSTRIP256 //LEDSTRIP100, LEDSTRIP256
  
 // Game "Dot"
 #define GAME1
@@ -85,7 +85,9 @@ NGColorDotMatrix cdm = NGColorDotMatrix();
 #ifdef OLED
 NGColorOLED cdm = NGColorOLED();
 #endif
-#ifdef LEDSTRIP
+#ifdef LEDSTRIP256
+NGColorLEDStrip cdm = NGColorLEDStrip(LEDSTRIPPIN, LEDSTRIPPIXELS, LEDSTRIPROWS, lskUpDownAlternate);
+#else
 NGColorLEDStrip cdm = NGColorLEDStrip(LEDSTRIPPIN, LEDSTRIPPIXELS, LEDSTRIPROWS);
 #endif
 #ifdef GAME1
