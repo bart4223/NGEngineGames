@@ -50,7 +50,7 @@ long int NGGameMachineUnitControl::startUp() {
     long int res = NGCustomUnitControl::startUp();
     if (_logging) {
         char log[100];
-        sprintf(log, "\"%s\" started in game mode %d", _name, _game->getGameMode());
+        sprintf(log, "%s started in game mode %d", _name, _game->getGameMode());
         writeInfo(log);
     }
     return res;
