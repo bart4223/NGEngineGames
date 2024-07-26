@@ -80,8 +80,6 @@ bool NGColorDotMatrixGameSnake::_moveSnake() {
 }
 
 void NGColorDotMatrixGameSnake::_doInitialize() {
-    _score->setColorOff(GAMESNAKECOLORSCOREOFF);
-    _score->setColorOn(GAMESNAKECOLORSCOREON);
     if (_logging) {
         char log[100];
         sprintf(log, "%s.Initialize", _name);
@@ -90,6 +88,8 @@ void NGColorDotMatrixGameSnake::_doInitialize() {
 }
 
 void NGColorDotMatrixGameSnake::_doStartUp() {
+    _score->setColorOff(GAMESNAKECOLORSCOREOFF);
+    _score->setColorOn(GAMESNAKECOLORSCOREON);
     if (_logging) {
         char log[100];
         sprintf(log, "%s.StartUp", _name);
@@ -266,4 +266,12 @@ void NGColorDotMatrixGameSnake::registerColorDotMatrix(NGIPaintableComponent *ip
     NGCustomColorDotMatrixGame::registerColorDotMatrix(ipc);
     _maxGameSnakeX = ipc->getWidth() - 1;
     _maxGameSnakeY = ipc->getHeight();
+    switch(_gameMode) {
+        case gmNormal:
+            _gameNextStepDelay = _gameNextStepDelay * 0.75;
+            break;
+        case gmBig:
+            _gameNextStepDelay = _gameNextStepDelay * 0.5;
+            break;
+    }
 }

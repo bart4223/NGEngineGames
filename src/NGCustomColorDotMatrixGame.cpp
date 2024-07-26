@@ -46,6 +46,7 @@ void NGCustomColorDotMatrixGame::registerColorDotMatrix(NGIPaintableComponent *i
     _pointCounter->setShowMaxDigits(_pointCounterShowMaxDigits);
     _pointCounter->setIsAnimationEnabled(_pointCounterAnimationDelay > 0);
     _pointCounter->setAnimationDelay(_pointCounterAnimationDelay);
+    _pointCounterPosY = (_ipc->getHeight() - 8) * 0.5;
     _pointCounter->setPosX(_pointCounterPosX);
     _pointCounter->setPosY(_pointCounterPosY);
     _pointCounter->initialize();
