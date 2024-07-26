@@ -41,7 +41,7 @@
 		29620D8029BE2D6B0020B874 /* NGCustomColorDotMatrixGame.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NGCustomColorDotMatrixGame.h; sourceTree = "<group>"; };
 		296452892987F32C00E1EF1D /* eNGineGameShield.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = eNGineGameShield.png; sourceTree = "<group>"; };
 		2964528A2987F66000E1EF1D /* GamePadI0.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = GamePadI0.png; sourceTree = "<group>"; };
-		29680C892C4123A400BB0F58 /* gamemachine.ino */ = {isa = PBXFileReference; lastKnownFileType = text; path = gamemachine.ino; sourceTree = "<group>"; };
+		29680C892C4123A400BB0F58 /* ardcade.ino */ = {isa = PBXFileReference; lastKnownFileType = text; path = ardcade.ino; sourceTree = "<group>"; };
 		29680C8B2C41290200BB0F58 /* NGGameMachineUnitControl.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = NGGameMachineUnitControl.cpp; sourceTree = "<group>"; };
 		29680C8C2C41290200BB0F58 /* NGGameMachineUnitControl.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NGGameMachineUnitControl.h; sourceTree = "<group>"; };
 		2992AA7D2997C6E8004DDE5E /* LevelThree.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = LevelThree.png; sourceTree = "<group>"; };
@@ -216,13 +216,13 @@
 			path = images;
 			sourceTree = "<group>";
 		};
-		29680C862C41236A00BB0F58 /* gamemachine */ = {
+		29680C862C41236A00BB0F58 /* ardcade */ = {
 			isa = PBXGroup;
 			children = (
 				29680C872C41237600BB0F58 /* images */,
-				29680C882C41238600BB0F58 /* gamemachine */,
+				29680C882C41238600BB0F58 /* ardcade */,
 			);
-			path = gamemachine;
+			path = ardcade;
 			sourceTree = "<group>";
 		};
 		29680C872C41237600BB0F58 /* images */ = {
@@ -232,12 +232,12 @@
 			path = images;
 			sourceTree = "<group>";
 		};
-		29680C882C41238600BB0F58 /* gamemachine */ = {
+		29680C882C41238600BB0F58 /* ardcade */ = {
 			isa = PBXGroup;
 			children = (
-				29680C892C4123A400BB0F58 /* gamemachine.ino */,
+				29680C892C4123A400BB0F58 /* ardcade.ino */,
 			);
-			path = gamemachine;
+			path = ardcade;
 			sourceTree = "<group>";
 		};
 		29680C8A2C4126CA00BB0F58 /* app */ = {
@@ -390,7 +390,7 @@
 		29FCF0B22955D68E0065BD20 /* projects */ = {
 			isa = PBXGroup;
 			children = (
-				29680C862C41236A00BB0F58 /* gamemachine */,
+				29680C862C41236A00BB0F58 /* ardcade */,
 				29FCF0B32955D6C50065BD20 /* gamepad */,
 			);
 			path = projects;
