@@ -54,7 +54,7 @@
 #define LEDSTRIPBRIGHTNESS 0.05
 #endif
 
-#define _GAMEMACHINE  "GameMachine"
+#define _GAMEMACHINE  "Ardcade"
 #define GAMEMACHINE   (char*)_GAMEMACHINE
 
 #define STARTGAMEPIN        12
