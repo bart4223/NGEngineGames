@@ -21,14 +21,14 @@ void NGColorDotMatrixGameDot::_calculateNewDotPosition() {
     bool ok = false;
     while (!ok) {
         if (_getYesOrNo()) {
-            _posXDot = _posXDot - random(MINGAMEDOTDIFF, MAXGAMEDOTDIFF);
+            _posXDot = _posXDot - random(_minGameDotDiff, _maxGameDotDiff);
         } else {
-            _posXDot = _posXDot + random(MINGAMEDOTDIFF, MAXGAMEDOTDIFF);
+            _posXDot = _posXDot + random(_minGameDotDiff, _maxGameDotDiff);
         }
         if (_getYesOrNo()) {
-            _posYDot = _posYDot - random(MINGAMEDOTDIFF, MAXGAMEDOTDIFF);
+            _posYDot = _posYDot - random(_minGameDotDiff, _maxGameDotDiff);
         } else {
-            _posYDot = _posYDot + random(MINGAMEDOTDIFF, MAXGAMEDOTDIFF);
+            _posYDot = _posYDot + random(_minGameDotDiff, _maxGameDotDiff);
         }
         _posXDot = _posXDot % (_maxGameDotX + 1);
         _posYDot = _posYDot % (_maxGameDotY + 1);
@@ -128,8 +128,8 @@ void NGColorDotMatrixGameDot::_doProcessingLoop() {
 void NGColorDotMatrixGameDot::_ownIntro() {
     colorRGB c;
     _ipc->clear();
-    byte dotX = random(5, MAXINTROX);
-    byte dotY = random(5, MAXINTROY);
+    byte dotX = random(5, _maxGameDotX - 5);
+    byte dotY = random(5, _maxGameDotY - 5);
     if (_hasSprite(GAMESPRITEDOTID)) {
         _setSpriteColor(GAMESPRITEDOTID, COLOR_RED);
         _renderSprite(GAMESPRITEDOTID, dotX, dotY);
@@ -139,7 +139,7 @@ void NGColorDotMatrixGameDot::_ownIntro() {
     byte playerX = 0;
     byte playerY = 0;
     _rollPlayerColor();
-    for (int i = 0; i < 10; i++) {
+    for (int i = 0; i < _maxGameDotX / 2 + _maxGameDotY / 2; i++) {
         if (_hasSprite(GAMESPRITEPLAYERID)) {
             _renderSprite(GAMESPRITEPLAYERID, playerX, playerY);
         } else {
@@ -231,7 +231,17 @@ void NGColorDotMatrixGameDot::registerColorDotMatrix(NGIPaintableComponent *ipc)
     _scoreDigitPosY = ipc->getHeight() - 1;
     _scoreDigits = ipc->getHeight();
     _dotMaxCatchTime = DEFDOTMAXCATCHTIME + ((ipc->getWidth() - DEFSCOREDIGITPOSX) * (ipc->getHeight() - DEFSCOREDIGITPOSY) * ((DEFSCOREDIGITPOSX + 1) * (DEFSCOREDIGITPOSY + 1) / DEFDOTMAXCATCHTIME));
+    switch(_gameMode) {
+        case gmNormal:
+            _dotMaxCatchTime = _dotMaxCatchTime * 1.5;
+            break;
+        case gmBig:
+            _dotMaxCatchTime = _dotMaxCatchTime * 2;
+            break;
+    }
     NGCustomColorDotMatrixGame::registerColorDotMatrix(ipc);
     _maxGameDotX = ipc->getWidth() - 2;
     _maxGameDotY = ipc->getHeight() - 1;
+    _minGameDotDiff = 1;
+    _maxGameDotDiff = (ipc->getWidth() / 2 + ipc->getHeight() / 2) / 2;
 }

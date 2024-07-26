@@ -16,11 +16,6 @@
 
 #include <NGCustomColorDotMatrixGame.h>
 
-#define MAXINTROX       8
-#define MAXINTROY       8
-#define MINGAMEDOTDIFF  1
-#define MAXGAMEDOTDIFF  4
-
 #define DEFDOTMAXCATCHTIME 1000
 #define DOTCATCHDELAY       200
 
@@ -42,6 +37,8 @@ private:
     int _dotMaxCatchTime;
     byte _maxGameDotX;
     byte _maxGameDotY;
+    byte _minGameDotDiff;
+    byte _maxGameDotDiff;
     
     void _rollPlayerColor();
 

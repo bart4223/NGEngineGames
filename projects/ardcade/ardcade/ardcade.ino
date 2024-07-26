@@ -1,4 +1,4 @@
-#define PROD true  //false, true
+#define PROD true   //false, true
 #define LEDSTRIP    //OLED, DOTMATRIX, LEDSTRIP
 #define LEDSTRIP256 //LEDSTRIP100, LEDSTRIP256
  
