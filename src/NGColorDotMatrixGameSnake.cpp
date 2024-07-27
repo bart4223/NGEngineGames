@@ -82,7 +82,7 @@ bool NGColorDotMatrixGameSnake::_moveSnake() {
 void NGColorDotMatrixGameSnake::_doInitialize() {
     if (_logging) {
         char log[100];
-        sprintf(log, "%s.Initialize", _name);
+        sprintf(log, "%s Initialize...", _name);
         writeInfo(log);
     }
 }
@@ -92,7 +92,7 @@ void NGColorDotMatrixGameSnake::_doStartUp() {
     _score->setColorOn(GAMESNAKECOLORSCOREON);
     if (_logging) {
         char log[100];
-        sprintf(log, "%s.StartUp", _name);
+        sprintf(log, "%s StartUp...", _name);
         writeInfo(log);
     }
     _ownIntro();
@@ -101,7 +101,7 @@ void NGColorDotMatrixGameSnake::_doStartUp() {
 void NGColorDotMatrixGameSnake::_doStartUpDone() {
     if (_logging) {
         char log[100];
-        sprintf(log, "%s.StartUpDone", _name);
+        sprintf(log, "%s StartUp done", _name);
         writeInfo(log);
     }
 }
@@ -120,7 +120,7 @@ void NGColorDotMatrixGameSnake::_doStartGame() {
     _ownRender();
     if (_logging) {
         char log[100];
-        sprintf(log, "%s.StartGame", _name);
+        sprintf(log, "%s Start...", _name);
         writeInfo(log);
     }
 }
@@ -128,7 +128,7 @@ void NGColorDotMatrixGameSnake::_doStartGame() {
 void NGColorDotMatrixGameSnake::_doBreakGame() {
     if (_logging) {
         char log[100];
-        sprintf(log, "%s.BreakGame", _name);
+        sprintf(log, "%s Break...", _name);
         writeInfo(log);
     }
 }
@@ -136,7 +136,7 @@ void NGColorDotMatrixGameSnake::_doBreakGame() {
 void NGColorDotMatrixGameSnake::_doContinueGame() {
     if (_logging) {
         char log[100];
-        sprintf(log, "%s.ContinueGame", _name);
+        sprintf(log, "%s Continue...", _name);
         writeInfo(log);
     }
 }
@@ -146,7 +146,7 @@ void NGColorDotMatrixGameSnake::_doFinishGame() {
     _ownOutro();
     if (_logging) {
         char log[100];
-        sprintf(log, "%s.FinishGame", _name);
+        sprintf(log, "%s Finish...", _name);
         writeInfo(log);
     }
 }

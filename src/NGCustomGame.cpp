@@ -42,7 +42,7 @@ void NGCustomGame::_doInitialized() {
     _initialized = true;
     if (_logging) {
         char log[100];
-        sprintf(log, "...Game \"%s\" initialized", _name);
+        sprintf(log, "%s initialized", _name);
         writeInfo(log);
     }
 }
@@ -280,7 +280,7 @@ void NGCustomGame::startGame() {
         _gameStarted = true;
         if (_logging) {
             char log[100];
-            sprintf(log, "...Game \"%s\" started", _name);
+            sprintf(log, "%s started", _name);
             writeInfo(log);
         }
         if (hasSoundStart()) {
@@ -298,7 +298,7 @@ void NGCustomGame::breakGame() {
         _doBreakGame();
         if (_logging) {
             char log[100];
-            sprintf(log, "...Game \"%s\" breaked", _name);
+            sprintf(log, "%s breaked", _name);
             writeInfo(log);
         }
     }
@@ -310,7 +310,7 @@ void NGCustomGame::continueGame() {
         _doContinueGame();
         if (_logging) {
             char log[100];
-            sprintf(log, "...Game \"%s\" continued", _name);
+            sprintf(log, "%s continued", _name);
             writeInfo(log);
         }
     }
@@ -328,7 +328,7 @@ void NGCustomGame::finishGame() {
         }
         if (_logging) {
             char log[100];
-            sprintf(log, "...Game \"%s\" finished", _name);
+            sprintf(log, "%s finished", _name);
             writeInfo(log);
         }
     }
