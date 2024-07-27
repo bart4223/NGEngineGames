@@ -224,15 +224,17 @@ void NGColorDotMatrixGameAsteroids::_doFinishGame() {
 }
 
 void NGColorDotMatrixGameAsteroids::_doProcessingLoop() {
+    bool doRender = false;
     if (_gameStarted) {
         _ownJoystickLoop();
-        if (_computeLaserbeam()) {
-            _ownRender();
-        }
+        doRender = _computeLaserbeam();
         if ((millis() - _lastAsteroidsMove) > _gameNextStepDelay) {
             _computeAsteroids();
             _spawnAsteroid();
             _lastAsteroidsMove = millis();
+            doRender = true;
+        }
+        if (doRender) {
             _ownRender();
         }
         if (_gameFinished) {
