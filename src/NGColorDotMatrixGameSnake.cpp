@@ -221,7 +221,7 @@ void NGColorDotMatrixGameSnake::_ownRender() {
             if (_maze[y][x] > 0) {
                 _ipc->drawPoint(x, y, _colorSnake);
             } else {
-                _ipc->drawPoint(x, y, COLOR_BLACK);
+                _ipc->drawPoint(x, y, _ipc->getBackground());
             }
         }
     }

@@ -41,6 +41,7 @@ void NGDecimalPointCounter::_render() {
     long counter = _counter;
     for (int i = 0; i < _currentMaxDigits; i++) {
         _digit->beginUpdate();
+        _digit->setColorBackground(_pc->getBackground());
         _digit->setFont(_font);
         _digit->setPosX(_posX + _animationPosXOffset + (_digit->PIXELCOUNT * (_currentMaxDigits - i - 1)));
         _digit->setPosY(_posY);
