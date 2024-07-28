@@ -97,6 +97,7 @@ NGColorDotMatrixGameDot game = NGColorDotMatrixGameDot();
 NGColorDotMatrixGameSnake game = NGColorDotMatrixGameSnake();
 #endif
 #ifdef GAME3
+#define CONTINOUSFIRETHRESHOLD  5
 NGColorDotMatrixGameAsteroids game = NGColorDotMatrixGameAsteroids();
 #endif
 #ifdef GAME4
@@ -136,6 +137,9 @@ void setup() {
   simpleKeypad.registerKey(TOGGLESOUNDPIN, TOGGLESOUND, KEYDELAY);
   simpleKeypad.initialize();
   // Joystick
+  #ifdef GAME3
+  joystick.setContinuousFireThreshold(CONTINOUSFIRETHRESHOLD);
+  #endif
   joystick.registerAction(jaX, jtkLess, JOYSTICKTHRESHOLDLEFT, JOYSTICKDELAY, jmLeft);
   joystick.registerAction(jaX, jtkGreater, JOYSTICKTHRESHOLDRIGHT, JOYSTICKDELAY, jmRight);
   joystick.registerAction(jaY, jtkLess, JOYSTICKTHRESHOLDUP, JOYSTICKDELAY, jmUp);
