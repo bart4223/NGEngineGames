@@ -81,7 +81,7 @@ private:
     
     bool _checkSpacecraft(byte posX, byte posY);
     
-    void _ownJoystickLoop();
+    byte _ownJoystickLoop();
     
     void _ownRender();
     

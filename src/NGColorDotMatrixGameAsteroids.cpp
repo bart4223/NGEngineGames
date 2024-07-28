@@ -107,7 +107,7 @@ void NGColorDotMatrixGameAsteroids::_spawnAsteroid() {
             break;
     }
     if ((random(0, 10) % base) == 0) {
-        _maze[random(1, _maxGameAsteroidsY - 1)][_maxGameAsteroidsX - 1] = GAMEASTEROIDSCOLORINDEXASTEROID;
+        _maze[random(0, _maxGameAsteroidsY - 1)][_maxGameAsteroidsX - 1] = GAMEASTEROIDSCOLORINDEXASTEROID;
     }
 }
 
@@ -225,9 +225,13 @@ void NGColorDotMatrixGameAsteroids::_doFinishGame() {
 
 void NGColorDotMatrixGameAsteroids::_doProcessingLoop() {
     bool doRender = false;
+    byte res;
     if (_gameStarted) {
-        _ownJoystickLoop();
-        doRender = _computeLaserbeam();
+        res = _ownJoystickLoop();
+        doRender = res > 0;
+        if (res < 2 && _computeLaserbeam()) {
+            doRender = true;
+        }
         if ((millis() - _lastAsteroidsMove) > _gameNextStepDelay) {
             _computeAsteroids();
             _spawnAsteroid();
@@ -345,7 +349,8 @@ void NGColorDotMatrixGameAsteroids::_ownOutro() {
     }
 }
 
-void NGColorDotMatrixGameAsteroids::_ownJoystickLoop() {
+byte NGColorDotMatrixGameAsteroids::_ownJoystickLoop() {
+    byte res = 0;
     for (int i = 0; i < _joystickCount; i++) {
         if (_joysticks[i].joystick->hasLastMovement()) {
             switch(_joysticks[i].joystick->getLastMovement()) {
@@ -354,12 +359,9 @@ void NGColorDotMatrixGameAsteroids::_ownJoystickLoop() {
                         _gameFinished = !_checkSpacecraft(_posXSpacecraft, _posYSpacecraft - 1);
                         if (!_gameFinished) {
                             _clearSpacecraft();
-                            if (_hasSprite(GAMEASTEROIDSCOLORINDEXSPACECRAFT01)) {
-                                _ownRender();
-                            }
                             _posYSpacecraft--;
                             _computeSpacecraft();
-                            _ownRender();
+                            res = 1;
                         }
                     }
                     break;
@@ -368,12 +370,9 @@ void NGColorDotMatrixGameAsteroids::_ownJoystickLoop() {
                         _gameFinished = !_checkSpacecraft(_posXSpacecraft, _posYSpacecraft + 1);
                         if (!_gameFinished) {
                             _clearSpacecraft();
-                            if (_hasSprite(GAMEASTEROIDSCOLORINDEXSPACECRAFT01)) {
-                                _ownRender();
-                            }
                             _posYSpacecraft++;
                             _computeSpacecraft();
-                            _ownRender();
+                            res = 1;
                         }
                     }
                     break;
@@ -382,12 +381,9 @@ void NGColorDotMatrixGameAsteroids::_ownJoystickLoop() {
                         _gameFinished = !_checkSpacecraft(_posXSpacecraft - 1, _posYSpacecraft);
                         if (!_gameFinished) {
                             _clearSpacecraft();
-                            if (_hasSprite(GAMEASTEROIDSCOLORINDEXSPACECRAFT01)) {
-                                _ownRender();
-                            }
                             _posXSpacecraft--;
                             _computeSpacecraft();
-                            _ownRender();
+                            res = 1;
                         }
                     }
                     break;
@@ -396,22 +392,20 @@ void NGColorDotMatrixGameAsteroids::_ownJoystickLoop() {
                         _gameFinished = !_checkSpacecraft(_posXSpacecraft + 1, _posYSpacecraft);
                         if (!_gameFinished) {
                             _clearSpacecraft();
-                            if (_hasSprite(GAMEASTEROIDSCOLORINDEXSPACECRAFT01)) {
-                                _ownRender();
-                            }
                             _posXSpacecraft++;
                             _computeSpacecraft();
-                            _ownRender();
+                            res = 1;
                         }
                     }
                     break;
                 case jmFire:
                     _spawnLaserbeam();
-                    _ownRender();
+                    res = 2;
                     break;
             }
         }
     }
+    return res;
 }
 
 void NGColorDotMatrixGameAsteroids::setIntroShotDelay(int shotdelay) {
