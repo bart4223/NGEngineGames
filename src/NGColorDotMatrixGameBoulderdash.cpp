@@ -1519,7 +1519,7 @@ void NGColorDotMatrixGameBoulderdash::_ownJoystickLoop() {
 void NGColorDotMatrixGameBoulderdash::_doInitialize() {
     if (_logging) {
         char log[100];
-        sprintf(log, "%s.Initialize", _name);
+        sprintf(log, "%s Initialize...", _name);
         writeInfo(log);
     }
 }
@@ -1528,7 +1528,7 @@ void NGColorDotMatrixGameBoulderdash::_doStartUp() {
     if (!_inStartUpAnimation) {
         if (_logging) {
             char log[100];
-            sprintf(log, "%s.StartUp", _name);
+            sprintf(log, "%s StartUp...", _name);
             writeInfo(log);
         }
         _ownIntro();
@@ -1546,7 +1546,7 @@ void NGColorDotMatrixGameBoulderdash::_doStartUpDone() {
     _fuse->setValue(_ipc->getWidth());
     if (_logging) {
         char log[100];
-        sprintf(log, "%s.StartUp done", _name);
+        sprintf(log, "%s StartUp done", _name);
         writeInfo(log);
     }
 }
@@ -1560,7 +1560,7 @@ void NGColorDotMatrixGameBoulderdash::_doStartGame() {
     _ownRender();
     if (_logging) {
         char log[100];
-        sprintf(log, "%s.StartGame", _name);
+        sprintf(log, "%s Start...", _name);
         writeInfo(log);
     }
 }
@@ -1568,7 +1568,7 @@ void NGColorDotMatrixGameBoulderdash::_doStartGame() {
 void NGColorDotMatrixGameBoulderdash::_doBreakGame() {
     if (_logging) {
         char log[100];
-        sprintf(log, "%s.BreakGame", _name);
+        sprintf(log, "%s Break...", _name);
         writeInfo(log);
     }
 }
@@ -1576,7 +1576,7 @@ void NGColorDotMatrixGameBoulderdash::_doBreakGame() {
 void NGColorDotMatrixGameBoulderdash::_doContinueGame() {
     if (_logging) {
         char log[100];
-        sprintf(log, "%s.ContinueGame", _name);
+        sprintf(log, "%s Continue...", _name);
         writeInfo(log);
     }
 }
@@ -1585,7 +1585,7 @@ void NGColorDotMatrixGameBoulderdash::_doFinishGame() {
     _ipc->clear();
     if (_logging) {
         char log[100];
-        sprintf(log, "%s.FinishGame", _name);
+        sprintf(log, "%s Finish...", _name);
         writeInfo(log);
     }
 }

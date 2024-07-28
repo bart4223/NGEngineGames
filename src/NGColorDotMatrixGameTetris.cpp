@@ -314,7 +314,7 @@ void NGColorDotMatrixGameTetris::_doStartGame() {
     _ownRender();
     if (_logging) {
         char log[100];
-        sprintf(log, "%s Start", _name);
+        sprintf(log, "%s Start...", _name);
         writeInfo(log);
     }
 }
@@ -322,7 +322,7 @@ void NGColorDotMatrixGameTetris::_doStartGame() {
 void NGColorDotMatrixGameTetris::_doBreakGame() {
     if (_logging) {
         char log[100];
-        sprintf(log, "%s Break", _name);
+        sprintf(log, "%s Break...", _name);
         writeInfo(log);
     }
 }
@@ -330,7 +330,7 @@ void NGColorDotMatrixGameTetris::_doBreakGame() {
 void NGColorDotMatrixGameTetris::_doContinueGame() {
     if (_logging) {
         char log[100];
-        sprintf(log, "%s Continue", _name);
+        sprintf(log, "%s Continue...", _name);
         writeInfo(log);
     }
 }
@@ -339,7 +339,7 @@ void NGColorDotMatrixGameTetris::_doFinishGame() {
     _ipc->clear();
     if (_logging) {
         char log[100];
-        sprintf(log, "%s Finish", _name);
+        sprintf(log, "%s Finish...", _name);
         writeInfo(log);
     }
 }
