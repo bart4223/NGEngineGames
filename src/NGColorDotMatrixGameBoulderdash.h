@@ -251,6 +251,8 @@ private:
     
     void _ownRender();
     
+    int _getAnimationDiamondCount();
+    
     void _ownIntro();
     
     void _ownIntroAnimation();
