@@ -1,9 +1,10 @@
-#define PROD true   //false, true
-#define LEDSTRIP    //OLED, DOTMATRIX, LEDSTRIP
-#define LEDSTRIP256 //LEDSTRIP100, LEDSTRIP256
+#define PROD false     //false, true
+#define LEDSTRIP       //OLED, DOTMATRIX, LEDSTRIP
+#define LEDSTRIP256    //LEDSTRIP100, LEDSTRIP256
+#define JOYSTICKANALOG //JOYSTICKANALOG, JOYSTICKDIGITAL
  
 // Game "Dot"
-#define GAME1
+//#define GAME1
 // Game "Snake"
 //#define GAME2
 // Game "Asteroids"
@@ -11,7 +12,7 @@
 // Game "Tetris"
 //#define GAME4
 // Game "Boulderdash"
-//#define GAME5
+#define GAME5
 
 #include <NGMemoryObserver.h>
 #include <NGSimpleKeypad.h>
@@ -66,8 +67,16 @@
 #define JOYSTICKDELAY 100
 
 #define JOYSTICKID       0
+#ifdef JOYSTICKANALOG
 #define JOYSTICKPINX    A0
 #define JOYSTICKPINY    A1
+#endif
+#ifdef JOYSTICKDIGITAL
+#define JOYSTICKPINXL    4
+#define JOYSTICKPINXR    5
+#define JOYSTICKPINYD    7
+#define JOYSTICKPINYU    6
+#endif
 #define JOYSTICKPINFIRE  8
 
 #define JOYSTICKTHRESHOLDUP       200
@@ -78,7 +87,12 @@
 NGSimpleKeypad simpleKeypad = NGSimpleKeypad();
 NGSoundMachine soundMachine = NGSoundMachine();
 NGSerialNotification serialNotification = NGSerialNotification();
+#ifdef JOYSTICKANALOG
 NGJoystickControl joystick = NGJoystickControl(JOYSTICKID, JOYSTICKPINX, JOYSTICKPINY, JOYSTICKPINFIRE);
+#endif
+#ifdef JOYSTICKDIGITAL
+NGJoystickControl joystick = NGJoystickControl(JOYSTICKID, JOYSTICKPINXL, JOYSTICKPINXR, JOYSTICKPINYD, JOYSTICKPINYU, JOYSTICKPINFIRE);
+#endif
 #ifdef DOTMATRIX
 NGColorDotMatrix cdm = NGColorDotMatrix();
 #endif
@@ -224,4 +238,5 @@ void SimpleKeypadCallback(byte id) {
   #if (PROD == false)
   observeMemory(0);
   #endif
+}
 }
