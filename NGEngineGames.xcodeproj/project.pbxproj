@@ -80,6 +80,8 @@
 		299C2B91295496F200F53CAA /* snake.ino */ = {isa = PBXFileReference; lastKnownFileType = text; path = snake.ino; sourceTree = "<group>"; };
 		299C2B922954A08B00F53CAA /* NGColorDotMatrixGameSnake.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = NGColorDotMatrixGameSnake.cpp; sourceTree = "<group>"; };
 		299C2B932954A08B00F53CAA /* NGColorDotMatrixGameSnake.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NGColorDotMatrixGameSnake.h; sourceTree = "<group>"; };
+		29B7C5E32C5CD8E10031195A /* NGCustomColorDotMatrixEffect.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = NGCustomColorDotMatrixEffect.cpp; sourceTree = "<group>"; };
+		29B7C5E42C5CD8E10031195A /* NGCustomColorDotMatrixEffect.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NGCustomColorDotMatrixEffect.h; sourceTree = "<group>"; };
 		29E872FF296C07EE00F7BF90 /* boulderdash.ino */ = {isa = PBXFileReference; lastKnownFileType = text; path = boulderdash.ino; sourceTree = "<group>"; };
 		29E87300296C081200F7BF90 /* NGColorDotMatrixGameBoulderdash.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = NGColorDotMatrixGameBoulderdash.cpp; sourceTree = "<group>"; };
 		29E87301296C081200F7BF90 /* NGColorDotMatrixGameBoulderdash.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NGColorDotMatrixGameBoulderdash.h; sourceTree = "<group>"; };
@@ -139,6 +141,8 @@
 			children = (
 				295848AA2BE8C63B00AFEF4C /* NGColorDotMatrixEffectZini.h */,
 				295848A92BE8C63B00AFEF4C /* NGColorDotMatrixEffectZini.cpp */,
+				29B7C5E42C5CD8E10031195A /* NGCustomColorDotMatrixEffect.h */,
+				29B7C5E32C5CD8E10031195A /* NGCustomColorDotMatrixEffect.cpp */,
 			);
 			name = effects;
 			sourceTree = "<group>";
