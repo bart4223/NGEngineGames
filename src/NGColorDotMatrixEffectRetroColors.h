@@ -16,12 +16,6 @@
 
 #include "NGIPaintableComponent.h"
 
-//One   #33090b
-//Two   #7d0d1f
-//Three #9e3926
-//Four  #989226
-//Five  #006d19
-
 #define COLORONE    { .red = 0x33, .green = 0x09, .blue = 0x0B }
 #define COLORTWO    { .red = 0x7D, .green = 0x0D, .blue = 0x1F }
 #define COLORTHREE  { .red = 0x9E, .green = 0x39, .blue = 0x26 }
