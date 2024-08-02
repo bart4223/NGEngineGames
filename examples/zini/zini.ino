@@ -1,4 +1,5 @@
-#define OLED //OLED, DOTMATRIX
+#define LEDSTRIP    //OLED, DOTMATRIX, LEDSTRIP
+#define LEDSTRIP256 //LEDSTRIP100, LEDSTRIP256
 //#define RANDOMCOLOR
 
 #include <NGCommon.h>
@@ -21,8 +22,23 @@
 #define MINDELAY   6
 #define MAXDELAY  16
 #endif
-#define MINGRADIENTSTAGES   6
-#define MAXGRADIENTSTAGES  12
+
+#ifdef LEDSTRIP
+#include <NGColorLEDStrip.h>
+#define LEDSTRIPPIN 6
+#define SCALE       1
+#ifdef LEDSTRIP100
+#define LEDSTRIPPIXELS      100
+#define LEDSTRIPROWS         10
+#endif
+#ifdef LEDSTRIP256
+#define LEDSTRIPPIXELS      256
+#define LEDSTRIPROWS         16
+#endif
+#define LEDSTRIPBRIGHTNESS 0.05
+#define MINDELAY  120
+#define MAXDELAY  180
+#endif
 
 #ifdef OLED
 NGColorOLED *cdm = new NGColorOLED();
@@ -30,12 +46,21 @@ NGColorOLED *cdm = new NGColorOLED();
 #ifdef DOTMATRIX
 NGColorDotMatrix *cdm = new NGColorDotMatrix();
 #endif
+#ifdef LEDSTRIP256
+NGColorLEDStrip *cdm = new NGColorLEDStrip(LEDSTRIPPIN, LEDSTRIPPIXELS, LEDSTRIPROWS, lskUpDownAlternate);
+#else
+NGColorLEDStrip *cdm = new NGColorLEDStrip(LEDSTRIPPIN, LEDSTRIPPIXELS, LEDSTRIPROWS);
+#endif
+
+#define MINGRADIENTSTAGES   6
+#define MAXGRADIENTSTAGES  12
+
 NGColorDotMatrixEffectZini *ziniOne;
 NGColorDotMatrixEffectZini *ziniTwo;
 
 void setup() {
   observeMemory(0);
-  initGlobalRandomSeedWithAnalogInput(A0);
+  initGlobalRandomSeedWithAnalogInput(A5);
   colorRGB colorZiniOne;
   colorRGB colorZiniTwo;
   #ifdef RANDOMCOLOR
@@ -51,7 +76,11 @@ void setup() {
   ziniOne->setRandomDelay(false);
   ziniTwo->setRandomDelay(false);
   #endif
+  #ifdef LEDSTRIP
+  cdm->initialize(LEDSTRIPBRIGHTNESS);
+  #else
   cdm->initialize();
+  #endif
   cdm->setScale(SCALE);
   cdm->clear();
 }

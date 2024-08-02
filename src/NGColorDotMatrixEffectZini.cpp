@@ -22,6 +22,8 @@ void NGColorDotMatrixEffectZini::_create(NGIPaintableComponent *ipc, colorRGB co
     _gp = new NGColorDotMatrixGradientPoint(ipc, color, gradientstages, true);
     _posX = random(0, ipc->getWidth());
     _posY = random(0, ipc->getHeight());
+    _maxPosX = ipc->getWidth() - 1;
+    _maxPosY = ipc->getHeight() - 1;
     _diceDirection();
 }
 
@@ -91,13 +93,13 @@ void NGColorDotMatrixEffectZini::processingLoop() {
                     _gradientX = 0;
                     _posX--;
                     if (_posX < 0) {
-                        _posX = 7;
+                        _posX = _maxPosX;
                     }
                     break;
                 case zdRight:
                     _gradientX = 0;
                     _posX++;
-                    if (_posX > 7) {
+                    if (_posX > _maxPosX) {
                         _posX = 0;
                     }
                     break;
@@ -105,13 +107,13 @@ void NGColorDotMatrixEffectZini::processingLoop() {
                     _gradientY = 0;
                     _posY--;
                     if (_posY < 0) {
-                        _posY = 7;
+                        _posY = _maxPosY;
                     }
                     break;
                 case zdDown:
                     _gradientY = 0;
                     _posY++;
-                    if (_posY > 7) {
+                    if (_posY > _maxPosY) {
                         _posY = 0;
                     }
                     break;
