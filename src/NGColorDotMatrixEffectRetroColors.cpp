@@ -13,21 +13,15 @@ NGColorDotMatrixEffectRetroColors::NGColorDotMatrixEffectRetroColors(NGIPaintabl
 
 void NGColorDotMatrixEffectRetroColors::_create(NGIPaintableComponent *ipc) {
     _ipc = ipc;
+    _stripHeight = _ipc->getHeight() / 5;
+    _stripIndex = 0;
 }
 
 void NGColorDotMatrixEffectRetroColors::processingLoop() {
-    int h = _ipc->getHeight() / 5;
-    byte ci = _start;
-    colorRGB color;
     _ipc->beginUpdate();
     for (int y = 0; y < _ipc->getHeight(); y++) {
-        if (y % h == 0) {
-            ci++;
-            if (ci > 4) {
-                ci = 0;
-            }
-        }
-        switch(ci) {
+        colorRGB color;
+        switch(_stripIndex / _stripHeight) {
             case 0:
                 color = COLORONE;
                 break;
@@ -45,11 +39,11 @@ void NGColorDotMatrixEffectRetroColors::processingLoop() {
                 break;
         }
         _ipc->drawLine(0, y, _ipc->getWidth() - 1, y, color);
+        _stripIndex++;
+        if (_stripIndex >= _stripHeight * 5) {
+            _stripIndex = 0;
+        }
     }
     _ipc->endUpdate();
-    _start++;
-    if (_start > 4) {
-        _start = 0;
-    }
     delay(1000);
 }

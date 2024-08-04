@@ -26,7 +26,8 @@ class NGColorDotMatrixEffectRetroColors {
     
 private:
     NGIPaintableComponent *_ipc;
-    byte _start = 0;
+    byte _stripHeight;
+    byte _stripIndex;
     
 protected:
     void _create(NGIPaintableComponent *ipc);
