@@ -14,8 +14,8 @@
 #include <WProgram.h>
 #endif
 
+#include "NGIEffect.h"
 #include "NGIPaintableComponent.h"
-#include "NGCustomColorDotMatrixEffect.h"
 #include "NGColorDotMatrixGradientPoint.h"
 
 #define DEFGRADIENTSTAGES   10
@@ -23,7 +23,7 @@
 
 enum ziniDirection { zdLeft, zdRight, zdUp, zdDown };
 
-class NGColorDotMatrixEffectZini: public NGCustomColorDotMatrixEffect{
+class NGColorDotMatrixEffectZini: public NGIEffect {
   
 private:
     NGColorDotMatrixGradientPoint *_gp;
