@@ -57,6 +57,10 @@ void NGColorDotMatrixEffectZini::setRandomDelay(bool randomDelay) {
     _randomDelay = randomDelay;
 }
 
+void NGColorDotMatrixEffectZini::initialize() {
+    
+}
+
 void NGColorDotMatrixEffectZini::processingLoop() {
     bool ok = _delay == 0;
     if (!ok) {

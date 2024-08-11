@@ -86,6 +86,7 @@
 		29E872FF296C07EE00F7BF90 /* boulderdash.ino */ = {isa = PBXFileReference; lastKnownFileType = text; path = boulderdash.ino; sourceTree = "<group>"; };
 		29E87300296C081200F7BF90 /* NGColorDotMatrixGameBoulderdash.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = NGColorDotMatrixGameBoulderdash.cpp; sourceTree = "<group>"; };
 		29E87301296C081200F7BF90 /* NGColorDotMatrixGameBoulderdash.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NGColorDotMatrixGameBoulderdash.h; sourceTree = "<group>"; };
+		29ED57F22C6351DC003E3AE4 /* splash.ino */ = {isa = PBXFileReference; lastKnownFileType = text; path = splash.ino; sourceTree = "<group>"; };
 		29F15E292BD8035100F1E714 /* colorOLEDText.ino */ = {isa = PBXFileReference; lastKnownFileType = text; path = colorOLEDText.ino; sourceTree = "<group>"; };
 		29FD0A6C297DA494003CAA71 /* gamepad.ino */ = {isa = PBXFileReference; lastKnownFileType = text; path = gamepad.ino; sourceTree = "<group>"; };
 		29FD0A6D297DA4D5003CAA71 /* NGGamePad.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = NGGamePad.cpp; sourceTree = "<group>"; };
@@ -180,6 +181,7 @@
 				29620D7829B4B6170020B874 /* colorOLED */,
 				29620D7D29B4DB090020B874 /* decimalpointcounter */,
 				29B7C5E72C5CF2CE0031195A /* retrocolors */,
+				29ED57F12C6351A2003E3AE4 /* splash */,
 				295848AB2BE8C69E00AFEF4C /* zini */,
 			);
 			path = examples;
@@ -399,6 +401,14 @@
 				29E872FF296C07EE00F7BF90 /* boulderdash.ino */,
 			);
 			path = boulderdash;
+			sourceTree = "<group>";
+		};
+		29ED57F12C6351A2003E3AE4 /* splash */ = {
+			isa = PBXGroup;
+			children = (
+				29ED57F22C6351DC003E3AE4 /* splash.ino */,
+			);
+			path = splash;
 			sourceTree = "<group>";
 		};
 		29FCF0B22955D68E0065BD20 /* projects */ = {

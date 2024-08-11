@@ -40,6 +40,8 @@ protected:
 public:
     NGColorDotMatrixEffectRetroColors(NGIPaintableComponent *ipc);
     
+    void initialize();
+    
     void processingLoop();
 };
 

@@ -17,6 +17,10 @@ void NGColorDotMatrixEffectRetroColors::_create(NGIPaintableComponent *ipc) {
     _stripIndex = 0;
 }
 
+void NGColorDotMatrixEffectRetroColors::initialize() {
+    
+}
+
 void NGColorDotMatrixEffectRetroColors::processingLoop() {
     if (_lastUpdate == 0 || millis() - _lastUpdate > _delay) {
         _ipc->beginUpdate();

@@ -54,6 +54,8 @@ public:
     
     void setRandomDelay(bool randomDelay);
     
+    void initialize();
+    
     void processingLoop();
 };
 
