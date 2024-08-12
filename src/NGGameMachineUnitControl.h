@@ -51,7 +51,7 @@ public:
     
     void toggleDoPlaySound();
     
-    void registerNotification(NGCustomNotification *notification);
+    void registerNotification(NGINotification *notification);
     
     void setLogging(bool logging);
 };

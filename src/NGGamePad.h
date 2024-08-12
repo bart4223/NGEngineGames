@@ -14,7 +14,7 @@
 #include <WProgram.h>
 #endif
 
-#include <NGCustomNotification.h>
+#include <NGINotification.h>
 #include <NGCustomGame.h>
 
 #define GAMEPADNOTIFICATIONCOUNT 3
@@ -31,7 +31,7 @@ typedef struct gamePadStruct gamePad;
 class NGGamePad {
     
 private:
-    NGCustomNotification *_notification[GAMENOTIFICATIONCOUNT];
+    NGINotification *_notification[GAMENOTIFICATIONCOUNT];
     int _notificationCount = 0;
     int _exceptionCount = 0;
     gamePad _games[GAMEPADMAXGAMECOUNT];
@@ -53,7 +53,7 @@ public:
     
     bool getLogging();
     
-    void registerNotification(NGCustomNotification *notification);
+    void registerNotification(NGINotification *notification);
     
     void registerGame(NGCustomGame *game);
 

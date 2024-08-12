@@ -35,7 +35,7 @@ bool NGGamePad::getLogging() {
     return _logging;
 }
 
-void NGGamePad::registerNotification(NGCustomNotification *notification) {
+void NGGamePad::registerNotification(NGINotification *notification) {
     if (_notificationCount < GAMEPADNOTIFICATIONCOUNT) {
         char log[100];
         _notification[_notificationCount] = notification;

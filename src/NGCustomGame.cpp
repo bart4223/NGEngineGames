@@ -69,7 +69,7 @@ void NGCustomGame::registerSoundFinish(int sound) {
     _soundFinish = sound;
 }
 
-void NGCustomGame::registerNotification(NGCustomNotification *notification) {
+void NGCustomGame::registerNotification(NGINotification *notification) {
     if (_notificationCount < GAMENOTIFICATIONCOUNT) {
         char log[100];
         _notification[_notificationCount] = notification;

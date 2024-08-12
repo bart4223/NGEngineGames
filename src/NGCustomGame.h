@@ -14,7 +14,7 @@
 #include <WProgram.h>
 #endif
 
-#include <NGCustomNotification.h>
+#include <NGINotification.h>
 #include <NGSoundMachine.h>
 #include <NGJoystickControl.h>
 
@@ -47,7 +47,7 @@ class NGCustomGame {
     
 protected:
     NGSoundMachine *_soundMachine = nullptr;
-    NGCustomNotification *_notification[GAMENOTIFICATIONCOUNT];
+    NGINotification *_notification[GAMENOTIFICATIONCOUNT];
     int _notificationCount = 0;
     char* _name;
     bool _logging = false;
@@ -114,7 +114,7 @@ public:
     
     void registerSoundFinish(int sound);
     
-    void registerNotification(NGCustomNotification *notification);
+    void registerNotification(NGINotification *notification);
     
     void registerGameKey(gameFunction function, byte id);
     

@@ -68,7 +68,7 @@ void NGGameMachineUnitControl::toggleDoPlaySound() {
     _game->toggleDoPlaySound();
 }
 
-void NGGameMachineUnitControl::registerNotification(NGCustomNotification *notification) {
+void NGGameMachineUnitControl::registerNotification(NGINotification *notification) {
     NGCustomUnitControl::registerNotification(notification);
     _game->registerNotification(notification);
 }
