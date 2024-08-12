@@ -18,6 +18,7 @@
 #include "NGIPaintableComponent.h"
 #include "NGColorDotMatrixGradientPoint.h"
 
+#define DEFZINICOLOR        COLOR_RED
 #define DEFGRADIENTSTAGES   10
 #define DEFZINIDELAY        10
 
@@ -48,6 +49,8 @@ protected:
     void _diceDirection();
     
 public:
+    NGColorDotMatrixEffectZini(NGIPaintableComponent *ipc);
+    
     NGColorDotMatrixEffectZini(NGIPaintableComponent *ipc, colorRGB color, byte gradientstages);
     
     NGColorDotMatrixEffectZini(NGIPaintableComponent *ipc, colorRGB color, byte gradientstages, int delay);

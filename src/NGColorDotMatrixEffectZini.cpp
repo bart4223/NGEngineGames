@@ -8,8 +8,12 @@
 #include "NGCommon.h"
 #include "NGColorDotMatrixEffectZini.h"
 
+NGColorDotMatrixEffectZini::NGColorDotMatrixEffectZini(NGIPaintableComponent *ipc) {
+    _create(ipc, DEFZINICOLOR, DEFGRADIENTSTAGES, DEFZINIDELAY);
+}
+
 NGColorDotMatrixEffectZini::NGColorDotMatrixEffectZini(NGIPaintableComponent *ipc, colorRGB color, byte gradientstages) {
-    _create(ipc, color, DEFGRADIENTSTAGES, delay);
+    _create(ipc, color, gradientstages, DEFZINIDELAY);
 }
 
 NGColorDotMatrixEffectZini::NGColorDotMatrixEffectZini(NGIPaintableComponent *ipc, colorRGB color, byte gradientstages, int delay) {
