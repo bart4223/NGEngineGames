@@ -80,9 +80,9 @@
 		299C2B91295496F200F53CAA /* snake.ino */ = {isa = PBXFileReference; lastKnownFileType = text; path = snake.ino; sourceTree = "<group>"; };
 		299C2B922954A08B00F53CAA /* NGColorDotMatrixGameSnake.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = NGColorDotMatrixGameSnake.cpp; sourceTree = "<group>"; };
 		299C2B932954A08B00F53CAA /* NGColorDotMatrixGameSnake.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NGColorDotMatrixGameSnake.h; sourceTree = "<group>"; };
-		29B7C5E52C5CE4B50031195A /* NGColorDotMatrixEffectRetroColors.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = NGColorDotMatrixEffectRetroColors.cpp; sourceTree = "<group>"; };
-		29B7C5E62C5CE4B50031195A /* NGColorDotMatrixEffectRetroColors.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NGColorDotMatrixEffectRetroColors.h; sourceTree = "<group>"; };
-		29B7C5E82C5CF2F40031195A /* retrocolors.ino */ = {isa = PBXFileReference; lastKnownFileType = text; path = retrocolors.ino; sourceTree = "<group>"; };
+		29B7C5E52C5CE4B50031195A /* NGColorDotMatrixEffectRetroRibbons.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = NGColorDotMatrixEffectRetroRibbons.cpp; sourceTree = "<group>"; };
+		29B7C5E62C5CE4B50031195A /* NGColorDotMatrixEffectRetroRibbons.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NGColorDotMatrixEffectRetroRibbons.h; sourceTree = "<group>"; };
+		29B7C5E82C5CF2F40031195A /* retroribbons.ino */ = {isa = PBXFileReference; lastKnownFileType = text; path = retroribbons.ino; sourceTree = "<group>"; };
 		29E872FF296C07EE00F7BF90 /* boulderdash.ino */ = {isa = PBXFileReference; lastKnownFileType = text; path = boulderdash.ino; sourceTree = "<group>"; };
 		29E87300296C081200F7BF90 /* NGColorDotMatrixGameBoulderdash.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = NGColorDotMatrixGameBoulderdash.cpp; sourceTree = "<group>"; };
 		29E87301296C081200F7BF90 /* NGColorDotMatrixGameBoulderdash.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NGColorDotMatrixGameBoulderdash.h; sourceTree = "<group>"; };
@@ -141,8 +141,8 @@
 		295848A82BE8C5D600AFEF4C /* effects */ = {
 			isa = PBXGroup;
 			children = (
-				29B7C5E62C5CE4B50031195A /* NGColorDotMatrixEffectRetroColors.h */,
-				29B7C5E52C5CE4B50031195A /* NGColorDotMatrixEffectRetroColors.cpp */,
+				29B7C5E62C5CE4B50031195A /* NGColorDotMatrixEffectRetroRibbons.h */,
+				29B7C5E52C5CE4B50031195A /* NGColorDotMatrixEffectRetroRibbons.cpp */,
 				295848AA2BE8C63B00AFEF4C /* NGColorDotMatrixEffectZini.h */,
 				295848A92BE8C63B00AFEF4C /* NGColorDotMatrixEffectZini.cpp */,
 			);
@@ -180,7 +180,7 @@
 			children = (
 				29620D7829B4B6170020B874 /* colorOLED */,
 				29620D7D29B4DB090020B874 /* decimalpointcounter */,
-				29B7C5E72C5CF2CE0031195A /* retrocolors */,
+				29B7C5E72C5CF2CE0031195A /* retroribbons */,
 				29ED57F12C6351A2003E3AE4 /* splash */,
 				295848AB2BE8C69E00AFEF4C /* zini */,
 			);
@@ -386,12 +386,12 @@
 			path = snake;
 			sourceTree = "<group>";
 		};
-		29B7C5E72C5CF2CE0031195A /* retrocolors */ = {
+		29B7C5E72C5CF2CE0031195A /* retroribbons */ = {
 			isa = PBXGroup;
 			children = (
-				29B7C5E82C5CF2F40031195A /* retrocolors.ino */,
+				29B7C5E82C5CF2F40031195A /* retroribbons.ino */,
 			);
-			path = retrocolors;
+			path = retroribbons;
 			sourceTree = "<group>";
 		};
 		29E872FE296C07C900F7BF90 /* boulderdash */ = {

@@ -1,12 +1,12 @@
 //
-//  NGColorDotMatrixEffectRetroColors.h
+//  NGColorDotMatrixEffectRetroRibbons.h
 //  NGEngineGames
 //
 //  Created by Nils Grimmer on 02.08.24.
 //
 
-#ifndef NGColorDotMatrixEffectRetroColors_h
-#define NGColorDotMatrixEffectRetroColors_h
+#ifndef NGColorDotMatrixEffectRetroRibbons_h
+#define NGColorDotMatrixEffectRetroRibbons_h
 
 #if (ARDUINO >= 100)
 #include <Arduino.h>
@@ -25,7 +25,7 @@
 
 #define DEFEFFECTDELAY 100
 
-class NGColorDotMatrixEffectRetroColors: public NGIEffect {
+class NGColorDotMatrixEffectRetroRibbons: public NGIEffect {
     
 private:
     NGIPaintableComponent *_ipc;
@@ -38,11 +38,11 @@ protected:
     void _create(NGIPaintableComponent *ipc);
     
 public:
-    NGColorDotMatrixEffectRetroColors(NGIPaintableComponent *ipc);
+    NGColorDotMatrixEffectRetroRibbons(NGIPaintableComponent *ipc);
     
     void initialize();
     
     void processingLoop();
 };
 
-#endif /* NGColorDotMatrixEffectRetroColors_h */
+#endif /* NGColorDotMatrixEffectRetroRibbons_h */

@@ -1,27 +1,27 @@
 //
-//  NGColorDotMatrixEffectRetroColors.cpp
+//  NGColorDotMatrixEffectRetroRibbons.cpp
 //  NGEngineGames
 //
 //  Created by Nils Grimmer on 02.08.24.
 //
 
-#include "NGColorDotMatrixEffectRetroColors.h"
+#include "NGColorDotMatrixEffectRetroRibbons.h"
 
-NGColorDotMatrixEffectRetroColors::NGColorDotMatrixEffectRetroColors(NGIPaintableComponent *ipc) {
+NGColorDotMatrixEffectRetroRibbons::NGColorDotMatrixEffectRetroRibbons(NGIPaintableComponent *ipc) {
     _create(ipc);
 }
 
-void NGColorDotMatrixEffectRetroColors::_create(NGIPaintableComponent *ipc) {
+void NGColorDotMatrixEffectRetroRibbons::_create(NGIPaintableComponent *ipc) {
     _ipc = ipc;
     _stripHeight = _ipc->getHeight() / 5;
     _stripIndex = 0;
 }
 
-void NGColorDotMatrixEffectRetroColors::initialize() {
+void NGColorDotMatrixEffectRetroRibbons::initialize() {
     
 }
 
-void NGColorDotMatrixEffectRetroColors::processingLoop() {
+void NGColorDotMatrixEffectRetroRibbons::processingLoop() {
     if (_lastUpdate == 0 || millis() - _lastUpdate > _delay) {
         _ipc->beginUpdate();
         for (int y = 0; y < _ipc->getHeight(); y++) {
@@ -51,5 +51,11 @@ void NGColorDotMatrixEffectRetroColors::processingLoop() {
         }
         _ipc->endUpdate();
         _lastUpdate = millis();
+        if (_stripHeight * 5 == _ipc->getHeight()) {
+            _stripIndex++;
+            if (_stripIndex >= _stripHeight * 5) {
+                _stripIndex = 0;
+            }
+        }
     }
 }
