@@ -19,12 +19,16 @@
 #endif
 #define LEDSTRIPBRIGHTNESS 0.05
 
-#ifdef LEDSTRIP256
-NGColorLEDStrip *cdm = new NGColorLEDStrip(LEDSTRIPPIN, LEDSTRIPPIXELS, LEDSTRIPROWS, lskUpDownAlternate);
-#endif
 #ifdef LEDSTRIP100
 NGColorLEDStrip *cdm = new NGColorLEDStrip(LEDSTRIPPIN, LEDSTRIPPIXELS, LEDSTRIPROWS);
 #endif
+#ifdef LEDSTRIP256
+NGColorLEDStrip *cdm = new NGColorLEDStrip(LEDSTRIPPIN, LEDSTRIPPIXELS, LEDSTRIPROWS, lskUpDownAlternate);
+#endif
+
+#define LOGGING true
+
+bool finished = false;
 
 NGSplash *splash = new NGSplash(new NGSerialNotification());
 NGColorDotMatrixEffectRetroRibbons *effectOne = new NGColorDotMatrixEffectRetroRibbons(cdm);
@@ -33,12 +37,21 @@ NGColorDotMatrixEffectZini *effectTwo = new NGColorDotMatrixEffectZini(cdm);
 void setup() {
   observeMemory(0);
   cdm->initialize(LEDSTRIPBRIGHTNESS);
-  splash->registerEffect(effectOne);
-  splash->registerEffect(effectTwo);
+  splash->setLogging(LOGGING);
+  splash->registerEffect(effectOne, 0, 5000);
+  splash->registerEffect(effectTwo, 1000, 2000);
   splash->initialize();
   observeMemory(0);
 }
 
 void loop() {
-  splash->processingLoop();
+  if (!finished) {
+    finished = splash->isFinished();
+    if (!finished) {
+      splash->processingLoop();
+    } else {
+      splash->writeInfo("Splash finished!");
+      cdm->clear();
+    }
+  }
 }
