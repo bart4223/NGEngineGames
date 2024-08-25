@@ -4,6 +4,7 @@
 #include <NGSerialNotification.h>
 #include <NGColorLEDStrip.h>
 #include <NGSplash.h>
+#include <NGColorDotMatrixEffectVoid.h>
 #include <NGColorDotMatrixEffectRetroRibbons.h>
 #include <NGColorDotMatrixEffectZini.h>
 
@@ -33,6 +34,7 @@ bool finished = false;
 NGSplash *splash = new NGSplash(new NGSerialNotification());
 NGColorDotMatrixEffectRetroRibbons *effectOne = new NGColorDotMatrixEffectRetroRibbons(cdm);
 NGColorDotMatrixEffectZini *effectTwo = new NGColorDotMatrixEffectZini(cdm);
+NGColorDotMatrixEffectVoid *effectThree = new NGColorDotMatrixEffectVoid(cdm);
 
 void setup() {
   observeMemory(0);
@@ -40,6 +42,7 @@ void setup() {
   splash->setLogging(LOGGING);
   splash->registerEffect(effectOne, 0, 5000);
   splash->registerEffect(effectTwo, 1000, 2000);
+  splash->registerEffect(effectThree, 5000, 10);
   splash->initialize();
   observeMemory(0);
 }
@@ -51,7 +54,6 @@ void loop() {
       splash->processingLoop();
     } else {
       splash->writeInfo("Splash finished!");
-      cdm->clear();
     }
   }
 }
