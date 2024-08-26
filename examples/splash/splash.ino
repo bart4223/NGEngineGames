@@ -4,7 +4,7 @@
 #include <NGSerialNotification.h>
 #include <NGColorLEDStrip.h>
 #include <NGSplash.h>
-#include <NGColorDotMatrixEffectVoid.h>
+#include <NGPaintableComponentEffectVoid.h>
 #include <NGColorDotMatrixEffectRetroRibbons.h>
 #include <NGColorDotMatrixEffectZini.h>
 
@@ -34,7 +34,7 @@ bool finished = false;
 NGSplash *splash = new NGSplash(new NGSerialNotification());
 NGColorDotMatrixEffectRetroRibbons *effectOne = new NGColorDotMatrixEffectRetroRibbons(cdm);
 NGColorDotMatrixEffectZini *effectTwo = new NGColorDotMatrixEffectZini(cdm);
-NGColorDotMatrixEffectVoid *effectThree = new NGColorDotMatrixEffectVoid(cdm);
+NGPaintableComponentEffectVoid *effectThree = new NGPaintableComponentEffectVoid(cdm);
 
 void setup() {
   observeMemory(0);
