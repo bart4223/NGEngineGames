@@ -21,6 +21,7 @@
 		29255B74298D350100234506 /* Tetris.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Tetris.png; sourceTree = "<group>"; };
 		29255B76298D392E00234506 /* LevelOne.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = LevelOne.png; sourceTree = "<group>"; };
 		29255B78298E5C5B00234506 /* LevelTwo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = LevelTwo.png; sourceTree = "<group>"; };
+		295756332C7C7ACD00616955 /* eNGineGameDisplay.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = eNGineGameDisplay.png; sourceTree = "<group>"; };
 		295848A92BE8C63B00AFEF4C /* NGColorDotMatrixEffectZini.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = NGColorDotMatrixEffectZini.cpp; sourceTree = "<group>"; };
 		295848AA2BE8C63B00AFEF4C /* NGColorDotMatrixEffectZini.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NGColorDotMatrixEffectZini.h; sourceTree = "<group>"; };
 		295848AC2BE8C6CD00AFEF4C /* zini.ino */ = {isa = PBXFileReference; lastKnownFileType = text; path = zini.ino; sourceTree = "<group>"; };
@@ -219,6 +220,7 @@
 		296452882987F28800E1EF1D /* images */ = {
 			isa = PBXGroup;
 			children = (
+				295756332C7C7ACD00616955 /* eNGineGameDisplay.png */,
 				296452892987F32C00E1EF1D /* eNGineGameShield.png */,
 			);
 			path = images;
