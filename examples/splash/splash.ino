@@ -6,8 +6,9 @@
 #include <NGSplash.h>
 #include <NGPaintableComponentEffectVoid.h>
 #include <NGColorDotMatrixEffectRetroRibbons.h>
-#include <NGColorDotMatrixEffectZini.h>
 #include <NGColorDotMatrixEffectText.h>
+#include <NGSoundMachineEffect.h>
+#include <NGJingleSuperMarioShort.h>
 #include <NGZX81Font.h>
 
 #ifdef LEDSTRIP256
@@ -29,29 +30,38 @@ NGColorLEDStrip *cdm = new NGColorLEDStrip(LEDSTRIPPIN, LEDSTRIPPIXELS, LEDSTRIP
 NGColorLEDStrip *cdm = new NGColorLEDStrip(LEDSTRIPPIN, LEDSTRIPPIXELS, LEDSTRIPROWS, lskUpDownAlternate);
 #endif
 
+#define ACTIVATIONPIN 9
+
 #define LOGGING true
 
 bool finished = false;
 
+NGSoundMachine *sm = new NGSoundMachine(DEFPINPIEZO, ACTIVATIONPIN);
 NGSplash *splash = new NGSplash(new NGSerialNotification());
 NGColorDotMatrixEffectRetroRibbons *effectOne = new NGColorDotMatrixEffectRetroRibbons(cdm);
-//NGColorDotMatrixEffectZini *effectTwo = new NGColorDotMatrixEffectZini(cdm);
 NGZX81Font *fontZX81 = new NGZX81Font();
 NGColorDotMatrixEffectText *effectThree = new NGColorDotMatrixEffectText(cdm, COLOR_BLUE, COLOR_TRANSPARENT, fontZX81);
 NGPaintableComponentEffectVoid *effectFour = new NGPaintableComponentEffectVoid(cdm);
+NGSoundMachineEffect *effectTwo = new NGSoundMachineEffect(sm);
 
 void setup() {
   observeMemory(0);
+  sm->setConcurrently(true);
+  sm->initialize();
   cdm->initialize(LEDSTRIPBRIGHTNESS);
   splash->setLogging(LOGGING);
-  splash->registerEffect(effectOne, 0, 2400);
-  //splash->registerEffect(effectTwo, 1000, 2000);
+  splash->registerEffect(effectOne, 0, 3400);
+  effectTwo->playJingle(sm->registerJingle(new NGJingleSuperMarioShort));
+  sm->registerJingle(new NGJingleSuperMarioShort);
+  splash->registerEffect(effectTwo, 1900, 1500);
   effectThree->setPosition((cdm->getWidth() - 8) / 2, (cdm->getHeight() - 8) / 2);
   effectThree->setDelay(200);
   effectThree->setText("ARDCADE");
   splash->registerEffect(effectThree, 500, 1400);
-  splash->registerEffect(effectFour, 2400, 10);
+  splash->registerEffect(effectFour, 3400, 10);
   splash->initialize();
+  sm->activate();
+  sm->play(0);
   observeMemory(0);
 }
 
