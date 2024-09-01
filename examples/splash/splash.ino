@@ -8,7 +8,7 @@
 #include <NGColorDotMatrixEffectRetroRibbons.h>
 #include <NGColorDotMatrixEffectText.h>
 #include <NGSoundMachineEffect.h>
-#include <NGJingleSuperMarioShort.h>
+#include <NGJingleBoot.h>
 #include <NGZX81Font.h>
 
 #ifdef LEDSTRIP256
@@ -50,14 +50,13 @@ void setup() {
   sm->initialize();
   cdm->initialize(LEDSTRIPBRIGHTNESS);
   splash->setLogging(LOGGING);
-  splash->registerEffect(effectOne, 0, 3400);
-  effectTwo->playJingle(sm->registerJingle(new NGJingleSuperMarioShort));
-  sm->registerJingle(new NGJingleSuperMarioShort);
-  splash->registerEffect(effectTwo, 1900, 1500);
+  splash->registerEffect(effectOne, 500, 2900);
+  effectTwo->playJingle(sm->registerJingle(new NGJingleBoot));
+  splash->registerEffect(effectTwo, 0, 1500);
   effectThree->setPosition((cdm->getWidth() - 8) / 2, (cdm->getHeight() - 8) / 2);
   effectThree->setDelay(200);
   effectThree->setText("ARDCADE");
-  splash->registerEffect(effectThree, 500, 1400);
+  splash->registerEffect(effectThree, 1500, 1400);
   splash->registerEffect(effectFour, 3400, 10);
   splash->initialize();
   sm->activate();
