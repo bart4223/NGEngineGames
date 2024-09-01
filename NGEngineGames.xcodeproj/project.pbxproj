@@ -87,6 +87,7 @@
 		29E872FF296C07EE00F7BF90 /* boulderdash.ino */ = {isa = PBXFileReference; lastKnownFileType = text; path = boulderdash.ino; sourceTree = "<group>"; };
 		29E87300296C081200F7BF90 /* NGColorDotMatrixGameBoulderdash.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = NGColorDotMatrixGameBoulderdash.cpp; sourceTree = "<group>"; };
 		29E87301296C081200F7BF90 /* NGColorDotMatrixGameBoulderdash.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NGColorDotMatrixGameBoulderdash.h; sourceTree = "<group>"; };
+		29EBB92A2C84B631000B20EB /* ArdcadeMainboard.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ArdcadeMainboard.png; sourceTree = "<group>"; };
 		29ED57F22C6351DC003E3AE4 /* splash.ino */ = {isa = PBXFileReference; lastKnownFileType = text; path = splash.ino; sourceTree = "<group>"; };
 		29F15E292BD8035100F1E714 /* colorOLEDText.ino */ = {isa = PBXFileReference; lastKnownFileType = text; path = colorOLEDText.ino; sourceTree = "<group>"; };
 		29FD0A6C297DA494003CAA71 /* gamepad.ino */ = {isa = PBXFileReference; lastKnownFileType = text; path = gamepad.ino; sourceTree = "<group>"; };
@@ -238,6 +239,7 @@
 		29680C872C41237600BB0F58 /* images */ = {
 			isa = PBXGroup;
 			children = (
+				29EBB92A2C84B631000B20EB /* ArdcadeMainboard.png */,
 			);
 			path = images;
 			sourceTree = "<group>";
