@@ -1,10 +1,8 @@
 #define PROD false     //false, true
-#define LEDSTRIP       //OLED, DOTMATRIX, LEDSTRIP
-#define LEDSTRIP256    //LEDSTRIP100, LEDSTRIP256
-#define JOYSTICKANALOG //JOYSTICKANALOG, JOYSTICKDIGITAL
+#define LEDSTRIP100    //LEDSTRIP100, LEDSTRIP256
  
 // Game "Dot"
-//#define GAME1
+#define GAME1
 // Game "Snake"
 //#define GAME2
 // Game "Asteroids"
@@ -12,14 +10,15 @@
 // Game "Tetris"
 //#define GAME4
 // Game "Boulderdash"
-#define GAME5
+//#define GAME5
 
 #include <NGMemoryObserver.h>
 #include <NGSimpleKeypad.h>
-#include <NGJingleHelloDude.h>
-#include <NGJingleSuperMarioShort.h>
 #include <NGSerialNotification.h>
+#include <NGColorLEDStrip.h>
 #include <NGGameMachineUnitControl.h>
+#include <NGJingleBoot.h>
+
 #ifdef GAME1
 #include <NGColorDotMatrixGameDot.h>
 #endif
@@ -35,15 +34,9 @@
 #ifdef GAME5
 #include <NGColorDotMatrixGameBoulderdash.h>
 #endif
-#ifdef OLED
-#include <NGColorOLED.h>
-#endif
-#ifdef DOTMATRIX
-#include <NGColorDotMatrix.h>
-#endif
-#ifdef LEDSTRIP
-#include <NGColorLEDStrip.h>
-#define LEDSTRIPPIN           6
+
+#define LEDSTRIPPIN           8
+#define LEDSTRIPBRIGHTNESS 0.05
 #ifdef LEDSTRIP100
 #define LEDSTRIPPIXELS      100
 #define LEDSTRIPROWS         10
@@ -52,57 +45,42 @@
 #define LEDSTRIPPIXELS      256
 #define LEDSTRIPROWS         16
 #endif
-#define LEDSTRIPBRIGHTNESS 0.05
-#endif
 
 #define _GAMEMACHINE  "Ardcade"
 #define GAMEMACHINE   (char*)_GAMEMACHINE
 
-#define STARTGAMEPIN        12
-#define STARTGAMEID         0x2A
-#define TOGGLESOUNDPIN      11
-#define TOGGLESOUND         0x2B
+#define BUTTONA_PINACTIVATION  22
+#define BUTTONA_PIN            23
+#define BUTTONA_ID           0x2A
+#define BUTTONB_PINACTIVATION  24
+#define BUTTONB_PIN            25
+#define BUTTONB_ID           0x2B
 
 #define KEYDELAY      500
 #define JOYSTICKDELAY 100
 
 #define JOYSTICKID       0
-#ifdef JOYSTICKANALOG
-#define JOYSTICKPINX    A0
-#define JOYSTICKPINY    A1
-#endif
-#ifdef JOYSTICKDIGITAL
 #define JOYSTICKPINXL    4
 #define JOYSTICKPINXR    5
 #define JOYSTICKPINYD    7
 #define JOYSTICKPINYU    6
-#endif
-#define JOYSTICKPINFIRE  8
 
-#define JOYSTICKTHRESHOLDUP       200
-#define JOYSTICKTHRESHOLDDOWN     823
-#define JOYSTICKTHRESHOLDLEFT     200
-#define JOYSTICKTHRESHOLDRIGHT    823
+#define JOYSTICKTHRESHOLDUP       100
+#define JOYSTICKTHRESHOLDDOWN     923
+#define JOYSTICKTHRESHOLDLEFT     100
+#define JOYSTICKTHRESHOLDRIGHT    923
+
+#define SOUNDACTIVATIONPIN 9
 
 NGSimpleKeypad simpleKeypad = NGSimpleKeypad();
-NGSoundMachine soundMachine = NGSoundMachine();
+NGSoundMachine soundMachine = NGSoundMachine(DEFPINPIEZO, SOUNDACTIVATIONPIN);
 NGSerialNotification serialNotification = NGSerialNotification();
-#ifdef JOYSTICKANALOG
-NGJoystickControl joystick = NGJoystickControl(JOYSTICKID, JOYSTICKPINX, JOYSTICKPINY, JOYSTICKPINFIRE);
-#endif
-#ifdef JOYSTICKDIGITAL
-NGJoystickControl joystick = NGJoystickControl(JOYSTICKID, JOYSTICKPINXL, JOYSTICKPINXR, JOYSTICKPINYD, JOYSTICKPINYU, JOYSTICKPINFIRE);
-#endif
-#ifdef DOTMATRIX
-NGColorDotMatrix cdm = NGColorDotMatrix();
-#endif
-#ifdef OLED
-NGColorOLED cdm = NGColorOLED();
+NGJoystickControl joystick = NGJoystickControl(JOYSTICKID, JOYSTICKPINXL, JOYSTICKPINXR, JOYSTICKPINYD, JOYSTICKPINYU, BUTTONB_PIN, true);
+#ifdef LEDSTRIP100
+NGColorLEDStrip cdm = NGColorLEDStrip(LEDSTRIPPIN, LEDSTRIPPIXELS, LEDSTRIPROWS);
 #endif
 #ifdef LEDSTRIP256
 NGColorLEDStrip cdm = NGColorLEDStrip(LEDSTRIPPIN, LEDSTRIPPIXELS, LEDSTRIPROWS, lskUpDownAlternate);
-#else
-NGColorLEDStrip cdm = NGColorLEDStrip(LEDSTRIPPIN, LEDSTRIPPIXELS, LEDSTRIPROWS);
 #endif
 #ifdef GAME1
 NGColorDotMatrixGameDot game = NGColorDotMatrixGameDot();
@@ -135,75 +113,64 @@ void setup() {
   unitGameMachine.setLogging(false);
   #endif
   // ColorDotMatrix
-  #ifdef LEDSTRIP
   cdm.initialize(LEDSTRIPBRIGHTNESS);
-  #else
-  cdm.initialize();
-  #endif
-  #ifdef OLED
-  cdm.setScale(8);
-  #endif
   cdm.clear();
   unitGameMachine.initialize();
   // Keypad
   simpleKeypad.registerCallback(&SimpleKeypadCallback);
-  simpleKeypad.registerKey(STARTGAMEPIN, STARTGAMEID, KEYDELAY);
-  simpleKeypad.registerKey(TOGGLESOUNDPIN, TOGGLESOUND, KEYDELAY);
+  simpleKeypad.registerKey(BUTTONA_PIN, BUTTONA_PINACTIVATION, BUTTONA_ID, KEYDELAY, skmHigh);
+  simpleKeypad.registerKey(BUTTONB_PIN, BUTTONB_PINACTIVATION, BUTTONB_ID, KEYDELAY, skmHigh);
   simpleKeypad.initialize();
   // Joystick
   #ifdef GAME3
   joystick.setContinuousFireThreshold(CONTINOUSFIRETHRESHOLD);
   #endif
-  joystick.registerAction(jaX, jtkLess, JOYSTICKTHRESHOLDLEFT, JOYSTICKDELAY, jmLeft);
-  joystick.registerAction(jaX, jtkGreater, JOYSTICKTHRESHOLDRIGHT, JOYSTICKDELAY, jmRight);
-  joystick.registerAction(jaY, jtkLess, JOYSTICKTHRESHOLDUP, JOYSTICKDELAY, jmUp);
-  joystick.registerAction(jaY, jtkGreater, JOYSTICKTHRESHOLDDOWN, JOYSTICKDELAY, jmDown);
-  joystick.registerAction(JOYSTICKPINFIRE, jamTriggerLOW, JOYSTICKDELAY, jmFire);
+  joystick.registerAction(jamMappingInvers, jaX, jtkLess, JOYSTICKTHRESHOLDLEFT, JOYSTICKDELAY, jmLeft);
+  joystick.registerAction(jamMapping, jaX, jtkGreater, JOYSTICKTHRESHOLDRIGHT, JOYSTICKDELAY, jmRight);
+  joystick.registerAction(jamMappingInvers, jaY, jtkLess, JOYSTICKTHRESHOLDUP, JOYSTICKDELAY, jmUp);
+  joystick.registerAction(jamMapping, jaY, jtkGreater, JOYSTICKTHRESHOLDDOWN, JOYSTICKDELAY, jmDown);
+  joystick.registerAction(jamNone, BUTTONB_PIN, JOYSTICKDELAY, jmFire);
+  joystick.initialize();
   // Sound
-  int jingleStart = soundMachine.registerJingle(new NGJingleHelloDude());
-  int jingleStartUp = soundMachine.registerJingle(new NGJingleSuperMarioShort());
+  int jingleBoot = soundMachine.registerJingle(new NGJingleBoot());
   soundMachine.initialize();
+  soundMachine.activate();
   // Game "One"
   #ifdef GAME1
-  game.registerGameKey(gfStartGame, STARTGAMEID);
+  game.registerGameKey(gfStartGame, BUTTONA_ID);
   game.registerGameJoystick(&joystick);
   game.registerSoundMachine(&soundMachine);
-  game.registerSoundStartUp(jingleStartUp);
-  game.registerSoundStart(jingleStart);
+  game.registerSoundStartUp(jingleBoot);
   game.registerColorDotMatrix(&cdm);
   #endif
   // Game "Two"
   #ifdef GAME2
-  game.registerGameKey(gfStartGame, STARTGAMEID);
+  game.registerGameKey(gfStartGame, BUTTONA_ID);
   game.registerGameJoystick(&joystick);
   game.registerSoundMachine(&soundMachine);
-  game.registerSoundStartUp(jingleStartUp);
-  game.registerSoundStart(jingleStart);
+  game.registerSoundStartUp(jingleBoot);
   game.registerColorDotMatrix(&cdm);
   #endif
   // Game "Three"
   #ifdef GAME3
-  game.registerGameKey(gfStartGame, STARTGAMEID);
+  game.registerGameKey(gfStartGame, BUTTONA_ID);
   game.registerGameJoystick(&joystick);
   game.registerSoundMachine(&soundMachine);
-  game.registerSoundStartUp(jingleStartUp);
-  game.registerSoundStart(jingleStart);
+  game.registerSoundStartUp(jingleBoot);
   game.registerColorDotMatrix(&cdm);
   #endif
   #ifdef GAME4
-  game.registerGameKey(gfStartGame, STARTGAMEID);
+  game.registerGameKey(gfStartGame, BUTTONA_ID);
   game.registerGameJoystick(&joystick);
   game.registerSoundMachine(&soundMachine);
-  game.registerSoundStartUp(jingleStartUp);
-  game.registerSoundStart(jingleStart);
+  game.registerSoundStartUp(jingleBoot);
   game.registerColorDotMatrix(&cdm);
   #endif
   #ifdef GAME5
-  game.registerGameKey(gfStartGame, STARTGAMEID);
+  game.registerGameKey(gfStartGame, BUTTONA_ID);
   game.registerGameJoystick(&joystick);
   game.registerSoundMachine(&soundMachine);
-  game.registerSoundStartUp(jingleStartUp);
-  game.registerSoundStart(jingleStart);
+  game.registerSoundStartUp(jingleBoot);
   game.registerColorDotMatrix(&cdm);
   #endif
   // Init
@@ -215,6 +182,7 @@ void setup() {
   #endif
   unitGameMachine.startUp();
   unitGameMachine.clearInfo();
+  simpleKeypad.activateKey(BUTTONA_ID);
   #if (PROD == false)
   observeMemory(0);
   #endif
@@ -228,15 +196,13 @@ void loop() {
 
 void SimpleKeypadCallback(byte id) {
   switch(id) {
-    case STARTGAMEID:
+    case BUTTONA_ID:
+      simpleKeypad.deactivateKey(BUTTONA_ID);
+      simpleKeypad.activateKey(BUTTONB_ID);
       unitGameMachine.startGame();
-      break;
-    case TOGGLESOUND:
-      unitGameMachine.toggleDoPlaySound();
       break;
   }
   #if (PROD == false)
   observeMemory(0);
   #endif
-}
 }
