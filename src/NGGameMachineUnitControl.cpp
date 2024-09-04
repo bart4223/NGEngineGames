@@ -64,6 +64,10 @@ void NGGameMachineUnitControl::startGame() {
     _game->startGame();
 }
 
+bool NGGameMachineUnitControl::isGameStarted() {
+    return _game->isGameStarted();
+}
+
 void NGGameMachineUnitControl::toggleDoPlaySound() {
     _game->toggleDoPlaySound();
 }

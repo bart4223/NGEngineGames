@@ -2,11 +2,11 @@
 #define LEDSTRIP100    //LEDSTRIP100, LEDSTRIP256
  
 // Game "Dot"
-#define GAME1
+//#define GAME1
 // Game "Snake"
 //#define GAME2
 // Game "Asteroids"
-//#define GAME3
+#define GAME3
 // Game "Tetris"
 //#define GAME4
 // Game "Boulderdash"
@@ -191,6 +191,15 @@ void setup() {
 void loop() {
   soundMachine.processingLoop();
   simpleKeypad.processingLoop();
+  if (unitGameMachine.isGameStarted()) {
+    if (!simpleKeypad.isKeyActive(BUTTONB_ID)) {
+      simpleKeypad.activateKey(BUTTONB_ID);
+    }
+  } else {
+    if (simpleKeypad.isKeyActive(BUTTONB_ID)) {
+      simpleKeypad.deactivateKey(BUTTONB_ID);
+    }
+  }
   unitGameMachine.processingLoop();
 }
 
@@ -198,7 +207,6 @@ void SimpleKeypadCallback(byte id) {
   switch(id) {
     case BUTTONA_ID:
       simpleKeypad.deactivateKey(BUTTONA_ID);
-      simpleKeypad.activateKey(BUTTONB_ID);
       unitGameMachine.startGame();
       break;
   }

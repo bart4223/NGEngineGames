@@ -49,6 +49,8 @@ public:
     
     void startGame();
     
+    bool isGameStarted();
+    
     void toggleDoPlaySound();
     
     void registerNotification(NGINotification *notification);
