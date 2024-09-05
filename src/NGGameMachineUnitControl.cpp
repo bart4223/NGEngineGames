@@ -72,6 +72,10 @@ void NGGameMachineUnitControl::toggleDoPlaySound() {
     _game->toggleDoPlaySound();
 }
 
+void NGGameMachineUnitControl::setPlayStartUpSoundConcurrently(bool concurrently) {
+    _game->setPlayStartUpSoundConcurrently(concurrently);
+}
+
 void NGGameMachineUnitControl::registerNotification(NGINotification *notification) {
     NGCustomUnitControl::registerNotification(notification);
     _game->registerNotification(notification);

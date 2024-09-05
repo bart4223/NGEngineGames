@@ -53,6 +53,8 @@ public:
     
     void toggleDoPlaySound();
     
+    void setPlayStartUpSoundConcurrently(bool concurrently);
+    
     void registerNotification(NGINotification *notification);
     
     void setLogging(bool logging);
