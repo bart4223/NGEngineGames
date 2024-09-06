@@ -148,8 +148,6 @@ bool NGColorDotMatrixGameAsteroids::_checkSpacecraft(byte posX, byte posY) {
 }
 
 void NGColorDotMatrixGameAsteroids::_doInitialize() {
-    _score->setColorOff(GAMEASTEROIDSCOLORSCOREOFF);
-    _score->setColorOn(GAMEASTEROIDSCOLORSCOREON);
     if (_logging) {
         char log[100];
         sprintf(log, "%s Initialize...", _name);
@@ -174,6 +172,8 @@ void NGColorDotMatrixGameAsteroids::_doStartUp() {
 
 void NGColorDotMatrixGameAsteroids::_doStartUpDone() {
     _ipc->clear();
+    _score->setColorOff(GAMEASTEROIDSCOLORSCOREOFF);
+    _score->setColorOn(GAMEASTEROIDSCOLORSCOREON);
     _score->setValue(_scoreCounter);
     if (_logging) {
         char log[100];

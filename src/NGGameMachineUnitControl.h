@@ -17,13 +17,14 @@
 #include <NGCustomUnitControl.h>
 #include <NGCustomGame.h>
 
-#define _VERSION "2.6"
+#define _VERSION "2.7"
 #define VERSION (char*)_VERSION
 
 class NGGameMachineUnitControl : public NGCustomUnitControl {
     
 private:
     NGCustomGame *_game;
+    NGIEffect *_effectIdle = nullptr;
         
 protected:
     void _create(char* name, byte address, int serialRate, NGCustomGame *game);
@@ -56,6 +57,8 @@ public:
     void setPlayStartUpSoundConcurrently(bool concurrently);
     
     void registerNotification(NGINotification *notification);
+    
+    void registerEffectIdle(NGIEffect *effect);
     
     void setLogging(bool logging);
 };

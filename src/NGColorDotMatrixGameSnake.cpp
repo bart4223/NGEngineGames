@@ -89,8 +89,6 @@ void NGColorDotMatrixGameSnake::_doInitialize() {
 }
 
 void NGColorDotMatrixGameSnake::_doStartUp() {
-    _score->setColorOff(GAMESNAKECOLORSCOREOFF);
-    _score->setColorOn(GAMESNAKECOLORSCOREON);
     if (!_inStartUpAnimation) {
         if (_logging) {
             char log[100];
@@ -107,6 +105,8 @@ void NGColorDotMatrixGameSnake::_doStartUp() {
 
 void NGColorDotMatrixGameSnake::_doStartUpDone() {
     _ipc->clear();
+    _score->setColorOff(GAMESNAKECOLORSCOREOFF);
+    _score->setColorOn(GAMESNAKECOLORSCOREON);
     _score->setValue(0);
     if (_logging) {
         char log[100];

@@ -43,8 +43,6 @@ void NGColorDotMatrixGameDot::_calculateNewDotPosition() {
 }
 
 void NGColorDotMatrixGameDot::_doInitialize() {
-    _score->setColorOff(GAMEDOTCOLORSCOREOFF);
-    _score->setColorOn(GAMEDOTCOLORSCOREON);
     if (_logging) {
         char log[100];
         sprintf(log, "%s Initialize...", _name);
@@ -69,6 +67,8 @@ void NGColorDotMatrixGameDot::_doStartUp() {
 
 void NGColorDotMatrixGameDot::_doStartUpDone() {
     _ipc->clear();
+    _score->setColorOff(GAMEDOTCOLORSCOREOFF);
+    _score->setColorOn(GAMEDOTCOLORSCOREON);
     _score->setValue(0);
     if (_logging) {
         char log[100];

@@ -264,8 +264,6 @@ void NGColorDotMatrixGameTetris::_spawnTetromino() {
 }
 
 void NGColorDotMatrixGameTetris::_doInitialize() {
-    _score->setColorOff(GAMETETRISCOLORSCOREOFF);
-    _score->setColorOn(GAMETETRISCOLORSCOREON);
     if (_logging) {
         char log[100];
         sprintf(log, "%s Initialize...", _name);
@@ -290,6 +288,8 @@ void NGColorDotMatrixGameTetris::_doStartUp() {
 
 void NGColorDotMatrixGameTetris::_doStartUpDone() {
     _ipc->clear();
+    _score->setColorOff(GAMETETRISCOLORSCOREOFF);
+    _score->setColorOn(GAMETETRISCOLORSCOREON);
     _score->setValue(_scoreCounter);
     _gameNextStepDelay = GAMETETRISMOVEDELAY;
     switch(_gameMode) {

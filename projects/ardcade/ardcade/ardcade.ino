@@ -1,4 +1,4 @@
-#define PROD true     //false, true
+#define PROD false    //false, true
 #define LEDSTRIP100   //LEDSTRIP100, LEDSTRIP256
  
 // Game "Dot"
@@ -23,6 +23,7 @@
 #include <NGColorDotMatrixEffectRetroRibbons.h>
 #include <NGColorDotMatrixEffectText.h>
 #include <NGSoundMachineEffect.h>
+#include <NGColorDotMatrixEffectStarLights.h>
 #include <NGZX81Font.h>
 
 #ifdef GAME1
@@ -98,6 +99,7 @@ NGZX81Font *fontZX81 = new NGZX81Font();
 NGColorDotMatrixEffectText *effectThree = new NGColorDotMatrixEffectText(&cdm, COLOR_BLUE, COLOR_TRANSPARENT, fontZX81);
 NGPaintableComponentEffectVoid *effectFour = new NGPaintableComponentEffectVoid(&cdm);
 NGSoundMachineEffect *effectTwo = new NGSoundMachineEffect(&soundMachine);
+NGColorDotMatrixEffectStarLights *effectStarLights = new NGColorDotMatrixEffectStarLights(&cdm);
 #ifdef GAME1
 NGColorDotMatrixGameDot game = NGColorDotMatrixGameDot();
 #endif
@@ -139,6 +141,7 @@ void setup() {
   // GameMachine
   setGlobalUnit(&unitGameMachine);
   unitGameMachine.registerSplash(&splash);
+  unitGameMachine.registerEffectIdle(effectStarLights);
   #if (PROD == false)
   unitGameMachine.registerNotification(&serialNotification);
   unitGameMachine.setLogging(true);

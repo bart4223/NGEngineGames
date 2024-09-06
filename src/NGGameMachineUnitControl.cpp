@@ -41,6 +41,9 @@ void NGGameMachineUnitControl::initialize() {
 
 void NGGameMachineUnitControl::processingLoop() {
     NGCustomUnitControl::processingLoop();
+    if (_effectIdle != nullptr && !_game->isGameStarted()) {
+        _effectIdle->processingLoop();
+    }
     _game->processingLoop();
 }
     
@@ -81,6 +84,10 @@ void NGGameMachineUnitControl::setPlayStartUpSoundConcurrently(bool concurrently
 void NGGameMachineUnitControl::registerNotification(NGINotification *notification) {
     NGCustomUnitControl::registerNotification(notification);
     _game->registerNotification(notification);
+}
+
+void NGGameMachineUnitControl::registerEffectIdle(NGIEffect *effect) {
+    _effectIdle = effect;
 }
 
 void NGGameMachineUnitControl::setLogging(bool logging) {
