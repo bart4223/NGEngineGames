@@ -13,6 +13,7 @@ NGColorDotMatrixGameSnake::NGColorDotMatrixGameSnake() {
     _autoRestartGame = true;
     _gameNextStepDelay = GAMESNAKEMOVEDELAY;
     _pointCounterAnimationDelay = GAMESNAKEOUTRODELAY;
+    _startUpDoneDelay = GAMESNAKEINTRODONEDELAY;
 }
 
 void NGColorDotMatrixGameSnake::_rollSnakeColor() {
@@ -90,15 +91,23 @@ void NGColorDotMatrixGameSnake::_doInitialize() {
 void NGColorDotMatrixGameSnake::_doStartUp() {
     _score->setColorOff(GAMESNAKECOLORSCOREOFF);
     _score->setColorOn(GAMESNAKECOLORSCOREON);
-    if (_logging) {
-        char log[100];
-        sprintf(log, "%s StartUp...", _name);
-        writeInfo(log);
+    if (!_inStartUpAnimation) {
+        if (_logging) {
+            char log[100];
+            sprintf(log, "%s StartUp...", _name);
+            writeInfo(log);
+        }
+        _ownIntro();
+        _inStartUpAnimation = true;
+        _startUpAnimationStep = 0;
+    } else {
+        _ownIntroAnimation();
     }
-    _ownIntro();
 }
 
 void NGColorDotMatrixGameSnake::_doStartUpDone() {
+    _ipc->clear();
+    _score->setValue(0);
     if (_logging) {
         char log[100];
         sprintf(log, "%s StartUp done", _name);
@@ -180,40 +189,67 @@ void NGColorDotMatrixGameSnake::_ownIntro() {
     _ipc->clear();
     _rollSnakeColor();
     _ipc->drawPoint(4 + offsetX, 3 + offsetY, _colorSnake);
-    delay(GAMESNAKEINTRODELAY);
-    _rollSnakeColor();
-    _ipc->drawPoint(4 + offsetX, 4 + offsetY, _colorSnake);
-    delay(GAMESNAKEINTRODELAY);
-    _rollSnakeColor();
-    _ipc->drawPoint(3 + offsetX, 4 + offsetY, _colorSnake);
-    delay(GAMESNAKEINTRODELAY);
-    _rollSnakeColor();
-    _ipc->drawPoint(2 + offsetX, 4 + offsetY, _colorSnake);
-    delay(GAMESNAKEINTRODELAY);
-    _rollSnakeColor();
-    _ipc->drawPoint(2 + offsetX, 3 + offsetY, _colorSnake);
-    delay(GAMESNAKEINTRODELAY);
-    _rollSnakeColor();
-    _ipc->drawPoint(2 + offsetX, 2 + offsetY, _colorSnake);
-    delay(GAMESNAKEINTRODELAY);
-    for (int i = 2; i < 7; i++) {
-        _rollSnakeColor();
-        _ipc->drawPoint(i + offsetX, 1 + offsetY, _colorSnake);
-        delay(GAMESNAKEINTRODELAY);
+}
+
+void NGColorDotMatrixGameSnake::_ownIntroAnimation() {
+    _startUpDone = _startUpAnimationStep >= GAMESNAKEINTROANIMATIONSTEPS;
+    if (!_startUpDone) {
+        if (millis() - _lastStartUpAnimationStep > GAMESNAKEINTRODELAY) {
+            byte offsetX = (_ipc->getWidth() - 8) / 2;
+            byte offsetY = (_ipc->getHeight() - 8) / 2;
+            _rollSnakeColor();
+            switch (_startUpAnimationStep) {
+                case 0:
+                    _ipc->drawPoint(4 + offsetX, 4 + offsetY, _colorSnake);
+                    _startUpAnimationStep++;
+                    break;
+                case 1:
+                    _ipc->drawPoint(3 + offsetX, 4 + offsetY, _colorSnake);
+                    _startUpAnimationStep++;
+                    break;
+                case 2:
+                    _ipc->drawPoint(2 + offsetX, 4 + offsetY, _colorSnake);
+                    _startUpAnimationStep++;
+                    break;
+                case 3:
+                    _ipc->drawPoint(2 + offsetX, 3 + offsetY, _colorSnake);
+                    _startUpAnimationStep++;
+                    break;
+                case 4:
+                    _ipc->drawPoint(2 + offsetX, 2 + offsetY, _colorSnake);
+                    _startUpAnimationStep++;
+                    _introAnimationIndex = 2;
+                    break;
+                case 5:
+                    if (_introAnimationIndex < 7) {
+                        _ipc->drawPoint(_introAnimationIndex + offsetX, 1 + offsetY, _colorSnake);
+                        _introAnimationIndex++;
+                    } else {
+                        _startUpAnimationStep++;
+                        _introAnimationIndex = 2;
+                    }
+                    break;
+                case 6:
+                    if (_introAnimationIndex < 7) {
+                        _ipc->drawPoint(6 + offsetX, _introAnimationIndex + offsetY, _colorSnake);
+                        _introAnimationIndex++;
+                    } else {
+                        _startUpAnimationStep++;
+                        _introAnimationIndex = 5;
+                    }
+                    break;
+                case 7:
+                    if (_introAnimationIndex > 0) {
+                        _ipc->drawPoint(_introAnimationIndex + offsetX, 6 + offsetY, _colorSnake);
+                        _introAnimationIndex--;
+                    } else {
+                        _startUpAnimationStep++;
+                    }
+                    break;
+            }
+            _lastStartUpAnimationStep = millis();
+        }
     }
-    for (int i = 2; i < 7; i++) {
-        _rollSnakeColor();
-        _ipc->drawPoint(6 + offsetX, i + offsetY, _colorSnake);
-        delay(GAMESNAKEINTRODELAY);
-    }
-    for (int i = 5; i > 0; i--) {
-        _rollSnakeColor();
-        _ipc->drawPoint(i + offsetX, 6 + offsetY, _colorSnake);
-        delay(GAMESNAKEINTRODELAY);
-    }
-    delay(500);
-    _ipc->clear();
-    _score->setValue(0);
 }
 
 void NGColorDotMatrixGameSnake::_ownRender() {

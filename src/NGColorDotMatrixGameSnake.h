@@ -22,10 +22,12 @@
 #define GAMESNAKEMAXMAZESIZEX   16
 #define GAMESNAKEMAXMAZESIZEY   16
 
-#define GAMESNAKEMOVEDELAY    500
-#define GAMESNAKEFINISHDELAY 3000
-#define GAMESNAKEINTRODELAY   100
-#define GAMESNAKEOUTRODELAY   100
+#define GAMESNAKEMOVEDELAY              500
+#define GAMESNAKEFINISHDELAY           3000
+#define GAMESNAKEINTRODELAY             100
+#define GAMESNAKEINTRODONEDELAY         500
+#define GAMESNAKEOUTRODELAY             100
+#define GAMESNAKEINTROANIMATIONSTEPS      8
 
 class NGColorDotMatrixGameSnake : public NGCustomColorDotMatrixGame {
   
@@ -42,6 +44,7 @@ private:
     byte _maze[GAMESNAKEMAXMAZESIZEY][GAMESNAKEMAXMAZESIZEX];
     colorRGB _colorSnake;
     long _lastSnakeMove = 0;
+    int _introAnimationIndex = 0;
     
     void _rollSnakeColor();
     
@@ -75,6 +78,8 @@ protected:
     void _ownRender();
     
     void _ownIntro();
+    
+    void _ownIntroAnimation();
     
     void _ownOutro();
     
