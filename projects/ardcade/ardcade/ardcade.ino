@@ -17,7 +17,13 @@
 #include <NGSerialNotification.h>
 #include <NGColorLEDStrip.h>
 #include <NGGameMachineUnitControl.h>
+#include <NGJingleBoot.h>
 #include <NGJingleSuperMarioShort.h>
+#include <NGPaintableComponentEffectVoid.h>
+#include <NGColorDotMatrixEffectRetroRibbons.h>
+#include <NGColorDotMatrixEffectText.h>
+#include <NGSoundMachineEffect.h>
+#include <NGZX81Font.h>
 
 #ifdef GAME1
 #include <NGColorDotMatrixGameDot.h>
@@ -76,12 +82,22 @@ NGSimpleKeypad simpleKeypad = NGSimpleKeypad();
 NGSoundMachine soundMachine = NGSoundMachine(DEFPINPIEZO, SOUNDACTIVATIONPIN);
 NGSerialNotification serialNotification = NGSerialNotification();
 NGJoystickControl joystick = NGJoystickControl(JOYSTICKID, JOYSTICKPINXL, JOYSTICKPINXR, JOYSTICKPINYD, JOYSTICKPINYU, BUTTONB_PIN, true);
+#if (PROD == false)
+NGSplash splash = NGSplash(&serialNotification);
+#else
+NGSplash splash = NGSplash();
+#endif
 #ifdef LEDSTRIP100
 NGColorLEDStrip cdm = NGColorLEDStrip(LEDSTRIPPIN, LEDSTRIPPIXELS, LEDSTRIPROWS);
 #endif
 #ifdef LEDSTRIP256
 NGColorLEDStrip cdm = NGColorLEDStrip(LEDSTRIPPIN, LEDSTRIPPIXELS, LEDSTRIPROWS, lskUpDownAlternate);
 #endif
+NGColorDotMatrixEffectRetroRibbons *effectOne = new NGColorDotMatrixEffectRetroRibbons(&cdm);
+NGZX81Font *fontZX81 = new NGZX81Font();
+NGColorDotMatrixEffectText *effectThree = new NGColorDotMatrixEffectText(&cdm, COLOR_BLUE, COLOR_TRANSPARENT, fontZX81);
+NGPaintableComponentEffectVoid *effectFour = new NGPaintableComponentEffectVoid(&cdm);
+NGSoundMachineEffect *effectTwo = new NGSoundMachineEffect(&soundMachine);
 #ifdef GAME1
 NGColorDotMatrixGameDot game = NGColorDotMatrixGameDot();
 #endif
@@ -104,8 +120,25 @@ void setup() {
   #if (PROD == false)
   observeMemory(0);
   #endif
+  // Sound
+  int jingleBoot = soundMachine.registerJingle(new NGJingleBoot);
+  int jingleStartup = soundMachine.registerJingle(new NGJingleSuperMarioShort());
+  soundMachine.setConcurrently(true);
+  soundMachine.initialize();
+  soundMachine.activate();
+  // Splash
+  splash.registerPaintableComponent(&cdm);
+  splash.registerEffect(effectOne, 500, 2900);
+  effectTwo->playJingle(jingleBoot);
+  splash.registerEffect(effectTwo, 0, 1500);
+  effectThree->setPosition((cdm.getWidth() - 8) / 2, (cdm.getHeight() - 8) / 2);
+  effectThree->setDelay(200);
+  effectThree->setText("ARDCADE");
+  splash.registerEffect(effectThree, 1500, 1400);
+  splash.registerEffect(effectFour, 3400, 10);
   // GameMachine
   setGlobalUnit(&unitGameMachine);
+  unitGameMachine.registerSplash(&splash);
   #if (PROD == false)
   unitGameMachine.registerNotification(&serialNotification);
   unitGameMachine.setLogging(true);
@@ -131,16 +164,12 @@ void setup() {
   joystick.registerAction(jamMapping, jaY, jtkGreater, JOYSTICKTHRESHOLDDOWN, JOYSTICKDELAY, jmDown);
   joystick.registerAction(jamNone, BUTTONB_PIN, JOYSTICKDELAY, jmFire);
   joystick.initialize();
-  // Sound
-  int jingleBoot = soundMachine.registerJingle(new NGJingleSuperMarioShort());
-  soundMachine.initialize();
-  soundMachine.activate();
   // Game "One"
   #ifdef GAME1
   game.registerGameKey(gfStartGame, BUTTONA_ID);
   game.registerGameJoystick(&joystick);
   game.registerSoundMachine(&soundMachine);
-  game.registerSoundStartUp(jingleBoot);
+  game.registerSoundStartUp(jingleStartup);
   game.registerColorDotMatrix(&cdm);
   #endif
   // Game "Two"
@@ -148,7 +177,7 @@ void setup() {
   game.registerGameKey(gfStartGame, BUTTONA_ID);
   game.registerGameJoystick(&joystick);
   game.registerSoundMachine(&soundMachine);
-  game.registerSoundStartUp(jingleBoot);
+  game.registerSoundStartUp(jingleStartup);
   game.registerColorDotMatrix(&cdm);
   #endif
   // Game "Three"
@@ -156,21 +185,21 @@ void setup() {
   game.registerGameKey(gfStartGame, BUTTONA_ID);
   game.registerGameJoystick(&joystick);
   game.registerSoundMachine(&soundMachine);
-  game.registerSoundStartUp(jingleBoot);
+  game.registerSoundStartUp(jingleStartup);
   game.registerColorDotMatrix(&cdm);
   #endif
   #ifdef GAME4
   game.registerGameKey(gfStartGame, BUTTONA_ID);
   game.registerGameJoystick(&joystick);
   game.registerSoundMachine(&soundMachine);
-  game.registerSoundStartUp(jingleBoot);
+  game.registerSoundStartUp(jingleStartup);
   game.registerColorDotMatrix(&cdm);
   #endif
   #ifdef GAME5
   game.registerGameKey(gfStartGame, BUTTONA_ID);
   game.registerGameJoystick(&joystick);
   game.registerSoundMachine(&soundMachine);
-  game.registerSoundStartUp(jingleBoot);
+  game.registerSoundStartUp(jingleStartup);
   game.registerColorDotMatrix(&cdm);
   #endif
   // Init
