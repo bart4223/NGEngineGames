@@ -17,7 +17,7 @@
 #include <NGCustomUnitControl.h>
 #include <NGCustomGame.h>
 
-#define _VERSION "2.5"
+#define _VERSION "2.6"
 #define VERSION (char*)_VERSION
 
 class NGGameMachineUnitControl : public NGCustomUnitControl {

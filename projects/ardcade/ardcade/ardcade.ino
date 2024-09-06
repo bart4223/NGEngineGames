@@ -1,4 +1,4 @@
-#define PROD false    //false, true
+#define PROD true     //false, true
 #define LEDSTRIP100   //LEDSTRIP100, LEDSTRIP256
  
 // Game "Dot"
