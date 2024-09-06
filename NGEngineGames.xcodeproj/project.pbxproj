@@ -89,6 +89,9 @@
 		29E87301296C081200F7BF90 /* NGColorDotMatrixGameBoulderdash.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NGColorDotMatrixGameBoulderdash.h; sourceTree = "<group>"; };
 		29EBB92A2C84B631000B20EB /* ArdcadeMainboard.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ArdcadeMainboard.png; sourceTree = "<group>"; };
 		29EBB92B2C84C253000B20EB /* ArdcadeMainboardSchema.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ArdcadeMainboardSchema.png; sourceTree = "<group>"; };
+		29EBB92E2C8BB2CB000B20EB /* NGColorDotMatrixEffectStarLights.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = NGColorDotMatrixEffectStarLights.cpp; sourceTree = "<group>"; };
+		29EBB92F2C8BB2CB000B20EB /* NGColorDotMatrixEffectStarLights.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NGColorDotMatrixEffectStarLights.h; sourceTree = "<group>"; };
+		29EBB9312C8BB66B000B20EB /* starlights.ino */ = {isa = PBXFileReference; lastKnownFileType = text; path = starlights.ino; sourceTree = "<group>"; };
 		29ED57F22C6351DC003E3AE4 /* splash.ino */ = {isa = PBXFileReference; lastKnownFileType = text; path = splash.ino; sourceTree = "<group>"; };
 		29F15E292BD8035100F1E714 /* colorOLEDText.ino */ = {isa = PBXFileReference; lastKnownFileType = text; path = colorOLEDText.ino; sourceTree = "<group>"; };
 		29FD0A6C297DA494003CAA71 /* gamepad.ino */ = {isa = PBXFileReference; lastKnownFileType = text; path = gamepad.ino; sourceTree = "<group>"; };
@@ -146,6 +149,8 @@
 			children = (
 				29B7C5E62C5CE4B50031195A /* NGColorDotMatrixEffectRetroRibbons.h */,
 				29B7C5E52C5CE4B50031195A /* NGColorDotMatrixEffectRetroRibbons.cpp */,
+				29EBB92F2C8BB2CB000B20EB /* NGColorDotMatrixEffectStarLights.h */,
+				29EBB92E2C8BB2CB000B20EB /* NGColorDotMatrixEffectStarLights.cpp */,
 				295848AA2BE8C63B00AFEF4C /* NGColorDotMatrixEffectZini.h */,
 				295848A92BE8C63B00AFEF4C /* NGColorDotMatrixEffectZini.cpp */,
 			);
@@ -184,6 +189,7 @@
 				29620D7829B4B6170020B874 /* colorOLED */,
 				29620D7D29B4DB090020B874 /* decimalpointcounter */,
 				29B7C5E72C5CF2CE0031195A /* retroribbons */,
+				29EBB9302C8BB64A000B20EB /* starlights */,
 				29ED57F12C6351A2003E3AE4 /* splash */,
 				295848AB2BE8C69E00AFEF4C /* zini */,
 			);
@@ -407,6 +413,14 @@
 				29E872FF296C07EE00F7BF90 /* boulderdash.ino */,
 			);
 			path = boulderdash;
+			sourceTree = "<group>";
+		};
+		29EBB9302C8BB64A000B20EB /* starlights */ = {
+			isa = PBXGroup;
+			children = (
+				29EBB9312C8BB66B000B20EB /* starlights.ino */,
+			);
+			path = starlights;
 			sourceTree = "<group>";
 		};
 		29ED57F12C6351A2003E3AE4 /* splash */ = {
