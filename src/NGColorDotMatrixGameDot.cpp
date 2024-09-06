@@ -43,8 +43,8 @@ void NGColorDotMatrixGameDot::_calculateNewDotPosition() {
 }
 
 void NGColorDotMatrixGameDot::_doInitialize() {
-    _score->setColorOff(GAMDEDOTCOLORSCOREOFF);
-    _score->setColorOn(GAMDEDOTCOLORSCOREON);
+    _score->setColorOff(GAMEDOTCOLORSCOREOFF);
+    _score->setColorOn(GAMEDOTCOLORSCOREON);
     if (_logging) {
         char log[100];
         sprintf(log, "%s Initialize...", _name);
@@ -53,15 +53,23 @@ void NGColorDotMatrixGameDot::_doInitialize() {
 }
 
 void NGColorDotMatrixGameDot::_doStartUp() {
-    if (_logging) {
-        char log[100];
-        sprintf(log, "%s StartUp...", _name);
-        writeInfo(log);
+    if (!_inStartUpAnimation) {
+        if (_logging) {
+            char log[100];
+            sprintf(log, "%s StartUp...", _name);
+            writeInfo(log);
+        }
+        _ownIntro();
+        _inStartUpAnimation = true;
+        _startUpAnimationStep = 0;
+    } else {
+        _ownIntroAnimation();
     }
-    _ownIntro();
 }
 
 void NGColorDotMatrixGameDot::_doStartUpDone() {
+    _ipc->clear();
+    _score->setValue(0);
     if (_logging) {
         char log[100];
         sprintf(log, "%s StartUp Done", _name);
@@ -126,7 +134,6 @@ void NGColorDotMatrixGameDot::_doProcessingLoop() {
 }
 
 void NGColorDotMatrixGameDot::_ownIntro() {
-    colorRGB c;
     _ipc->clear();
     byte dotX = random(5, _maxGameDotX - 5);
     byte dotY = random(5, _maxGameDotY - 5);
@@ -136,25 +143,29 @@ void NGColorDotMatrixGameDot::_ownIntro() {
     } else {
         _ipc->drawPoint(dotX, dotY, COLOR_RED);
     }
-    byte playerX = 0;
-    byte playerY = 0;
     _rollPlayerColor();
-    for (int i = 0; i < _maxGameDotX / 2 + _maxGameDotY / 2; i++) {
-        if (_hasSprite(GAMESPRITEPLAYERID)) {
-            _renderSprite(GAMESPRITEPLAYERID, playerX, playerY);
-        } else {
-            _ipc->drawPoint(playerX, playerY, _colorPlayer);
-        }
-        delay(100);
-        _ipc->drawPoint(playerX, playerY, COLOR_BLACK);
-        if (_getYesOrNo()) {
-            playerX++;
-        } else {
-            playerY++;
+    _ipc->drawPoint(_introPlayerX, _introPlayerY, COLOR_BLACK);
+}
+
+void NGColorDotMatrixGameDot::_ownIntroAnimation() {
+    _startUpDone = _startUpAnimationStep > _maxGameDotX / 2 + _maxGameDotY / 2;
+    if (!_startUpDone) {
+        if (millis() - _lastStartUpAnimationStep > GAMEDOTINTRODELAY) {
+            _ipc->drawPoint(_introPlayerX, _introPlayerY, COLOR_BLACK);
+            if (_getYesOrNo()) {
+                _introPlayerX++;
+            } else {
+                _introPlayerY++;
+            }
+            if (_hasSprite(GAMESPRITEPLAYERID)) {
+                _renderSprite(GAMESPRITEPLAYERID, _introPlayerX, _introPlayerY);
+            } else {
+                _ipc->drawPoint(_introPlayerX, _introPlayerY, _colorPlayer);
+            }
+            _startUpAnimationStep++;
+            _lastStartUpAnimationStep = millis();
         }
     }
-    _ipc->clear();
-    _score->setValue(0);
 }
 
 void NGColorDotMatrixGameDot::_ownRender() {

@@ -19,8 +19,9 @@
 #define DEFDOTMAXCATCHTIME 1000
 #define DOTCATCHDELAY       200
 
-#define GAMDEDOTCOLORSCOREOFF { .red = 5, .green = 5, .blue = 5 }
-#define GAMDEDOTCOLORSCOREON COLOR_BLUE
+#define GAMEDOTCOLORSCOREOFF { .red = 5, .green = 5, .blue = 5 }
+#define GAMEDOTCOLORSCOREON COLOR_BLUE
+#define GAMEDOTINTRODELAY   100
 
 #define GAMESPRITEDOTID    1
 #define GAMESPRITEPLAYERID 2
@@ -39,6 +40,8 @@ private:
     byte _maxGameDotY;
     byte _minGameDotDiff;
     byte _maxGameDotDiff;
+    byte _introPlayerX = 0;
+    byte _introPlayerY = 0;
     
     void _rollPlayerColor();
 
@@ -66,6 +69,8 @@ protected:
     void _ownRender();
     
     void _ownIntro();
+    
+    void _ownIntroAnimation();
     
 public:
     NGColorDotMatrixGameDot();
