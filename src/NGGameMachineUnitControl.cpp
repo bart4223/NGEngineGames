@@ -35,10 +35,12 @@ void NGGameMachineUnitControl::_processingIRRemoteData() {
 }
 
 void NGGameMachineUnitControl::initialize() {
+    NGCustomUnitControl::initialize();
     _game->initialize();
 }
 
 void NGGameMachineUnitControl::processingLoop() {
+    NGCustomUnitControl::processingLoop();
     _game->processingLoop();
 }
     

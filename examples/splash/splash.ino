@@ -50,6 +50,7 @@ void setup() {
   sm->initialize();
   cdm->initialize(LEDSTRIPBRIGHTNESS);
   splash->setLogging(LOGGING);
+  splash->registerPaintableComponent(cdm);
   splash->registerEffect(effectOne, 500, 2900);
   effectTwo->playJingle(sm->registerJingle(new NGJingleBoot));
   splash->registerEffect(effectTwo, 0, 1500);
@@ -68,9 +69,7 @@ void loop() {
   if (!finished) {
     finished = splash->isFinished();
     if (!finished) {
-      cdm->beginUpdate();
       splash->processingLoop();
-      cdm->endUpdate();
     } else {
       splash->writeInfo("Splash finished!");
     }
