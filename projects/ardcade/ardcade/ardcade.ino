@@ -1,12 +1,12 @@
-#define PROD false     //false, true
-#define LEDSTRIP100    //LEDSTRIP100, LEDSTRIP256
+#define PROD true     //false, true
+#define LEDSTRIP100   //LEDSTRIP100, LEDSTRIP256
  
 // Game "Dot"
-//#define GAME1
+#define GAME1
 // Game "Snake"
 //#define GAME2
 // Game "Asteroids"
-#define GAME3
+//#define GAME3
 // Game "Tetris"
 //#define GAME4
 // Game "Boulderdash"
