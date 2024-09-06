@@ -62,6 +62,7 @@ private:
     int _introShotDelay = GAMEASTEROIDSINTROSHOTDELAY;
     byte _maxGameAsteroidsX;
     byte _maxGameAsteroidsY;
+    int _beamOffset = 0;
     
     void _resetMaze();
     
@@ -86,6 +87,8 @@ private:
     void _ownRender();
     
     void _ownIntro();
+    
+    void _ownIntroAnimation();
     
     void _ownOutro();
     

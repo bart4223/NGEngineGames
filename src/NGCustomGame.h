@@ -76,7 +76,10 @@ protected:
     bool _doPlaySound = true;
     bool _testMode = false;
     gameMode _gameMode = gmNormal;
-
+    bool _inStartUpAnimation = false;
+    int _startUpAnimationStep = -1;
+    long _lastStartUpAnimationStep = 0;
+    
     void _create(char* name);
     
     void _raiseException(int id);

@@ -140,9 +140,6 @@ private:
     bool _levelRetry = false;
     byte _posXRocky = 0;
     byte _posYRocky = 0;
-    bool _inStartUpAnimation = false;
-    int _startUpAnimationStep = -1;
-    long _lastStartUpAnimationStep = 0;
     long _lastBombIgnition = 0;
     long _lastDiamondSparkle = 0;
     long _lastLavaFlow = 0;

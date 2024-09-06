@@ -17,7 +17,7 @@
 #include <NGSerialNotification.h>
 #include <NGColorLEDStrip.h>
 #include <NGGameMachineUnitControl.h>
-#include <NGJingleBoot.h>
+#include <NGJingleSuperMarioShort.h>
 
 #ifdef GAME1
 #include <NGColorDotMatrixGameDot.h>
@@ -132,7 +132,7 @@ void setup() {
   joystick.registerAction(jamNone, BUTTONB_PIN, JOYSTICKDELAY, jmFire);
   joystick.initialize();
   // Sound
-  int jingleBoot = soundMachine.registerJingle(new NGJingleBoot());
+  int jingleBoot = soundMachine.registerJingle(new NGJingleSuperMarioShort());
   soundMachine.initialize();
   soundMachine.activate();
   // Game "One"
@@ -178,8 +178,8 @@ void setup() {
   unitGameMachine.setWorkMode(wmNone);
   #else
   unitGameMachine.setWorkMode(wmObserveMemory);
-  unitGameMachine.toggleDoPlaySound();
   #endif
+  unitGameMachine.setPlayStartUpSoundConcurrently(true);
   unitGameMachine.startUp();
   unitGameMachine.clearInfo();
   simpleKeypad.activateKey(BUTTONA_ID);
