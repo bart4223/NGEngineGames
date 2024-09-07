@@ -157,7 +157,7 @@ void setup() {
   // GameMachine
   setGlobalUnit(&unitGameMachine);
   unitGameMachine.registerSplash(&splash);
-  switch(random(1, 2)) {
+  switch(random(0, 2)) {
     case 0:
       unitGameMachine.registerEffectIdle(new NGColorDotMatrixEffectStarLights(&cdm));
       break;
