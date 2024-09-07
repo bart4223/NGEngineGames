@@ -129,10 +129,10 @@ NGColorDotMatrixGameBoulderdash game = NGColorDotMatrixGameBoulderdash();
 NGGameMachineUnitControl unitGameMachine = NGGameMachineUnitControl(GAMEMACHINE, &game);
 
 void setup() {
-  initGlobalRandomSeedWithAnalogInput(A15);
   #if (PROD == false)
   observeMemory(0);
   #endif
+  initGlobalRandomSeedWithAnalogInput(A15);
   // ColorDotMatrix
   cdm.initialize(LEDSTRIPBRIGHTNESS);
   cdm.setBackground(GAMEMACHINESTARTCOLOR);
@@ -225,7 +225,7 @@ void setup() {
   game.registerSoundStartUp(jingleStartup);
   game.registerColorDotMatrix(&cdm);
   #endif
-  // Init
+  // Startup
   #if (PROD == true)
   unitGameMachine.setWorkMode(wmNone);
   #else
