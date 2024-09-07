@@ -2,13 +2,13 @@
 #define LEDSTRIP100   //LEDSTRIP100, LEDSTRIP256
  
 // Game "Dot"
-#define GAME1
+//#define GAME1
 // Game "Snake"
 //#define GAME2
 // Game "Asteroids"
 //#define GAME3
 // Game "Tetris"
-//#define GAME4
+#define GAME4
 // Game "Boulderdash"
 //#define GAME5
 
@@ -24,6 +24,7 @@
 #include <NGColorDotMatrixEffectText.h>
 #include <NGSoundMachineEffect.h>
 #include <NGColorDotMatrixEffectStarLights.h>
+#include <NGColorDotMatrixEffectZini.h>
 #include <NGZX81Font.h>
 
 #ifdef GAME1
@@ -79,6 +80,9 @@
 
 #define SOUNDACTIVATIONPIN 9
 
+#define GAMEMACHINESTARTCOLOR     COLOR_BLUE_C64_LOW
+#define GAMEMACHINESTARTCOLORDONE COLOR_BLACK
+
 NGSimpleKeypad simpleKeypad = NGSimpleKeypad();
 NGSoundMachine soundMachine = NGSoundMachine(DEFPINPIEZO, SOUNDACTIVATIONPIN);
 NGSerialNotification serialNotification = NGSerialNotification();
@@ -94,12 +98,18 @@ NGColorLEDStrip cdm = NGColorLEDStrip(LEDSTRIPPIN, LEDSTRIPPIXELS, LEDSTRIPROWS)
 #ifdef LEDSTRIP256
 NGColorLEDStrip cdm = NGColorLEDStrip(LEDSTRIPPIN, LEDSTRIPPIXELS, LEDSTRIPROWS, lskUpDownAlternate);
 #endif
+
 NGColorDotMatrixEffectRetroRibbons *effectOne = new NGColorDotMatrixEffectRetroRibbons(&cdm);
 NGZX81Font *fontZX81 = new NGZX81Font();
 NGColorDotMatrixEffectText *effectThree = new NGColorDotMatrixEffectText(&cdm, COLOR_BLUE, COLOR_TRANSPARENT, fontZX81);
 NGPaintableComponentEffectVoid *effectFour = new NGPaintableComponentEffectVoid(&cdm);
 NGSoundMachineEffect *effectTwo = new NGSoundMachineEffect(&soundMachine);
-NGColorDotMatrixEffectStarLights *effectStarLights = new NGColorDotMatrixEffectStarLights(&cdm);
+
+#define ZINIMINGRADIENTSTAGES   6
+#define ZINIMAXGRADIENTSTAGES  12
+#define ZINIMINDELAY  120
+#define ZINIMAXDELAY  180
+
 #ifdef GAME1
 NGColorDotMatrixGameDot game = NGColorDotMatrixGameDot();
 #endif
@@ -119,9 +129,15 @@ NGColorDotMatrixGameBoulderdash game = NGColorDotMatrixGameBoulderdash();
 NGGameMachineUnitControl unitGameMachine = NGGameMachineUnitControl(GAMEMACHINE, &game);
 
 void setup() {
+  initGlobalRandomSeedWithAnalogInput(A15);
   #if (PROD == false)
   observeMemory(0);
   #endif
+  // ColorDotMatrix
+  cdm.initialize(LEDSTRIPBRIGHTNESS);
+  cdm.setBackground(GAMEMACHINESTARTCOLOR);
+  cdm.clear();
+  cdm.setBackground(GAMEMACHINESTARTCOLORDONE);
   // Sound
   int jingleBoot = soundMachine.registerJingle(new NGJingleBoot);
   int jingleStartup = soundMachine.registerJingle(new NGJingleSuperMarioShort());
@@ -141,16 +157,20 @@ void setup() {
   // GameMachine
   setGlobalUnit(&unitGameMachine);
   unitGameMachine.registerSplash(&splash);
-  unitGameMachine.registerEffectIdle(effectStarLights);
+  switch(random(1, 2)) {
+    case 0:
+      unitGameMachine.registerEffectIdle(new NGColorDotMatrixEffectStarLights(&cdm));
+      break;
+    case 1:
+      unitGameMachine.registerEffectIdle(new NGColorDotMatrixEffectZini(&cdm, getRandomColor(), random(ZINIMINGRADIENTSTAGES, ZINIMAXGRADIENTSTAGES + 1), random(ZINIMINDELAY, ZINIMAXDELAY)));
+      break;
+  }
   #if (PROD == false)
   unitGameMachine.registerNotification(&serialNotification);
   unitGameMachine.setLogging(true);
   #else
   unitGameMachine.setLogging(false);
   #endif
-  // ColorDotMatrix
-  cdm.initialize(LEDSTRIPBRIGHTNESS);
-  cdm.clear();
   unitGameMachine.initialize();
   // Keypad
   simpleKeypad.registerCallback(&SimpleKeypadCallback);

@@ -25,7 +25,7 @@
 
 #ifdef LEDSTRIP
 #include <NGColorLEDStrip.h>
-#define LEDSTRIPPIN 6
+#define LEDSTRIPPIN 8
 #define SCALE       1
 #ifdef LEDSTRIP100
 #define LEDSTRIPPIXELS      100
@@ -76,6 +76,7 @@ void setup() {
   ziniOne->setRandomDelay(false);
   ziniTwo->setRandomDelay(false);
   #endif
+  ziniOne->setBackgroundColor(COLOR_WHITE);
   #ifdef LEDSTRIP
   cdm->initialize(LEDSTRIPBRIGHTNESS);
   #else
@@ -83,6 +84,8 @@ void setup() {
   #endif
   cdm->setScale(SCALE);
   cdm->clear();
+  ziniOne->initialize();
+  ziniTwo->initialize();
 }
 
 void loop() {

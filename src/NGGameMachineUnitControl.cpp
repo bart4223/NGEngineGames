@@ -37,6 +37,9 @@ void NGGameMachineUnitControl::_processingIRRemoteData() {
 void NGGameMachineUnitControl::initialize() {
     NGCustomUnitControl::initialize();
     _game->initialize();
+    if (_effectIdle != nullptr) {
+        _effectIdle->initialize();
+    }
 }
 
 void NGGameMachineUnitControl::processingLoop() {

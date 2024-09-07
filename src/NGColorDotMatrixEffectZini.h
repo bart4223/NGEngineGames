@@ -19,6 +19,7 @@
 #include "NGColorDotMatrixGradientPoint.h"
 
 #define DEFZINICOLOR        COLOR_RED
+#define DEFBACKGROUNDCOLOR  COLOR_BLACK
 #define DEFGRADIENTSTAGES   10
 #define DEFZINIDELAY        10
 
@@ -27,6 +28,7 @@ enum ziniDirection { zdLeft, zdRight, zdUp, zdDown };
 class NGColorDotMatrixEffectZini: public NGIEffect {
   
 private:
+    NGIPaintableComponent *_ipc;
     NGColorDotMatrixGradientPoint *_gp;
     int _posX = 0;
     int _posY = 0;
@@ -40,6 +42,7 @@ private:
     int _ziniDelay = DEFZINIDELAY;
     int _defziniDelay = DEFZINIDELAY;
     bool _randomDelay = true;
+    colorRGB _backgroundColor = DEFBACKGROUNDCOLOR;
     
 protected:
     void _create(NGIPaintableComponent *ipc, colorRGB color, byte gradientstages, int delay);
@@ -56,6 +59,8 @@ public:
     NGColorDotMatrixEffectZini(NGIPaintableComponent *ipc, colorRGB color, byte gradientstages, int delay);
     
     void setRandomDelay(bool randomDelay);
+    
+    void setBackgroundColor(colorRGB backgroundcolor);
     
     void initialize();
     
