@@ -23,6 +23,7 @@
 		29255B78298E5C5B00234506 /* LevelTwo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = LevelTwo.png; sourceTree = "<group>"; };
 		293E85952C9428DD00CE7A9B /* ArdcadeM0_1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ArdcadeM0_1.png; sourceTree = "<group>"; };
 		293E85962C9428DD00CE7A9B /* ArdcadeM0_0.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ArdcadeM0_0.png; sourceTree = "<group>"; };
+		293E85972C95A2C100CE7A9B /* ArdcadeM0_2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ArdcadeM0_2.png; sourceTree = "<group>"; };
 		295756332C7C7ACD00616955 /* eNGineGameDisplay.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = eNGineGameDisplay.png; sourceTree = "<group>"; };
 		295848A92BE8C63B00AFEF4C /* NGColorDotMatrixEffectZini.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = NGColorDotMatrixEffectZini.cpp; sourceTree = "<group>"; };
 		295848AA2BE8C63B00AFEF4C /* NGColorDotMatrixEffectZini.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NGColorDotMatrixEffectZini.h; sourceTree = "<group>"; };
@@ -248,6 +249,7 @@
 		29680C872C41237600BB0F58 /* images */ = {
 			isa = PBXGroup;
 			children = (
+				293E85972C95A2C100CE7A9B /* ArdcadeM0_2.png */,
 				29EBB92A2C84B631000B20EB /* ArdcadeMainboard.png */,
 				29EBB92B2C84C253000B20EB /* ArdcadeMainboardSchema.png */,
 				293E85962C9428DD00CE7A9B /* ArdcadeM0_0.png */,
