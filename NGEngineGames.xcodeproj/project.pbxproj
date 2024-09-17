@@ -101,6 +101,7 @@
 		29FD0A6C297DA494003CAA71 /* gamepad.ino */ = {isa = PBXFileReference; lastKnownFileType = text; path = gamepad.ino; sourceTree = "<group>"; };
 		29FD0A6D297DA4D5003CAA71 /* NGGamePad.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = NGGamePad.cpp; sourceTree = "<group>"; };
 		29FD0A6E297DA4D5003CAA71 /* NGGamePad.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NGGamePad.h; sourceTree = "<group>"; };
+		29FEE0C02C994DD9000DE9FF /* ArdcadeM0_4.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ArdcadeM0_4.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXGroup section */
@@ -155,6 +156,7 @@
 				293E85952C9428DD00CE7A9B /* ArdcadeM0_1.png */,
 				293E85972C95A2C100CE7A9B /* ArdcadeM0_2.png */,
 				293E85992C96F86500CE7A9B /* ArdcadeM0_3.png */,
+				29FEE0C02C994DD9000DE9FF /* ArdcadeM0_4.png */,
 			);
 			path = ArdcadeM0;
 			sourceTree = "<group>";
