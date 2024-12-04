@@ -16,13 +16,13 @@
 		29097B8B29D1FADF006FBDF0 /* NGSpriteNone.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NGSpriteNone.h; sourceTree = "<group>"; };
 		29097B8C29D2D1EF006FBDF0 /* NGSpriteSpaceship.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = NGSpriteSpaceship.cpp; sourceTree = "<group>"; };
 		29097B8D29D2D1EF006FBDF0 /* NGSpriteSpaceship.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NGSpriteSpaceship.h; sourceTree = "<group>"; };
+		29248A502D0111A9000E3499 /* ArdcadeDisplay10x10.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ArdcadeDisplay10x10.png; sourceTree = "<group>"; };
 		29255B70298D2D2800234506 /* Dot.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Dot.png; sourceTree = "<group>"; };
 		29255B72298D30DE00234506 /* Snake.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Snake.png; sourceTree = "<group>"; };
 		29255B73298D330600234506 /* Asteroids.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Asteroids.png; sourceTree = "<group>"; };
 		29255B74298D350100234506 /* Tetris.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Tetris.png; sourceTree = "<group>"; };
 		29255B76298D392E00234506 /* LevelOne.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = LevelOne.png; sourceTree = "<group>"; };
 		29255B78298E5C5B00234506 /* LevelTwo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = LevelTwo.png; sourceTree = "<group>"; };
-		293681F42CFF366A0004BCE5 /* ArdcadeDisplay8x8.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ArdcadeDisplay8x8.png; sourceTree = "<group>"; };
 		293681F52CFF366A0004BCE5 /* ArdcadeDisplay16x16.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ArdcadeDisplay16x16.png; sourceTree = "<group>"; };
 		293E85952C9428DD00CE7A9B /* ArdcadeM0_1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ArdcadeM0_1.png; sourceTree = "<group>"; };
 		293E85962C9428DD00CE7A9B /* ArdcadeM0_0.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ArdcadeM0_0.png; sourceTree = "<group>"; };
@@ -267,7 +267,7 @@
 		29680C872C41237600BB0F58 /* images */ = {
 			isa = PBXGroup;
 			children = (
-				293681F42CFF366A0004BCE5 /* ArdcadeDisplay8x8.png */,
+				29248A502D0111A9000E3499 /* ArdcadeDisplay10x10.png */,
 				293681F52CFF366A0004BCE5 /* ArdcadeDisplay16x16.png */,
 				293E85982C96F84100CE7A9B /* ArdcadeM0 */,
 				29EBB92A2C84B631000B20EB /* ArdcadeMainboard.png */,
