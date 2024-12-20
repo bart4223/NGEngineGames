@@ -88,6 +88,8 @@
 		299C2B91295496F200F53CAA /* snake.ino */ = {isa = PBXFileReference; lastKnownFileType = text; path = snake.ino; sourceTree = "<group>"; };
 		299C2B922954A08B00F53CAA /* NGColorDotMatrixGameSnake.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = NGColorDotMatrixGameSnake.cpp; sourceTree = "<group>"; };
 		299C2B932954A08B00F53CAA /* NGColorDotMatrixGameSnake.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NGColorDotMatrixGameSnake.h; sourceTree = "<group>"; };
+		299F86422D15A32100023022 /* ArdcadeM0_6.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ArdcadeM0_6.png; sourceTree = "<group>"; };
+		299F86432D15A32100023022 /* ArdcadeM0_7.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ArdcadeM0_7.png; sourceTree = "<group>"; };
 		29B7C5E52C5CE4B50031195A /* NGColorDotMatrixEffectRetroRibbons.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = NGColorDotMatrixEffectRetroRibbons.cpp; sourceTree = "<group>"; };
 		29B7C5E62C5CE4B50031195A /* NGColorDotMatrixEffectRetroRibbons.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NGColorDotMatrixEffectRetroRibbons.h; sourceTree = "<group>"; };
 		29B7C5E82C5CF2F40031195A /* retroribbons.ino */ = {isa = PBXFileReference; lastKnownFileType = text; path = retroribbons.ino; sourceTree = "<group>"; };
@@ -161,6 +163,8 @@
 				293E85992C96F86500CE7A9B /* ArdcadeM0_3.png */,
 				29FEE0C02C994DD9000DE9FF /* ArdcadeM0_4.png */,
 				29034EAB2CB33A350060CDD8 /* ArdcadeM0_5.png */,
+				299F86422D15A32100023022 /* ArdcadeM0_6.png */,
+				299F86432D15A32100023022 /* ArdcadeM0_7.png */,
 			);
 			path = ArdcadeM0;
 			sourceTree = "<group>";
