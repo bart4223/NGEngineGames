@@ -90,6 +90,7 @@
 		299C2B932954A08B00F53CAA /* NGColorDotMatrixGameSnake.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NGColorDotMatrixGameSnake.h; sourceTree = "<group>"; };
 		299F86422D15A32100023022 /* ArdcadeM0_6.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ArdcadeM0_6.png; sourceTree = "<group>"; };
 		299F86432D15A32100023022 /* ArdcadeM0_7.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ArdcadeM0_7.png; sourceTree = "<group>"; };
+		299F86442D18420D00023022 /* ArdcadeM0_8.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ArdcadeM0_8.png; sourceTree = "<group>"; };
 		29B7C5E52C5CE4B50031195A /* NGColorDotMatrixEffectRetroRibbons.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = NGColorDotMatrixEffectRetroRibbons.cpp; sourceTree = "<group>"; };
 		29B7C5E62C5CE4B50031195A /* NGColorDotMatrixEffectRetroRibbons.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NGColorDotMatrixEffectRetroRibbons.h; sourceTree = "<group>"; };
 		29B7C5E82C5CF2F40031195A /* retroribbons.ino */ = {isa = PBXFileReference; lastKnownFileType = text; path = retroribbons.ino; sourceTree = "<group>"; };
@@ -157,6 +158,7 @@
 		293E85982C96F84100CE7A9B /* ArdcadeM0 */ = {
 			isa = PBXGroup;
 			children = (
+				299F86442D18420D00023022 /* ArdcadeM0_8.png */,
 				293E85962C9428DD00CE7A9B /* ArdcadeM0_0.png */,
 				293E85952C9428DD00CE7A9B /* ArdcadeM0_1.png */,
 				293E85972C95A2C100CE7A9B /* ArdcadeM0_2.png */,
