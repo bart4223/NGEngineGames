@@ -91,6 +91,9 @@
 		299F86422D15A32100023022 /* ArdcadeM0_6.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ArdcadeM0_6.png; sourceTree = "<group>"; };
 		299F86432D15A32100023022 /* ArdcadeM0_7.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ArdcadeM0_7.png; sourceTree = "<group>"; };
 		299F86442D18420D00023022 /* ArdcadeM0_8.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ArdcadeM0_8.png; sourceTree = "<group>"; };
+		299F86452D185FD900023022 /* NGColorDotMatrixEffectSnowfall.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NGColorDotMatrixEffectSnowfall.h; sourceTree = "<group>"; };
+		299F86462D185FD900023022 /* NGColorDotMatrixEffectSnowfall.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = NGColorDotMatrixEffectSnowfall.cpp; sourceTree = "<group>"; };
+		299F86482D1860AF00023022 /* snowfall.ino */ = {isa = PBXFileReference; lastKnownFileType = text; path = snowfall.ino; sourceTree = "<group>"; };
 		29B7C5E52C5CE4B50031195A /* NGColorDotMatrixEffectRetroRibbons.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = NGColorDotMatrixEffectRetroRibbons.cpp; sourceTree = "<group>"; };
 		29B7C5E62C5CE4B50031195A /* NGColorDotMatrixEffectRetroRibbons.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NGColorDotMatrixEffectRetroRibbons.h; sourceTree = "<group>"; };
 		29B7C5E82C5CF2F40031195A /* retroribbons.ino */ = {isa = PBXFileReference; lastKnownFileType = text; path = retroribbons.ino; sourceTree = "<group>"; };
@@ -176,6 +179,8 @@
 			children = (
 				29B7C5E62C5CE4B50031195A /* NGColorDotMatrixEffectRetroRibbons.h */,
 				29B7C5E52C5CE4B50031195A /* NGColorDotMatrixEffectRetroRibbons.cpp */,
+				299F86452D185FD900023022 /* NGColorDotMatrixEffectSnowfall.h */,
+				299F86462D185FD900023022 /* NGColorDotMatrixEffectSnowfall.cpp */,
 				29EBB92F2C8BB2CB000B20EB /* NGColorDotMatrixEffectStarLights.h */,
 				29EBB92E2C8BB2CB000B20EB /* NGColorDotMatrixEffectStarLights.cpp */,
 				295848AA2BE8C63B00AFEF4C /* NGColorDotMatrixEffectZini.h */,
@@ -216,6 +221,7 @@
 				29620D7829B4B6170020B874 /* colorOLED */,
 				29620D7D29B4DB090020B874 /* decimalpointcounter */,
 				29B7C5E72C5CF2CE0031195A /* retroribbons */,
+				299F86472D18609D00023022 /* snowfall */,
 				29EBB9302C8BB64A000B20EB /* starlights */,
 				29ED57F12C6351A2003E3AE4 /* splash */,
 				295848AB2BE8C69E00AFEF4C /* zini */,
@@ -426,6 +432,14 @@
 				299C2B91295496F200F53CAA /* snake.ino */,
 			);
 			path = snake;
+			sourceTree = "<group>";
+		};
+		299F86472D18609D00023022 /* snowfall */ = {
+			isa = PBXGroup;
+			children = (
+				299F86482D1860AF00023022 /* snowfall.ino */,
+			);
+			path = snowfall;
 			sourceTree = "<group>";
 		};
 		29B7C5E72C5CF2CE0031195A /* retroribbons */ = {
