@@ -24,6 +24,7 @@ class NGColorDotMatrixEffectSnowfall: public NGIEffect {
 private:
     NGIPaintableComponent *_ipc;
     int _snow[16] = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
+    byte _solid[16] = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
     int _delay = DEFEFFECTDELAY;
     long _lastUpdate = 0;
     

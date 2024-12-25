@@ -1,6 +1,5 @@
 #define LEDSTRIP    //OLED, DOTMATRIX, LEDSTRIP
 #define LEDSTRIP100 //LEDSTRIP100, LEDSTRIP256
-//#define RANDOMCOLOR
 
 #include <NGCommon.h>
 #include <NGMemoryObserver.h>

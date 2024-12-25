@@ -1,11 +1,12 @@
 #define PROD false  //false, true
+#define XMAS //NOXMAS, XMAS
  
 // Game "Dot"
-//#define GAME1
+#define GAME1
 // Game "Snake"
 //#define GAME2
 // Game "Asteroids"
-#define GAME3
+//#define GAME3
 // Game "Tetris"
 //#define GAME4
 // Game "Boulderdash"
@@ -28,6 +29,7 @@
 #include <NGSoundMachineEffect.h>
 #include <NGColorDotMatrixEffectStarLights.h>
 #include <NGColorDotMatrixEffectZini.h>
+#include <NGColorDotMatrixEffectSnowfall.h>
 #include <NGZX81Font.h>
 
 #ifdef GAME1
@@ -175,7 +177,7 @@ void setup() {
   if (hasDisplayTwo) {
     displayTwo = new NGLCDNotification(LCDADDRESS, LCDCOLUMNS, LCDLINES);
     displayTwo->initialize();
-    displayTwo->writeInfo("ARDCADE", 0, 5);
+    displayTwo->writeInfo(_GAMEMACHINE, 0, 5);
     #if (PROD == false)
     displayTwo->writeInfo("Test and Debug", 1, 1);
     #endif
@@ -205,6 +207,9 @@ void setup() {
   // GameMachine
   setGlobalUnit(&unitGameMachine);
   unitGameMachine.registerSplash(&splash);
+  #ifdef XMAS
+    unitGameMachine.registerEffectIdle(new NGColorDotMatrixEffectSnowfall(&displayOne));
+  #else
   switch(random(0, 2)) {
     case 0:
       unitGameMachine.registerEffectIdle(new NGColorDotMatrixEffectStarLights(&displayOne));
@@ -213,6 +218,7 @@ void setup() {
       unitGameMachine.registerEffectIdle(new NGColorDotMatrixEffectZini(&displayOne, getRandomColor(), random(ZINIMINGRADIENTSTAGES, ZINIMAXGRADIENTSTAGES + 1), random(ZINIMINDELAY, ZINIMAXDELAY)));
       break;
   }
+  #endif
   #if (PROD == false)
   if (hasDisplayTwo) {
     unitGameMachine.registerNotification(displayTwo);
