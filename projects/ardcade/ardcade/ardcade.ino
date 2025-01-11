@@ -1,10 +1,10 @@
-#define PROD false  //false, true
-#define XMAS //NOXMAS, XMAS
+#define PROD true  //false, true
+#define NOXMAS //NOXMAS, XMAS
  
 // Game "Dot"
-#define GAME1
+//#define GAME1
 // Game "Snake"
-//#define GAME2
+#define GAME2
 // Game "Asteroids"
 //#define GAME3
 // Game "Tetris"
@@ -272,6 +272,7 @@ void setup() {
   game.registerSoundStartUp(jingleStartup);
   game.registerColorDotMatrix(&displayOne);
   #endif
+  // Game "Four"
   #ifdef GAME4
   game.registerGameKey(gfStartGame, BUTTONA_ID);
   game.registerGameJoystick(&joystick);
@@ -279,6 +280,7 @@ void setup() {
   game.registerSoundStartUp(jingleStartup);
   game.registerColorDotMatrix(&displayOne);
   #endif
+  // Game "Five"
   #ifdef GAME5
   game.registerGameKey(gfStartGame, BUTTONA_ID);
   game.registerGameJoystick(&joystick);

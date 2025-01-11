@@ -1,7 +1,11 @@
 -CustomGame
 -CustomColorDotMatrixGame
+  -Asteroids
+    -comets
   -Boulderdash
     -Levels
   -SuperMarioBros
   -PacMan
+  -Tetris
+    -new Tetrominos
 -GamePad

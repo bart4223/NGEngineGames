@@ -28,6 +28,9 @@
 		293E85962C9428DD00CE7A9B /* ArdcadeM0_0.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ArdcadeM0_0.png; sourceTree = "<group>"; };
 		293E85972C95A2C100CE7A9B /* ArdcadeM0_2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ArdcadeM0_2.png; sourceTree = "<group>"; };
 		293E85992C96F86500CE7A9B /* ArdcadeM0_3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = ArdcadeM0_3.png; path = projects/ardcade/images/ArdcadeM0/ArdcadeM0_3.png; sourceTree = SOURCE_ROOT; };
+		295222BD2D32A457003395EF /* ArdcadeBatteryPack.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ArdcadeBatteryPack.png; sourceTree = "<group>"; };
+		295222BE2D32A468003395EF /* ArdcadeModuleSlot.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ArdcadeModuleSlot.png; sourceTree = "<group>"; };
+		295222BF2D32A486003395EF /* ArdcadeModuleSlotAM01.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ArdcadeModuleSlotAM01.png; sourceTree = "<group>"; };
 		295756332C7C7ACD00616955 /* eNGineGameDisplay.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = eNGineGameDisplay.png; sourceTree = "<group>"; };
 		295848A92BE8C63B00AFEF4C /* NGColorDotMatrixEffectZini.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = NGColorDotMatrixEffectZini.cpp; sourceTree = "<group>"; };
 		295848AA2BE8C63B00AFEF4C /* NGColorDotMatrixEffectZini.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NGColorDotMatrixEffectZini.h; sourceTree = "<group>"; };
@@ -279,11 +282,14 @@
 		29680C872C41237600BB0F58 /* images */ = {
 			isa = PBXGroup;
 			children = (
+				295222BD2D32A457003395EF /* ArdcadeBatteryPack.png */,
 				29248A502D0111A9000E3499 /* ArdcadeDisplay10x10.png */,
 				293681F52CFF366A0004BCE5 /* ArdcadeDisplay16x16.png */,
 				293E85982C96F84100CE7A9B /* ArdcadeM0 */,
 				29EBB92A2C84B631000B20EB /* ArdcadeMainboard.png */,
 				29EBB92B2C84C253000B20EB /* ArdcadeMainboardSchema.png */,
+				295222BE2D32A468003395EF /* ArdcadeModuleSlot.png */,
+				295222BF2D32A486003395EF /* ArdcadeModuleSlotAM01.png */,
 			);
 			path = images;
 			sourceTree = "<group>";
