@@ -287,13 +287,13 @@
 				295222BD2D32A457003395EF /* ArdcadeBatteryPack.png */,
 				29248A502D0111A9000E3499 /* ArdcadeDisplay10x10.png */,
 				293681F52CFF366A0004BCE5 /* ArdcadeDisplay16x16.png */,
-				293E85982C96F84100CE7A9B /* ArdcadeM0 */,
 				29EBB92A2C84B631000B20EB /* ArdcadeMainboard.png */,
 				29EBB92B2C84C253000B20EB /* ArdcadeMainboardSchema.png */,
 				295222C12D32A7B7003395EF /* ArdcadeModule01.png */,
 				295222C22D32A7C4003395EF /* ArdcadeModule01back.png */,
 				295222BE2D32A468003395EF /* ArdcadeModuleSlot.png */,
 				295222BF2D32A486003395EF /* ArdcadeModuleSlotAM01.png */,
+				293E85982C96F84100CE7A9B /* ArdcadeM0 */,
 			);
 			path = images;
 			sourceTree = "<group>";
