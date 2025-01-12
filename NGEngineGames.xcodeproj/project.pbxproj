@@ -33,7 +33,7 @@
 		295222BF2D32A486003395EF /* ArdcadeModuleSlotAM01.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ArdcadeModuleSlotAM01.png; sourceTree = "<group>"; };
 		295222C12D32A7B7003395EF /* ArdcadeModule01.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ArdcadeModule01.png; sourceTree = "<group>"; };
 		295222C22D32A7C4003395EF /* ArdcadeModule01back.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ArdcadeModule01back.png; sourceTree = "<group>"; };
-		295222C32D34281F003395EF /* HighScores.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = HighScores.txt; sourceTree = "<group>"; };
+		295222C32D34281F003395EF /* HighScores.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = HighScores.md; sourceTree = "<group>"; };
 		295756332C7C7ACD00616955 /* eNGineGameDisplay.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = eNGineGameDisplay.png; sourceTree = "<group>"; };
 		295848A92BE8C63B00AFEF4C /* NGColorDotMatrixEffectZini.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = NGColorDotMatrixEffectZini.cpp; sourceTree = "<group>"; };
 		295848AA2BE8C63B00AFEF4C /* NGColorDotMatrixEffectZini.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NGColorDotMatrixEffectZini.h; sourceTree = "<group>"; };
@@ -364,7 +364,7 @@
 			isa = PBXGroup;
 			children = (
 				296452882987F28800E1EF1D /* images */,
-				295222C32D34281F003395EF /* HighScores.txt */,
+				295222C32D34281F003395EF /* HighScores.md */,
 				299C2B7F294F52B200F53CAA /* ToDo.txt */,
 			);
 			path = docs;
