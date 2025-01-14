@@ -8,12 +8,7 @@
 #ifndef NGColorDotMatrixGameSnake_h
 #define NGColorDotMatrixGameSnake_h
 
-#if (ARDUINO >= 100)
 #include <Arduino.h>
-#else
-#include <WProgram.h>
-#endif
-
 #include <NGCustomColorDotMatrixGame.h>
 
 #define GAMESNAKECOLORSCOREOFF { .red = 5, .green = 5, .blue = 5 }

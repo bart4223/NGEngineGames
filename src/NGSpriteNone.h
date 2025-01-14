@@ -8,13 +8,8 @@
 #ifndef NGSpriteNone_h
 #define NGSpriteNone_h
 
-#if (ARDUINO >= 100)
 #include <Arduino.h>
-#else
-#include <WProgram.h>
-#endif
-
-#include "NGCustomSprite.h"
+#include <NGCustomSprite.h>
 
 class NGSpriteNone : public NGCustomSprite {
    

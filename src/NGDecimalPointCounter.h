@@ -8,12 +8,7 @@
 #ifndef NGDecimalPointCounter_h
 #define NGDecimalPointCounter_h
 
-#if (ARDUINO >= 100)
 #include <Arduino.h>
-#else
-#include <WProgram.h>
-#endif
-
 #include <NGCustomFont.h>
 #include <NGColorDotMatrixDecimalDigit.h>
 

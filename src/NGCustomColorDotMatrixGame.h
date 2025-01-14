@@ -8,12 +8,7 @@
 #ifndef NGCustomColorDotMatrixGame_h
 #define NGCustomColorDotMatrixGame_h
 
-#if (ARDUINO >= 100)
 #include <Arduino.h>
-#else
-#include <WProgram.h>
-#endif
-
 #include <NGCustomGame.h>
 #include <NGCustomSprite.h>
 #include <NGColorDotMatrixBinaryDigit.h>

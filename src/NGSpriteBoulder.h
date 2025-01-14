@@ -8,13 +8,8 @@
 #ifndef NGSpriteBoulder_h
 #define NGSpriteBoulder_h
 
-#if (ARDUINO >= 100)
 #include <Arduino.h>
-#else
-#include <WProgram.h>
-#endif
-
-#include "NGCustomSprite.h"
+#include <NGCustomSprite.h>
 
 class NGSpriteBoulder : public NGCustomSprite {
    

@@ -8,14 +8,9 @@
 #ifndef NGColorDotMatrixEffectSnowfall_h
 #define NGColorDotMatrixEffectSnowfall_h
 
-#if (ARDUINO >= 100)
 #include <Arduino.h>
-#else
-#include <WProgram.h>
-#endif
-
-#include "NGIEffect.h"
-#include "NGIPaintableComponent.h"
+#include <NGIEffect.h>
+#include <NGIPaintableComponent.h>
 
 #define DEFEFFECTDELAY 250
 

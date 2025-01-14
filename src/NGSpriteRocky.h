@@ -8,13 +8,8 @@
 #ifndef NGSpriteRocky_h
 #define NGSpriteRocky_h
 
-#if (ARDUINO >= 100)
 #include <Arduino.h>
-#else
-#include <WProgram.h>
-#endif
-
-#include "NGCustomSprite.h"
+#include <NGCustomSprite.h>
 
 #define BLINKDELAY 500
 

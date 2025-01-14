@@ -8,13 +8,8 @@
 #ifndef NGSpriteLaserbeam_h
 #define NGSpriteLaserbeam_h
 
-#if (ARDUINO >= 100)
 #include <Arduino.h>
-#else
-#include <WProgram.h>
-#endif
-
-#include "NGCustomSprite.h"
+#include <NGCustomSprite.h>
 
 class NGSpriteLaserbeam : public NGCustomSprite {
    

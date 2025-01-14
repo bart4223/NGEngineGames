@@ -8,15 +8,10 @@
 #ifndef NGColorDotMatrixEffectZini_h
 #define NGColorDotMatrixEffectZini_h
 
-#if (ARDUINO >= 100)
 #include <Arduino.h>
-#else
-#include <WProgram.h>
-#endif
-
-#include "NGIEffect.h"
-#include "NGIPaintableComponent.h"
-#include "NGColorDotMatrixGradientPoint.h"
+#include <NGIEffect.h>
+#include <NGIPaintableComponent.h>
+#include <NGColorDotMatrixGradientPoint.h>
 
 #define DEFZINICOLOR        COLOR_RED
 #define DEFBACKGROUNDCOLOR  COLOR_BLACK

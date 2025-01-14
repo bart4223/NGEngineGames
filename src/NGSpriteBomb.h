@@ -8,13 +8,8 @@
 #ifndef NGSpriteBomb_h
 #define NGSpriteBomb_h
 
-#if (ARDUINO >= 100)
 #include <Arduino.h>
-#else
-#include <WProgram.h>
-#endif
-
-#include "NGCustomSprite.h"
+#include <NGCustomSprite.h>
 
 class NGSpriteBomb : public NGCustomSprite {
    

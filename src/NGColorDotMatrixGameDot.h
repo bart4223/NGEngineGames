@@ -8,12 +8,7 @@
 #ifndef NGColorDotMatrixGameDot_h
 #define NGColorDotMatrixGameDot_h
 
-#if (ARDUINO >= 100)
 #include <Arduino.h>
-#else
-#include <WProgram.h>
-#endif
-
 #include <NGCustomColorDotMatrixGame.h>
 
 #define DEFDOTMAXCATCHTIME 1000

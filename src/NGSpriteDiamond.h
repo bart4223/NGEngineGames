@@ -8,13 +8,8 @@
 #ifndef NGSpriteDiamond_h
 #define NGSpriteDiamond_h
 
-#if (ARDUINO >= 100)
 #include <Arduino.h>
-#else
-#include <WProgram.h>
-#endif
-
-#include "NGCustomSprite.h"
+#include <NGCustomSprite.h>
 
 #define BLINKDELAY 200
 

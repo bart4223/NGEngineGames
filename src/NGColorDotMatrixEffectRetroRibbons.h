@@ -8,14 +8,9 @@
 #ifndef NGColorDotMatrixEffectRetroRibbons_h
 #define NGColorDotMatrixEffectRetroRibbons_h
 
-#if (ARDUINO >= 100)
 #include <Arduino.h>
-#else
-#include <WProgram.h>
-#endif
-
-#include "NGIEffect.h"
-#include "NGIPaintableComponent.h"
+#include <NGIEffect.h>
+#include <NGIPaintableComponent.h>
 
 #define COLORONE    { .red = 0x33, .green = 0x09, .blue = 0x0B }
 #define COLORTWO    { .red = 0x7D, .green = 0x0D, .blue = 0x1F }

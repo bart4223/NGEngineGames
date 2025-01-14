@@ -8,12 +8,7 @@
 #ifndef NGColorOLED_h
 #define NGColorOLED_h
 
-#if (ARDUINO >= 100)
 #include <Arduino.h>
-#else
-#include <WProgram.h>
-#endif
-
 #include <SPI.h>
 #include <Adafruit_GFX.h>
 #include <Adafruit_SSD1331.h>

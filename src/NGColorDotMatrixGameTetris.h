@@ -8,12 +8,7 @@
 #ifndef NGColorDotMatrixGameTetris_h
 #define NGColorDotMatrixGameTetris_h
 
-#if (ARDUINO >= 100)
 #include <Arduino.h>
-#else
-#include <WProgram.h>
-#endif
-
 #include <NGCustomColorDotMatrixGame.h>
 
 #define GAMETETRISCOLORSCOREOFF { .red = 5, .green = 5, .blue = 5 }

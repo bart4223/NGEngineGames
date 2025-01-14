@@ -8,13 +8,8 @@
 #ifndef NGSpriteDot_h
 #define NGSpriteDot_h
 
-#if (ARDUINO >= 100)
 #include <Arduino.h>
-#else
-#include <WProgram.h>
-#endif
-
-#include "NGCustomSprite.h"
+#include <NGCustomSprite.h>
 
 class NGSpriteDot : public NGCustomSprite {
    

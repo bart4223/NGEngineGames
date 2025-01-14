@@ -8,12 +8,7 @@
 #ifndef NGColorDotMatrixGameBoulderdash_h
 #define NGColorDotMatrixGameBoulderdash_h
 
-#if (ARDUINO >= 100)
 #include <Arduino.h>
-#else
-#include <WProgram.h>
-#endif
-
 #include <NGCustomColorDotMatrixGame.h>
 #include <NGColorDotMatrixFuse.h>
 
