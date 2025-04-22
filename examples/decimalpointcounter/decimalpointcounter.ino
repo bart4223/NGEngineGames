@@ -1,4 +1,4 @@
-#define LEDSTRIP //OLED, DOTMATRIX, LEDSTRIP
+#define COLORDOTMATRIX //OLED, COLORDOTMATRIX, LEDSTRIP
 #define FONTDEFAULT //FONTDEFAULT, FONTZX81
 
 #include <NGMemoryObserver.h>
@@ -6,7 +6,7 @@
 #ifdef OLED
 #include <NGColorOLED.h>
 #endif
-#ifdef DOTMATRIX
+#ifdef COLORDOTMATRIX
 #include <NGColorDotMatrix.h>
 #endif
 #ifdef LEDSTRIP
@@ -23,7 +23,7 @@
 #define RANGE 1000000
 #define DELAY   10000
 #endif
-#ifdef DOTMATRIX
+#ifdef COLORDOTMATRIX
 #define SCALE       1
 #define RANGE    1000
 #define DELAY   10000
@@ -41,7 +41,7 @@ NGZX81Font *fontZX81 = new NGZX81Font();
 #ifdef OLED
 NGColorOLED *cdm = new NGColorOLED();
 #endif
-#ifdef DOTMATRIX
+#ifdef COLORDOTMATRIX
 NGColorDotMatrix *cdm = new NGColorDotMatrix();
 #endif
 #ifdef LEDSTRIP
@@ -60,14 +60,14 @@ void setup() {
   #ifdef LEDSTRIP
   cdm->initialize(LEDSTRIPBRIGHTNESS);
   #else
-  cdm.initialize();
+  cdm->initialize();
   #endif
   cdm->setScale(SCALE);
   cdm->clear();
   #ifdef OLED
   dpc->setMaxDigits(5);
   #endif
-  #ifdef DOTMATRIX
+  #ifdef COLORDOTMATRIX
   dpc->setMaxDigits(3);
   #endif
   dpc->setShowMaxDigits(false);
@@ -80,7 +80,7 @@ void setup() {
   dpc->setPosX(5);
   dpc->setPosY(5);
   #endif
-  #ifdef DOTMATRIX
+  #ifdef COLORDOTMATRIX
   dpc->setPosX(0);
   dpc->setPosY(0);
   #endif
