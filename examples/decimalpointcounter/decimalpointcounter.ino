@@ -1,4 +1,4 @@
-#define DOTMATRIX //OLED, COLORDOTMATRIX, LEDSTRIP, DOTMATRIX
+#define DOTMATRIX8x32 //OLED, COLORDOTMATRIX, LEDSTRIP, DOTMATRIX8x8, DOTMATRIX8x32
 #define FONTDEFAULT //FONTDEFAULT, FONTZX81
 
 #include <NGMemoryObserver.h>
@@ -16,7 +16,11 @@
 #define LEDSTRIPROWS         10
 #define LEDSTRIPBRIGHTNESS 0.05
 #endif
-#ifdef DOTMATRIX
+#ifdef DOTMATRIX8x8
+#include <Visuals/NG8x8DotMatrix.h>
+#define DOTMATRIXBRIGHTNESS 0.05
+#endif
+#ifdef DOTMATRIX8x32
 #include <Visuals/NG8x8DotMatrix.h>
 #define DOTMATRIXBRIGHTNESS 0.05
 #endif
@@ -37,10 +41,15 @@
 #define RANGE    1000
 #define DELAY   10000
 #endif
-#ifdef DOTMATRIX
+#ifdef DOTMATRIX8x8
 #define SCALE       1
 #define RANGE      10
 #define DELAY    1000
+#endif
+#ifdef DOTMATRIX8x32
+#define SCALE       1
+#define RANGE      10
+#define DELAY     100
 #endif
 
 #ifdef FONTZX81
@@ -53,8 +62,11 @@ NGColorOLED *cdm = new NGColorOLED();
 #ifdef COLORDOTMATRIX
 NGColorDotMatrix *cdm = new NGColorDotMatrix();
 #endif
-#ifdef DOTMATRIX
+#ifdef DOTMATRIX8x8
 NG8x8DotMatrix *cdm = new NG8x8DotMatrix();
+#endif
+#ifdef DOTMATRIX8x32
+NG8x8DotMatrix *cdm = new NG8x8DotMatrix(4, 8, 32, dmamInverse);
 #endif
 #ifdef LEDSTRIP
 NGColorLEDStrip *cdm = new NGColorLEDStrip(LEDSTRIPPIN, LEDSTRIPPIXELS, LEDSTRIPROWS);
@@ -78,7 +90,10 @@ void setup() {
   #ifdef COLORDOTMATRIX
   cdm->initialize();
   #endif
-  #ifdef DOTMATRIX
+  #ifdef DOTMATRIX8x8
+  cdm->initialize(DOTMATRIXBRIGHTNESS);
+  #endif
+  #ifdef DOTMATRIX8x32
   cdm->initialize(DOTMATRIXBRIGHTNESS);
   #endif
   cdm->setScale(SCALE);
@@ -89,8 +104,11 @@ void setup() {
   #ifdef COLORDOTMATRIX
   dpc->setMaxDigits(3);
   #endif
-  #ifdef DOTMATRIX
+  #ifdef DOTMATRIX8x8
   dpc->setMaxDigits(1);
+  #endif
+  #ifdef DOTMATRIX8x32
+  dpc->setMaxDigits(4);
   #endif
   dpc->setShowMaxDigits(false);
   dpc->setIsAnimationEnabled(true);
@@ -106,7 +124,11 @@ void setup() {
   dpc->setPosX(0);
   dpc->setPosY(0);
   #endif
-  #ifdef DOTMATRIX
+  #ifdef DOTMATRIX8x8
+  dpc->setPosX(0);
+  dpc->setPosY(0);
+  #endif
+  #ifdef DOTMATRIX8x32
   dpc->setPosX(0);
   dpc->setPosY(0);
   #endif
@@ -118,7 +140,7 @@ void loop() {
   dpc->processingLoop();
   if (millis() - _lastValue > DELAY | _init) {
     _init = false;
-    cdm->clear();
+    //cdm->clear();
     //int count = random(1, RANGE);
     //Serial.println(count);
     //dpc->setCounter(0);
