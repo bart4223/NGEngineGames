@@ -12,8 +12,7 @@
 // Game "Boulderdash"
 //#define GAME5
 
-#include <NGMemoryObserver.h>
-#include <NGSimpleKeypad.h>
+#include <NGEngineCore.h>
 #include <NGSerialNotification.h>
 #include <NGLCDNotification.h>
 #include <NGColorLEDStrip.h>
@@ -30,7 +29,6 @@
 #include <NGColorDotMatrixEffectStarLights.h>
 #include <NGColorDotMatrixEffectZini.h>
 #include <NGColorDotMatrixEffectSnowfall.h>
-#include <NGZX81Font.h>
 
 #ifdef GAME1
 #include <NGColorDotMatrixGameDot.h>
