@@ -15,7 +15,7 @@
 #include <NGEngineCore.h>
 #include <NGSerialNotification.h>
 #include <NGLCDNotification.h>
-#include <NGColorLEDStrip.h>
+#include <Visuals/NGColorLEDStrip.h>
 #include <NGGameMachineUnitControl.h>
 #include <NGJingleBoot.h>
 #include <NGJingleBeep.h>
