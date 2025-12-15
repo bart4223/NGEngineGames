@@ -9,7 +9,7 @@
 #define NGDecimalPointCounter_h
 
 #include <Arduino.h>
-#include <NGCustomFont.h>
+#include <Fonts/NGCustomFont.h>
 #include <NGColorDotMatrixDecimalDigit.h>
 
 #define DEFPOINTCOUNTERMAXDIGITS 1
