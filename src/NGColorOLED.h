@@ -10,7 +10,7 @@
 
 #include <Arduino.h>
 #include <SPI.h>
-#include <Adafruit_GFX.h>
+#include <utility/Adafruit_GFX.h>
 #include <Adafruit_SSD1331.h>
 #include <NGIPaintableComponent.h>
 
