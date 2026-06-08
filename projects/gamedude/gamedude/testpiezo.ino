@@ -2,7 +2,7 @@
 #include <NGSoundMachine.h>
 #include <NGJingleSuperMario.h>
 
-#define DELAY     10000
+#define DELAY     15000
 #define KEEPALIVE   500
 
 NGSoundMachine sm = NGSoundMachine();
