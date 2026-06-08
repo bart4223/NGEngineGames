@@ -1,6 +1,6 @@
-#include <NGMemoryObserver.h>
+#include <NGEngineCore.h>
 #include <NGSoundMachine.h>
-#include <NGJingleSuperMarioShort.h>
+#include <NGJingleSuperMario.h>
 
 #define DELAY     10000
 #define KEEPALIVE   500
@@ -14,7 +14,7 @@ void setup()
 {
   observeMemory(0);
   sm.setConcurrently(true);
-  sm.registerJingle(new NGJingleSuperMarioShort);
+  sm.registerJingle(new NGJingleSuperMario);
   sm.initialize();
   observeMemory(0);
 }
