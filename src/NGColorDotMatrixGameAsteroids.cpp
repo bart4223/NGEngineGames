@@ -55,6 +55,24 @@ void NGColorDotMatrixGameAsteroids::_computeAsteroids() {
     }
 }
 
+void NGColorDotMatrixGameAsteroids::_computeComets() {
+    for (int y = 0; y < _maxGameAsteroidsY; y++) {
+        for (int x = 0; x < _maxGameAsteroidsX; x++) {
+            if (_maze[y][x] == GAMEASTEROIDSCOLORINDEXCOMET) {
+                _maze[y][x] = 0;
+                if (x > 0) {
+                    _gameFinished = _isColorIndexSpacecraft(_maze[y][x - 1]);
+                    if (!_gameFinished) {
+                        _maze[y][x - 1] = GAMEASTEROIDSCOLORINDEXCOMET;
+                    } else {
+                        return;
+                    }
+                }
+            }
+        }
+    }
+}
+
 bool NGColorDotMatrixGameAsteroids::_computeLaserbeam() {
     bool res = false;
     for (int y = 0; y < _maxGameAsteroidsY; y++) {
@@ -108,6 +126,18 @@ void NGColorDotMatrixGameAsteroids::_spawnAsteroid() {
     }
     if ((random(0, 10) % base) == 0) {
         _maze[random(0, _maxGameAsteroidsY - 1)][_maxGameAsteroidsX - 1] = GAMEASTEROIDSCOLORINDEXASTEROID;
+    }
+}
+
+void NGColorDotMatrixGameAsteroids::_spawnComet() {
+    byte base = 5;
+    switch(_gameMode) {
+        case gmBig:
+            base = 3;
+            break;
+    }
+    if ((random(0, 10) % base) == 0) {
+        _maze[random(0, _maxGameAsteroidsY - 1)][_maxGameAsteroidsX - 1] = GAMEASTEROIDSCOLORINDEXCOMET;
     }
 }
 
@@ -240,7 +270,9 @@ void NGColorDotMatrixGameAsteroids::_doProcessingLoop() {
         }
         if ((millis() - _lastAsteroidsMove) > _gameNextStepDelay) {
             _computeAsteroids();
+            _computeComets();
             _spawnAsteroid();
+            _spawnComet();
             _lastAsteroidsMove = millis();
             doRender = true;
         }

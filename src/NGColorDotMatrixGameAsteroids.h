@@ -8,12 +8,7 @@
 #ifndef NGColorDotMatrixGameAsteroids_h
 #define NGColorDotMatrixGameAsteroids_h
 
-#if (ARDUINO >= 100)
 #include <Arduino.h>
-#else
-#include <WProgram.h>
-#endif
-
 #include <NGCustomColorDotMatrixGame.h>
 
 #define GAMEASTEROIDSCOLORSCOREOFF  { .red = 5, .green = 5, .blue = 5 }
@@ -34,6 +29,7 @@
 #define GAMEASTEROIDSCOLORINDEXSPACECRAFT02     2
 #define GAMEASTEROIDSCOLORINDEXLASERBEAM        3
 #define GAMEASTEROIDSCOLORINDEXASTEROID         4
+#define GAMEASTEROIDSCOLORINDEXCOMET            5
 
 #define GAMEASTEROIDSINTROLASERBEAMTIMES           5
 #define GAMEASTEROIDSINTRODELAY                  100
@@ -43,11 +39,12 @@
 
 #define GAMEASTEROIDSMAXLOST 3
 
-static byte globalAsteroidsColors[4][3] = {
-  {0, 0, 255},  // Spacecraft 01
-  {0, 0, 255},  // Spacecraft 02
-  {255, 0, 0},  // Laser
-  {255, 255, 0} // Asteroid
+static byte globalAsteroidsColors[5][3] = {
+  {0, 0, 255},      // Spacecraft 01
+  {0, 0, 255},      // Spacecraft 02
+  {255, 0, 0},      // Laser
+  {255, 255, 0},    // Asteroid
+  {0, 255, 255}     // Comet
 };
 
 class NGColorDotMatrixGameAsteroids : public NGCustomColorDotMatrixGame {
@@ -70,9 +67,13 @@ private:
     
     void _computeAsteroids();
     
+    void _computeComets();
+    
     bool _computeLaserbeam();
     
     void _spawnAsteroid();
+    
+    void _spawnComet();
     
     void _spawnLaserbeam();
     
