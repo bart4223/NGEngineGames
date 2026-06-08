@@ -83,8 +83,10 @@ NGColorLEDStrip *cdm = new NGColorLEDStrip(LEDSTRIPPIN, LEDSTRIPPIXELS, LEDSTRIP
 #endif
 #ifdef TFTDISPLAY
 NGTFTDisplay *cdm = new NGTFTDisplay();
-#endif
+NGDecimalPointCounter *dpc = new NGDecimalPointCounter(cdm, COLOR_GREEN);
+#else
 NGDecimalPointCounter *dpc = new NGDecimalPointCounter(cdm, COLOR_RED);
+#endif
 
 #define ANIMATIONDELAY 100
 
@@ -152,6 +154,10 @@ void setup() {
   #ifdef DOTMATRIX8x32
   dpc->setPosX(0);
   dpc->setPosY(0);
+  #endif
+  #ifdef TFTDISPLAY
+  dpc->setPosX(2);
+  dpc->setPosY(2);
   #endif
   dpc->initialize();
   observeMemory(0);
