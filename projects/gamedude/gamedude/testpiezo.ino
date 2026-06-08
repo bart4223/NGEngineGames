@@ -25,7 +25,8 @@ void loop()
     Serial.println("Fire sound playing");
     sm.playRandom();
     Serial.println("...done");
-    lastPlay = millis();  
+    lastPlay = millis();
+    observeMemory(0);  
   }
   sm.processingLoop();
   if (lastKeepAlive == 0 || millis() - lastKeepAlive > KEEPALIVE) {
