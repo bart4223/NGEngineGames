@@ -1,8 +1,8 @@
-#define DOTMATRIX8x32 //OLED, COLORDOTMATRIX, LEDSTRIP, DOTMATRIX8x8, DOTMATRIX8x32
+#define TFTDISPLAY //OLED, COLORDOTMATRIX, LEDSTRIP, DOTMATRIX8x8, DOTMATRIX8x32, TFTDISPLAY
 #define FONTDEFAULT //FONTDEFAULT, FONTZX81
 
-#include <NGMemoryObserver.h>
-#include <NGZX81Font.h>
+#include <NGEngineCore.h>
+#include <Fonts/NGZX81Font.h>
 #ifdef OLED
 #include <NGColorOLED.h>
 #endif
@@ -24,6 +24,10 @@
 #include <Visuals/NG8x8DotMatrix.h>
 #define DOTMATRIXBRIGHTNESS 0.05
 #endif
+#ifdef TFTDISPLAY
+#include <Visuals/NGTFTDisplay.h>
+#endif
+
 #include <NGDecimalPointCounter.h>
 
 #ifdef OLED
@@ -51,6 +55,12 @@
 #define RANGE      10
 #define DELAY     100
 #endif
+#ifdef TFTDISPLAY
+#define SCALE       3
+#define RANGE      10
+#define DELAY     100
+#define TFTVERTICALSWITCH 42
+#endif
 
 #ifdef FONTZX81
 NGZX81Font *fontZX81 = new NGZX81Font();
@@ -70,6 +80,9 @@ NG8x8DotMatrix *cdm = new NG8x8DotMatrix(4, 8, 32, dmamInverse);
 #endif
 #ifdef LEDSTRIP
 NGColorLEDStrip *cdm = new NGColorLEDStrip(LEDSTRIPPIN, LEDSTRIPPIXELS, LEDSTRIPROWS);
+#endif
+#ifdef TFTDISPLAY
+NGTFTDisplay *cdm = new NGTFTDisplay();
 #endif
 NGDecimalPointCounter *dpc = new NGDecimalPointCounter(cdm, COLOR_RED);
 
@@ -95,6 +108,14 @@ void setup() {
   #endif
   #ifdef DOTMATRIX8x32
   cdm->initialize(DOTMATRIXBRIGHTNESS);
+  #endif
+  #ifdef TFTDISPLAY
+  cdm->initialize();
+  if (IsSwitchOn(TFTVERTICALSWITCH)) {
+    cdm->setDisplayDirection(tddVertical);
+  } else {
+    cdm->setDisplayDirection(tddHorizontal);
+  }
   #endif
   cdm->setScale(SCALE);
   cdm->clear();
