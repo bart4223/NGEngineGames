@@ -1,7 +1,7 @@
 #define TFTDISPLAY //OLED, COLORDOTMATRIX, LEDSTRIP, DOTMATRIX8x8, DOTMATRIX8x32, TFTDISPLAY
 #define FONTDEFAULT //FONTDEFAULT, FONTZX81
 
-#include <NGEngineCore.h>
+#include <NGEngineGames.h>
 #include <Fonts/NGZX81Font.h>
 #ifdef OLED
 #include <NGColorOLED.h>
@@ -27,8 +27,6 @@
 #ifdef TFTDISPLAY
 #include <Visuals/NGTFTDisplay.h>
 #endif
-
-#include <NGDecimalPointCounter.h>
 
 #ifdef OLED
 #define SCALE       3
