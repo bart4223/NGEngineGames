@@ -9,7 +9,7 @@
 #define NGSpriteSpaceship_h
 
 #include <Arduino.h>
-#include <NGCustomSprite.h>
+#include <Sprites/NGCustomSprite.h>
 
 class NGSpriteSpaceship : public NGCustomSprite {
    

@@ -5,7 +5,7 @@
 //  Created by Nils Grimmer on 12.03.23.
 //
 
-#include "NGGameExceptions.h"
+#include "Common/NGGameExceptions.h"
 #include "NGCustomColorDotMatrixGame.h"
 
 bool NGCustomColorDotMatrixGame::_hasSprite(int id) {

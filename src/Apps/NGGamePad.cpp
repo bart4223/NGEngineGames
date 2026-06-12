@@ -6,7 +6,8 @@
 //
 
 #include "NGGamePad.h"
-#include "NGGameExceptions.h"
+#include "Common/NGGameExceptions.h"
+#include "Games/NGCustomGame.h"
 
 NGGamePad::NGGamePad() {
     _create();

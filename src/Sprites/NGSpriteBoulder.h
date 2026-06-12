@@ -9,7 +9,7 @@
 #define NGSpriteBoulder_h
 
 #include <Arduino.h>
-#include <NGCustomSprite.h>
+#include <Sprites/NGCustomSprite.h>
 
 class NGSpriteBoulder : public NGCustomSprite {
    

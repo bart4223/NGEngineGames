@@ -9,7 +9,7 @@
 #define NGColorDotMatrixGameSnake_h
 
 #include <Arduino.h>
-#include <NGCustomColorDotMatrixGame.h>
+#include <Games/NGCustomColorDotMatrixGame.h>
 
 #define GAMESNAKECOLORSCOREOFF { .red = 5, .green = 5, .blue = 5 }
 #define GAMESNAKECOLORSCOREON COLOR_BLUE

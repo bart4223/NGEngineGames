@@ -10,7 +10,7 @@
 
 #include <Arduino.h>
 #include <NGINotification.h>
-#include <NGCustomGame.h>
+#include <Games/NGCustomGame.h>
 
 #define GAMEPADNOTIFICATIONCOUNT 3
 #define GAMEPADMAXGAMECOUNT      5

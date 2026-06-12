@@ -9,7 +9,7 @@
 #define NGColorDotMatrixGameDot_h
 
 #include <Arduino.h>
-#include <NGCustomColorDotMatrixGame.h>
+#include <Games/NGCustomColorDotMatrixGame.h>
 
 #define DEFDOTMAXCATCHTIME 1000
 #define DOTCATCHDELAY       200

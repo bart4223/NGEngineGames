@@ -9,7 +9,7 @@
 #define NGColorDotMatrixGameTetris_h
 
 #include <Arduino.h>
-#include <NGCustomColorDotMatrixGame.h>
+#include <Games/NGCustomColorDotMatrixGame.h>
 
 #define GAMETETRISCOLORSCOREOFF { .red = 5, .green = 5, .blue = 5 }
 #define GAMETETRISCOLORSCOREON COLOR_BLUE

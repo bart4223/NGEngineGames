@@ -9,7 +9,7 @@
 #define NGSpriteDot_h
 
 #include <Arduino.h>
-#include <NGCustomSprite.h>
+#include <Sprites/NGCustomSprite.h>
 
 class NGSpriteDot : public NGCustomSprite {
    

@@ -10,7 +10,7 @@
 
 #include <Arduino.h>
 #include <NGCustomUnitControl.h>
-#include <NGCustomGame.h>
+#include <Games/NGCustomGame.h>
 
 #define _VERSION "3.1"
 #define VERSION (char*)_VERSION

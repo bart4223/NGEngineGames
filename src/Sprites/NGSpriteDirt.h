@@ -9,7 +9,7 @@
 #define NGSpriteDirt_h
 
 #include <Arduino.h>
-#include <NGCustomSprite.h>
+#include <Sprites/NGCustomSprite.h>
 
 class NGSpriteDirt : public NGCustomSprite {
    

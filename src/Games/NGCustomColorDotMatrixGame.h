@@ -9,10 +9,10 @@
 #define NGCustomColorDotMatrixGame_h
 
 #include <Arduino.h>
-#include <NGCustomGame.h>
-#include <NGCustomSprite.h>
+#include <Games/NGCustomGame.h>
+#include <Sprites/NGCustomSprite.h>
 #include <NGColorDotMatrixBinaryDigit.h>
-#include <NGDecimalPointCounter.h>
+#include <Visuals/NGDecimalPointCounter.h>
 
 #define DEFSCOREDIGITS        4
 #define DEFSCOREDIGITPOSX     7

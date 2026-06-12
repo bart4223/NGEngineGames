@@ -9,7 +9,7 @@
 #define NGSpriteRocky_h
 
 #include <Arduino.h>
-#include <NGCustomSprite.h>
+#include <Sprites/NGCustomSprite.h>
 
 #define BLINKDELAY 500
 

@@ -9,7 +9,7 @@
 #define NGColorDotMatrixGameBoulderdash_h
 
 #include <Arduino.h>
-#include <NGCustomColorDotMatrixGame.h>
+#include <Games/NGCustomColorDotMatrixGame.h>
 #include <NGColorDotMatrixFuse.h>
 
 #define GAMEBOULDERDASHCOLORSCOREOFF  COLOR_BLACK

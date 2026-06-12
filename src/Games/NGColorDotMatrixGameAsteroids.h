@@ -9,7 +9,7 @@
 #define NGColorDotMatrixGameAsteroids_h
 
 #include <Arduino.h>
-#include <NGCustomColorDotMatrixGame.h>
+#include <Games/NGCustomColorDotMatrixGame.h>
 
 #define GAMEASTEROIDSCOLORSCOREOFF  { .red = 5, .green = 5, .blue = 5 }
 #define GAMEASTEROIDSCOLORSCOREON   COLOR_GREEN

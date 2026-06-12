@@ -7,7 +7,7 @@
 
 #include "NGCommon.h"
 #include <NGExceptionDefinitions.h>
-#include <NGGameExceptions.h>
+#include <Common/NGGameExceptions.h>
 #include "NGCustomGame.h"
 
 void NGCustomGame::_create(char* name) {
