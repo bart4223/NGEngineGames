@@ -1,50 +1,23 @@
-#define PROD true  //false, true
+#define PROD true //false, true
 #define NOXMAS //NOXMAS, XMAS
  
-// Game "Dot"
-//#define GAME1
-// Game "Snake"
-#define GAME2
-// Game "Asteroids"
-//#define GAME3
-// Game "Tetris"
-//#define GAME4
-// Game "Boulderdash"
-//#define GAME5
+//#define DOT
+#define SNAKE
+//#define ASTEROIDS
+//#define TETRIS
+//#define BOULDERDASH
 
-#include <NGEngineCore.h>
+#include <NGEngineGames.h>
 #include <NGSerialNotification.h>
 #include <NGLCDNotification.h>
 #include <Visuals/NGColorLEDStrip.h>
-#include <NGGameMachineUnitControl.h>
 #include <NGJingleBoot.h>
 #include <NGJingleBeep.h>
 #include <NGJingleAlarm.h>
 #include <NGJingleSuperMarioShort.h>
 #include <NGDigitalPotentiometer.h>
 #include <NGPaintableComponentEffectVoid.h>
-#include <NGColorDotMatrixEffectRetroRibbons.h>
-#include <NGColorDotMatrixEffectText.h>
 #include <NGSoundMachineEffect.h>
-#include <NGColorDotMatrixEffectStarLights.h>
-#include <NGColorDotMatrixEffectZini.h>
-#include <NGColorDotMatrixEffectSnowfall.h>
-
-#ifdef GAME1
-#include <NGColorDotMatrixGameDot.h>
-#endif
-#ifdef GAME2
-#include <NGColorDotMatrixGameSnake.h>
-#endif
-#ifdef GAME3
-#include <NGColorDotMatrixGameAsteroids.h>
-#endif
-#ifdef GAME4
-#include <NGColorDotMatrixGameTetris.h>
-#endif
-#ifdef GAME5
-#include <NGColorDotMatrixGameBoulderdash.h>
-#endif
 
 #define PINLEDSTRIP                  8
 #define PINAUTODETECTIONDISPLAYONE  A0
@@ -131,20 +104,20 @@ NGLCDNotification *displayTwo;
 #define ZINIMINDELAY  120
 #define ZINIMAXDELAY  180
 
-#ifdef GAME1
+#ifdef DOT
 NGColorDotMatrixGameDot game = NGColorDotMatrixGameDot();
 #endif
-#ifdef GAME2
+#ifdef SNAKE
 NGColorDotMatrixGameSnake game = NGColorDotMatrixGameSnake();
 #endif
-#ifdef GAME3
+#ifdef ASTEROIDS
 #define CONTINOUSFIRETHRESHOLD  5
 NGColorDotMatrixGameAsteroids game = NGColorDotMatrixGameAsteroids();
 #endif
-#ifdef GAME4
+#ifdef TETRIS
 NGColorDotMatrixGameTetris game = NGColorDotMatrixGameTetris();
 #endif
-#ifdef GAME5
+#ifdef BOULDERDASH
 NGColorDotMatrixGameBoulderdash game = NGColorDotMatrixGameBoulderdash();
 #endif
 NGGameMachineUnitControl unitGameMachine = NGGameMachineUnitControl(GAMEMACHINE, &game);
@@ -237,7 +210,7 @@ void setup() {
   simpleKeypad.registerKey(KEYBRIGHTNESSPIN, KEYBRIGHTNESSID, KEYDELAY);
   simpleKeypad.initialize();
   // Joystick
-  #ifdef GAME3
+  #ifdef ASTEROIDS
   joystick.setContinuousFireThreshold(CONTINOUSFIRETHRESHOLD);
   #endif
   joystick.registerAction(jamMappingInvers, jaX, jtkLess, JOYSTICKTHRESHOLDLEFT, JOYSTICKDELAY, jmLeft);
@@ -246,40 +219,40 @@ void setup() {
   joystick.registerAction(jamMapping, jaY, jtkGreater, JOYSTICKTHRESHOLDDOWN, JOYSTICKDELAY, jmDown);
   joystick.registerAction(jamNone, BUTTONB_PIN, JOYSTICKDELAY, jmFire);
   joystick.initialize();
-  // Game "One"
-  #ifdef GAME1
+  // Game "Dot"
+  #ifdef DOT
   game.registerGameKey(gfStartGame, BUTTONA_ID);
   game.registerGameJoystick(&joystick);
   game.registerSoundMachine(&soundMachine);
   game.registerSoundStartUp(jingleStartup);
   game.registerColorDotMatrix(&displayOne);
   #endif
-  // Game "Two"
-  #ifdef GAME2
+  // Game "Snake"
+  #ifdef SNAKE
   game.registerGameKey(gfStartGame, BUTTONA_ID);
   game.registerGameJoystick(&joystick);
   game.registerSoundMachine(&soundMachine);
   game.registerSoundStartUp(jingleStartup);
   game.registerColorDotMatrix(&displayOne);
   #endif
-  // Game "Three"
-  #ifdef GAME3
+  // Game "Asteroids"
+  #ifdef ASTEROIDS
   game.registerGameKey(gfStartGame, BUTTONA_ID);
   game.registerGameJoystick(&joystick);
   game.registerSoundMachine(&soundMachine);
   game.registerSoundStartUp(jingleStartup);
   game.registerColorDotMatrix(&displayOne);
   #endif
-  // Game "Four"
-  #ifdef GAME4
+  // Game "Tetris"
+  #ifdef TETRIS
   game.registerGameKey(gfStartGame, BUTTONA_ID);
   game.registerGameJoystick(&joystick);
   game.registerSoundMachine(&soundMachine);
   game.registerSoundStartUp(jingleStartup);
   game.registerColorDotMatrix(&displayOne);
   #endif
-  // Game "Five"
-  #ifdef GAME5
+  // Game "Boulderdash"
+  #ifdef BOULDERDASH
   game.registerGameKey(gfStartGame, BUTTONA_ID);
   game.registerGameJoystick(&joystick);
   game.registerSoundMachine(&soundMachine);
