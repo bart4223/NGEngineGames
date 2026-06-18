@@ -13,6 +13,8 @@
 #define _GAMEMACHINE  "GameDude"
 #define GAMEMACHINE   (char*)_GAMEMACHINE
 
+#define TFTVERTICALSWITCH 42
+
 #define KEYSELECTPIN  12
 #define KEYSELECTID   42
 #define KEYSTARTPIN   11
@@ -64,6 +66,11 @@ void setup() {
   initGlobalRandomSeedWithAnalogInput(A15);
   // TFT
   tft.initialize();
+  if (IsSwitchOn(TFTVERTICALSWITCH)) {
+    tft.setDisplayDirection(tddVertical);
+  } else {
+    tft.setDisplayDirection(tddHorizontal);
+  }
   // Sound
   jingleBootID = soundMachine.registerJingle(new NGJingleBoot);
   jingleBeepID = soundMachine.registerJingle(new NGJingleBeep);
