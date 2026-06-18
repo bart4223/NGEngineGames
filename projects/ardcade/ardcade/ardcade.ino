@@ -1,8 +1,8 @@
 #define PROD true //false, true
 #define NOXMAS //NOXMAS, XMAS
  
-//#define DOT
-#define SNAKE
+#define DOT
+//#define SNAKE
 //#define ASTEROIDS
 //#define TETRIS
 //#define BOULDERDASH

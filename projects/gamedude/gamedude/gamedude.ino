@@ -1,4 +1,4 @@
-#define PROD false //false, true
+#define PROD true //false, true
 
 #define DOT
 
@@ -23,9 +23,9 @@
 #define KEYAID        44
 #define KEYBPIN        7
 #define KEYBID        45
-#define KEYUPPIN       2
+#define KEYUPPIN       3
 #define KEYUPID       46
-#define KEYDOWNPIN     3
+#define KEYDOWNPIN     2
 #define KEYDOWNID     47
 #define KEYLEFTPIN     4
 #define KEYLEFTID     48
@@ -40,7 +40,10 @@
 #define JOYSTICKID          0
 #define JOYSTICKDELAY      50
 
-NGTFTDisplay tft = NGTFTDisplay();
+#define GAMEMACHINESTARTCOLOR     COLOR_BLUE_C64_LOW
+#define GAMEMACHINESTARTCOLORDONE COLOR_BLACK
+
+NGTFTDisplay display = NGTFTDisplay();
 #if (PROD == false)
 NGSerialNotification serialNotification = NGSerialNotification();
 #endif
@@ -64,13 +67,22 @@ void setup() {
   observeMemory(0);
   #endif
   initGlobalRandomSeedWithAnalogInput(A15);
-  // TFT
-  tft.initialize();
+  // Display
+  display.initialize();
   if (IsSwitchOn(TFTVERTICALSWITCH)) {
-    tft.setDisplayDirection(tddVertical);
+    display.setDisplayDirection(tddVertical);
   } else {
-    tft.setDisplayDirection(tddHorizontal);
+    display.setDisplayDirection(tddHorizontal);
   }
+  display.setBackground(GAMEMACHINESTARTCOLOR);
+  display.clear();
+  display.setBackground(GAMEMACHINESTARTCOLORDONE);
+  display.setScale(8);
+  #if (PROD == false)
+  char log[100];
+  sprintf(log, "TFT-Width: %d, TFT-Height %d", display.getWidth(), display.getHeight());
+  Serial.println(log);
+  #endif
   // Sound
   jingleBootID = soundMachine.registerJingle(new NGJingleBoot);
   jingleBeepID = soundMachine.registerJingle(new NGJingleBeep);
@@ -108,7 +120,7 @@ void setup() {
   game.registerGameJoystick(&joystick);
   game.registerSoundMachine(&soundMachine);
   game.registerSoundStartUp(jingleStartup);
-  game.registerColorDotMatrix(&tft);
+  game.registerColorDotMatrix(&display);
   #endif
   // Startup
   #if (PROD == true)
