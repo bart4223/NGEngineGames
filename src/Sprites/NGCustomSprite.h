@@ -37,7 +37,7 @@ public:
     void render();
     
     void render(int x, int y);
-    
+
     void setPosition(int x, int y);
     
     void setTransparent(bool transparent);

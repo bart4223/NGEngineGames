@@ -166,6 +166,8 @@ public:
     
     bool isGameStarted();
     
+    void setGameMode(gameMode mode);
+    
     gameMode getGameMode();
 };
 

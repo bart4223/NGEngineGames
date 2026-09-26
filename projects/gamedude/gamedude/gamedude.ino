@@ -10,6 +10,11 @@
 #include <NGJingleAlarm.h>
 #include <NGJingleSuperMarioShort.h>
 
+#ifdef DOT
+#include <Sprites/NGSpriteDiamond.h>
+#include <Sprites/NGSpriteRocky.h>
+#endif
+
 #define _GAMEMACHINE  "GameDude"
 #define GAMEMACHINE   (char*)_GAMEMACHINE
 
@@ -52,6 +57,7 @@ NGSimpleKeypad skpMain = NGSimpleKeypad();
 NGJoystickControl joystick = NGJoystickControl(JOYSTICKID, KEYLEFTPIN, KEYRIGHTPIN, KEYDOWNPIN, KEYUPPIN, KEYAPIN);
 
 #ifdef DOT
+#define DISPLAYSCALE 8
 NGColorDotMatrixGameDot game = NGColorDotMatrixGameDot();
 #endif
 
@@ -77,7 +83,7 @@ void setup() {
   display.setBackground(GAMEMACHINESTARTCOLOR);
   display.clear();
   display.setBackground(GAMEMACHINESTARTCOLORDONE);
-  display.setScale(8);
+  display.setScale(DISPLAYSCALE);
   #if (PROD == false)
   char log[100];
   sprintf(log, "TFT-Width: %d, TFT-Height %d", display.getWidth(), display.getHeight());
@@ -114,6 +120,7 @@ void setup() {
   #endif
   unitGameMachine.registerKeypad(&skpMain);
   unitGameMachine.initialize();
+  game.setGameMode(gmBig);
   // Game "Dot"
   #ifdef DOT
   game.registerGameKey(gfStartGame, KEYSTARTID);
@@ -121,6 +128,10 @@ void setup() {
   game.registerSoundMachine(&soundMachine);
   game.registerSoundStartUp(jingleStartup);
   game.registerColorDotMatrix(&display);
+  NGSpriteDiamond *dotSprite = new NGSpriteDiamond(&display);
+  game.registerDotSprite(dotSprite);
+  NGSpriteRocky *playerSprite = new NGSpriteRocky(&display, true);
+  game.registerPlayerSprite(playerSprite);
   #endif
   // Startup
   #if (PROD == true)

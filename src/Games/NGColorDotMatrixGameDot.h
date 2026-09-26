@@ -21,14 +21,20 @@
 #define GAMESPRITEDOTID    1
 #define GAMESPRITEPLAYERID 2
 
+#define GAMEDOTCATCHTIMEFACTOR 1.5
+
 class NGColorDotMatrixGameDot : public NGCustomColorDotMatrixGame {
     
 private:
     byte _posXDot;
     byte _posYDot;
+    byte _prevPosXDot;
+    byte _prevPosYDot;
     long _dotSpawned;
     byte _posXPlayer;
     byte _posYPlayer;
+    byte _prevPosXPlayer;
+    byte _prevPosYPlayer;
     colorRGB _colorPlayer;
     int _dotMaxCatchTime;
     byte _maxGameDotX;
@@ -62,7 +68,7 @@ protected:
     void _ownJoystickLoop();
     
     void _ownRender();
-    
+
     void _ownIntro();
     
     void _ownIntroAnimation();
@@ -71,6 +77,10 @@ public:
     NGColorDotMatrixGameDot();
     
     void registerColorDotMatrix(NGIPaintableComponent *ipc);
+
+    void registerDotSprite(NGCustomSprite *sprite);
+
+    void registerPlayerSprite(NGCustomSprite *sprite);
 };
 
 #endif /* NGColorDotMatrixGameDot_h */

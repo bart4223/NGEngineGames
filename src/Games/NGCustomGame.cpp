@@ -338,6 +338,10 @@ bool NGCustomGame::isGameStarted() {
     return _gameStarted;
 }
 
+void NGCustomGame::setGameMode(gameMode mode) {
+    _gameMode = mode;
+}    
+    
 gameMode NGCustomGame::getGameMode() {
     return _gameMode;
 }

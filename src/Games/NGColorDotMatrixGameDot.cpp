@@ -170,19 +170,28 @@ void NGColorDotMatrixGameDot::_ownIntroAnimation() {
 
 void NGColorDotMatrixGameDot::_ownRender() {
     _ipc->beginUpdate();
-    _ipc->clear();
+    
+    _ipc->drawPoint(_prevPosXPlayer, _prevPosYPlayer, _ipc->getBackground());
     if (_hasSprite(GAMESPRITEPLAYERID)) {
         _setSpriteColor(GAMESPRITEPLAYERID, _colorPlayer);
         _renderSprite(GAMESPRITEPLAYERID, _posXPlayer, _posYPlayer);
     } else {
         _ipc->drawPoint(_posXPlayer, _posYPlayer, _colorPlayer);
     }
+
+    _ipc->drawPoint(_prevPosXDot, _prevPosYDot, _ipc->getBackground());
     if (_hasSprite(GAMESPRITEDOTID)) {
         _setSpriteColor(GAMESPRITEDOTID, COLOR_RED);
         _renderSprite(GAMESPRITEDOTID, _posXDot, _posYDot);
     } else {
         _ipc->drawPoint(_posXDot, _posYDot, COLOR_RED);
     }
+
+    _prevPosXPlayer = _posXPlayer;
+    _prevPosYPlayer = _posYPlayer;
+    _prevPosXDot    = _posXDot;
+    _prevPosYDot    = _posYDot;
+
     _score->setValue(_scoreCounter);
     _ipc->endUpdate();
 }
@@ -244,10 +253,10 @@ void NGColorDotMatrixGameDot::registerColorDotMatrix(NGIPaintableComponent *ipc)
     _dotMaxCatchTime = DEFDOTMAXCATCHTIME + ((ipc->getWidth() - DEFSCOREDIGITPOSX) * (ipc->getHeight() - DEFSCOREDIGITPOSY) * ((DEFSCOREDIGITPOSX + 1) * (DEFSCOREDIGITPOSY + 1) / DEFDOTMAXCATCHTIME));
     switch(_gameMode) {
         case gmNormal:
-            _dotMaxCatchTime = _dotMaxCatchTime * 1.5;
+            _dotMaxCatchTime = _dotMaxCatchTime * GAMEDOTCATCHTIMEFACTOR;
             break;
         case gmBig:
-            _dotMaxCatchTime = _dotMaxCatchTime * 2;
+            _dotMaxCatchTime = _dotMaxCatchTime * GAMEDOTCATCHTIMEFACTOR * 2;
             break;
     }
     NGCustomColorDotMatrixGame::registerColorDotMatrix(ipc);
@@ -255,4 +264,12 @@ void NGColorDotMatrixGameDot::registerColorDotMatrix(NGIPaintableComponent *ipc)
     _maxGameDotY = ipc->getHeight() - 1;
     _minGameDotDiff = 1;
     _maxGameDotDiff = (ipc->getWidth() / 2 + ipc->getHeight() / 2) / 2;
+}
+
+void NGColorDotMatrixGameDot::registerDotSprite(NGCustomSprite *sprite) {
+    registerSprite(GAMESPRITEDOTID, sprite);
+}
+
+void NGColorDotMatrixGameDot::registerPlayerSprite(NGCustomSprite *sprite) {
+    registerSprite(GAMESPRITEPLAYERID, sprite);
 }
