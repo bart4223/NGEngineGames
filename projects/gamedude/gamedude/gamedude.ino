@@ -128,10 +128,8 @@ void setup() {
   game.registerSoundMachine(&soundMachine);
   game.registerSoundStartUp(jingleStartup);
   game.registerColorDotMatrix(&display);
-  NGSpriteDiamond *dotSprite = new NGSpriteDiamond(&display);
-  game.registerDotSprite(dotSprite);
-  NGSpriteRocky *playerSprite = new NGSpriteRocky(&display, true);
-  game.registerPlayerSprite(playerSprite);
+  game.registerDotSprite(new NGSpriteDiamond(&display, true));
+  game.registerPlayerSprite(new NGSpriteRocky(&display, true));
   #endif
   // Startup
   #if (PROD == true)
