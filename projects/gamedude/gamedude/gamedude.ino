@@ -45,8 +45,7 @@
 #define JOYSTICKID          0
 #define JOYSTICKDELAY      50
 
-#define GAMEMACHINESTARTCOLOR     COLOR_BLUE_C64_LOW
-#define GAMEMACHINESTARTCOLORDONE COLOR_BLACK
+#define GAMEMACHINESTARTCOLOR COLOR_BLUE_C64_LOW
 
 NGTFTDisplay display = NGTFTDisplay();
 #if (PROD == false)
@@ -58,6 +57,9 @@ NGJoystickControl joystick = NGJoystickControl(JOYSTICKID, KEYLEFTPIN, KEYRIGHTP
 
 #ifdef DOT
 #define DISPLAYSCALE 8
+#define GAMEMACHINESTARTCOLORDONE COLOR_GRAY
+#define GAMEMACHINESCORECOLOROFF COLOR_DARKGRAY
+#define GAMEMACHINESCORECOLORON COLOR_YELLOW
 NGColorDotMatrixGameDot game = NGColorDotMatrixGameDot();
 #endif
 
@@ -130,6 +132,8 @@ void setup() {
   game.registerColorDotMatrix(&display);
   game.registerDotSprite(new NGSpriteDiamond(&display, true));
   game.registerPlayerSprite(new NGSpriteRocky(&display, true));
+  game.setScoreColorOff(GAMEMACHINESCORECOLOROFF);
+  game.setScoreColorOn(GAMEMACHINESCORECOLORON);
   #endif
   // Startup
   #if (PROD == true)
