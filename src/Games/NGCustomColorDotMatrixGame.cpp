@@ -23,6 +23,13 @@ int NGCustomColorDotMatrixGame::_getSpriteIndex(int id) {
     return res;
 }
 
+void NGCustomColorDotMatrixGame::_renderSprite(int id) {
+    int i = _getSpriteIndex(id);
+    if (i != NOSPRITE) {
+        _sprites[i].sprite->render();
+    }
+}
+
 void NGCustomColorDotMatrixGame::_renderSprite(int id, int x, int y) {
     int i = _getSpriteIndex(id);
     if (i != NOSPRITE) {
