@@ -25,11 +25,6 @@ void NGColorDotMatrixEffectZini::_create(NGIPaintableComponent *ipc, colorRGB co
     _defziniDelay = delay;
     _ziniDelay = _defziniDelay;
     _gp = new NGColorDotMatrixGradientPoint(ipc, color, gradientstages, true);
-    _posX = random(0, ipc->getWidth());
-    _posY = random(0, ipc->getHeight());
-    _maxPosX = ipc->getWidth() - 1;
-    _maxPosY = ipc->getHeight() - 1;
-    _diceDirection();
 }
 
 void NGColorDotMatrixEffectZini::_render() {
@@ -68,7 +63,11 @@ void NGColorDotMatrixEffectZini::setBackgroundColor(colorRGB backgroundcolor) {
 }
 
 void NGColorDotMatrixEffectZini::initialize() {
-    
+    _posX = random(0, _ipc->getWidth());
+    _posY = random(0, _ipc->getHeight());
+    _maxPosX = _ipc->getWidth() - 1;
+    _maxPosY = _ipc->getHeight() - 1;
+    _diceDirection();
 }
 
 void NGColorDotMatrixEffectZini::processingLoop() {

@@ -13,12 +13,11 @@ NGColorDotMatrixEffectRetroRibbons::NGColorDotMatrixEffectRetroRibbons(NGIPainta
 
 void NGColorDotMatrixEffectRetroRibbons::_create(NGIPaintableComponent *ipc) {
     _ipc = ipc;
-    _stripHeight = _ipc->getHeight() / 5;
-    _stripIndex = 0;
 }
 
 void NGColorDotMatrixEffectRetroRibbons::initialize() {
-    
+    _stripHeight =  _ipc->getHeight()/ 5;
+    _stripIndex = 0;
 }
 
 void NGColorDotMatrixEffectRetroRibbons::processingLoop() {
