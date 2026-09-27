@@ -43,6 +43,8 @@ private:
     byte _maxGameDotDiff;
     byte _introPlayerX = 0;
     byte _introPlayerY = 0;
+    colorRGB _colorScoreOff = GAMEDOTCOLORSCOREOFF;
+    colorRGB _colorScoreOn = GAMEDOTCOLORSCOREON;
     
     void _rollPlayerColor();
 
@@ -81,6 +83,10 @@ public:
     void registerDotSprite(NGCustomSprite *sprite);
 
     void registerPlayerSprite(NGCustomSprite *sprite);
+
+    void setScoreColorOff(colorRGB color);
+
+    void setScoreColorOn(colorRGB color);
 };
 
 #endif /* NGColorDotMatrixGameDot_h */

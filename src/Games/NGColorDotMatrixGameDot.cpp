@@ -67,8 +67,8 @@ void NGColorDotMatrixGameDot::_doStartUp() {
 
 void NGColorDotMatrixGameDot::_doStartUpDone() {
     _ipc->clear();
-    _score->setColorOff(GAMEDOTCOLORSCOREOFF);
-    _score->setColorOn(GAMEDOTCOLORSCOREON);
+    _score->setColorOff(_colorScoreOff);
+    _score->setColorOn(_colorScoreOn);
     _score->setValue(0);
     if (_logging) {
         char log[100];
@@ -148,14 +148,14 @@ void NGColorDotMatrixGameDot::_ownIntro() {
         _ipc->drawPoint(dotX, dotY, COLOR_RED);
     }
     _rollPlayerColor();
-    _ipc->drawPoint(_introPlayerX, _introPlayerY, COLOR_BLACK);
+    _ipc->drawPoint(_introPlayerX, _introPlayerY, _ipc->getBackground());
 }
 
 void NGColorDotMatrixGameDot::_ownIntroAnimation() {
     _startUpDone = _startUpAnimationStep > _maxGameDotX / 2 + _maxGameDotY / 2;
     if (!_startUpDone) {
         if (millis() - _lastStartUpAnimationStep > GAMEDOTINTRODELAY) {
-            _ipc->drawPoint(_introPlayerX, _introPlayerY, COLOR_BLACK);
+            _ipc->drawPoint(_introPlayerX, _introPlayerY, _ipc->getBackground());
             if (_getYesOrNo()) {
                 _introPlayerX++;
             } else {
@@ -276,4 +276,12 @@ void NGColorDotMatrixGameDot::registerDotSprite(NGCustomSprite *sprite) {
 
 void NGColorDotMatrixGameDot::registerPlayerSprite(NGCustomSprite *sprite) {
     registerSprite(GAMESPRITEPLAYERID, sprite);
+}
+
+void NGColorDotMatrixGameDot::setScoreColorOff(colorRGB color) {
+    _colorScoreOff = color;
+}
+
+void NGColorDotMatrixGameDot::setScoreColorOn(colorRGB color) {
+    _colorScoreOn = color;
 }
