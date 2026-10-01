@@ -15,6 +15,10 @@
 #include <NGColorDotMatrixText.h>
 
 #define DEFTEXTCOLOR COLOR_BLACK
+#define DEFIDLEEFFECTMODE giemSimple
+
+enum gameIdleEffectMode { giemSimple };
+
 
 class NGColorDotMatrixEffectGameIdle: public NGIEffect {
     
@@ -24,9 +28,10 @@ private:
     NGColorDotMatrixText *_text;
     char *_textSecondary;
     colorRGB _textColor = DEFTEXTCOLOR;
-    
+    gameIdleEffectMode _mode = DEFIDLEEFFECTMODE;
+
 protected:
-    void _create(NGIPaintableComponent *ipc, NGCustomGame *game);
+    void _create(NGIPaintableComponent *ipc, NGCustomGame *game, gameIdleEffectMode mode);
     
 public:
     NGColorDotMatrixEffectGameIdle(NGIPaintableComponent *ipc, NGCustomGame *game);
