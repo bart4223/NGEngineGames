@@ -25,6 +25,9 @@
 #define MAXSPRITECOUNT 10
 #define NOSPRITE -1
 
+#define GAMEDOTCOLORSCOREOFF { .red = 5, .green = 5, .blue = 5 }
+#define GAMEDOTCOLORSCOREON COLOR_BLUE
+
 struct gameSpriteStruct
 {
     byte id;
@@ -50,19 +53,26 @@ protected:
     int _pointCounterAnimationDelay = 0;
     int _pointCounterPosX = 0;
     int _pointCounterPosY = 0;
+    colorRGB _colorScoreOff = GAMEDOTCOLORSCOREOFF;
+    colorRGB _colorScoreOn = GAMEDOTCOLORSCOREON;
     
     bool _hasSprite(int id);
     int _getSpriteIndex(int id);
     void _renderSprite(int id);
     void _renderSprite(int id, int x, int y);
     void _setSpriteColor(int id, colorRGB color);
-    
+    void _doStartUpDone();
+
 public:
     void registerColorDotMatrix(NGIPaintableComponent *ipc);
     
     void registerSprite(byte id, NGCustomSprite *sprite);
     
     void registerScoreSprite(NGCustomSprite *sprite);
+
+    void setScoreColorOff(colorRGB color);
+
+    void setScoreColorOn(colorRGB color);
 };
 
 #endif /* NGCustomColorDotMatrixGame_h */

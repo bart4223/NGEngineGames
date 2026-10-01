@@ -66,9 +66,8 @@ void NGColorDotMatrixGameDot::_doStartUp() {
 }
 
 void NGColorDotMatrixGameDot::_doStartUpDone() {
+    NGCustomColorDotMatrixGame::_doStartUpDone();
     _ipc->clear();
-    _score->setColorOff(_colorScoreOff);
-    _score->setColorOn(_colorScoreOn);
     _score->setValue(0);
     if (_logging) {
         char log[100];
@@ -276,12 +275,4 @@ void NGColorDotMatrixGameDot::registerDotSprite(NGCustomSprite *sprite) {
 
 void NGColorDotMatrixGameDot::registerPlayerSprite(NGCustomSprite *sprite) {
     registerSprite(GAMESPRITEPLAYERID, sprite);
-}
-
-void NGColorDotMatrixGameDot::setScoreColorOff(colorRGB color) {
-    _colorScoreOff = color;
-}
-
-void NGColorDotMatrixGameDot::setScoreColorOn(colorRGB color) {
-    _colorScoreOn = color;
 }

@@ -206,9 +206,9 @@ void setup() {
   #ifdef DOT
   game.registerDotSprite(new NGSpriteDiamond(&display, true));
   game.registerPlayerSprite(new NGSpriteRocky(&display, true));
+  #endif
   game.setScoreColorOff(GAMEMACHINESCORECOLOROFF);
   game.setScoreColorOn(GAMEMACHINESCORECOLORON);
-  #endif
   // Startup
   #if (PROD == true)
   unitGameMachine.setWorkMode(wmNone);
