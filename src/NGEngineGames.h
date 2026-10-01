@@ -15,6 +15,7 @@
 #include <Effects/NGColorDotMatrixEffectStarLights.h>
 #include <Effects/NGColorDotMatrixEffectZini.h>
 #include <Effects/NGColorDotMatrixEffectSnowfall.h>
+#include <Effects/NGColorDotMatrixEffectGameIdle.h>
 #include <Games/NGColorDotMatrixGameDot.h>
 #include <Games/NGColorDotMatrixGameSnake.h>
 #include <Games/NGColorDotMatrixGameAsteroids.h>

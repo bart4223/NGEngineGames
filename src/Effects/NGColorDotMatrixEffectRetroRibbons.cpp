@@ -16,8 +16,8 @@ void NGColorDotMatrixEffectRetroRibbons::_create(NGIPaintableComponent *ipc) {
 }
 
 void NGColorDotMatrixEffectRetroRibbons::initialize() {
-    _stripHeight =  _ipc->getHeight()/ 5;
-    _stripIndex = 0;
+    _stripHeight =  _ipc->getHeight()/ DEFRIBBONCOUNT;
+    _stripIndex = random(0, DEFRIBBONCOUNT);
 }
 
 void NGColorDotMatrixEffectRetroRibbons::processingLoop() {
@@ -44,15 +44,15 @@ void NGColorDotMatrixEffectRetroRibbons::processingLoop() {
             }
             _ipc->drawLine(0, y, _ipc->getWidth() - 1, y, color);
             _stripIndex++;
-            if (_stripIndex >= _stripHeight * 5) {
+            if (_stripIndex >= _stripHeight * DEFRIBBONCOUNT) {
                 _stripIndex = 0;
             }
         }
         _ipc->endUpdate();
         _lastUpdate = millis();
-        if (_stripHeight * 5 == _ipc->getHeight()) {
+        if (_stripHeight * DEFRIBBONCOUNT == _ipc->getHeight()) {
             _stripIndex++;
-            if (_stripIndex >= _stripHeight * 5) {
+            if (_stripIndex >= _stripHeight * DEFRIBBONCOUNT) {
                 _stripIndex = 0;
             }
         }

@@ -19,6 +19,7 @@
 #define COLORFIVE   { .red = 0x00, .green = 0x6D, .blue = 0x19 }
 
 #define DEFEFFECTDELAY 100
+#define DEFRIBBONCOUNT 5
 
 class NGColorDotMatrixEffectRetroRibbons: public NGIEffect {
     

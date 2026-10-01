@@ -9,6 +9,8 @@
 #include <NGJingleBeep.h>
 #include <NGJingleAlarm.h>
 #include <NGJingleSuperMarioShort.h>
+#include <NGPaintableComponentEffectVoid.h>
+#include <NGSoundMachineEffect.h>
 
 #ifdef DOT
 #include <Sprites/NGSpriteDiamond.h>
@@ -48,6 +50,9 @@
 #define GAMEMACHINESTARTCOLOR COLOR_BLUE_C64_LOW
 
 NGTFTDisplay display = NGTFTDisplay();
+
+NGZX81Font *fontSplash = new NGZX81Font();
+
 #if (PROD == false)
 NGSerialNotification serialNotification = NGSerialNotification();
 #endif
@@ -59,8 +64,20 @@ NGJoystickControl joystick = NGJoystickControl(JOYSTICKID, KEYLEFTPIN, KEYRIGHTP
 #define DISPLAYSCALE 8
 #define GAMEMACHINESTARTCOLORDONE COLOR_GRAY
 #define GAMEMACHINESCORECOLOROFF COLOR_DARKGRAY
-#define GAMEMACHINESCORECOLORON COLOR_YELLOW
+#define GAMEMACHINESCORECOLORON COLOR_GOLD
+#define GAMEMACHINEIDLETEXTCOLOR COLOR_DARKBLUE
 NGColorDotMatrixGameDot game = NGColorDotMatrixGameDot();
+#endif
+
+NGColorDotMatrixEffectRetroRibbons *effectOne = new NGColorDotMatrixEffectRetroRibbons(&display);
+NGSoundMachineEffect *effectTwo = new NGSoundMachineEffect(&soundMachine);
+NGColorDotMatrixEffectText *effectThree = new NGColorDotMatrixEffectText(&display, COLOR_WHITE, COLOR_TRANSPARENT, fontSplash, setkFull);
+NGColorDotMatrixEffectGameIdle *effectFinal = new NGColorDotMatrixEffectGameIdle(&display, &game);
+
+#if (PROD == false)
+NGSplash splash = NGSplash(&serialNotification);
+#else
+NGSplash splash = NGSplash();
 #endif
 
 NGGameMachineUnitControl unitGameMachine = NGGameMachineUnitControl(GAMEMACHINE, &game);
@@ -113,8 +130,23 @@ void setup() {
   skpMain.registerKey(KEYAPIN, KEYAID, KEYDELAY);
   skpMain.registerKey(KEYBPIN, KEYBID, KEYDELAY);
   skpMain.initialize();
+  // Splash
+  splash.registerPaintableComponent(&display);
+  splash.registerEffect(effectOne, 500, 2000);
+  #if (PROD == true)
+  effectTwo->playJingle(jingleBootID);
+  splash.registerEffect(effectTwo, 0, 1500);
+  #endif
+  effectThree->setPosition((display.getWidth() - strlen(GAMEMACHINE)) / 2, display.getHeight() / 2 + 10);
+  effectThree->setText(GAMEMACHINE);
+  effectFinal->setFont(fontSplash);
+  effectFinal->setTextColor(GAMEMACHINEIDLETEXTCOLOR);
+  effectFinal->setTextSecondary("\xA9 by NG 2026");
+  splash.registerEffect(effectThree, 2500, 1500);
+  splash.registerEffect(effectFinal, 4200, 10);
   // GameMachine
   setGlobalUnit(&unitGameMachine);
+  unitGameMachine.registerSplash(&splash);
   #if (PROD == false)
   unitGameMachine.setLogging(true);
   #else
