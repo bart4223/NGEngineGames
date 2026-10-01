@@ -1,6 +1,8 @@
 #define PROD true //false, true
 
-#define DOT
+#define DOT // DOT, SNAKE, ASTEROIDS, TETRIS, BOULDERDASH
+
+#define ZX81 // ZX81, ZXSPECTRUM
 
 #include <NGEngineGames.h>
 #include <NGSerialNotification.h>
@@ -51,7 +53,12 @@
 
 NGTFTDisplay display = NGTFTDisplay();
 
+#ifdef ZX81
 NGZX81Font *fontSplash = new NGZX81Font();
+#endif
+#ifdef ZXSPECTRUM
+NGZXSpectrumFont *fontSplash = new NGZXSpectrumFont();
+#endif
 
 #if (PROD == false)
 NGSerialNotification serialNotification = NGSerialNotification();
@@ -67,6 +74,42 @@ NGJoystickControl joystick = NGJoystickControl(JOYSTICKID, KEYLEFTPIN, KEYRIGHTP
 #define GAMEMACHINESCORECOLORON COLOR_GOLD
 #define GAMEMACHINEIDLETEXTCOLOR COLOR_DARKBLUE
 NGColorDotMatrixGameDot game = NGColorDotMatrixGameDot();
+#endif
+
+#ifdef SNAKE
+#define DISPLAYSCALE 8
+#define GAMEMACHINESTARTCOLORDONE COLOR_GRAY
+#define GAMEMACHINESCORECOLOROFF COLOR_DARKGRAY
+#define GAMEMACHINESCORECOLORON COLOR_GOLD
+#define GAMEMACHINEIDLETEXTCOLOR COLOR_DARKBLUE
+NGColorDotMatrixGameSnake game = NGColorDotMatrixGameSnake();
+#endif
+
+#ifdef ASTEROIDS
+#define DISPLAYSCALE 8
+#define GAMEMACHINESTARTCOLORDONE COLOR_GRAY
+#define GAMEMACHINESCORECOLOROFF COLOR_DARKGRAY
+#define GAMEMACHINESCORECOLORON COLOR_GOLD
+#define GAMEMACHINEIDLETEXTCOLOR COLOR_DARKBLUE
+NGColorDotMatrixGameAsteroids game = NGColorDotMatrixGameAsteroids();
+#endif
+
+#ifdef TETRIS
+#define DISPLAYSCALE 8
+#define GAMEMACHINESTARTCOLORDONE COLOR_GRAY
+#define GAMEMACHINESCORECOLOROFF COLOR_DARKGRAY
+#define GAMEMACHINESCORECOLORON COLOR_GOLD
+#define GAMEMACHINEIDLETEXTCOLOR COLOR_DARKBLUE
+NGColorDotMatrixGameTetris game = NGColorDotMatrixGameTetris();
+#endif
+
+#ifdef BOULDERDASH
+#define DISPLAYSCALE 8
+#define GAMEMACHINESTARTCOLORDONE COLOR_GRAY
+#define GAMEMACHINESCORECOLOROFF COLOR_DARKGRAY
+#define GAMEMACHINESCORECOLORON COLOR_GOLD
+#define GAMEMACHINEIDLETEXTCOLOR COLOR_DARKBLUE
+NGColorDotMatrixGameBoulderdash game = NGColorDotMatrixGameBoulderdash();
 #endif
 
 NGColorDotMatrixEffectRetroRibbons *effectOne = new NGColorDotMatrixEffectRetroRibbons(&display);
@@ -155,13 +198,12 @@ void setup() {
   unitGameMachine.registerKeypad(&skpMain);
   unitGameMachine.initialize();
   game.setGameMode(gmBig);
-  // Game "Dot"
-  #ifdef DOT
   game.registerGameKey(gfStartGame, KEYSTARTID);
   game.registerGameJoystick(&joystick);
   game.registerSoundMachine(&soundMachine);
   game.registerSoundStartUp(jingleStartup);
   game.registerColorDotMatrix(&display);
+  #ifdef DOT
   game.registerDotSprite(new NGSpriteDiamond(&display, true));
   game.registerPlayerSprite(new NGSpriteRocky(&display, true));
   game.setScoreColorOff(GAMEMACHINESCORECOLOROFF);
