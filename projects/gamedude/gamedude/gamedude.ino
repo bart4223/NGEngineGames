@@ -184,7 +184,7 @@ void setup() {
   effectThree->setText(GAMEMACHINE);
   effectFinal->setFont(fontSplash);
   effectFinal->setTextColor(GAMEMACHINEIDLETEXTCOLOR);
-  effectFinal->setTextSecondary("\xA9 by NG 2026");
+  effectFinal->setTextSecondary("@ by NG 2026");
   splash.registerEffect(effectThree, 2500, 1500);
   splash.registerEffect(effectFinal, 4200, 10);
   // GameMachine

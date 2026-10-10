@@ -28,17 +28,25 @@ void NGColorDotMatrixEffectGameIdle::processingLoop() {
     _ipc->beginUpdate();
     int scaleOrg = _ipc->getScale();
     int scale;
+    int len = strlen(_game->getName());
+    int fact;
     switch(_mode) {
         case giemSimple:
-            scale = 16;
+            if (len > 5) {
+                scale = 8;
+                fact = 4;
+            } else {
+                scale = 16;
+                fact = 2;
+            }               
             _ipc->setScale(scale);
-            _text->setPosX((_ipc->getWidth() - strlen(_game->getName())) / 2 - 1);
+            _text->setPosX((_ipc->getWidth() - len) / fact - 1);
             _text->setPosY(_ipc->getHeight() + (scale / 2));
             _text->setText(_game->getName());
             _ipc->setScale(1);
-            int x = _ipc->getWidth() / (scale / 2) - strlen(_textSecondary);
+            int x = _ipc->getWidth() / 8 - strlen(_textSecondary);
             _text->setPosX(x);
-            _text->setPosY(_ipc->getHeight() - (scale / 2) - 2);
+            _text->setPosY(_ipc->getHeight() - 10);
             _text->setText(_textSecondary);
             break;
     }
